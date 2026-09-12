@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Auto Trader</title>
+  <style>
+    :root {
+      --bg: #0f1115; --card: #1a1d24; --line: #2a2e38; --txt: #e6e6e6;
+      --muted: #8b8f98; --green: #4ade80; --red: #f87171; --amber: #fbbf24;
+      --blue: #60a5fa;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg); color: var(--txt); -webkit-font-smoothing: antialiased;
+    }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 20px 16px 48px; }
+    header { display: flex; align-items: center; justify-content: space-between;
+             flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
+    h1 { font-size: 20px; margin: 0; }
+    .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
+    .badge { display: inline-block; padding: 4px 12px; border-radius: 20px;
+             font-size: 12px; font-weight: 700; letter-spacing: .02em; }
+    .badge.open { background: rgba(74,222,128,.15); color: var(--green); }
+    .badge.closed { background: rgba(248,113,113,.15); color: var(--red); }
+    .badge.live { background: rgba(96,165,250,.15); color: var(--blue); }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px; margin-bottom: 16px; }
+    .card { background: var(--card); border: 1px solid var(--line);
+            border-radius: 12px; padding: 14px 16px; }
+    .stat .label { color: var(--muted); font-size: 11px; text-transform: uppercase;
+                   letter-spacing: .05em; }
+    .stat .value { font-size: 22px; font-weight: 650; margin-top: 4px; }
+    .pos { color: var(--green); } .neg { color: var(--red); }
+
+    h2 { font-size: 14px; margin: 22px 0 10px; color: var(--muted);
+         text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+    th, td { text-align: right; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+    th:first-child, td:first-child { text-align: left; }
+    th { color: var(--muted); font-weight: 500; font-size: 11px;
+         text-transform: uppercase; letter-spacing: .04em; }
+    .sym { font-weight: 650; }
+    .region { color: var(--muted); font-size: 11.5px; }
+
+    svg { width: 100%; height: 220px; display: block; }
+    .legend { font-size: 12px; margin-top: 8px; display: flex; gap: 16px;
+              flex-wrap: wrap; color: var(--muted); }
+    .legend b { color: var(--txt); }
+
+    .kv { font-size: 13px; color: var(--muted); line-height: 1.7; }
+    .kv b { color: var(--txt); font-weight: 600; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+    .chip { background: var(--line); border-radius: 6px; padding: 3px 9px;
+            font-size: 12px; color: var(--txt); }
+    .empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
+    .err { color: var(--red); font-size: 13px; }
+    .refresh { color: var(--muted); font-size: 12px; text-align: center;
+               margin-top: 20px; }
+    .dot { display:inline-block; width:8px; height:8px; border-radius:50%;
+           background: var(--green); margin-right:6px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:.35 } }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>📈 Auto Trader</h1>
+    <span id="marketBadge" class="badge closed">…</span>
+  </header>
+  <div class="sub"><span class="dot"></span><span id="strategyName">—</span> · paper trading · <span id="updated">—</span></div>
+
+  <div class="grid">
+    <div class="card stat"><div class="label">Equity</div>
+      <div class="value" id="equity">—</div></div>
+    <div class="card stat"><div class="label">Cash</div>
+      <div class="value" id="cash">—</div></div>
+    <div class="card stat"><div class="label">Total P&amp;L</div>
+      <div class="value" id="totalPnl">—</div></div>
+    <div class="card stat"><div class="label">Today's P&amp;L</div>
+      <div class="value" id="dailyPnl">—</div></div>
+    <div class="card stat"><div class="label">Open Positions</div>
+      <div class="value" id="openCount">—</div></div>
+  </div>
+
+  <h2>Equity evolution</h2>
+  <div class="card"><svg id="chart" viewBox="0 0 800 220" preserveAspectRatio="none"></svg>
+    <div class="legend" id="chartLegend"></div>
+  </div>
+
+  <h2>Open positions</h2>
+  <div class="card">
+    <table id="posTable">
+      <thead><tr><th>Symbol</th><th>Qty</th><th>Entry</th><th>Price</th>
+                 <th>Value</th><th>Unrealized P&amp;L</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="posEmpty">No open positions.</div>
+  </div>
+
+  <h2>Recent trades</h2>
+  <div class="card">
+    <table id="tradeTable">
+      <thead><tr><th>Time</th><th>Action</th><th>Symbol</th><th>Notional</th>
+                 <th>Reason</th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div class="empty" id="tradeEmpty">No trades yet.</div>
+  </div>
+
+  <h2>Strategy</h2>
+  <div class="card kv" id="strategyInfo"></div>
+
+  <div class="refresh">auto-refresh every 60s · data updates every ~30 min</div>
+</div>
+
+<script>
+const REPO = "dsarsham-cmyk/autotrader";
+const BRANCH = "main";
+const START_BALANCE = 100000;
+const REGION = {
+  "QQQ":"US · Nasdaq 100","SPY":"US · S&P 500","DIA":"US · Dow Jones",
+  "TQQQ":"US · Nasdaq 100 (3x)","SPXL":"US · S&P 500 (3x)","SOXL":"US · Semis (3x)",
+  "TNA":"US · Small Cap (3x)","UDOW":"US · Dow (3x)","FAS":"US · Financials (3x)",
+  "ERX":"US · Energy (2x)","TECL":"US · Tech (3x)","CURE":"US · Healthcare (3x)",
+  "LABU":"US · Biotech (3x)","FNGU":"US · FANG (3x)","NAIL":"US · Homebuilders (3x)",
+  "EURL":"Europe (3x)","EDC":"Emerging Mkts (3x)","YINN":"China (3x)",
+  "IWM":"US · Russell 2000","EWJ":"Japan","EWU":"UK","EWG":"Germany",
+  "EWQ":"France","EZU":"Eurozone","EWH":"Hong Kong","EWY":"South Korea"
+};
+
+function raw(path) {
+  return `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${path}?t=${Date.now()}`;
+}
+function fmt(n) {
+  if (n == null || isNaN(n)) return "—";
+  return "$" + Number(n).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+}
+function fmtSigned(n) {
+  if (n == null || isNaN(n)) return "—";
+  const s = (n >= 0 ? "+" : "") + Number(n).toLocaleString("en-US", {minimumFractionDigits: 2, maximumFractionDigits: 2});
+  return "$" + s;
+}
+function pct(n) {
+  if (n == null || isNaN(n)) return "—";
+  return (n >= 0 ? "+" : "") + Number(n).toFixed(2) + "%";
+}
+function cls(n) { return n >= 0 ? "pos" : "neg"; }
+
+async function loadJSON(path) {
+  const r = await fetch(raw(path), {cache: "no-store"});
+  if (!r.ok) throw new Error(path + " -> " + r.status);
+  return r.json();
+}
+async function loadText(path) {
+  const r = await fetch(raw(path), {cache: "no-store"});
+  if (!r.ok) throw new Error(path + " -> " + r.status);
+  return r.text();
+}
+
+function drawChart(hist) {
+  const svg = document.getElementById("chart");
+  const W = 800, H = 220, P = 10;
+  if (!hist || hist.length < 2) {
+    svg.innerHTML = '<text x="400" y="115" text-anchor="middle" fill="#8b8f98" font-size="14">Not enough data yet</text>';
+    return;
+  }
+  const vals = hist.map(h => h.equity);
+  let min = Math.min(...vals), max = Math.max(...vals);
+  if (min === max) { min -= 1; max += 1; }
+  const pad = (max - min) * 0.08;
+  min -= pad; max += pad;
+  const x = i => P + (i / (hist.length - 1)) * (W - 2 * P);
+  const y = v => H - P - ((v - min) / (max - min)) * (H - 2 * P);
+  const pts = hist.map((h, i) => `${x(i).toFixed(1)},${y(h.equity).toFixed(1)}`).join(" ");
+  const first = vals[0], last = vals[vals.length - 1];
+  const up = last >= first;
+  const color = up ? "#4ade80" : "#f87171";
+  const area = `${x(0).toFixed(1)},${H - P} ${pts} ${x(hist.length - 1).toFixed(1)},${H - P}`;
+  svg.innerHTML =
+    `<polygon points="${area}" fill="${color}" opacity="0.12"></polygon>` +
+    `<polyline points="${pts}" fill="none" stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"></polyline>` +
+    `<circle cx="${x(hist.length - 1)}" cy="${y(last)}" r="4" fill="${color}"></circle>`;
+  document.getElementById("chartLegend").innerHTML =
+    `<span>Start <b>${fmt(first)}</b></span><span>Now <b>${fmt(last)}</b></span>` +
+    `<span class="${cls(last - first)}"><b>${fmtSigned(last - first)}</b> (${pct((last - first) / first * 100)})</span>`;
+}
+
+function renderDashboard(d) {
+  document.getElementById("strategyName").textContent = d.name || "—";
+  const open = !!d.market_open;
+  const mb = document.getElementById("marketBadge");
+  mb.textContent = open ? "● MARKET OPEN" : "○ MARKET CLOSED";
+  mb.className = "badge " + (open ? "open" : "closed");
+  document.getElementById("updated").textContent =
+    "updated " + (d.last_updated ? new Date(d.last_updated).toLocaleString() : "—");
+
+  document.getElementById("equity").textContent = fmt(d.equity);
+  document.getElementById("cash").textContent = fmt(d.balance);
+
+  const totalPnl = (d.equity != null) ? d.equity - START_BALANCE : null;
+  const tp = document.getElementById("totalPnl");
+  tp.textContent = fmtSigned(totalPnl);
+  tp.className = "value " + cls(totalPnl);
+
+  // today's P&L from equity history
+  const hist = d.equity_history || [];
+  const today = new Date().toISOString().slice(0, 10);
+  const todays = hist.filter(h => (h.ts || "").slice(0, 10) === today);
+  let daily = null;
+  if (todays.length >= 2) daily = todays[todays.length - 1].equity - todays[0].equity;
+  else if (hist.length >= 2) daily = hist[hist.length - 1].equity - hist[hist.length - 2].equity;
+  const dp = document.getElementById("dailyPnl");
+  dp.textContent = fmtSigned(daily);
+  dp.className = "value " + cls(daily);
+
+  const positions = d.positions || {};
+  const keys = Object.keys(positions);
+  document.getElementById("openCount").textContent = keys.length;
+
+  // positions table
+  const tb = document.querySelector("#posTable tbody");
+  const pe = document.getElementById("posEmpty");
+  tb.innerHTML = "";
+  if (keys.length === 0) { pe.style.display = "block"; }
+  else {
+    pe.style.display = "none";
+    for (const s of keys) {
+      const p = positions[s];
+      const upnl = p.unrealized_pnl || 0;
+      const tr = document.createElement("tr");
+      tr.innerHTML =
+        `<td><span class="sym">${s}</span> <span class="region">${REGION[s] || ""}</span></td>` +
+        `<td>${p.base_amount ?? "—"}</td>` +
+        `<td>${fmt(p.entry_price)}</td>` +
+        `<td>${fmt((d.prices || {})[s] || p.entry_price)}</td>` +
+        `<td>${fmt(p.market_value)}</td>` +
+        `<td class="${cls(upnl)}">${fmtSigned(upnl)}</td>`;
+      tb.appendChild(tr);
+    }
+  }
+
+  // strategy info
+  const st = d.strategy || {};
+  document.getElementById("strategyInfo").innerHTML =
+    `<div><b>Strategy:</b> ${st.name || "—"}</div>` +
+    `<div><b>Lookback:</b> ${st.lookback ?? "—"} days · <b>Top-K:</b> ${st.top_k ?? "—"} · ` +
+    `<b>Rebalance:</b> every ${st.rebalance_days ?? "—"} days</div>` +
+    `<div><b>Universe (${(d.symbols || []).length}):</b></div>` +
+    `<div class="chips">${(d.symbols || []).map(s => `<span class="chip">${s}</span>`).join("")}</div>`;
+
+  drawChart(hist);
+}
+
+function renderTrades(csv) {
+  const tb = document.querySelector("#tradeTable tbody");
+  const te = document.getElementById("tradeEmpty");
+  tb.innerHTML = "";
+  const lines = csv.trim().split("\n");
+  if (lines.length < 2) { te.style.display = "block"; return; }
+  const header = lines[0].split(",");
+  const rows = lines.slice(1).map(l => l.split(",")).filter(r => r.length >= 3);
+  // show most recent 20, newest first
+  const recent = rows.slice(-20).reverse();
+  te.style.display = "none";
+  for (const r of recent) {
+    const ts = r[0], action = r[1], sym = r[2], notional = r[3], reason = r[4] || "";
+    const tr = document.createElement("tr");
+    const a = (action || "").toUpperCase();
+    const aCls = a.includes("BUY") ? "pos" : (a.includes("SELL") ? "neg" : "");
+    const time = ts ? new Date(ts).toLocaleString() : "—";
+    tr.innerHTML =
+      `<td>${time}</td>` +
+      `<td class="${aCls}"><b>${action || "—"}</b></td>` +
+      `<td><span class="sym">${sym || "—"}</span></td>` +
+      `<td>${notional ? fmt(parseFloat(notional)) : "—"}</td>` +
+      `<td class="region">${reason || ""}</td>`;
+    tb.appendChild(tr);
+  }
+}
+
+async function refresh() {
+  try {
+    const [d, csv] = await Promise.all([
+      loadJSON("csmom_dashboard.json"),
+      loadText("logs/csmom_logbook.csv").catch(() => "")
+    ]);
+    renderDashboard(d);
+    renderTrades(csv);
+  } catch (e) {
+    document.getElementById("strategyName").textContent = "⚠️ " + e.message;
+  }
+}
+
+refresh();
+setInterval(refresh, 60000);
+</script>
+</body>
+</html>

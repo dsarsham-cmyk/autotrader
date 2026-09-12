@@ -183,10 +183,18 @@ class CsmomRunner:
                 state["prices"] = prices
             except Exception:
                 pass
-        # Rolling equity history (last 500 snapshots).
-        hist = self.state.get("equity_history", [])
+        # Rolling equity history (last 500 snapshots). Persist across cloud
+        # runs by reading the previously committed dashboard JSON as the base.
+        hist = []
+        try:
+            prev = json.loads(Path(DASHBOARD_STATE).read_text(encoding="utf-8"))
+            hist = prev.get("equity_history", [])
+        except (json.JSONDecodeError, OSError):
+            pass
         if state.get("equity") is not None:
-            hist.append({"ts": state["last_updated"], "equity": state["equity"]})
+            new_pt = {"ts": state["last_updated"], "equity": state["equity"]}
+            if not hist or hist[-1].get("ts") != new_pt["ts"]:
+                hist.append(new_pt)
             hist = hist[-500:]
         self.state["equity_history"] = hist
         state["equity_history"] = hist
