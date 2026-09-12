@@ -153,6 +153,8 @@ class CsmomRunner:
                 "top_k": self.top_k,
                 "skip": self.skip,
                 "rebalance_days": self.rebalance_days,
+                "rebalance_hours": self.rebalance_hours,
+                "interval": self.interval,
             },
             "symbols": self.symbols,
             "market_open": market_open,

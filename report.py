@@ -162,8 +162,12 @@ def build_report() -> str:
 
     # Meta
     strat_name = strategy.get("name", "unknown")
-    lines.append(f"Strategy: {strat_name} (top_k={strategy.get('top_k')}, "
-                 f"rebalance={strategy.get('rebalance_days')}d)")
+    rh = strategy.get("rebalance_hours")
+    if rh:
+        cadence = f"rebalance=every {rh:g}h"
+    else:
+        cadence = f"rebalance={strategy.get('rebalance_days')}d"
+    lines.append(f"Strategy: {strat_name} (top_k={strategy.get('top_k')}, {cadence})")
     lines.append(f"Market: {'open' if market_open else 'closed'}")
 
     return "\n".join(lines)
