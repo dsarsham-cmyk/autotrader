@@ -64,10 +64,11 @@ def load_env() -> tuple[str, str]:
     return os.getenv("ALPACA_API_KEY", ""), os.getenv("ALPACA_API_SECRET", "")
 
 
-def fetch_universe(symbols: list[str], period: str = "2y") -> dict:
+def fetch_universe(symbols: list[str], period: str = "2y",
+                   interval: str = "1d") -> dict:
     """Return {'close', 'high', 'low'} DataFrames aligned by date."""
     import yfinance as yf
-    df = yf.download(symbols, period=period, interval="1d",
+    df = yf.download(symbols, period=period, interval=interval,
                      auto_adjust=True, progress=False, group_by="column")
     if isinstance(df.columns, pd.MultiIndex):
         close = df["Close"]
@@ -99,13 +100,16 @@ class CsmomRunner:
     def __init__(self, top_k: int = DEFAULT_TOP_K, lookback: int = DEFAULT_LOOKBACK,
                  skip: int = DEFAULT_SKIP, paper: bool = True, dry_run: bool = False,
                  symbols: list[str] | None = None, composite: bool = False,
-                 rebalance_days: int = DEFAULT_REBALANCE_DAYS):
+                 rebalance_days: int = DEFAULT_REBALANCE_DAYS,
+                 interval: str = "1d", rebalance_hours: float | None = None):
         self.top_k = top_k
         self.lookback = lookback
         self.skip = skip
         self.dry_run = dry_run
         self.composite = composite
         self.rebalance_days = rebalance_days
+        self.interval = interval
+        self.rebalance_hours = rebalance_hours
         self.symbols = symbols if symbols is not None else STOCK_UNIVERSE
         self.state_path = Path(STATE_FILE)
         self.state = self._load_state()
@@ -320,15 +324,20 @@ class CsmomRunner:
         if not due and last:
             try:
                 last_dt = datetime.fromisoformat(last)
-                due = (now - last_dt).days >= self.rebalance_days
+                if self.rebalance_hours:
+                    due = (now - last_dt).total_seconds() >= self.rebalance_hours * 3600
+                else:
+                    due = (now - last_dt).days >= self.rebalance_days
             except ValueError:
                 due = True
 
         if market_open and due:
-            self._log(f"rebalance due (last={last}, every={self.rebalance_days}d)")
-            data = fetch_universe(self.symbols)
+            cadence = (f"every={self.rebalance_hours}h" if self.rebalance_hours
+                       else f"every={self.rebalance_days}d")
+            self._log(f"rebalance due (last={last}, {cadence})")
+            data = fetch_universe(self.symbols, interval=self.interval)
             self.rebalance(data)
-            self.state["last_rebalance_date"] = now.date().isoformat()
+            self.state["last_rebalance_date"] = now.isoformat()
             self._save_state()
         else:
             self._log(f"no rebalance (market_open={market_open}, "
@@ -338,9 +347,11 @@ class CsmomRunner:
         self._maybe_send_report(now)
 
     def run(self, interval_seconds: int = 3600) -> None:
+        cadence = (f"rebalance_hours={self.rebalance_hours}" if self.rebalance_hours
+                   else f"rebalance_days={self.rebalance_days}")
         self._log(f"CSMOM runner started | top_k={self.top_k} "
                   f"lookback={self.lookback} skip={self.skip} "
-                  f"composite={self.composite} rebalance_days={self.rebalance_days} "
+                  f"composite={self.composite} interval={self.interval} {cadence} "
                   f"dry_run={self.dry_run} universe={len(self.symbols)}")
         while True:
             try:
@@ -364,13 +375,28 @@ def main() -> None:
     parser.add_argument("--leveraged", action="store_true",
                         help="use the 3x leveraged ETF universe (momentum rotation)")
     parser.add_argument("--composite", action="store_true",
-                        help="use the range+momentum composite signal (weekly rebalance)")
+                        help="use the range+momentum composite signal")
     parser.add_argument("--rebalance-days", type=int, default=None,
-                        help="rebalance every N calendar days (default: 30, or 7 for composite)")
+                        help="rebalance every N calendar days (default: 30, or 1 for composite)")
+    parser.add_argument("--interval", type=str, default=None,
+                        help="bar interval: 1d, 1h, 30m, 15m (default 1d)")
+    parser.add_argument("--rebalance-hours", type=float, default=None,
+                        help="rebalance every N hours (intraday; overrides days)")
+    parser.add_argument("--intraday", action="store_true",
+                        help="intraday mode: 1h bars, rebalance hourly, top_k=5, lookback=12")
     args = parser.parse_args()
 
     symbols = LEVERAGED_UNIVERSE if args.leveraged else STOCK_UNIVERSE
-    if args.composite:
+    interval = args.interval or "1d"
+    rebalance_hours = args.rebalance_hours
+
+    if args.intraday:
+        interval = args.interval or "1h"
+        rebalance_hours = rebalance_hours if rebalance_hours is not None else 1.0
+        top_k = 5 if args.top_k == DEFAULT_TOP_K else args.top_k
+        lookback = 12 if args.lookback == DEFAULT_LOOKBACK else args.lookback
+        rebalance_days = DEFAULT_REBALANCE_DAYS
+    elif args.composite:
         top_k = COMPOSITE_TOP_K if args.top_k == DEFAULT_TOP_K else args.top_k
         lookback = COMPOSITE_LOOKBACK if args.lookback == DEFAULT_LOOKBACK else args.lookback
         rebalance_days = args.rebalance_days or COMPOSITE_REBALANCE_DAYS
@@ -385,7 +411,8 @@ def main() -> None:
 
     runner = CsmomRunner(top_k=top_k, lookback=lookback, skip=args.skip,
                          dry_run=args.dry_run, symbols=symbols,
-                         composite=args.composite, rebalance_days=rebalance_days)
+                         composite=args.composite, rebalance_days=rebalance_days,
+                         interval=interval, rebalance_hours=rebalance_hours)
 
     if args.once:
         runner.tick()
@@ -396,11 +423,11 @@ def main() -> None:
         return
 
     if args.dry_run:
-        data = fetch_universe(runner.symbols)
+        data = fetch_universe(runner.symbols, interval=runner.interval)
         runner.rebalance(data)
         return
 
-    runner.run()
+    runner.run(interval_seconds=300 if args.intraday else 3600)
 
 
 if __name__ == "__main__":

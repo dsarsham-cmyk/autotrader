@@ -13,4 +13,4 @@ COPY . .
 
 # Default command: run the trading runner.
 # Override with `python dashboard.py` for the web service.
-CMD ["python", "csmom_runner.py", "--leveraged", "--composite"]
+CMD ["python", "csmom_runner.py", "--leveraged", "--composite", "--intraday"]
