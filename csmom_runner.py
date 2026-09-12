@@ -46,10 +46,10 @@ DEFAULT_REBALANCE_DAYS = 30
 LEVERAGED_TOP_K = 2
 LEVERAGED_LOOKBACK = 21
 
-# Composite (range + momentum) defaults: top_k=3, weekly rebalance.
+# Composite (range + momentum) defaults: top_k=3, DAILY rebalance.
 COMPOSITE_TOP_K = 3
 COMPOSITE_LOOKBACK = 21
-COMPOSITE_REBALANCE_DAYS = 7
+COMPOSITE_REBALANCE_DAYS = 1
 
 # Daily report is sent once per day at this UTC hour (after US close).
 REPORT_HOUR = 21

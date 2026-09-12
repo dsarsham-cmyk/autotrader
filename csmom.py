@@ -93,9 +93,11 @@ BENCHMARK = "SPY"
 # rotation across these produces high returns but with brutal drawdowns.
 # Includes international 3x ETFs (Europe, Emerging, China) for global exposure.
 LEVERAGED_UNIVERSE = [
-    # US
+    # US (3x long)
     "TQQQ", "SOXL", "SPXL", "TNA", "UDOW", "FAS", "ERX", "TECL",
     "CURE", "LABU", "FNGU", "NAIL",
+    # US (3x inverse / short) — lets the strategy express a bearish view
+    "SQQQ", "SOXS", "SPXS", "TZA", "SDOW", "FAZ",
     # International 3x (US-listed, tradeable on Alpaca)
     "EURL", "EDC", "YINN",
 ]
