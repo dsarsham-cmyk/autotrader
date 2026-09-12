@@ -2,10 +2,12 @@
   "name": "RANGE+MOMENTUM",
   "strategy": {
     "name": "composite_range_momentum",
-    "lookback": 21,
-    "top_k": 3,
+    "lookback": 12,
+    "top_k": 5,
     "skip": 21,
-    "rebalance_days": 7
+    "rebalance_days": 30,
+    "rebalance_hours": 1.0,
+    "interval": "1h"
   },
   "symbols": [
     "TQQQ",
@@ -20,12 +22,18 @@
     "LABU",
     "FNGU",
     "NAIL",
+    "SQQQ",
+    "SOXS",
+    "SPXS",
+    "TZA",
+    "SDOW",
+    "FAZ",
     "EURL",
     "EDC",
     "YINN"
   ],
   "market_open": false,
-  "last_updated": "2026-09-12T23:19:11.674796+00:00",
+  "last_updated": "2026-09-12T23:40:16.397294+00:00",
   "equity": 98925.64,
   "balance": 98925.64,
   "positions": {},
@@ -65,6 +73,10 @@
     },
     {
       "ts": "2026-09-12T23:19:11.674796+00:00",
+      "equity": 98925.64
+    },
+    {
+      "ts": "2026-09-12T23:40:16.397294+00:00",
       "equity": 98925.64
     }
   ]
