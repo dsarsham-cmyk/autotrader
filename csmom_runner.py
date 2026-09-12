@@ -300,6 +300,35 @@ class CsmomRunner:
             except Exception as e:
                 self._log(f"  BUY {s} FAILED: {e}")
 
+    def tick(self) -> None:
+        """Run one iteration: check rebalance, update dashboard, maybe report.
+
+        Idempotent and safe to call repeatedly (e.g. from a scheduler).
+        """
+        now = datetime.now(timezone.utc)
+        market_open = self._market_open()
+        last = self.state.get("last_rebalance_date")
+        due = last is None
+        if not due and last:
+            try:
+                last_dt = datetime.fromisoformat(last)
+                due = (now - last_dt).days >= self.rebalance_days
+            except ValueError:
+                due = True
+
+        if market_open and due:
+            self._log(f"rebalance due (last={last}, every={self.rebalance_days}d)")
+            data = fetch_universe(self.symbols)
+            self.rebalance(data)
+            self.state["last_rebalance_date"] = now.date().isoformat()
+            self._save_state()
+        else:
+            self._log(f"no rebalance (market_open={market_open}, "
+                      f"due={due}, last={last})")
+
+        self._write_dashboard_state(market_open)
+        self._maybe_send_report(now)
+
     def run(self, interval_seconds: int = 3600) -> None:
         self._log(f"CSMOM runner started | top_k={self.top_k} "
                   f"lookback={self.lookback} skip={self.skip} "
@@ -307,36 +336,9 @@ class CsmomRunner:
                   f"dry_run={self.dry_run} universe={len(self.symbols)}")
         while True:
             try:
-                now = datetime.now(timezone.utc)
-                market_open = self._market_open()
-                last = self.state.get("last_rebalance_date")
-                due = last is None
-                if not due and last:
-                    try:
-                        last_dt = datetime.fromisoformat(last)
-                        due = (now - last_dt).days >= self.rebalance_days
-                    except ValueError:
-                        due = True
-
-                if market_open and due:
-                    self._log(f"rebalance due (last={last}, every={self.rebalance_days}d)")
-                    data = fetch_universe(self.symbols)
-                    self.rebalance(data)
-                    self.state["last_rebalance_date"] = now.date().isoformat()
-                    self._save_state()
-                else:
-                    self._log(f"no rebalance (market_open={market_open}, "
-                              f"due={due}, last={last})")
+                self.tick()
             except Exception as e:
                 self._log(f"loop error: {e}")
-            try:
-                self._write_dashboard_state(market_open)
-            except Exception as e:
-                self._log(f"dashboard state error: {e}")
-            try:
-                self._maybe_send_report(now)
-            except Exception as e:
-                self._log(f"report error: {e}")
             time.sleep(interval_seconds)
 
 
@@ -375,7 +377,11 @@ def main() -> None:
                          dry_run=args.dry_run, symbols=symbols,
                          composite=args.composite, rebalance_days=rebalance_days)
 
-    if args.once or args.dry_run:
+    if args.once:
+        runner.tick()
+        return
+
+    if args.dry_run:
         data = fetch_universe(runner.symbols)
         runner.rebalance(data)
         return

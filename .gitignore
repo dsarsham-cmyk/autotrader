@@ -9,9 +9,11 @@ __pycache__/
 # Runtime state
 state.json
 state_*.json
-csmom_state.json
+# csmom_state.json is tracked: it persists rebalance/report dates across
+# cloud (GitHub Actions) runs.
 csmom_dashboard.json
-logs/
+logs/*
+!logs/csmom_logbook.csv
 *.log
 
 # Test cache

@@ -1,0 +1,52 @@
+name: AutoTrader
+
+on:
+  schedule:
+    # Every 30 minutes (UTC). Rebalance checks run during US market hours;
+    # the daily Telegram report fires on the first run after 21:00 UTC.
+    - cron: '*/30 * * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: autotrader
+  cancel-in-progress: false
+
+jobs:
+  trade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run trading tick
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: python csmom_runner.py --leveraged --composite --once
+
+      - name: Persist state
+        run: |
+          git config user.name "autotrader-bot"
+          git config user.email "bot@autotrader.local"
+          git add csmom_state.json logs/csmom_logbook.csv
+          if git diff --cached --quiet; then
+            echo "no state changes to commit"
+          else
+            git commit -m "state update $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
