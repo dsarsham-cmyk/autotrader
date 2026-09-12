@@ -1,8 +1,27 @@
 # Deploying the Auto Trader to the Cloud
 
-The bot is plain Python + Docker, so it runs on any cloud. This guide covers
-the two easiest paths: **Railway** (easiest, ~$5/mo) and a **VPS** (cheapest,
-~€4/mo).
+## ✅ Current status: already running on GitHub Actions
+
+The bot is **already deployed and running on GitHub's cloud** via a scheduled
+GitHub Actions workflow (`.github/workflows/trade.yml`). It runs every 30
+minutes, checks for rebalance opportunities during US market hours, and sends
+the daily Telegram report after 21:00 UTC. No PC is required.
+
+- Repo: https://github.com/dsarsham-cmyk/autotrader
+- Secrets (`ALPACA_API_KEY`, `ALPACA_API_SECRET`, `TELEGRAM_BOT_TOKEN`,
+  `TELEGRAM_CHAT_ID`) are stored as GitHub Actions secrets.
+- State (`csmom_state.json`) and the trade logbook are committed back to the
+  repo after each run so rebalance/report cadence persists between runs.
+
+To trigger a manual run: GitHub → Actions → AutoTrader → "Run workflow".
+
+---
+
+## Alternatives (true 24/7 continuous process)
+
+The bot is plain Python + Docker, so it can also run as a long-lived process on
+any cloud. This guide covers the two easiest paths: **Railway** (easiest,
+~$5/mo) and a **VPS** (cheapest, ~€4/mo).
 
 ## What you need
 
