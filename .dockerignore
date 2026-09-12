@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.git/
+.gitignore
+.env
+logs/
+csmom_state.json
+csmom_dashboard.json
+state*.json
+*.log

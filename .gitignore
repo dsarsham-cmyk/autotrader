@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Secrets
+.env
+
+# Runtime state
+state.json
+state_*.json
+csmom_state.json
+csmom_dashboard.json
+logs/
+*.log
+
+# Test cache
+.pytest_cache/
+
+# Market data cache
+cache/

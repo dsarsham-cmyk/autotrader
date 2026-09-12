@@ -1,0 +1,7 @@
+ccxt>=4.3.0
+yfinance>=0.2.40
+alpaca-py>=0.20.0
+PyYAML>=6.0
+python-dotenv>=1.0.0
+Flask>=3.0.0
+pytest>=8.0.0

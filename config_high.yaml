@@ -1,0 +1,43 @@
+name: HIGH RISK
+status_interval_seconds: 900
+mode: alpaca_paper
+market: stock
+stock:
+  symbols:
+  - TQQQ
+  - SPXL
+  - SOXL
+  timeframe: 1d
+strategy:
+  name: volatility_scaled_momentum
+  lookback: 126
+  vol_period: 20
+  vol_baseline: 252
+  vol_mult: 1.5
+risk:
+  risk_per_trade: 0.1
+  atr_stop_mult: 1.5
+  atr_take_mult: 3.0
+  max_position_pct: 0.33
+  daily_loss_limit_pct: 0.12
+  max_drawdown_pct: 0.5
+  break_even_atr: 1.0
+  trail_atr: 2.0
+  trail_distance_atr: 1.0
+day_trading:
+  close_at_eod: false
+  eod_close_time: '22:55'
+data:
+  fetch_limit: 500
+paper:
+  starting_balance: 100000
+  fee_pct: 0.001
+loop:
+  interval_seconds: 60
+alerts:
+  enabled: true
+logging:
+  level: INFO
+  file: logs/trader_high.log
+  logbook: logs/logbook_high.csv
+state_file: state_high.json

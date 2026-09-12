@@ -1,0 +1,23 @@
+# Auto Trader — run the runner (worker) + dashboard (web) together.
+# Usage:  docker compose up -d
+services:
+  runner:
+    build: .
+    command: python csmom_runner.py --leveraged --composite
+    env_file: .env
+    restart: unless-stopped
+    volumes:
+      - state:/app/logs
+
+  dashboard:
+    build: .
+    command: python dashboard.py
+    env_file: .env
+    restart: unless-stopped
+    ports:
+      - "8050:8050"
+    volumes:
+      - state:/app/logs
+
+volumes:
+  state:

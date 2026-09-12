@@ -1,0 +1,78 @@
+# Auto Trader configuration
+
+mode: alpaca_paper     # "paper" (internal sim) | "alpaca_paper" (Alpaca demo) | "live"
+market: stock          # "crypto", "stock", or "forex"
+
+# --- Crypto (used when market: crypto) ---
+exchange:
+  name: binance        # ccxt exchange id, e.g. binance, coinbase, kraken, bybit
+  symbol: BTC/USDT     # trading pair
+  timeframe: 1h        # 1m 5m 15m 1h 4h 1d
+
+# --- Stock (used when market: stock) ---
+# Alpaca only lists US securities, so international markets are traded via
+# ETFs that track them (e.g. EWJ = Japan, EZU = Eurozone, EWU = UK).
+stock:
+  symbols:             # tickers to trade (one position per symbol)
+    - TQQQ             # US - 3x Nasdaq 100 (leveraged)
+    - SPXL             # US - 3x S&P 500 (leveraged)
+    - SOXL             # US - 3x Semiconductors (leveraged)
+    - QQQ              # US - Nasdaq 100
+    - SPY              # US - S&P 500
+    - EWJ              # Japan - MSCI Japan
+    - EZU              # Eurozone - MSCI EMU
+    - EWU              # UK - MSCI United Kingdom
+  timeframe: 1h        # 1m 5m 15m 30m 1h 4h 1d 1wk 1mo
+
+# --- Forex (used when market: forex) ---
+forex:
+  symbol: EUR/USD      # pair, e.g. EUR/USD, GBP/USD, USD/JPY
+  timeframe: 1h        # 1m 5m 15m 30m 1h 4h 1d
+
+strategy:
+  name: volume_breakout     # day-trading: breakout with volume confirmation
+  lookback: 10              # prior bars for the breakout high/low
+  vol_mult: 2.0             # volume spike threshold (x average volume)
+
+risk:
+  risk_per_trade: 0.01    # fraction of equity risked per trade (1%)
+  atr_stop_mult: 2.0      # stop-loss distance in ATRs
+  atr_take_mult: 3.0      # take-profit distance in ATRs
+  max_position_pct: 0.25  # cap any single position at 25% of equity
+  daily_loss_limit_pct: 0.03   # stop trading for the day after -3%
+  max_drawdown_pct: 0.20      # hard kill switch after -20% from peak
+
+day_trading:
+  close_at_eod: true       # close all positions at end of day (no overnight)
+  eod_close_time: "22:55"  # local time (HH:MM) to close positions
+
+data:
+  fetch_limit: 500         # candles fetched per symbol (must exceed strategy warmup)
+
+# --- Pairs trading / statistical arbitrage (long-short, Alpaca only) ---
+pairs:
+  enabled: false           # run the pairs runner (python pairs.py)
+  leg_a: QQQ               # first leg of the pair
+  leg_b: SPY               # second leg of the pair
+  timeframe: 1d            # bar timeframe for the spread z-score
+  window: 50               # rolling window for the spread mean/std
+  entry_z: 2.0             # enter when |z| exceeds this
+  exit_z: 0.5              # exit when |z| reverts below this
+  leg_pct: 0.5             # fraction of equity allocated to each leg
+  interval_seconds: 3600   # how often to check the spread
+
+paper:
+  starting_balance: 100000   # simulated starting capital (USD)
+  fee_pct: 0.001             # simulated trading fee (0.1%)
+
+loop:
+  interval_seconds: 60      # how often to check for a new signal
+
+alerts:
+  enabled: false            # send trade alerts (Telegram/Discord)
+
+logging:
+  level: INFO               # DEBUG, INFO, WARNING, ERROR
+  file: logs/trader.log     # set to "" to disable file logging
+
+state_file: state.json      # where bot state is persisted (for resume + dashboard)
