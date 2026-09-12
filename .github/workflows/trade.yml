@@ -31,13 +31,13 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run trading tick
+      - name: Refresh dashboard snapshot (read-only)
         env:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python csmom_runner.py --leveraged --composite --once
+        run: python csmom_runner.py --leveraged --composite --readonly
 
       - name: Persist state
         run: |

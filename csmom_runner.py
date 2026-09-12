@@ -359,6 +359,8 @@ def main() -> None:
                         help="show what would be traded without placing orders")
     parser.add_argument("--once", action="store_true",
                         help="run a single rebalance check and exit")
+    parser.add_argument("--readonly", action="store_true",
+                        help="only refresh the dashboard snapshot (no trading, no report)")
     parser.add_argument("--leveraged", action="store_true",
                         help="use the 3x leveraged ETF universe (momentum rotation)")
     parser.add_argument("--composite", action="store_true",
@@ -387,6 +389,10 @@ def main() -> None:
 
     if args.once:
         runner.tick()
+        return
+
+    if args.readonly:
+        runner._write_dashboard_state(runner._market_open())
         return
 
     if args.dry_run:
