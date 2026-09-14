@@ -33,57 +33,57 @@
     "YINN"
   ],
   "market_open": true,
-  "last_updated": "2026-09-14T18:18:50.753751+00:00",
-  "equity": 97660.81,
-  "balance": -815.17,
+  "last_updated": "2026-09-14T18:48:17.200487+00:00",
+  "equity": 97747.52,
+  "balance": -812.09,
   "positions": {
-    "FNGU": {
-      "base_amount": 604.58219178,
-      "entry_price": 32.12,
-      "market_value": 19806.112603,
-      "unrealized_pnl": 386.932603,
+    "FAZ": {
+      "base_amount": 586.81482593,
+      "entry_price": 33.313456,
+      "market_value": 19488.120369,
+      "unrealized_pnl": -60.709515,
       "stop_price": 0.0,
       "take_price": 0.0
     },
-    "LABU": {
-      "base_amount": 72.373211091,
-      "entry_price": 268.32,
-      "market_value": 19595.770635,
-      "unrealized_pnl": 176.590635,
+    "FNGU": {
+      "base_amount": 604.58219178,
+      "entry_price": 32.12,
+      "market_value": 19794.020959,
+      "unrealized_pnl": 374.840959,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "NAIL": {
       "base_amount": 660.384512684,
       "entry_price": 29.96,
-      "market_value": 20313.42761,
-      "unrealized_pnl": 528.30761,
+      "market_value": 20518.146809,
+      "unrealized_pnl": 733.026809,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "SOXS": {
       "base_amount": 380.13371758,
       "entry_price": 52.04795,
-      "market_value": 19206.256081,
-      "unrealized_pnl": -578.924645,
+      "market_value": 19200.554075,
+      "unrealized_pnl": -584.626651,
       "stop_price": 0.0,
       "take_price": 0.0
     },
-    "TQQQ": {
-      "base_amount": 278.691803278,
-      "entry_price": 70.15,
-      "market_value": 19554.410377,
-      "unrealized_pnl": 4.180377,
+    "SQQQ": {
+      "base_amount": 496.793646759,
+      "entry_price": 39.35,
+      "market_value": 19558.765873,
+      "unrealized_pnl": 9.935873,
       "stop_price": 0.0,
       "take_price": 0.0
     }
   },
   "prices": {
-    "FNGU": 32.76,
-    "LABU": 270.76,
-    "NAIL": 30.76,
-    "SOXS": 50.525,
-    "TQQQ": 70.165
+    "FAZ": 33.21,
+    "FNGU": 32.74,
+    "NAIL": 31.07,
+    "SOXS": 50.51,
+    "SQQQ": 39.37
   },
   "equity_history": [
     {
@@ -457,6 +457,10 @@
     {
       "ts": "2026-09-14T18:18:50.753751+00:00",
       "equity": 97660.81
+    },
+    {
+      "ts": "2026-09-14T18:48:17.200487+00:00",
+      "equity": 97747.52
     }
   ]
 }
