@@ -33,57 +33,57 @@
     "YINN"
   ],
   "market_open": true,
-  "last_updated": "2026-09-14T16:16:59.795552+00:00",
-  "equity": 98144.69,
-  "balance": -501.33,
+  "last_updated": "2026-09-14T16:46:16.950785+00:00",
+  "equity": 97846.56,
+  "balance": -597.91,
   "positions": {
+    "ERX": {
+      "base_amount": 174.892465448,
+      "entry_price": 112.15,
+      "market_value": 19558.224411,
+      "unrealized_pnl": -55.965589,
+      "stop_price": 0.0,
+      "take_price": 0.0
+    },
     "FNGU": {
       "base_amount": 604.58219178,
       "entry_price": 32.12,
-      "market_value": 19654.967055,
-      "unrealized_pnl": 235.787055,
+      "market_value": 19645.898322,
+      "unrealized_pnl": 226.718322,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "LABU": {
       "base_amount": 72.373211091,
       "entry_price": 268.32,
-      "market_value": 19837.49716,
-      "unrealized_pnl": 418.31716,
+      "market_value": 19696.369398,
+      "unrealized_pnl": 277.189398,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "NAIL": {
       "base_amount": 660.384512684,
       "entry_price": 29.96,
-      "market_value": 20316.795571,
-      "unrealized_pnl": 531.675571,
+      "market_value": 20240.785314,
+      "unrealized_pnl": 455.665314,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "SOXS": {
       "base_amount": 380.13371758,
       "entry_price": 52.04795,
-      "market_value": 19360.324276,
-      "unrealized_pnl": -424.85645,
-      "stop_price": 0.0,
-      "take_price": 0.0
-    },
-    "YINN": {
-      "base_amount": 703.083997103,
-      "entry_price": 27.62,
-      "market_value": 19476.551654,
-      "unrealized_pnl": 57.371654,
+      "market_value": 19303.190179,
+      "unrealized_pnl": -481.990547,
       "stop_price": 0.0,
       "take_price": 0.0
     }
   },
   "prices": {
-    "FNGU": 32.51,
-    "LABU": 274.1,
-    "NAIL": 30.7651,
-    "SOXS": 50.9303,
-    "YINN": 27.7016
+    "ERX": 111.83,
+    "FNGU": 32.495,
+    "LABU": 272.15,
+    "NAIL": 30.65,
+    "SOXS": 50.78
   },
   "equity_history": [
     {
@@ -441,6 +441,10 @@
     {
       "ts": "2026-09-14T16:16:59.795552+00:00",
       "equity": 98144.69
+    },
+    {
+      "ts": "2026-09-14T16:46:16.950785+00:00",
+      "equity": 97846.56
     }
   ]
 }
