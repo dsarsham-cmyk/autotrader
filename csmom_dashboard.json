@@ -33,57 +33,57 @@
     "YINN"
   ],
   "market_open": true,
-  "last_updated": "2026-09-14T14:48:01.648253+00:00",
-  "equity": 97716.09,
+  "last_updated": "2026-09-14T15:18:53.545580+00:00",
+  "equity": 97238.11,
   "balance": -275.04,
   "positions": {
     "ERX": {
       "base_amount": 172.609426729,
       "entry_price": 114.623635,
-      "market_value": 19646.594821,
-      "unrealized_pnl": -138.525106,
+      "market_value": 19226.964043,
+      "unrealized_pnl": -558.155884,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "FAS": {
       "base_amount": 112.265200666,
       "entry_price": 174.17,
-      "market_value": 19425.247671,
-      "unrealized_pnl": -127.982329,
+      "market_value": 19361.256507,
+      "unrealized_pnl": -191.973493,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "NAIL": {
       "base_amount": 660.384512684,
       "entry_price": 29.96,
-      "market_value": 19707.062551,
-      "unrealized_pnl": -78.057449,
+      "market_value": 19781.818077,
+      "unrealized_pnl": -3.301923,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "SOXS": {
       "base_amount": 380.13371758,
       "entry_price": 52.04795,
-      "market_value": 19603.495816,
-      "unrealized_pnl": -181.68491,
+      "market_value": 19633.640419,
+      "unrealized_pnl": -151.540307,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "SQQQ": {
       "base_amount": 485.398282208,
       "entry_price": 40.760589,
-      "market_value": 19608.731486,
-      "unrealized_pnl": -176.388396,
+      "market_value": 19509.467537,
+      "unrealized_pnl": -275.652345,
       "stop_price": 0.0,
       "take_price": 0.0
     }
   },
   "prices": {
-    "ERX": 113.8211,
-    "FAS": 173.03,
-    "NAIL": 29.8418,
-    "SOXS": 51.57,
-    "SQQQ": 40.3972
+    "ERX": 111.39,
+    "FAS": 172.46,
+    "NAIL": 29.955,
+    "SOXS": 51.6493,
+    "SQQQ": 40.1927
   },
   "equity_history": [
     {
@@ -429,6 +429,10 @@
     {
       "ts": "2026-09-14T14:48:01.648253+00:00",
       "equity": 97716.09
+    },
+    {
+      "ts": "2026-09-14T15:18:53.545580+00:00",
+      "equity": 97238.11
     }
   ]
 }
