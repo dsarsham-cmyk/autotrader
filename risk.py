@@ -16,6 +16,8 @@ class RiskConfig:
     max_position_pct: float = 0.25    # cap any single position at 25% of equity
     daily_loss_limit_pct: float = 0.03  # stop trading for the day after -3%
     max_drawdown_pct: float = 0.20    # hard kill switch after -20% from peak
+    capital_fraction: float = 1.0     # fraction of account capital this bot may deploy
+                                      # (lets two scenarios share one paper account)
     # Trailing-stop exit plan (locks in profits as a trade moves in favour).
     break_even_atr: float = 1.0       # move stop to break-even once +1 ATR in profit
     trail_atr: float = 2.0            # start trailing once +2 ATR in profit
@@ -52,11 +54,14 @@ class RiskManager:
         """
         if atr_value <= 0 or price <= 0:
             return 0.0
-        risk_dollars = equity * self.config.risk_per_trade
+        # Size against this bot's allocated slice of the account so that two
+        # scenarios (high/low risk) sharing one paper account don't over-allocate.
+        base = equity * self.config.capital_fraction
+        risk_dollars = base * self.config.risk_per_trade
         stop_distance = atr_value * self.config.atr_stop_mult
         units = risk_dollars / stop_distance
         # Cap by max position value.
-        max_units = (equity * self.config.max_position_pct) / price
+        max_units = (base * self.config.max_position_pct) / price
         return min(units, max_units)
 
     def stops(self, entry_price: float, atr_value: float) -> tuple[float, float]:

@@ -29,6 +29,7 @@ risk:
   break_even_atr: 1.0
   trail_atr: 2.0
   trail_distance_atr: 1.0
+  capital_fraction: 0.5
 day_trading:
   close_at_eod: false
   eod_close_time: '22:55'

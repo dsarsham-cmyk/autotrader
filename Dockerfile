@@ -11,6 +11,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the app.
 COPY . .
 
-# Default command: run the trading runner.
-# Override with `python dashboard.py` for the web service.
-CMD ["python", "csmom_runner.py", "--leveraged", "--composite"]
+# Default command: run BOTH trading scenarios (HIGH risk + LOW risk).
+# Each is a separate bot.py process supervised by run_all.py.
+CMD ["python", "run_all.py"]

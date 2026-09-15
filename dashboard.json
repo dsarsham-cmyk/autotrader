@@ -1,0 +1,86 @@
+{
+  "last_updated": "2026-09-15T16:13:59.387053+00:00",
+  "market_open": true,
+  "account": {
+    "equity": 78445.81,
+    "cash": -87709.96,
+    "starting_balance": 100000.0
+  },
+  "scenarios": {
+    "high": {
+      "name": "HIGH RISK",
+      "strategy": "volatility_scaled_momentum",
+      "symbols": [
+        "TQQQ",
+        "SPXL",
+        "SOXL"
+      ],
+      "capital_fraction": 0.5,
+      "risk_per_trade": 0.1,
+      "positions": {},
+      "market_value": 0,
+      "unrealized_pnl": 0
+    },
+    "low": {
+      "name": "LOW RISK",
+      "strategy": "volatility_scaled_momentum",
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "DIA",
+        "IWM",
+        "EWJ",
+        "EZU",
+        "EWU",
+        "EWG"
+      ],
+      "capital_fraction": 0.5,
+      "risk_per_trade": 0.01,
+      "positions": {
+        "QQQ": {
+          "qty": 27.820668908,
+          "entry_price": 704.73,
+          "market_value": 19602.721519,
+          "unrealized_pnl": -3.338481,
+          "current_price": 704.61
+        },
+        "SPY": {
+          "qty": 25.905842868,
+          "entry_price": 756.82,
+          "market_value": 19605.541883,
+          "unrealized_pnl": -0.518116,
+          "current_price": 756.8
+        },
+        "EZU": {
+          "qty": 287.311117621,
+          "entry_price": 68.27,
+          "market_value": 19613.293444,
+          "unrealized_pnl": -1.436556,
+          "current_price": 68.265
+        },
+        "EWU": {
+          "qty": 411.124083001,
+          "entry_price": 47.71,
+          "market_value": 19614.73,
+          "unrealized_pnl": 0.0,
+          "current_price": 47.71
+        },
+        "EWG": {
+          "qty": 461.089092618,
+          "entry_price": 42.54,
+          "market_value": 19610.119109,
+          "unrealized_pnl": -4.610891,
+          "current_price": 42.53
+        }
+      },
+      "market_value": 98046.41,
+      "unrealized_pnl": -9.9
+    }
+  },
+  "equity_history": [
+    {
+      "ts": "2026-09-15T16:13:59.387053+00:00",
+      "equity": 78445.81
+    }
+  ]
+}

@@ -35,15 +35,13 @@ jobs:
         env:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
-          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python csmom_runner.py --leveraged --composite --readonly
+        run: python snapshot.py
 
       - name: Persist state
         run: |
           git config user.name "autotrader-bot"
           git config user.email "bot@autotrader.local"
-          git add csmom_state.json csmom_dashboard.json logs/csmom_logbook.csv
+          git add dashboard.json
           if git diff --cached --quiet; then
             echo "no state changes to commit"
           else

@@ -16,7 +16,7 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg); color: var(--txt); -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 900px; margin: 0 auto; padding: 20px 16px 48px; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 20px 16px 48px; }
     header { display: flex; align-items: center; justify-content: space-between;
              flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
     h1 { font-size: 20px; margin: 0; }
@@ -25,7 +25,6 @@
              font-size: 12px; font-weight: 700; letter-spacing: .02em; }
     .badge.open { background: rgba(74,222,128,.15); color: var(--green); }
     .badge.closed { background: rgba(248,113,113,.15); color: var(--red); }
-    .badge.live { background: rgba(96,165,250,.15); color: var(--blue); }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 12px; margin-bottom: 16px; }
@@ -39,8 +38,20 @@
     h2 { font-size: 14px; margin: 22px 0 10px; color: var(--muted);
          text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
 
-    table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
-    th, td { text-align: right; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+    .scenarios { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media (max-width: 640px) { .scenarios { grid-template-columns: 1fr; } }
+    .scen { background: var(--card); border: 1px solid var(--line);
+            border-radius: 12px; padding: 16px; }
+    .scen.high { border-top: 3px solid var(--red); }
+    .scen.low { border-top: 3px solid var(--green); }
+    .scen h3 { margin: 0 0 2px; font-size: 15px; }
+    .scen .tag { color: var(--muted); font-size: 12px; margin-bottom: 12px; }
+    .scen .row { display: flex; justify-content: space-between; font-size: 13.5px;
+                 padding: 4px 0; color: var(--muted); }
+    .scen .row b { color: var(--txt); font-weight: 600; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: right; padding: 8px 9px; border-bottom: 1px solid var(--line); }
     th:first-child, td:first-child { text-align: left; }
     th { color: var(--muted); font-weight: 500; font-size: 11px;
          text-transform: uppercase; letter-spacing: .04em; }
@@ -58,7 +69,6 @@
     .chip { background: var(--line); border-radius: 6px; padding: 3px 9px;
             font-size: 12px; color: var(--txt); }
     .empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
-    .err { color: var(--red); font-size: 13px; }
     .refresh { color: var(--muted); font-size: 12px; text-align: center;
                margin-top: 20px; }
     .dot { display:inline-block; width:8px; height:8px; border-radius:50%;
@@ -72,44 +82,28 @@
     <h1>📈 Auto Trader</h1>
     <span id="marketBadge" class="badge closed">…</span>
   </header>
-  <div class="sub"><span class="dot"></span><span id="strategyName">—</span> · paper trading · <span id="updated">—</span></div>
+  <div class="sub"><span class="dot"></span>two scenarios (high &amp; low risk) · paper trading · <span id="updated">—</span></div>
 
   <div class="grid">
-    <div class="card stat"><div class="label">Equity</div>
+    <div class="card stat"><div class="label">Account Equity</div>
       <div class="value" id="equity">—</div></div>
     <div class="card stat"><div class="label">Cash</div>
       <div class="value" id="cash">—</div></div>
     <div class="card stat"><div class="label">Total P&amp;L</div>
       <div class="value" id="totalPnl">—</div></div>
-    <div class="card stat"><div class="label">Today's P&amp;L</div>
-      <div class="value" id="dailyPnl">—</div></div>
     <div class="card stat"><div class="label">Open Positions</div>
       <div class="value" id="openCount">—</div></div>
+  </div>
+
+  <h2>Scenarios</h2>
+  <div class="scenarios">
+    <div class="scen high" id="scenHigh"></div>
+    <div class="scen low" id="scenLow"></div>
   </div>
 
   <h2>Equity evolution</h2>
   <div class="card"><svg id="chart" viewBox="0 0 800 220" preserveAspectRatio="none"></svg>
     <div class="legend" id="chartLegend"></div>
-  </div>
-
-  <h2>Open positions</h2>
-  <div class="card">
-    <table id="posTable">
-      <thead><tr><th>Symbol</th><th>Qty</th><th>Entry</th><th>Price</th>
-                 <th>Value</th><th>Unrealized P&amp;L</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    <div class="empty" id="posEmpty">No open positions.</div>
-  </div>
-
-  <h2>Recent trades</h2>
-  <div class="card">
-    <table id="tradeTable">
-      <thead><tr><th>Time</th><th>Action</th><th>Symbol</th><th>Notional</th>
-                 <th>Reason</th></tr></thead>
-      <tbody></tbody>
-    </table>
-    <div class="empty" id="tradeEmpty">No trades yet.</div>
   </div>
 
   <h2>Strategy</h2>
@@ -156,11 +150,6 @@ async function loadJSON(path) {
   if (!r.ok) throw new Error(path + " -> " + r.status);
   return r.json();
 }
-async function loadText(path) {
-  const r = await fetch(raw(path), {cache: "no-store"});
-  if (!r.ok) throw new Error(path + " -> " + r.status);
-  return r.text();
-}
 
 function drawChart(hist) {
   const svg = document.getElementById("chart");
@@ -190,8 +179,41 @@ function drawChart(hist) {
     `<span class="${cls(last - first)}"><b>${fmtSigned(last - first)}</b> (${pct((last - first) / first * 100)})</span>`;
 }
 
+function renderScenario(el, key, sc, accountEquity) {
+  const positions = sc.positions || {};
+  const keys = Object.keys(positions);
+  const alloc = (sc.capital_fraction || 0.5) * START_BALANCE;
+  const upnl = sc.unrealized_pnl || 0;
+  const estEquity = alloc + upnl; // allocated capital + unrealized P&L
+
+  let rows = "";
+  if (keys.length === 0) {
+    rows = `<div class="empty">No open positions.</div>`;
+  } else {
+    rows = `<table><thead><tr><th>Symbol</th><th>Qty</th><th>Value</th><th>U-P&amp;L</th></tr></thead><tbody>`;
+    for (const s of keys) {
+      const p = positions[s];
+      const u = p.unrealized_pnl || 0;
+      rows +=
+        `<tr><td><span class="sym">${s}</span> <span class="region">${REGION[s] || ""}</span></td>` +
+        `<td>${p.qty ?? "—"}</td>` +
+        `<td>${fmt(p.market_value)}</td>` +
+        `<td class="${cls(u)}">${fmtSigned(u)}</td></tr>`;
+    }
+    rows += `</tbody></table>`;
+  }
+
+  el.innerHTML =
+    `<h3>${sc.name || key.toUpperCase()}</h3>` +
+    `<div class="tag">${sc.strategy || ""} · risk/trade ${(sc.risk_per_trade * 100).toFixed(0)}%</div>` +
+    `<div class="row"><span>Allocated capital</span><b>${fmt(alloc)}</b></div>` +
+    `<div class="row"><span>Market value</span><b>${fmt(sc.market_value)}</b></div>` +
+    `<div class="row"><span>Unrealized P&amp;L</span><b class="${cls(upnl)}">${fmtSigned(upnl)}</b></div>` +
+    `<div class="row"><span>Est. equity</span><b>${fmt(estEquity)}</b></div>` +
+    `<div style="margin-top:12px">${rows}</div>`;
+}
+
 function renderDashboard(d) {
-  document.getElementById("strategyName").textContent = d.name || "—";
   const open = !!d.market_open;
   const mb = document.getElementById("marketBadge");
   mb.textContent = open ? "● MARKET OPEN" : "○ MARKET CLOSED";
@@ -199,100 +221,47 @@ function renderDashboard(d) {
   document.getElementById("updated").textContent =
     "updated " + (d.last_updated ? new Date(d.last_updated).toLocaleString() : "—");
 
-  document.getElementById("equity").textContent = fmt(d.equity);
-  document.getElementById("cash").textContent = fmt(d.balance);
+  const acct = d.account || {};
+  const equity = acct.equity;
+  document.getElementById("equity").textContent = fmt(equity);
+  document.getElementById("cash").textContent = fmt(acct.cash);
 
-  const totalPnl = (d.equity != null) ? d.equity - START_BALANCE : null;
+  const totalPnl = (equity != null) ? equity - START_BALANCE : null;
   const tp = document.getElementById("totalPnl");
   tp.textContent = fmtSigned(totalPnl);
   tp.className = "value " + cls(totalPnl);
 
-  // today's P&L from equity history
-  const hist = d.equity_history || [];
-  const today = new Date().toISOString().slice(0, 10);
-  const todays = hist.filter(h => (h.ts || "").slice(0, 10) === today);
-  let daily = null;
-  if (todays.length >= 2) daily = todays[todays.length - 1].equity - todays[0].equity;
-  else if (hist.length >= 2) daily = hist[hist.length - 1].equity - hist[hist.length - 2].equity;
-  const dp = document.getElementById("dailyPnl");
-  dp.textContent = fmtSigned(daily);
-  dp.className = "value " + cls(daily);
-
-  const positions = d.positions || {};
-  const keys = Object.keys(positions);
-  document.getElementById("openCount").textContent = keys.length;
-
-  // positions table
-  const tb = document.querySelector("#posTable tbody");
-  const pe = document.getElementById("posEmpty");
-  tb.innerHTML = "";
-  if (keys.length === 0) { pe.style.display = "block"; }
-  else {
-    pe.style.display = "none";
-    for (const s of keys) {
-      const p = positions[s];
-      const upnl = p.unrealized_pnl || 0;
-      const tr = document.createElement("tr");
-      tr.innerHTML =
-        `<td><span class="sym">${s}</span> <span class="region">${REGION[s] || ""}</span></td>` +
-        `<td>${p.base_amount ?? "—"}</td>` +
-        `<td>${fmt(p.entry_price)}</td>` +
-        `<td>${fmt((d.prices || {})[s] || p.entry_price)}</td>` +
-        `<td>${fmt(p.market_value)}</td>` +
-        `<td class="${cls(upnl)}">${fmtSigned(upnl)}</td>`;
-      tb.appendChild(tr);
-    }
+  const scenarios = d.scenarios || {};
+  let totalPositions = 0;
+  for (const k of Object.keys(scenarios)) {
+    totalPositions += Object.keys(scenarios[k].positions || {}).length;
   }
+  document.getElementById("openCount").textContent = totalPositions;
+
+  renderScenario(document.getElementById("scenHigh"), "high", scenarios.high || {}, equity);
+  renderScenario(document.getElementById("scenLow"), "low", scenarios.low || {}, equity);
 
   // strategy info
-  const st = d.strategy || {};
-  document.getElementById("strategyInfo").innerHTML =
-    `<div><b>Strategy:</b> ${st.name || "—"}</div>` +
-    `<div><b>Lookback:</b> ${st.lookback ?? "—"} days · <b>Top-K:</b> ${st.top_k ?? "—"} · ` +
-    `<b>Rebalance:</b> every ${st.rebalance_days ?? "—"} days</div>` +
-    `<div><b>Universe (${(d.symbols || []).length}):</b></div>` +
-    `<div class="chips">${(d.symbols || []).map(s => `<span class="chip">${s}</span>`).join("")}</div>`;
-
-  drawChart(hist);
-}
-
-function renderTrades(csv) {
-  const tb = document.querySelector("#tradeTable tbody");
-  const te = document.getElementById("tradeEmpty");
-  tb.innerHTML = "";
-  const lines = csv.trim().split("\n");
-  if (lines.length < 2) { te.style.display = "block"; return; }
-  const header = lines[0].split(",");
-  const rows = lines.slice(1).map(l => l.split(",")).filter(r => r.length >= 3);
-  // show most recent 20, newest first
-  const recent = rows.slice(-20).reverse();
-  te.style.display = "none";
-  for (const r of recent) {
-    const ts = r[0], action = r[1], sym = r[2], notional = r[3], reason = r[4] || "";
-    const tr = document.createElement("tr");
-    const a = (action || "").toUpperCase();
-    const aCls = a.includes("BUY") ? "pos" : (a.includes("SELL") ? "neg" : "");
-    const time = ts ? new Date(ts).toLocaleString() : "—";
-    tr.innerHTML =
-      `<td>${time}</td>` +
-      `<td class="${aCls}"><b>${action || "—"}</b></td>` +
-      `<td><span class="sym">${sym || "—"}</span></td>` +
-      `<td>${notional ? fmt(parseFloat(notional)) : "—"}</td>` +
-      `<td class="region">${reason || ""}</td>`;
-    tb.appendChild(tr);
+  const parts = [];
+  for (const k of Object.keys(scenarios)) {
+    const sc = scenarios[k];
+    parts.push(
+      `<div><b>${sc.name || k.toUpperCase()}:</b> ${sc.strategy || "—"} · ` +
+      `universe (${(sc.symbols || []).length}) · capital ${((sc.capital_fraction || 0.5) * 100).toFixed(0)}%</div>` +
+      `<div class="chips">${(sc.symbols || []).map(s => `<span class="chip">${s}</span>`).join("")}</div>`
+    );
   }
+  document.getElementById("strategyInfo").innerHTML = parts.join("");
+
+  drawChart(d.equity_history || []);
 }
 
 async function refresh() {
   try {
-    const [d, csv] = await Promise.all([
-      loadJSON("csmom_dashboard.json"),
-      loadText("logs/csmom_logbook.csv").catch(() => "")
-    ]);
+    const d = await loadJSON("dashboard.json");
     renderDashboard(d);
-    renderTrades(csv);
   } catch (e) {
-    document.getElementById("strategyName").textContent = "⚠️ " + e.message;
+    document.getElementById("updated").textContent = "⚠️ " + e.message;
   }
 }
 

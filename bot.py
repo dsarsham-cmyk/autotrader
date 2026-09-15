@@ -90,6 +90,7 @@ def risk_config(config: dict) -> RiskConfig:
         break_even_atr=r.get("break_even_atr", 1.0),
         trail_atr=r.get("trail_atr", 2.0),
         trail_distance_atr=r.get("trail_distance_atr", 1.0),
+        capital_fraction=r.get("capital_fraction", 1.0),
     )
 
 
