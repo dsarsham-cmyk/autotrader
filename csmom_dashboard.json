@@ -32,49 +32,49 @@
     "EDC",
     "YINN"
   ],
-  "market_open": false,
-  "last_updated": "2026-09-15T13:18:09.427828+00:00",
-  "equity": 77656.27,
+  "market_open": true,
+  "last_updated": "2026-09-15T13:45:20.503345+00:00",
+  "equity": 77509.3,
   "balance": -812.09,
   "positions": {
     "FAZ": {
       "base_amount": 586.81482593,
       "entry_price": 33.313456,
-      "market_value": 19317.94407,
-      "unrealized_pnl": -230.885814,
+      "market_value": 19505.724814,
+      "unrealized_pnl": -43.10507,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "NAIL": {
       "base_amount": 660.384512684,
       "entry_price": 29.96,
-      "market_value": 20240.785314,
-      "unrealized_pnl": 455.665314,
+      "market_value": 20049.273805,
+      "unrealized_pnl": 264.153805,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "SOXS": {
       "base_amount": 380.13371758,
       "entry_price": 52.04795,
-      "market_value": 19101.719308,
-      "unrealized_pnl": -683.461418,
+      "market_value": 18976.617302,
+      "unrealized_pnl": -808.563424,
       "stop_price": 0.0,
       "take_price": 0.0
     },
     "SQQQ": {
       "base_amount": 496.793646759,
       "entry_price": 39.35,
-      "market_value": 19807.907887,
-      "unrealized_pnl": 259.077887,
+      "market_value": 19789.774919,
+      "unrealized_pnl": 240.944919,
       "stop_price": 0.0,
       "take_price": 0.0
     }
   },
   "prices": {
-    "FAZ": 32.92,
-    "NAIL": 30.65,
-    "SOXS": 50.25,
-    "SQQQ": 39.8715
+    "FAZ": 33.24,
+    "NAIL": 30.36,
+    "SOXS": 49.9209,
+    "SQQQ": 39.835
   },
   "equity_history": [
     {
@@ -600,6 +600,10 @@
     {
       "ts": "2026-09-15T13:18:09.427828+00:00",
       "equity": 77656.27
+    },
+    {
+      "ts": "2026-09-15T13:45:20.503345+00:00",
+      "equity": 77509.3
     }
   ]
 }
