@@ -237,7 +237,10 @@ def run(config: dict) -> None:
                 # trade is in profit, raise the stop to break-even and then
                 # trail it so gains are locked in instead of given back at EOD.
                 if action is None and pos.base_amount > 0:
-                    entry = stored.get("entry_price", 0.0)
+                    # Fall back to the broker's avg entry price after a restart
+                    # (state is ephemeral on Railway), so the trailing stop is
+                    # anchored to the real entry instead of 0.
+                    entry = stored.get("entry_price", 0.0) or pos.entry_price
                     trailing_high = max(stored.get("trailing_high", entry), price)
                     new_stop = risk.trailing_stop(entry, trailing_high, a, stop_price)
                     if new_stop > stop_price:
@@ -257,7 +260,7 @@ def run(config: dict) -> None:
                 # loss just because the clock hit the close time.
                 if action is None and close_at_eod and pos.base_amount > 0:
                     if time.strftime("%H:%M") >= eod_close_time:
-                        entry = stored.get("entry_price", 0.0)
+                        entry = stored.get("entry_price", 0.0) or pos.entry_price
                         if entry > 0 and price > entry:
                             broker.market_sell(symbol, pos.base_amount)
                             action = f"EOD-CLOSE (profit) @ {price:.4f}"
