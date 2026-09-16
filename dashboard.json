@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-09-16T02:16:35.322427+00:00",
+  "last_updated": "2026-09-16T02:43:45.458269+00:00",
   "market_open": false,
   "account": {
-    "equity": 78465.72,
+    "equity": 78604.68,
     "cash": -38831.47,
     "starting_balance": 100000.0
   },
@@ -21,9 +21,9 @@
         "TQQQ": {
           "qty": 189.848342622,
           "entry_price": 68.18,
-          "market_value": 12877.41308,
-          "unrealized_pnl": -66.44692,
-          "current_price": 67.83
+          "market_value": 12913.484265,
+          "unrealized_pnl": -30.375735,
+          "current_price": 68.02
         },
         "SPXL": {
           "qty": 47.018998147,
@@ -35,13 +35,13 @@
         "SOXL": {
           "qty": 126.916061972,
           "entry_price": 101.987564,
-          "market_value": 12925.131751,
-          "unrealized_pnl": -18.728242,
-          "current_price": 101.84
+          "market_value": 13006.358031,
+          "unrealized_pnl": 62.498038,
+          "current_price": 102.48
         }
       },
-      "market_value": 38783.08,
-      "unrealized_pnl": -48.5
+      "market_value": 38900.38,
+      "unrealized_pnl": 68.8
     },
     "low": {
       "name": "LOW RISK",
@@ -62,30 +62,30 @@
         "QQQ": {
           "qty": 13.897940672,
           "entry_price": 705.568562,
-          "market_value": 9790.543286,
-          "unrealized_pnl": -15.406729,
-          "current_price": 704.46
+          "market_value": 9798.187153,
+          "unrealized_pnl": -7.762862,
+          "current_price": 705.01
         },
         "SPY": {
           "qty": 12.946515803,
           "entry_price": 757.42,
-          "market_value": 9812.552723,
-          "unrealized_pnl": 6.602723,
-          "current_price": 757.93
+          "market_value": 9819.284911,
+          "unrealized_pnl": 13.334911,
+          "current_price": 758.45
         },
         "DIA": {
           "qty": 18.862031159,
           "entry_price": 519.877733,
-          "market_value": 9845.980265,
-          "unrealized_pnl": 40.030266,
-          "current_price": 522.0
+          "market_value": 9844.659923,
+          "unrealized_pnl": 38.709924,
+          "current_price": 521.93
         },
         "IWM": {
           "qty": 34.438259464,
           "entry_price": 284.74,
-          "market_value": 9826.612955,
-          "unrealized_pnl": 20.662955,
-          "current_price": 285.34
+          "market_value": 9835.22252,
+          "unrealized_pnl": 29.27252,
+          "current_price": 285.59
         },
         "EWJ": {
           "qty": 101.322070675,
@@ -116,8 +116,8 @@
           "current_price": 42.53
         }
       },
-      "market_value": 78514.11,
-      "unrealized_pnl": 66.51
+      "market_value": 78535.77,
+      "unrealized_pnl": 88.17
     }
   },
   "equity_history": [
@@ -208,6 +208,10 @@
     {
       "ts": "2026-09-16T02:16:35.322427+00:00",
       "equity": 78465.72
+    },
+    {
+      "ts": "2026-09-16T02:43:45.458269+00:00",
+      "equity": 78604.68
     }
   ]
 }
