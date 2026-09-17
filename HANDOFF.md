@@ -41,6 +41,8 @@ volatility filter) on **daily bars**.
 - ✅ Account cleaned: equity ≈ **$101.8k**, 11 positions (3 high + 8 low),
   positive cash, no errors.
 - ✅ Web dashboard live: `https://dsarsham-cmyk.github.io/autotrader/`
+- ✅ Dashboard upgraded to a tabbed command center with live positions, fill
+  activity, daily P&L, and an evidence-based engine audit.
 - ✅ Windows desktop app built: `AutoTrader.exe` on the Desktop.
 - ✅ Telegram alerts: every trade, status every 15 min while market open, daily
   report after US close.
@@ -123,15 +125,25 @@ values honesty but gets frustrated by "weak" strategies.
 
 ## 8. Open tasks / ideas for next steps
 
-1. **More frequent signals** — user wants more than ~1 trade/day; consider a
+1. **Fix broker-side protection (urgent)** — the audit found that Alpaca entries
+   are submitted as simple notional orders. Despite the stop/take values passed
+   by the bot, the filled orders have no bracket legs and 0/11 current positions
+   have an active broker-side stop. Do not call these server-protected until the
+   order implementation is corrected and verified from Alpaca order data.
+2. **Prevent intraday churn on daily signals (urgent)** — the bot evaluates the
+   unfinished current daily candle every 60 seconds. The first live-day audit
+   found 13 sell-to-buy reversals within 30 minutes. Signal decisions should use
+   completed bars and enforce a per-symbol daily re-entry guard; stop monitoring
+   can remain intraday.
+3. **More frequent signals** — user wants more than ~1 trade/day; consider a
    shorter lookback or additional symbols, but validate via `scenario_backtest.py`
    first (never deploy an unvalidated change).
-2. **Two separate paper accounts** — currently both scenarios share one account
+4. **Two separate paper accounts** — currently both scenarios share one account
    (split 50/50 via `capital_fraction`). Could use a 2nd Alpaca paper account
    for cleaner separation.
-3. **Telegram command bot** — add `/status`, `/positions`, `/pause` commands so
+5. **Telegram command bot** — add `/status`, `/positions`, `/pause` commands so
    the user can control the bot from their phone.
-4. **Improve the prediction engine** — the user believes the strategy is "too
+6. **Improve the prediction engine** — the user believes the strategy is "too
    weak" and wants a stronger edge. Any new strategy MUST be validated
    out-of-sample before deploying.
 
