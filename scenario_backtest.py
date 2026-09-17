@@ -137,18 +137,16 @@ def run_portfolio(candles_by_symbol: dict, strategy_cfg: dict, rc: RiskConfig,
 
             # --- Trailing stop (lock in profits) ---
             if p["base"] > 0:
-                p["trail_high"] = max(p["trail_high"], cl)
+                # The live bot polls throughout the session and therefore sees
+                # prices above the daily close.  Use the bar high here so the
+                # backtest does not systematically understate trailing-stop
+                # activation.  The revised stop applies from the next bar;
+                # OHLC data cannot tell whether today's high happened before
+                # or after today's low, so a same-bar fill would add look-ahead.
+                p["trail_high"] = max(p["trail_high"], h)
                 new_stop = risk.trailing_stop(p["entry"], p["trail_high"], a, p["stop"])
                 if new_stop > p["stop"]:
                     p["stop"] = new_stop
-                if p["stop"] > 0 and cl <= p["stop"]:
-                    gross = p["base"] * cl
-                    cash += gross - gross * fee_pct
-                    pnl = gross - p["base"] * p["entry"]
-                    realized.append(pnl)
-                    per_symbol_pnl[s] += pnl
-                    trades.append(("sell", s, cl, p["base"]))
-                    p["base"] = p["entry"] = p["stop"] = p["take"] = p["trail_high"] = 0.0
 
             # --- Strategy signals ---
             if risk.allow_trading():

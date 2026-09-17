@@ -17,7 +17,7 @@ strategy:
 risk:
   risk_per_trade: 0.1
   atr_stop_mult: 1.5
-  atr_take_mult: 3.0
+  atr_take_mult: 5.0
   max_position_pct: 0.33
   daily_loss_limit_pct: 0.12
   max_drawdown_pct: 0.5

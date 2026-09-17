@@ -88,8 +88,13 @@ TELEGRAM_CHAT_ID=5420339107,-5350554684
 
 | Scenario | Total return | Annualized | Max drawdown | Win rate |
 |---|---|---|---|---|
-| HIGH risk | +22.9% | +3.4%/yr | 33.8% | 35.4% |
-| LOW risk | +4.0% | +0.6%/yr | 5.4% | 39.5% |
+| HIGH risk | +114.1% | +13.0%/yr | 24.5% | 35.9% |
+| LOW risk | +4.3% | +0.7%/yr | 4.4% | 38.4% |
+
+The HIGH-risk take-profit was raised from 3 ATR to 5 ATR after a chronological
+10-year train/validation sweep. The backtest now uses each daily bar's high to
+update the trailing high, applying the revised stop from the next bar to avoid
+same-bar OHLC look-ahead.
 
 **Important reality check:** the user repeatedly asks for 1–2% *daily* profit.
 That is not achievable (~500%+ annualized). The honest, deployable result is a
@@ -118,17 +123,15 @@ values honesty but gets frustrated by "weak" strategies.
 
 ## 8. Open tasks / ideas for next steps
 
-1. **Exit-plan tuning** — the user wants positions held overnight when losing
-   (already done) but the trailing-stop / take-profit could be optimized.
-2. **More frequent signals** — user wants more than ~1 trade/day; consider a
+1. **More frequent signals** — user wants more than ~1 trade/day; consider a
    shorter lookback or additional symbols, but validate via `scenario_backtest.py`
    first (never deploy an unvalidated change).
-3. **Two separate paper accounts** — currently both scenarios share one account
+2. **Two separate paper accounts** — currently both scenarios share one account
    (split 50/50 via `capital_fraction`). Could use a 2nd Alpaca paper account
    for cleaner separation.
-4. **Telegram command bot** — add `/status`, `/positions`, `/pause` commands so
+3. **Telegram command bot** — add `/status`, `/positions`, `/pause` commands so
    the user can control the bot from their phone.
-5. **Improve the prediction engine** — the user believes the strategy is "too
+4. **Improve the prediction engine** — the user believes the strategy is "too
    weak" and wants a stronger edge. Any new strategy MUST be validated
    out-of-sample before deploying.
 

@@ -1,0 +1,2616 @@
+{
+  "config_high.yaml": {
+    "scenario": "HIGH RISK",
+    "years": 10,
+    "train_fraction": 0.7,
+    "baseline": {
+      "params": {
+        "atr_stop_mult": 1.5,
+        "atr_take_mult": 3.0,
+        "break_even_atr": 1.0,
+        "trail_atr": 2.0,
+        "trail_distance_atr": 1.0
+      },
+      "training_score": 0.5521,
+      "validation_score": 0.8953,
+      "training": {
+        "total_return_pct": 50.64,
+        "annualized_return_pct": 5.89,
+        "final_equity": 150639.92,
+        "round_trips": 501,
+        "win_rate_pct": 36.7,
+        "profit_factor": 1.27,
+        "max_drawdown_pct": 26.12,
+        "sharpe": 0.45,
+        "sortino": 0.66,
+        "per_symbol_pnl": {
+          "TQQQ": 39297.61,
+          "SPXL": 9406.61,
+          "SOXL": 22929.43
+        },
+        "num_trades": 999
+      },
+      "validation": {
+        "total_return_pct": 22.83,
+        "annualized_return_pct": 6.91,
+        "final_equity": 122828.18,
+        "round_trips": 182,
+        "win_rate_pct": 33.5,
+        "profit_factor": 1.32,
+        "max_drawdown_pct": 16.51,
+        "sharpe": 0.51,
+        "sortino": 0.74,
+        "per_symbol_pnl": {
+          "TQQQ": 8020.76,
+          "SPXL": 476.05,
+          "SOXL": 20722.65
+        },
+        "num_trades": 362
+      }
+    },
+    "finalists": [
+      {
+        "params": {
+          "atr_stop_mult": 1.5,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.923,
+        "validation_score": 2.0408,
+        "training": {
+          "total_return_pct": 78.64,
+          "annualized_return_pct": 8.44,
+          "final_equity": 178643.21,
+          "round_trips": 472,
+          "win_rate_pct": 37.1,
+          "profit_factor": 1.36,
+          "max_drawdown_pct": 27.2,
+          "sharpe": 0.6,
+          "sortino": 0.89,
+          "per_symbol_pnl": {
+            "TQQQ": 47382.68,
+            "SPXL": 21145.32,
+            "SOXL": 31350.19
+          },
+          "num_trades": 941
+        },
+        "validation": {
+          "total_return_pct": 52.14,
+          "annualized_return_pct": 14.62,
+          "final_equity": 152136.52,
+          "round_trips": 171,
+          "win_rate_pct": 33.9,
+          "profit_factor": 1.76,
+          "max_drawdown_pct": 16.51,
+          "sharpe": 0.93,
+          "sortino": 1.42,
+          "per_symbol_pnl": {
+            "TQQQ": 8620.81,
+            "SPXL": 7451.78,
+            "SOXL": 42458.98
+          },
+          "num_trades": 339
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 0.9163,
+        "validation_score": 1.8707,
+        "training": {
+          "total_return_pct": 73.62,
+          "annualized_return_pct": 8.01,
+          "final_equity": 173616.37,
+          "round_trips": 463,
+          "win_rate_pct": 36.7,
+          "profit_factor": 1.36,
+          "max_drawdown_pct": 24.46,
+          "sharpe": 0.58,
+          "sortino": 0.85,
+          "per_symbol_pnl": {
+            "TQQQ": 60505.87,
+            "SPXL": 17190.07,
+            "SOXL": 16952.92
+          },
+          "num_trades": 923
+        },
+        "validation": {
+          "total_return_pct": 49.19,
+          "annualized_return_pct": 13.89,
+          "final_equity": 149193.41,
+          "round_trips": 169,
+          "win_rate_pct": 36.1,
+          "profit_factor": 1.68,
+          "max_drawdown_pct": 17.19,
+          "sharpe": 0.87,
+          "sortino": 1.3,
+          "per_symbol_pnl": {
+            "TQQQ": 7032.55,
+            "SPXL": 4245.79,
+            "SOXL": 44164.06
+          },
+          "num_trades": 335
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 1.0018,
+        "validation_score": 1.7231,
+        "training": {
+          "total_return_pct": 78.43,
+          "annualized_return_pct": 8.42,
+          "final_equity": 178426.81,
+          "round_trips": 485,
+          "win_rate_pct": 35.9,
+          "profit_factor": 1.38,
+          "max_drawdown_pct": 23.96,
+          "sharpe": 0.61,
+          "sortino": 0.9,
+          "per_symbol_pnl": {
+            "TQQQ": 56589.69,
+            "SPXL": 18960.33,
+            "SOXL": 24991.4
+          },
+          "num_trades": 967
+        },
+        "validation": {
+          "total_return_pct": 44.0,
+          "annualized_return_pct": 12.59,
+          "final_equity": 144003.71,
+          "round_trips": 173,
+          "win_rate_pct": 35.8,
+          "profit_factor": 1.56,
+          "max_drawdown_pct": 16.82,
+          "sharpe": 0.83,
+          "sortino": 1.2,
+          "per_symbol_pnl": {
+            "TQQQ": 9162.51,
+            "SPXL": 5246.86,
+            "SOXL": 36003.5
+          },
+          "num_trades": 343
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 1.1454,
+        "validation_score": 1.674,
+        "training": {
+          "total_return_pct": 90.58,
+          "annualized_return_pct": 9.42,
+          "final_equity": 190583.6,
+          "round_trips": 507,
+          "win_rate_pct": 35.9,
+          "profit_factor": 1.38,
+          "max_drawdown_pct": 25.03,
+          "sharpe": 0.67,
+          "sortino": 1.01,
+          "per_symbol_pnl": {
+            "TQQQ": 55196.77,
+            "SPXL": 25733.65,
+            "SOXL": 33789.66
+          },
+          "num_trades": 1011
+        },
+        "validation": {
+          "total_return_pct": 42.4,
+          "annualized_return_pct": 12.18,
+          "final_equity": 142404.89,
+          "round_trips": 187,
+          "win_rate_pct": 33.7,
+          "profit_factor": 1.54,
+          "max_drawdown_pct": 16.75,
+          "sharpe": 0.8,
+          "sortino": 1.2,
+          "per_symbol_pnl": {
+            "TQQQ": 3895.74,
+            "SPXL": 5896.88,
+            "SOXL": 39382.66
+          },
+          "num_trades": 371
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.9409,
+        "validation_score": 1.6354,
+        "training": {
+          "total_return_pct": 84.75,
+          "annualized_return_pct": 8.95,
+          "final_equity": 184750.94,
+          "round_trips": 468,
+          "win_rate_pct": 40.4,
+          "profit_factor": 1.33,
+          "max_drawdown_pct": 29.83,
+          "sharpe": 0.63,
+          "sortino": 0.92,
+          "per_symbol_pnl": {
+            "TQQQ": 52691.82,
+            "SPXL": 21209.18,
+            "SOXL": 32675.69
+          },
+          "num_trades": 933
+        },
+        "validation": {
+          "total_return_pct": 41.84,
+          "annualized_return_pct": 12.04,
+          "final_equity": 141840.97,
+          "round_trips": 169,
+          "win_rate_pct": 39.6,
+          "profit_factor": 1.47,
+          "max_drawdown_pct": 16.58,
+          "sharpe": 0.78,
+          "sortino": 1.17,
+          "per_symbol_pnl": {
+            "TQQQ": 980.35,
+            "SPXL": 6430.98,
+            "SOXL": 40522.34
+          },
+          "num_trades": 335
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.9143,
+        "validation_score": 1.5698,
+        "training": {
+          "total_return_pct": 79.5,
+          "annualized_return_pct": 8.51,
+          "final_equity": 179497.08,
+          "round_trips": 476,
+          "win_rate_pct": 30.9,
+          "profit_factor": 1.35,
+          "max_drawdown_pct": 28.56,
+          "sharpe": 0.61,
+          "sortino": 0.9,
+          "per_symbol_pnl": {
+            "TQQQ": 52985.35,
+            "SPXL": 21471.35,
+            "SOXL": 28064.52
+          },
+          "num_trades": 949
+        },
+        "validation": {
+          "total_return_pct": 40.29,
+          "annualized_return_pct": 11.64,
+          "final_equity": 140291.38,
+          "round_trips": 182,
+          "win_rate_pct": 29.7,
+          "profit_factor": 1.54,
+          "max_drawdown_pct": 17.11,
+          "sharpe": 0.76,
+          "sortino": 1.14,
+          "per_symbol_pnl": {
+            "TQQQ": 2882.34,
+            "SPXL": 4480.12,
+            "SOXL": 39327.04
+          },
+          "num_trades": 361
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 1.1232,
+        "validation_score": 1.4524,
+        "training": {
+          "total_return_pct": 94.9,
+          "annualized_return_pct": 9.76,
+          "final_equity": 194899.31,
+          "round_trips": 372,
+          "win_rate_pct": 43.3,
+          "profit_factor": 1.5,
+          "max_drawdown_pct": 26.24,
+          "sharpe": 0.67,
+          "sortino": 0.98,
+          "per_symbol_pnl": {
+            "TQQQ": 72952.57,
+            "SPXL": 13796.74,
+            "SOXL": 25454.8
+          },
+          "num_trades": 742
+        },
+        "validation": {
+          "total_return_pct": 38.52,
+          "annualized_return_pct": 11.18,
+          "final_equity": 138524.33,
+          "round_trips": 144,
+          "win_rate_pct": 38.2,
+          "profit_factor": 1.67,
+          "max_drawdown_pct": 20.33,
+          "sharpe": 0.75,
+          "sortino": 1.1,
+          "per_symbol_pnl": {
+            "TQQQ": 9217.32,
+            "SPXL": 2483.21,
+            "SOXL": 31908.84
+          },
+          "num_trades": 285
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.5,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 1.0133,
+        "validation_score": 1.3796,
+        "training": {
+          "total_return_pct": 86.2,
+          "annualized_return_pct": 9.07,
+          "final_equity": 186202.48,
+          "round_trips": 448,
+          "win_rate_pct": 32.6,
+          "profit_factor": 1.37,
+          "max_drawdown_pct": 26.76,
+          "sharpe": 0.63,
+          "sortino": 0.93,
+          "per_symbol_pnl": {
+            "TQQQ": 51905.27,
+            "SPXL": 27733.8,
+            "SOXL": 28220.67
+          },
+          "num_trades": 893
+        },
+        "validation": {
+          "total_return_pct": 35.11,
+          "annualized_return_pct": 10.28,
+          "final_equity": 135113.88,
+          "round_trips": 168,
+          "win_rate_pct": 28.0,
+          "profit_factor": 1.57,
+          "max_drawdown_pct": 16.47,
+          "sharpe": 0.68,
+          "sortino": 1.03,
+          "per_symbol_pnl": {
+            "TQQQ": 9236.87,
+            "SPXL": 5400.63,
+            "SOXL": 26506.09
+          },
+          "num_trades": 333
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 1.0114,
+        "validation_score": 1.3715,
+        "training": {
+          "total_return_pct": 79.88,
+          "annualized_return_pct": 8.54,
+          "final_equity": 179877.46,
+          "round_trips": 519,
+          "win_rate_pct": 35.3,
+          "profit_factor": 1.36,
+          "max_drawdown_pct": 25.03,
+          "sharpe": 0.62,
+          "sortino": 0.93,
+          "per_symbol_pnl": {
+            "TQQQ": 51060.41,
+            "SPXL": 25579.32,
+            "SOXL": 27070.54
+          },
+          "num_trades": 1035
+        },
+        "validation": {
+          "total_return_pct": 34.56,
+          "annualized_return_pct": 10.13,
+          "final_equity": 134555.73,
+          "round_trips": 188,
+          "win_rate_pct": 33.5,
+          "profit_factor": 1.43,
+          "max_drawdown_pct": 16.75,
+          "sharpe": 0.69,
+          "sortino": 1.02,
+          "per_symbol_pnl": {
+            "TQQQ": 6629.53,
+            "SPXL": 2701.29,
+            "SOXL": 31959.68
+          },
+          "num_trades": 373
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 1.1599,
+        "validation_score": 1.2234,
+        "training": {
+          "total_return_pct": 95.5,
+          "annualized_return_pct": 9.81,
+          "final_equity": 195495.71,
+          "round_trips": 394,
+          "win_rate_pct": 41.6,
+          "profit_factor": 1.49,
+          "max_drawdown_pct": 25.53,
+          "sharpe": 0.68,
+          "sortino": 1.0,
+          "per_symbol_pnl": {
+            "TQQQ": 62963.53,
+            "SPXL": 13902.73,
+            "SOXL": 36936.94
+          },
+          "num_trades": 786
+        },
+        "validation": {
+          "total_return_pct": 32.56,
+          "annualized_return_pct": 9.6,
+          "final_equity": 132561.16,
+          "round_trips": 148,
+          "win_rate_pct": 39.2,
+          "profit_factor": 1.54,
+          "max_drawdown_pct": 20.33,
+          "sharpe": 0.67,
+          "sortino": 0.96,
+          "per_symbol_pnl": {
+            "TQQQ": 9014.52,
+            "SPXL": 4194.02,
+            "SOXL": 24466.23
+          },
+          "num_trades": 293
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 3.0,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 1.0258,
+        "validation_score": 1.2175,
+        "training": {
+          "total_return_pct": 88.63,
+          "annualized_return_pct": 9.26,
+          "final_equity": 188628.03,
+          "round_trips": 370,
+          "win_rate_pct": 31.6,
+          "profit_factor": 1.48,
+          "max_drawdown_pct": 27.11,
+          "sharpe": 0.64,
+          "sortino": 0.93,
+          "per_symbol_pnl": {
+            "TQQQ": 56995.82,
+            "SPXL": 12256.71,
+            "SOXL": 36362.09
+          },
+          "num_trades": 738
+        },
+        "validation": {
+          "total_return_pct": 30.97,
+          "annualized_return_pct": 9.17,
+          "final_equity": 130972.06,
+          "round_trips": 136,
+          "win_rate_pct": 29.4,
+          "profit_factor": 1.58,
+          "max_drawdown_pct": 17.3,
+          "sharpe": 0.64,
+          "sortino": 0.93,
+          "per_symbol_pnl": {
+            "TQQQ": 7944.75,
+            "SPXL": 1603.66,
+            "SOXL": 26133.08
+          },
+          "num_trades": 269
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 1.1995,
+        "validation_score": 1.2006,
+        "training": {
+          "total_return_pct": 99.9,
+          "annualized_return_pct": 10.15,
+          "final_equity": 199896.24,
+          "round_trips": 413,
+          "win_rate_pct": 41.6,
+          "profit_factor": 1.44,
+          "max_drawdown_pct": 24.9,
+          "sharpe": 0.69,
+          "sortino": 1.0,
+          "per_symbol_pnl": {
+            "TQQQ": 69308.53,
+            "SPXL": 18301.35,
+            "SOXL": 32269.35
+          },
+          "num_trades": 824
+        },
+        "validation": {
+          "total_return_pct": 30.34,
+          "annualized_return_pct": 9.0,
+          "final_equity": 130340.63,
+          "round_trips": 154,
+          "win_rate_pct": 35.1,
+          "profit_factor": 1.49,
+          "max_drawdown_pct": 17.72,
+          "sharpe": 0.64,
+          "sortino": 0.93,
+          "per_symbol_pnl": {
+            "TQQQ": 9132.34,
+            "SPXL": 5867.82,
+            "SOXL": 20612.15
+          },
+          "num_trades": 305
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 0.9828,
+        "validation_score": 1.1922,
+        "training": {
+          "total_return_pct": 85.92,
+          "annualized_return_pct": 9.04,
+          "final_equity": 185924.08,
+          "round_trips": 363,
+          "win_rate_pct": 36.9,
+          "profit_factor": 1.46,
+          "max_drawdown_pct": 27.21,
+          "sharpe": 0.62,
+          "sortino": 0.91,
+          "per_symbol_pnl": {
+            "TQQQ": 69992.76,
+            "SPXL": 13046.48,
+            "SOXL": 19646.78
+          },
+          "num_trades": 724
+        },
+        "validation": {
+          "total_return_pct": 32.05,
+          "annualized_return_pct": 9.46,
+          "final_equity": 132054.48,
+          "round_trips": 146,
+          "win_rate_pct": 30.8,
+          "profit_factor": 1.6,
+          "max_drawdown_pct": 20.29,
+          "sharpe": 0.65,
+          "sortino": 0.95,
+          "per_symbol_pnl": {
+            "TQQQ": 7366.62,
+            "SPXL": 884.87,
+            "SOXL": 28845.3
+          },
+          "num_trades": 289
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 2.0
+        },
+        "training_score": 0.9223,
+        "validation_score": 1.183,
+        "training": {
+          "total_return_pct": 81.68,
+          "annualized_return_pct": 8.69,
+          "final_equity": 181682.02,
+          "round_trips": 366,
+          "win_rate_pct": 41.8,
+          "profit_factor": 1.44,
+          "max_drawdown_pct": 27.36,
+          "sharpe": 0.6,
+          "sortino": 0.87,
+          "per_symbol_pnl": {
+            "TQQQ": 60539.57,
+            "SPXL": 11194.54,
+            "SOXL": 26954.7
+          },
+          "num_trades": 730
+        },
+        "validation": {
+          "total_return_pct": 31.0,
+          "annualized_return_pct": 9.18,
+          "final_equity": 131003.82,
+          "round_trips": 137,
+          "win_rate_pct": 40.9,
+          "profit_factor": 1.52,
+          "max_drawdown_pct": 18.05,
+          "sharpe": 0.63,
+          "sortino": 0.91,
+          "per_symbol_pnl": {
+            "TQQQ": 3923.64,
+            "SPXL": -649.46,
+            "SOXL": 32511.21
+          },
+          "num_trades": 271
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.9588,
+        "validation_score": 1.1214,
+        "training": {
+          "total_return_pct": 81.75,
+          "annualized_return_pct": 8.7,
+          "final_equity": 181745.29,
+          "round_trips": 490,
+          "win_rate_pct": 30.6,
+          "profit_factor": 1.37,
+          "max_drawdown_pct": 28.56,
+          "sharpe": 0.63,
+          "sortino": 0.93,
+          "per_symbol_pnl": {
+            "TQQQ": 49810.06,
+            "SPXL": 20280.83,
+            "SOXL": 35088.69
+          },
+          "num_trades": 977
+        },
+        "validation": {
+          "total_return_pct": 28.88,
+          "annualized_return_pct": 8.6,
+          "final_equity": 128883.18,
+          "round_trips": 187,
+          "win_rate_pct": 27.8,
+          "profit_factor": 1.4,
+          "max_drawdown_pct": 17.43,
+          "sharpe": 0.6,
+          "sortino": 0.88,
+          "per_symbol_pnl": {
+            "TQQQ": 3489.47,
+            "SPXL": 1533.26,
+            "SOXL": 30341.93
+          },
+          "num_trades": 371
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 1.1304,
+        "validation_score": 1.0781,
+        "training": {
+          "total_return_pct": 99.75,
+          "annualized_return_pct": 10.14,
+          "final_equity": 199753.29,
+          "round_trips": 386,
+          "win_rate_pct": 36.8,
+          "profit_factor": 1.43,
+          "max_drawdown_pct": 28.33,
+          "sharpe": 0.69,
+          "sortino": 1.0,
+          "per_symbol_pnl": {
+            "TQQQ": 66340.44,
+            "SPXL": 19242.79,
+            "SOXL": 33667.99
+          },
+          "num_trades": 770
+        },
+        "validation": {
+          "total_return_pct": 28.18,
+          "annualized_return_pct": 8.41,
+          "final_equity": 128181.99,
+          "round_trips": 156,
+          "win_rate_pct": 29.5,
+          "profit_factor": 1.5,
+          "max_drawdown_pct": 19.12,
+          "sharpe": 0.6,
+          "sortino": 0.88,
+          "per_symbol_pnl": {
+            "TQQQ": 8747.4,
+            "SPXL": 2242.85,
+            "SOXL": 22489.33
+          },
+          "num_trades": 309
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 3.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.9439,
+        "validation_score": 1.015,
+        "training": {
+          "total_return_pct": 83.14,
+          "annualized_return_pct": 8.81,
+          "final_equity": 183140.7,
+          "round_trips": 419,
+          "win_rate_pct": 31.5,
+          "profit_factor": 1.35,
+          "max_drawdown_pct": 27.33,
+          "sharpe": 0.61,
+          "sortino": 0.88,
+          "per_symbol_pnl": {
+            "TQQQ": 52155.21,
+            "SPXL": 22078.98,
+            "SOXL": 28558.11
+          },
+          "num_trades": 835
+        },
+        "validation": {
+          "total_return_pct": 27.65,
+          "annualized_return_pct": 8.26,
+          "final_equity": 127653.71,
+          "round_trips": 155,
+          "win_rate_pct": 29.7,
+          "profit_factor": 1.37,
+          "max_drawdown_pct": 18.4,
+          "sharpe": 0.56,
+          "sortino": 0.82,
+          "per_symbol_pnl": {
+            "TQQQ": -386.11,
+            "SPXL": 2704.49,
+            "SOXL": 30685.68
+          },
+          "num_trades": 307
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 3.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 1.0787,
+        "validation_score": 0.9996,
+        "training": {
+          "total_return_pct": 89.73,
+          "annualized_return_pct": 9.35,
+          "final_equity": 189730.55,
+          "round_trips": 409,
+          "win_rate_pct": 41.3,
+          "profit_factor": 1.44,
+          "max_drawdown_pct": 26.44,
+          "sharpe": 0.66,
+          "sortino": 0.96,
+          "per_symbol_pnl": {
+            "TQQQ": 63052.89,
+            "SPXL": 15159.49,
+            "SOXL": 30773.25
+          },
+          "num_trades": 816
+        },
+        "validation": {
+          "total_return_pct": 25.55,
+          "annualized_return_pct": 7.68,
+          "final_equity": 125547.52,
+          "round_trips": 155,
+          "win_rate_pct": 38.7,
+          "profit_factor": 1.39,
+          "max_drawdown_pct": 16.72,
+          "sharpe": 0.56,
+          "sortino": 0.78,
+          "per_symbol_pnl": {
+            "TQQQ": 7681.83,
+            "SPXL": 534.35,
+            "SOXL": 22722.22
+          },
+          "num_trades": 307
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 3.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 1.1296,
+        "validation_score": 0.8597,
+        "training": {
+          "total_return_pct": 98.98,
+          "annualized_return_pct": 10.08,
+          "final_equity": 198975.42,
+          "round_trips": 381,
+          "win_rate_pct": 32.0,
+          "profit_factor": 1.51,
+          "max_drawdown_pct": 28.22,
+          "sharpe": 0.69,
+          "sortino": 1.0,
+          "per_symbol_pnl": {
+            "TQQQ": 53989.44,
+            "SPXL": 17945.18,
+            "SOXL": 44723.7
+          },
+          "num_trades": 760
+        },
+        "validation": {
+          "total_return_pct": 21.76,
+          "annualized_return_pct": 6.61,
+          "final_equity": 121762.57,
+          "round_trips": 144,
+          "win_rate_pct": 28.5,
+          "profit_factor": 1.38,
+          "max_drawdown_pct": 15.54,
+          "sharpe": 0.49,
+          "sortino": 0.7,
+          "per_symbol_pnl": {
+            "TQQQ": 5405.88,
+            "SPXL": 268.3,
+            "SOXL": 21018.54
+          },
+          "num_trades": 285
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 3.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 1.1289,
+        "validation_score": 0.7949,
+        "training": {
+          "total_return_pct": 98.33,
+          "annualized_return_pct": 10.03,
+          "final_equity": 198330.96,
+          "round_trips": 409,
+          "win_rate_pct": 36.9,
+          "profit_factor": 1.47,
+          "max_drawdown_pct": 29.13,
+          "sharpe": 0.7,
+          "sortino": 1.02,
+          "per_symbol_pnl": {
+            "TQQQ": 62292.54,
+            "SPXL": 17925.78,
+            "SOXL": 38264.52
+          },
+          "num_trades": 816
+        },
+        "validation": {
+          "total_return_pct": 20.29,
+          "annualized_return_pct": 6.19,
+          "final_equity": 120289.09,
+          "round_trips": 157,
+          "win_rate_pct": 29.9,
+          "profit_factor": 1.34,
+          "max_drawdown_pct": 15.98,
+          "sharpe": 0.47,
+          "sortino": 0.67,
+          "per_symbol_pnl": {
+            "TQQQ": 5649.04,
+            "SPXL": -493.13,
+            "SOXL": 20526.39
+          },
+          "num_trades": 311
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 1.0901,
+        "validation_score": 0.7332,
+        "training": {
+          "total_return_pct": 92.74,
+          "annualized_return_pct": 9.59,
+          "final_equity": 192741.3,
+          "round_trips": 381,
+          "win_rate_pct": 36.5,
+          "profit_factor": 1.48,
+          "max_drawdown_pct": 26.72,
+          "sharpe": 0.66,
+          "sortino": 0.97,
+          "per_symbol_pnl": {
+            "TQQQ": 63304.29,
+            "SPXL": 15948.07,
+            "SOXL": 31298.21
+          },
+          "num_trades": 760
+        },
+        "validation": {
+          "total_return_pct": 20.96,
+          "annualized_return_pct": 6.38,
+          "final_equity": 120963.65,
+          "round_trips": 149,
+          "win_rate_pct": 30.9,
+          "profit_factor": 1.36,
+          "max_drawdown_pct": 20.29,
+          "sharpe": 0.48,
+          "sortino": 0.68,
+          "per_symbol_pnl": {
+            "TQQQ": 6605.38,
+            "SPXL": 1225.43,
+            "SOXL": 18137.74
+          },
+          "num_trades": 295
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 3.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 1.0611,
+        "validation_score": 0.7183,
+        "training": {
+          "total_return_pct": 91.24,
+          "annualized_return_pct": 9.47,
+          "final_equity": 191239.91,
+          "round_trips": 400,
+          "win_rate_pct": 36.5,
+          "profit_factor": 1.44,
+          "max_drawdown_pct": 27.62,
+          "sharpe": 0.66,
+          "sortino": 0.96,
+          "per_symbol_pnl": {
+            "TQQQ": 65884.65,
+            "SPXL": 17782.54,
+            "SOXL": 26734.13
+          },
+          "num_trades": 798
+        },
+        "validation": {
+          "total_return_pct": 19.31,
+          "annualized_return_pct": 5.91,
+          "final_equity": 119310.58,
+          "round_trips": 155,
+          "win_rate_pct": 30.3,
+          "profit_factor": 1.33,
+          "max_drawdown_pct": 17.11,
+          "sharpe": 0.45,
+          "sortino": 0.63,
+          "per_symbol_pnl": {
+            "TQQQ": 5853.62,
+            "SPXL": -1809.59,
+            "SOXL": 20562.13
+          },
+          "num_trades": 307
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 1.389,
+        "validation_score": 0.5432,
+        "training": {
+          "total_return_pct": 116.36,
+          "annualized_return_pct": 11.38,
+          "final_equity": 216359.75,
+          "round_trips": 399,
+          "win_rate_pct": 35.6,
+          "profit_factor": 1.53,
+          "max_drawdown_pct": 25.0,
+          "sharpe": 0.76,
+          "sortino": 1.12,
+          "per_symbol_pnl": {
+            "TQQQ": 63274.64,
+            "SPXL": 26116.58,
+            "SOXL": 47241.05
+          },
+          "num_trades": 796
+        },
+        "validation": {
+          "total_return_pct": 16.67,
+          "annualized_return_pct": 5.14,
+          "final_equity": 116667.06,
+          "round_trips": 159,
+          "win_rate_pct": 28.9,
+          "profit_factor": 1.29,
+          "max_drawdown_pct": 20.44,
+          "sharpe": 0.41,
+          "sortino": 0.57,
+          "per_symbol_pnl": {
+            "TQQQ": 7174.83,
+            "SPXL": -1566.61,
+            "SOXL": 16352.83
+          },
+          "num_trades": 315
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.946,
+        "validation_score": -0.1006,
+        "training": {
+          "total_return_pct": 86.34,
+          "annualized_return_pct": 9.08,
+          "final_equity": 186339.53,
+          "round_trips": 351,
+          "win_rate_pct": 41.9,
+          "profit_factor": 1.38,
+          "max_drawdown_pct": 28.15,
+          "sharpe": 0.61,
+          "sortino": 0.89,
+          "per_symbol_pnl": {
+            "TQQQ": 56926.27,
+            "SPXL": 20428.96,
+            "SOXL": 25427.4
+          },
+          "num_trades": 700
+        },
+        "validation": {
+          "total_return_pct": 5.89,
+          "annualized_return_pct": 1.88,
+          "final_equity": 105887.28,
+          "round_trips": 129,
+          "win_rate_pct": 34.9,
+          "profit_factor": 1.13,
+          "max_drawdown_pct": 26.48,
+          "sharpe": 0.2,
+          "sortino": 0.27,
+          "per_symbol_pnl": {
+            "TQQQ": 1824.66,
+            "SPXL": -2343.51,
+            "SOXL": 10464.89
+          },
+          "num_trades": 255
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 3.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 1.005,
+        "validation_score": -0.3826,
+        "training": {
+          "total_return_pct": 94.13,
+          "annualized_return_pct": 9.7,
+          "final_equity": 194126.6,
+          "round_trips": 342,
+          "win_rate_pct": 38.0,
+          "profit_factor": 1.42,
+          "max_drawdown_pct": 29.75,
+          "sharpe": 0.65,
+          "sortino": 0.93,
+          "per_symbol_pnl": {
+            "TQQQ": 56767.96,
+            "SPXL": 21798.51,
+            "SOXL": 31890.54
+          },
+          "num_trades": 682
+        },
+        "validation": {
+          "total_return_pct": -0.24,
+          "annualized_return_pct": -0.08,
+          "final_equity": 99757.09,
+          "round_trips": 123,
+          "win_rate_pct": 29.3,
+          "profit_factor": 1.05,
+          "max_drawdown_pct": 25.43,
+          "sharpe": 0.08,
+          "sortino": 0.1,
+          "per_symbol_pnl": {
+            "TQQQ": -201.42,
+            "SPXL": -935.91,
+            "SOXL": 4721.28
+          },
+          "num_trades": 243
+        }
+      }
+    ]
+  },
+  "config_low.yaml": {
+    "scenario": "LOW RISK",
+    "years": 10,
+    "train_fraction": 0.7,
+    "baseline": {
+      "params": {
+        "atr_stop_mult": 2.0,
+        "atr_take_mult": 3.0,
+        "break_even_atr": 1.0,
+        "trail_atr": 2.0,
+        "trail_distance_atr": 1.0
+      },
+      "training_score": 0.3829,
+      "validation_score": 0.5027,
+      "training": {
+        "total_return_pct": 7.16,
+        "annualized_return_pct": 0.97,
+        "final_equity": 107163.83,
+        "round_trips": 1208,
+        "win_rate_pct": 40.9,
+        "profit_factor": 1.43,
+        "max_drawdown_pct": 8.03,
+        "sharpe": 0.29,
+        "sortino": 0.41,
+        "per_symbol_pnl": {
+          "QQQ": 6237.29,
+          "SPY": 4248.17,
+          "DIA": 3101.06,
+          "IWM": 1583.21,
+          "EWJ": 1125.78,
+          "EZU": 2804.55,
+          "EWU": 1659.61,
+          "EWG": 1389.9
+        },
+        "num_trades": 2410
+      },
+      "validation": {
+        "total_return_pct": 3.44,
+        "annualized_return_pct": 1.11,
+        "final_equity": 103440.01,
+        "round_trips": 524,
+        "win_rate_pct": 40.1,
+        "profit_factor": 1.45,
+        "max_drawdown_pct": 4.14,
+        "sharpe": 0.31,
+        "sortino": 0.44,
+        "per_symbol_pnl": {
+          "QQQ": 2516.11,
+          "SPY": 608.39,
+          "DIA": 1104.34,
+          "IWM": 447.84,
+          "EWJ": 1221.75,
+          "EZU": 1993.91,
+          "EWU": 1307.06,
+          "EWG": 608.69
+        },
+        "num_trades": 1040
+      }
+    },
+    "finalists": [
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4807,
+        "validation_score": 0.5459,
+        "training": {
+          "total_return_pct": 8.67,
+          "annualized_return_pct": 1.17,
+          "final_equity": 108669.9,
+          "round_trips": 1165,
+          "win_rate_pct": 40.2,
+          "profit_factor": 1.46,
+          "max_drawdown_pct": 7.89,
+          "sharpe": 0.34,
+          "sortino": 0.48,
+          "per_symbol_pnl": {
+            "QQQ": 6750.5,
+            "SPY": 3966.33,
+            "DIA": 3340.91,
+            "IWM": 1655.59,
+            "EWJ": 1344.98,
+            "EZU": 3428.21,
+            "EWU": 1383.84,
+            "EWG": 1256.18
+          },
+          "num_trades": 2324
+        },
+        "validation": {
+          "total_return_pct": 3.72,
+          "annualized_return_pct": 1.19,
+          "final_equity": 103716.13,
+          "round_trips": 502,
+          "win_rate_pct": 39.4,
+          "profit_factor": 1.44,
+          "max_drawdown_pct": 4.18,
+          "sharpe": 0.33,
+          "sortino": 0.48,
+          "per_symbol_pnl": {
+            "QQQ": 3005.7,
+            "SPY": 362.14,
+            "DIA": 686.79,
+            "IWM": -13.39,
+            "EWJ": 1851.42,
+            "EZU": 2168.93,
+            "EWU": 1164.88,
+            "EWG": 612.38
+          },
+          "num_trades": 996
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 3.0,
+          "trail_distance_atr": 2.0
+        },
+        "training_score": 0.4406,
+        "validation_score": 0.5359,
+        "training": {
+          "total_return_pct": 8.19,
+          "annualized_return_pct": 1.1,
+          "final_equity": 108186.57,
+          "round_trips": 940,
+          "win_rate_pct": 30.0,
+          "profit_factor": 1.48,
+          "max_drawdown_pct": 7.72,
+          "sharpe": 0.32,
+          "sortino": 0.44,
+          "per_symbol_pnl": {
+            "QQQ": 6619.68,
+            "SPY": 3752.15,
+            "DIA": 2636.15,
+            "IWM": 1193.34,
+            "EWJ": 767.02,
+            "EZU": 2460.95,
+            "EWU": 857.3,
+            "EWG": 1577.4
+          },
+          "num_trades": 1874
+        },
+        "validation": {
+          "total_return_pct": 3.82,
+          "annualized_return_pct": 1.23,
+          "final_equity": 103824.25,
+          "round_trips": 420,
+          "win_rate_pct": 30.7,
+          "profit_factor": 1.5,
+          "max_drawdown_pct": 4.53,
+          "sharpe": 0.33,
+          "sortino": 0.47,
+          "per_symbol_pnl": {
+            "QQQ": 2080.57,
+            "SPY": 973.89,
+            "DIA": 671.63,
+            "IWM": 1108.58,
+            "EWJ": 1048.33,
+            "EZU": 1618.13,
+            "EWU": 1086.13,
+            "EWG": 311.92
+          },
+          "num_trades": 832
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 3.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.5246,
+        "validation_score": 0.5264,
+        "training": {
+          "total_return_pct": 9.39,
+          "annualized_return_pct": 1.26,
+          "final_equity": 109390.79,
+          "round_trips": 1024,
+          "win_rate_pct": 30.1,
+          "profit_factor": 1.51,
+          "max_drawdown_pct": 7.67,
+          "sharpe": 0.36,
+          "sortino": 0.51,
+          "per_symbol_pnl": {
+            "QQQ": 6010.01,
+            "SPY": 3373.82,
+            "DIA": 3646.2,
+            "IWM": 1127.49,
+            "EWJ": 1348.24,
+            "EZU": 2791.65,
+            "EWU": 1962.85,
+            "EWG": 1917.27
+          },
+          "num_trades": 2042
+        },
+        "validation": {
+          "total_return_pct": 3.69,
+          "annualized_return_pct": 1.18,
+          "final_equity": 103685.89,
+          "round_trips": 449,
+          "win_rate_pct": 29.4,
+          "profit_factor": 1.49,
+          "max_drawdown_pct": 4.13,
+          "sharpe": 0.32,
+          "sortino": 0.46,
+          "per_symbol_pnl": {
+            "QQQ": 2650.6,
+            "SPY": 422.34,
+            "DIA": 847.63,
+            "IWM": 480.02,
+            "EWJ": 1708.89,
+            "EZU": 1478.18,
+            "EWU": 1231.98,
+            "EWG": 295.36
+          },
+          "num_trades": 890
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.5
+        },
+        "training_score": 0.4279,
+        "validation_score": 0.5231,
+        "training": {
+          "total_return_pct": 7.89,
+          "annualized_return_pct": 1.07,
+          "final_equity": 107891.06,
+          "round_trips": 1021,
+          "win_rate_pct": 33.7,
+          "profit_factor": 1.46,
+          "max_drawdown_pct": 7.53,
+          "sharpe": 0.31,
+          "sortino": 0.43,
+          "per_symbol_pnl": {
+            "QQQ": 6018.42,
+            "SPY": 3786.88,
+            "DIA": 2433.3,
+            "IWM": 1575.41,
+            "EWJ": 1600.74,
+            "EZU": 2811.85,
+            "EWU": 1304.19,
+            "EWG": 1051.72
+          },
+          "num_trades": 2036
+        },
+        "validation": {
+          "total_return_pct": 3.7,
+          "annualized_return_pct": 1.19,
+          "final_equity": 103702.88,
+          "round_trips": 444,
+          "win_rate_pct": 34.0,
+          "profit_factor": 1.48,
+          "max_drawdown_pct": 4.32,
+          "sharpe": 0.32,
+          "sortino": 0.46,
+          "per_symbol_pnl": {
+            "QQQ": 2098.34,
+            "SPY": 704.46,
+            "DIA": 435.64,
+            "IWM": 679.54,
+            "EWJ": 1922.17,
+            "EZU": 1635.04,
+            "EWU": 1044.96,
+            "EWG": 562.71
+          },
+          "num_trades": 880
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4926,
+        "validation_score": 0.5043,
+        "training": {
+          "total_return_pct": 8.16,
+          "annualized_return_pct": 1.1,
+          "final_equity": 108155.95,
+          "round_trips": 1402,
+          "win_rate_pct": 34.7,
+          "profit_factor": 1.49,
+          "max_drawdown_pct": 7.62,
+          "sharpe": 0.34,
+          "sortino": 0.5,
+          "per_symbol_pnl": {
+            "QQQ": 7133.85,
+            "SPY": 4082.31,
+            "DIA": 2907.77,
+            "IWM": 1831.47,
+            "EWJ": 2270.44,
+            "EZU": 3761.99,
+            "EWU": 1679.38,
+            "EWG": 1831.15
+          },
+          "num_trades": 2798
+        },
+        "validation": {
+          "total_return_pct": 3.19,
+          "annualized_return_pct": 1.03,
+          "final_equity": 103191.56,
+          "round_trips": 621,
+          "win_rate_pct": 33.0,
+          "profit_factor": 1.48,
+          "max_drawdown_pct": 3.36,
+          "sharpe": 0.3,
+          "sortino": 0.44,
+          "per_symbol_pnl": {
+            "QQQ": 2892.02,
+            "SPY": 837.73,
+            "DIA": 769.62,
+            "IWM": 807.2,
+            "EWJ": 2496.44,
+            "EZU": 1465.27,
+            "EWU": 1171.67,
+            "EWG": 289.53
+          },
+          "num_trades": 1234
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.5282,
+        "validation_score": 0.4844,
+        "training": {
+          "total_return_pct": 8.62,
+          "annualized_return_pct": 1.16,
+          "final_equity": 108617.86,
+          "round_trips": 1332,
+          "win_rate_pct": 30.1,
+          "profit_factor": 1.51,
+          "max_drawdown_pct": 7.49,
+          "sharpe": 0.36,
+          "sortino": 0.52,
+          "per_symbol_pnl": {
+            "QQQ": 7613.88,
+            "SPY": 3759.22,
+            "DIA": 3027.62,
+            "IWM": 1868.34,
+            "EWJ": 2048.23,
+            "EZU": 3186.72,
+            "EWU": 1536.95,
+            "EWG": 2136.45
+          },
+          "num_trades": 2658
+        },
+        "validation": {
+          "total_return_pct": 3.11,
+          "annualized_return_pct": 1.0,
+          "final_equity": 103105.9,
+          "round_trips": 586,
+          "win_rate_pct": 28.7,
+          "profit_factor": 1.48,
+          "max_drawdown_pct": 3.53,
+          "sharpe": 0.29,
+          "sortino": 0.43,
+          "per_symbol_pnl": {
+            "QQQ": 2603.13,
+            "SPY": 1023.41,
+            "DIA": 778.08,
+            "IWM": 835.26,
+            "EWJ": 2358.47,
+            "EZU": 1353.94,
+            "EWU": 1210.95,
+            "EWG": 47.17
+          },
+          "num_trades": 1164
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.5611,
+        "validation_score": 0.4776,
+        "training": {
+          "total_return_pct": 9.62,
+          "annualized_return_pct": 1.29,
+          "final_equity": 109622.91,
+          "round_trips": 1149,
+          "win_rate_pct": 39.9,
+          "profit_factor": 1.49,
+          "max_drawdown_pct": 7.67,
+          "sharpe": 0.38,
+          "sortino": 0.54,
+          "per_symbol_pnl": {
+            "QQQ": 6477.3,
+            "SPY": 4108.35,
+            "DIA": 3524.79,
+            "IWM": 1817.22,
+            "EWJ": 1689.71,
+            "EZU": 3043.4,
+            "EWU": 1694.69,
+            "EWG": 1577.19
+          },
+          "num_trades": 2292
+        },
+        "validation": {
+          "total_return_pct": 3.35,
+          "annualized_return_pct": 1.08,
+          "final_equity": 103352.09,
+          "round_trips": 500,
+          "win_rate_pct": 38.2,
+          "profit_factor": 1.44,
+          "max_drawdown_pct": 4.57,
+          "sharpe": 0.3,
+          "sortino": 0.43,
+          "per_symbol_pnl": {
+            "QQQ": 2711.78,
+            "SPY": 494.7,
+            "DIA": 446.41,
+            "IWM": 248.04,
+            "EWJ": 1549.33,
+            "EZU": 2248.79,
+            "EWU": 1013.81,
+            "EWG": 702.27
+          },
+          "num_trades": 992
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4685,
+        "validation_score": 0.4641,
+        "training": {
+          "total_return_pct": 8.72,
+          "annualized_return_pct": 1.17,
+          "final_equity": 108722.28,
+          "round_trips": 997,
+          "win_rate_pct": 45.9,
+          "profit_factor": 1.4,
+          "max_drawdown_pct": 8.25,
+          "sharpe": 0.34,
+          "sortino": 0.47,
+          "per_symbol_pnl": {
+            "QQQ": 6514.9,
+            "SPY": 3973.59,
+            "DIA": 2769.03,
+            "IWM": 1630.2,
+            "EWJ": 1116.76,
+            "EZU": 2579.08,
+            "EWU": 1111.66,
+            "EWG": 1439.73
+          },
+          "num_trades": 1988
+        },
+        "validation": {
+          "total_return_pct": 3.34,
+          "annualized_return_pct": 1.07,
+          "final_equity": 103341.68,
+          "round_trips": 424,
+          "win_rate_pct": 47.6,
+          "profit_factor": 1.36,
+          "max_drawdown_pct": 4.47,
+          "sharpe": 0.29,
+          "sortino": 0.42,
+          "per_symbol_pnl": {
+            "QQQ": 2087.79,
+            "SPY": 250.55,
+            "DIA": 610.25,
+            "IWM": 183.87,
+            "EWJ": 1576.01,
+            "EZU": 1966.32,
+            "EWU": 1516.87,
+            "EWG": 300.51
+          },
+          "num_trades": 840
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.5717,
+        "validation_score": 0.4434,
+        "training": {
+          "total_return_pct": 9.28,
+          "annualized_return_pct": 1.25,
+          "final_equity": 109278.87,
+          "round_trips": 1299,
+          "win_rate_pct": 30.0,
+          "profit_factor": 1.53,
+          "max_drawdown_pct": 7.29,
+          "sharpe": 0.38,
+          "sortino": 0.55,
+          "per_symbol_pnl": {
+            "QQQ": 6987.32,
+            "SPY": 3940.74,
+            "DIA": 3142.45,
+            "IWM": 2014.64,
+            "EWJ": 2398.79,
+            "EZU": 2561.52,
+            "EWU": 1889.07,
+            "EWG": 2543.09
+          },
+          "num_trades": 2592
+        },
+        "validation": {
+          "total_return_pct": 2.91,
+          "annualized_return_pct": 0.94,
+          "final_equity": 102905.04,
+          "round_trips": 585,
+          "win_rate_pct": 28.4,
+          "profit_factor": 1.46,
+          "max_drawdown_pct": 3.68,
+          "sharpe": 0.27,
+          "sortino": 0.4,
+          "per_symbol_pnl": {
+            "QQQ": 2278.93,
+            "SPY": 934.55,
+            "DIA": 663.98,
+            "IWM": 1074.76,
+            "EWJ": 2403.89,
+            "EZU": 1412.2,
+            "EWU": 1169.82,
+            "EWG": 47.89
+          },
+          "num_trades": 1162
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.5879,
+        "validation_score": 0.4194,
+        "training": {
+          "total_return_pct": 9.46,
+          "annualized_return_pct": 1.27,
+          "final_equity": 109455.89,
+          "round_trips": 1370,
+          "win_rate_pct": 34.7,
+          "profit_factor": 1.53,
+          "max_drawdown_pct": 7.53,
+          "sharpe": 0.39,
+          "sortino": 0.57,
+          "per_symbol_pnl": {
+            "QQQ": 7311.13,
+            "SPY": 4116.77,
+            "DIA": 2826.6,
+            "IWM": 2148.16,
+            "EWJ": 2439.06,
+            "EZU": 3112.31,
+            "EWU": 2215.63,
+            "EWG": 2375.13
+          },
+          "num_trades": 2734
+        },
+        "validation": {
+          "total_return_pct": 2.73,
+          "annualized_return_pct": 0.88,
+          "final_equity": 102733.79,
+          "round_trips": 618,
+          "win_rate_pct": 32.5,
+          "profit_factor": 1.45,
+          "max_drawdown_pct": 3.73,
+          "sharpe": 0.26,
+          "sortino": 0.38,
+          "per_symbol_pnl": {
+            "QQQ": 2568.66,
+            "SPY": 867.99,
+            "DIA": 610.26,
+            "IWM": 1094.69,
+            "EWJ": 2216.39,
+            "EZU": 1542.73,
+            "EWU": 1007.35,
+            "EWG": 303.16
+          },
+          "num_trades": 1228
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4338,
+        "validation_score": 0.3885,
+        "training": {
+          "total_return_pct": 8.16,
+          "annualized_return_pct": 1.1,
+          "final_equity": 108155.54,
+          "round_trips": 970,
+          "win_rate_pct": 40.3,
+          "profit_factor": 1.39,
+          "max_drawdown_pct": 8.06,
+          "sharpe": 0.32,
+          "sortino": 0.44,
+          "per_symbol_pnl": {
+            "QQQ": 6170.77,
+            "SPY": 3312.82,
+            "DIA": 2884.61,
+            "IWM": 1320.06,
+            "EWJ": 1268.38,
+            "EZU": 2775.86,
+            "EWU": 1449.16,
+            "EWG": 993.02
+          },
+          "num_trades": 1934
+        },
+        "validation": {
+          "total_return_pct": 2.9,
+          "annualized_return_pct": 0.93,
+          "final_equity": 102899.59,
+          "round_trips": 416,
+          "win_rate_pct": 40.6,
+          "profit_factor": 1.35,
+          "max_drawdown_pct": 4.4,
+          "sharpe": 0.25,
+          "sortino": 0.36,
+          "per_symbol_pnl": {
+            "QQQ": 1977.38,
+            "SPY": 817.16,
+            "DIA": 812.76,
+            "IWM": 118.45,
+            "EWJ": 1670.98,
+            "EZU": 1961.57,
+            "EWU": 944.22,
+            "EWG": -358.93
+          },
+          "num_trades": 824
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.56,
+        "validation_score": 0.3873,
+        "training": {
+          "total_return_pct": 10.15,
+          "annualized_return_pct": 1.36,
+          "final_equity": 110154.16,
+          "round_trips": 944,
+          "win_rate_pct": 40.5,
+          "profit_factor": 1.44,
+          "max_drawdown_pct": 7.9,
+          "sharpe": 0.38,
+          "sortino": 0.54,
+          "per_symbol_pnl": {
+            "QQQ": 6573.02,
+            "SPY": 3966.29,
+            "DIA": 2989.85,
+            "IWM": 1587.12,
+            "EWJ": 1564.95,
+            "EZU": 2790.18,
+            "EWU": 1007.57,
+            "EWG": 1511.99
+          },
+          "num_trades": 1882
+        },
+        "validation": {
+          "total_return_pct": 2.9,
+          "annualized_return_pct": 0.93,
+          "final_equity": 102895.56,
+          "round_trips": 404,
+          "win_rate_pct": 41.1,
+          "profit_factor": 1.34,
+          "max_drawdown_pct": 4.46,
+          "sharpe": 0.25,
+          "sortino": 0.36,
+          "per_symbol_pnl": {
+            "QQQ": 1877.7,
+            "SPY": 366.36,
+            "DIA": 565.96,
+            "IWM": 460.97,
+            "EWJ": 1731.13,
+            "EZU": 1772.4,
+            "EWU": 1344.1,
+            "EWG": -340.32
+          },
+          "num_trades": 800
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.5262,
+        "validation_score": 0.352,
+        "training": {
+          "total_return_pct": 9.19,
+          "annualized_return_pct": 1.24,
+          "final_equity": 109192.43,
+          "round_trips": 1105,
+          "win_rate_pct": 34.7,
+          "profit_factor": 1.48,
+          "max_drawdown_pct": 7.54,
+          "sharpe": 0.36,
+          "sortino": 0.51,
+          "per_symbol_pnl": {
+            "QQQ": 7024.96,
+            "SPY": 3926.43,
+            "DIA": 3128.63,
+            "IWM": 1574.22,
+            "EWJ": 1350.29,
+            "EZU": 3006.45,
+            "EWU": 1623.5,
+            "EWG": 1320.4
+          },
+          "num_trades": 2204
+        },
+        "validation": {
+          "total_return_pct": 2.55,
+          "annualized_return_pct": 0.82,
+          "final_equity": 102549.07,
+          "round_trips": 482,
+          "win_rate_pct": 33.8,
+          "profit_factor": 1.39,
+          "max_drawdown_pct": 4.2,
+          "sharpe": 0.23,
+          "sortino": 0.33,
+          "per_symbol_pnl": {
+            "QQQ": 2548.95,
+            "SPY": 288.74,
+            "DIA": 616.14,
+            "IWM": 104.99,
+            "EWJ": 1779.37,
+            "EZU": 1922.14,
+            "EWU": 892.47,
+            "EWG": 224.91
+          },
+          "num_trades": 956
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 3.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.424,
+        "validation_score": 0.352,
+        "training": {
+          "total_return_pct": 7.85,
+          "annualized_return_pct": 1.06,
+          "final_equity": 107845.22,
+          "round_trips": 1051,
+          "win_rate_pct": 30.4,
+          "profit_factor": 1.47,
+          "max_drawdown_pct": 7.7,
+          "sharpe": 0.31,
+          "sortino": 0.43,
+          "per_symbol_pnl": {
+            "QQQ": 6371.06,
+            "SPY": 3405.13,
+            "DIA": 3215.15,
+            "IWM": 1038.02,
+            "EWJ": 1406.33,
+            "EZU": 2920.17,
+            "EWU": 1521.58,
+            "EWG": 1005.33
+          },
+          "num_trades": 2096
+        },
+        "validation": {
+          "total_return_pct": 2.49,
+          "annualized_return_pct": 0.8,
+          "final_equity": 102493.88,
+          "round_trips": 461,
+          "win_rate_pct": 29.5,
+          "profit_factor": 1.4,
+          "max_drawdown_pct": 3.9,
+          "sharpe": 0.23,
+          "sortino": 0.32,
+          "per_symbol_pnl": {
+            "QQQ": 2737.1,
+            "SPY": 317.1,
+            "DIA": 790.42,
+            "IWM": 114.0,
+            "EWJ": 1557.42,
+            "EZU": 1393.3,
+            "EWU": 1098.91,
+            "EWG": 44.32
+          },
+          "num_trades": 914
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 3.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4561,
+        "validation_score": 0.3513,
+        "training": {
+          "total_return_pct": 8.53,
+          "annualized_return_pct": 1.15,
+          "final_equity": 108531.58,
+          "round_trips": 896,
+          "win_rate_pct": 35.0,
+          "profit_factor": 1.42,
+          "max_drawdown_pct": 8.07,
+          "sharpe": 0.33,
+          "sortino": 0.46,
+          "per_symbol_pnl": {
+            "QQQ": 5717.16,
+            "SPY": 3305.79,
+            "DIA": 2956.71,
+            "IWM": 1728.64,
+            "EWJ": 1113.4,
+            "EZU": 2205.56,
+            "EWU": 1021.54,
+            "EWG": 1678.64
+          },
+          "num_trades": 1786
+        },
+        "validation": {
+          "total_return_pct": 2.69,
+          "annualized_return_pct": 0.87,
+          "final_equity": 102690.26,
+          "round_trips": 377,
+          "win_rate_pct": 35.5,
+          "profit_factor": 1.34,
+          "max_drawdown_pct": 4.36,
+          "sharpe": 0.23,
+          "sortino": 0.33,
+          "per_symbol_pnl": {
+            "QQQ": 1902.55,
+            "SPY": 440.84,
+            "DIA": 726.37,
+            "IWM": 305.67,
+            "EWJ": 1098.19,
+            "EZU": 1455.05,
+            "EWU": 1493.18,
+            "EWG": -176.84
+          },
+          "num_trades": 746
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 2.0,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.6464,
+        "validation_score": 0.3112,
+        "training": {
+          "total_return_pct": 10.96,
+          "annualized_return_pct": 1.46,
+          "final_equity": 110957.7,
+          "round_trips": 1081,
+          "win_rate_pct": 34.6,
+          "profit_factor": 1.53,
+          "max_drawdown_pct": 7.33,
+          "sharpe": 0.42,
+          "sortino": 0.6,
+          "per_symbol_pnl": {
+            "QQQ": 6660.04,
+            "SPY": 3785.38,
+            "DIA": 3616.22,
+            "IWM": 1678.48,
+            "EWJ": 1756.2,
+            "EZU": 2889.1,
+            "EWU": 1838.78,
+            "EWG": 2317.26
+          },
+          "num_trades": 2156
+        },
+        "validation": {
+          "total_return_pct": 2.23,
+          "annualized_return_pct": 0.72,
+          "final_equity": 102234.91,
+          "round_trips": 488,
+          "win_rate_pct": 32.6,
+          "profit_factor": 1.4,
+          "max_drawdown_pct": 4.24,
+          "sharpe": 0.21,
+          "sortino": 0.3,
+          "per_symbol_pnl": {
+            "QQQ": 2363.37,
+            "SPY": 590.01,
+            "DIA": 466.82,
+            "IWM": 216.01,
+            "EWJ": 1995.42,
+            "EZU": 1383.47,
+            "EWU": 1027.46,
+            "EWG": 63.43
+          },
+          "num_trades": 968
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4289,
+        "validation_score": 0.3093,
+        "training": {
+          "total_return_pct": 7.59,
+          "annualized_return_pct": 1.03,
+          "final_equity": 107591.13,
+          "round_trips": 1204,
+          "win_rate_pct": 34.1,
+          "profit_factor": 1.43,
+          "max_drawdown_pct": 7.88,
+          "sharpe": 0.31,
+          "sortino": 0.45,
+          "per_symbol_pnl": {
+            "QQQ": 6838.49,
+            "SPY": 4182.46,
+            "DIA": 2772.9,
+            "IWM": 1519.77,
+            "EWJ": 1328.72,
+            "EZU": 2787.52,
+            "EWU": 1632.59,
+            "EWG": 1408.79
+          },
+          "num_trades": 2402
+        },
+        "validation": {
+          "total_return_pct": 2.19,
+          "annualized_return_pct": 0.71,
+          "final_equity": 102188.46,
+          "round_trips": 524,
+          "win_rate_pct": 33.6,
+          "profit_factor": 1.35,
+          "max_drawdown_pct": 4.31,
+          "sharpe": 0.21,
+          "sortino": 0.3,
+          "per_symbol_pnl": {
+            "QQQ": 2049.04,
+            "SPY": 1268.46,
+            "DIA": 696.84,
+            "IWM": 338.12,
+            "EWJ": 2337.54,
+            "EZU": 1056.68,
+            "EWU": 1069.53,
+            "EWG": -303.11
+          },
+          "num_trades": 1040
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.5,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4871,
+        "validation_score": 0.2526,
+        "training": {
+          "total_return_pct": 8.7,
+          "annualized_return_pct": 1.17,
+          "final_equity": 108704.15,
+          "round_trips": 1150,
+          "win_rate_pct": 41.4,
+          "profit_factor": 1.43,
+          "max_drawdown_pct": 8.32,
+          "sharpe": 0.35,
+          "sortino": 0.49,
+          "per_symbol_pnl": {
+            "QQQ": 6578.38,
+            "SPY": 4417.65,
+            "DIA": 3205.17,
+            "IWM": 1175.43,
+            "EWJ": 1935.44,
+            "EZU": 2353.81,
+            "EWU": 2129.5,
+            "EWG": 1139.59
+          },
+          "num_trades": 2294
+        },
+        "validation": {
+          "total_return_pct": 1.87,
+          "annualized_return_pct": 0.6,
+          "final_equity": 101867.02,
+          "round_trips": 500,
+          "win_rate_pct": 41.8,
+          "profit_factor": 1.31,
+          "max_drawdown_pct": 4.12,
+          "sharpe": 0.18,
+          "sortino": 0.25,
+          "per_symbol_pnl": {
+            "QQQ": 1797.4,
+            "SPY": 749.2,
+            "DIA": 686.99,
+            "IWM": 955.57,
+            "EWJ": 1644.19,
+            "EZU": 1343.77,
+            "EWU": 1019.81,
+            "EWG": -302.1
+          },
+          "num_trades": 992
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4842,
+        "validation_score": 0.223,
+        "training": {
+          "total_return_pct": 8.29,
+          "annualized_return_pct": 1.12,
+          "final_equity": 108292.81,
+          "round_trips": 1179,
+          "win_rate_pct": 34.1,
+          "profit_factor": 1.45,
+          "max_drawdown_pct": 7.59,
+          "sharpe": 0.34,
+          "sortino": 0.48,
+          "per_symbol_pnl": {
+            "QQQ": 6641.64,
+            "SPY": 4284.29,
+            "DIA": 3143.46,
+            "IWM": 1661.29,
+            "EWJ": 1625.45,
+            "EZU": 2374.35,
+            "EWU": 1680.03,
+            "EWG": 1531.69
+          },
+          "num_trades": 2352
+        },
+        "validation": {
+          "total_return_pct": 1.66,
+          "annualized_return_pct": 0.54,
+          "final_equity": 101664.64,
+          "round_trips": 520,
+          "win_rate_pct": 33.1,
+          "profit_factor": 1.32,
+          "max_drawdown_pct": 4.2,
+          "sharpe": 0.16,
+          "sortino": 0.24,
+          "per_symbol_pnl": {
+            "QQQ": 1754.53,
+            "SPY": 876.99,
+            "DIA": 628.54,
+            "IWM": 370.79,
+            "EWJ": 2283.06,
+            "EZU": 979.78,
+            "EWU": 992.48,
+            "EWG": 64.15
+          },
+          "num_trades": 1032
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.5,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.496,
+        "validation_score": 0.2052,
+        "training": {
+          "total_return_pct": 8.58,
+          "annualized_return_pct": 1.16,
+          "final_equity": 108576.92,
+          "round_trips": 1283,
+          "win_rate_pct": 36.7,
+          "profit_factor": 1.49,
+          "max_drawdown_pct": 8.1,
+          "sharpe": 0.35,
+          "sortino": 0.5,
+          "per_symbol_pnl": {
+            "QQQ": 7054.9,
+            "SPY": 3654.83,
+            "DIA": 3170.67,
+            "IWM": 1282.47,
+            "EWJ": 2583.06,
+            "EZU": 2548.33,
+            "EWU": 2240.3,
+            "EWG": 1916.11
+          },
+          "num_trades": 2560
+        },
+        "validation": {
+          "total_return_pct": 1.55,
+          "annualized_return_pct": 0.5,
+          "final_equity": 101550.85,
+          "round_trips": 581,
+          "win_rate_pct": 34.3,
+          "profit_factor": 1.36,
+          "max_drawdown_pct": 3.99,
+          "sharpe": 0.15,
+          "sortino": 0.22,
+          "per_symbol_pnl": {
+            "QQQ": 2932.45,
+            "SPY": 146.06,
+            "DIA": 871.44,
+            "IWM": 1113.61,
+            "EWJ": 1942.52,
+            "EZU": 1017.7,
+            "EWU": 807.32,
+            "EWG": -308.69
+          },
+          "num_trades": 1154
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.25,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.51,
+        "validation_score": 0.2004,
+        "training": {
+          "total_return_pct": 8.61,
+          "annualized_return_pct": 1.16,
+          "final_equity": 108607.05,
+          "round_trips": 1252,
+          "win_rate_pct": 39.0,
+          "profit_factor": 1.45,
+          "max_drawdown_pct": 7.65,
+          "sharpe": 0.35,
+          "sortino": 0.51,
+          "per_symbol_pnl": {
+            "QQQ": 6963.15,
+            "SPY": 4448.52,
+            "DIA": 2850.73,
+            "IWM": 1927.1,
+            "EWJ": 1827.79,
+            "EZU": 2658.58,
+            "EWU": 1776.78,
+            "EWG": 1736.25
+          },
+          "num_trades": 2498
+        },
+        "validation": {
+          "total_return_pct": 1.53,
+          "annualized_return_pct": 0.5,
+          "final_equity": 101531.22,
+          "round_trips": 546,
+          "win_rate_pct": 38.5,
+          "profit_factor": 1.31,
+          "max_drawdown_pct": 4.23,
+          "sharpe": 0.15,
+          "sortino": 0.22,
+          "per_symbol_pnl": {
+            "QQQ": 1559.65,
+            "SPY": 1023.61,
+            "DIA": 711.68,
+            "IWM": 194.01,
+            "EWJ": 2427.15,
+            "EZU": 1175.59,
+            "EWU": 853.57,
+            "EWG": 182.16
+          },
+          "num_trades": 1084
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.5,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.432,
+        "validation_score": 0.1987,
+        "training": {
+          "total_return_pct": 7.81,
+          "annualized_return_pct": 1.06,
+          "final_equity": 107814.35,
+          "round_trips": 1175,
+          "win_rate_pct": 41.6,
+          "profit_factor": 1.41,
+          "max_drawdown_pct": 8.3,
+          "sharpe": 0.32,
+          "sortino": 0.45,
+          "per_symbol_pnl": {
+            "QQQ": 6055.2,
+            "SPY": 4352.62,
+            "DIA": 3406.32,
+            "IWM": 1054.56,
+            "EWJ": 1717.87,
+            "EZU": 2831.13,
+            "EWU": 2055.3,
+            "EWG": 816.84
+          },
+          "num_trades": 2344
+        },
+        "validation": {
+          "total_return_pct": 1.52,
+          "annualized_return_pct": 0.49,
+          "final_equity": 101515.97,
+          "round_trips": 506,
+          "win_rate_pct": 41.9,
+          "profit_factor": 1.29,
+          "max_drawdown_pct": 4.04,
+          "sharpe": 0.15,
+          "sortino": 0.21,
+          "per_symbol_pnl": {
+            "QQQ": 1814.36,
+            "SPY": 990.1,
+            "DIA": 699.5,
+            "IWM": 462.25,
+            "EWJ": 1771.76,
+            "EZU": 980.11,
+            "EWU": 1165.34,
+            "EWG": -275.32
+          },
+          "num_trades": 1004
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.5,
+          "atr_take_mult": 4.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.0,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4336,
+        "validation_score": 0.1978,
+        "training": {
+          "total_return_pct": 7.57,
+          "annualized_return_pct": 1.02,
+          "final_equity": 107574.23,
+          "round_trips": 1310,
+          "win_rate_pct": 36.9,
+          "profit_factor": 1.46,
+          "max_drawdown_pct": 8.12,
+          "sharpe": 0.32,
+          "sortino": 0.45,
+          "per_symbol_pnl": {
+            "QQQ": 7004.01,
+            "SPY": 3350.31,
+            "DIA": 3317.64,
+            "IWM": 1095.83,
+            "EWJ": 2304.53,
+            "EZU": 3024.71,
+            "EWU": 2177.12,
+            "EWG": 1459.53
+          },
+          "num_trades": 2614
+        },
+        "validation": {
+          "total_return_pct": 1.43,
+          "annualized_return_pct": 0.46,
+          "final_equity": 101433.03,
+          "round_trips": 581,
+          "win_rate_pct": 34.3,
+          "profit_factor": 1.36,
+          "max_drawdown_pct": 4.01,
+          "sharpe": 0.15,
+          "sortino": 0.21,
+          "per_symbol_pnl": {
+            "QQQ": 2881.69,
+            "SPY": 98.5,
+            "DIA": 656.69,
+            "IWM": 793.56,
+            "EWJ": 1917.36,
+            "EZU": 1127.85,
+            "EWU": 838.77,
+            "EWG": 94.42
+          },
+          "num_trades": 1154
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.5,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.5,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4782,
+        "validation_score": 0.1571,
+        "training": {
+          "total_return_pct": 8.59,
+          "annualized_return_pct": 1.16,
+          "final_equity": 108594.24,
+          "round_trips": 1075,
+          "win_rate_pct": 36.3,
+          "profit_factor": 1.43,
+          "max_drawdown_pct": 7.99,
+          "sharpe": 0.34,
+          "sortino": 0.48,
+          "per_symbol_pnl": {
+            "QQQ": 7297.2,
+            "SPY": 4391.99,
+            "DIA": 3348.79,
+            "IWM": 912.52,
+            "EWJ": 1188.15,
+            "EZU": 2149.89,
+            "EWU": 1627.2,
+            "EWG": 1084.04
+          },
+          "num_trades": 2144
+        },
+        "validation": {
+          "total_return_pct": 1.28,
+          "annualized_return_pct": 0.41,
+          "final_equity": 101279.93,
+          "round_trips": 475,
+          "win_rate_pct": 35.6,
+          "profit_factor": 1.28,
+          "max_drawdown_pct": 4.17,
+          "sharpe": 0.13,
+          "sortino": 0.18,
+          "per_symbol_pnl": {
+            "QQQ": 1850.08,
+            "SPY": 753.43,
+            "DIA": 639.57,
+            "IWM": 672.92,
+            "EWJ": 1724.13,
+            "EZU": 1247.09,
+            "EWU": 782.78,
+            "EWG": -676.49
+          },
+          "num_trades": 942
+        }
+      },
+      {
+        "params": {
+          "atr_stop_mult": 1.5,
+          "atr_take_mult": 5.0,
+          "break_even_atr": 1.0,
+          "trail_atr": 2.5,
+          "trail_distance_atr": 1.0
+        },
+        "training_score": 0.4464,
+        "validation_score": 0.0469,
+        "training": {
+          "total_return_pct": 7.84,
+          "annualized_return_pct": 1.06,
+          "final_equity": 107840.12,
+          "round_trips": 1222,
+          "win_rate_pct": 31.6,
+          "profit_factor": 1.47,
+          "max_drawdown_pct": 7.83,
+          "sharpe": 0.32,
+          "sortino": 0.46,
+          "per_symbol_pnl": {
+            "QQQ": 7153.9,
+            "SPY": 3660.34,
+            "DIA": 3294.59,
+            "IWM": 1088.48,
+            "EWJ": 2071.46,
+            "EZU": 1919.82,
+            "EWU": 1693.76,
+            "EWG": 2139.53
+          },
+          "num_trades": 2438
+        },
+        "validation": {
+          "total_return_pct": 0.52,
+          "annualized_return_pct": 0.17,
+          "final_equity": 100520.62,
+          "round_trips": 555,
+          "win_rate_pct": 29.0,
+          "profit_factor": 1.32,
+          "max_drawdown_pct": 4.08,
+          "sharpe": 0.07,
+          "sortino": 0.1,
+          "per_symbol_pnl": {
+            "QQQ": 2651.56,
+            "SPY": 173.58,
+            "DIA": 681.36,
+            "IWM": 596.32,
+            "EWJ": 1955.69,
+            "EZU": 933.37,
+            "EWU": 793.7,
+            "EWG": -639.26
+          },
+          "num_trades": 1102
+        }
+      }
+    ]
+  }
+}
