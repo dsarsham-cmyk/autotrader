@@ -23,7 +23,7 @@ risk:
   risk_per_trade: 0.01
   atr_stop_mult: 2.0
   atr_take_mult: 3.0
-  max_position_pct: 0.25
+  max_position_pct: 0.12
   daily_loss_limit_pct: 0.03
   max_drawdown_pct: 0.2
   break_even_atr: 1.0
