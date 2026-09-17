@@ -43,7 +43,14 @@ volatility filter) on **daily bars**.
 - ✅ Web dashboard live: `https://dsarsham-cmyk.github.io/autotrader/`
 - ✅ Dashboard upgraded to a tabbed command center with live positions, fill
   activity, daily P&L, and an evidence-based engine audit.
-- ✅ Windows desktop app built: `AutoTrader.exe` on the Desktop.
+- ✅ Windows desktop app v2 installed at
+  `%LOCALAPPDATA%\AutoTrader\AutoTrader.exe`, with a Desktop shortcut and
+  automatic launch at Windows sign-in. A single-instance guard prevents two
+  desktop windows.
+- ✅ Public read-only cloud health endpoint:
+  `https://autotrader-production-de19.up.railway.app/health`. The web and
+  Windows interfaces show a separate BOT ONLINE/OFFLINE indicator for both
+  HIGH and LOW processes.
 - ✅ Telegram alerts: every trade, status every 15 min while market open, daily
   report after US close.
 
