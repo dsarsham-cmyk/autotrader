@@ -29,7 +29,7 @@ SCENARIOS = [
 RESTART_DELAY = 15       # seconds to wait before restarting a crashed scenario
 REPORT_HOUR = 21         # UTC hour to send the daily report (after US close)
 REPORT_CHECK_SECONDS = 60
-DASHBOARD_REFRESH_SECONDS = 60
+DASHBOARD_REFRESH_SECONDS = 10
 SERVICE_STARTED_AT = datetime.now(timezone.utc).isoformat()
 HEALTH_STATE: dict = {
     "ok": False,
@@ -144,7 +144,7 @@ def dashboard_refresh_loop() -> None:
 
 def start_dashboard_refresher() -> None:
     threading.Thread(target=dashboard_refresh_loop, daemon=True).start()
-    print("[run_all] live dashboard refresh every 60 seconds", flush=True)
+    print("[run_all] live dashboard refresh every 10 seconds", flush=True)
 
 
 def spawn(config: str) -> subprocess.Popen:
