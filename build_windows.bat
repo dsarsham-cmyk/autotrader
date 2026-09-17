@@ -1,0 +1,22 @@
+@echo off
+REM Build the Auto Trader Windows desktop app into a single .exe.
+REM Run this from the autotrader folder. Output goes to dist\AutoTrader.exe
+cd /d "%~dp0"
+
+echo Building AutoTrader.exe ...
+.venv\Scripts\python.exe -m PyInstaller ^
+  --noconfirm ^
+  --clean ^
+  --onefile ^
+  --windowed ^
+  --name "AutoTrader" ^
+  --icon assets\icon.ico ^
+  --hidden-import webview.platforms.edgechromium ^
+  --collect-all pywebview ^
+  --collect-all clr_loader ^
+  --collect-all pythonnet ^
+  desktop_app.py
+
+echo.
+echo Done. The app is at dist\AutoTrader.exe
+pause

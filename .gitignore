@@ -20,3 +20,8 @@ logs/*
 
 # Market data cache
 cache/
+
+# Desktop app build artifacts
+build/
+dist/
+*.spec
