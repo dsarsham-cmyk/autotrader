@@ -1,4 +1,5 @@
 import run_all
+import json
 
 
 class _Process:
@@ -34,3 +35,20 @@ def test_health_reports_a_stopped_scenario():
     assert health["ok"] is False
     assert health["scenarios"]["high"]["running"] is False
     assert health["last_daily_report"] == "2026-09-17"
+
+
+def test_live_dashboard_refresh_publishes_snapshot(monkeypatch, tmp_path):
+    dashboard = tmp_path / "dashboard.json"
+    payload = {"last_updated": "2026-09-18T00:00:00Z", "account": {"equity": 101000}}
+
+    import snapshot
+    monkeypatch.setattr(snapshot, "DASHBOARD", str(dashboard))
+    monkeypatch.setattr(snapshot, "main", lambda: dashboard.write_text(
+        json.dumps(payload), encoding="utf-8"
+    ))
+    run_all.LIVE_DASHBOARD_STATE.clear()
+
+    result = run_all.refresh_live_dashboard_once()
+
+    assert result == payload
+    assert run_all.LIVE_DASHBOARD_STATE == payload

@@ -58,7 +58,7 @@ def _recent_fills(api_key: str, api_secret: str, limit: int = 100) -> list[dict]
     for a in seen.values():
         fills.append({
             "time": a.get("transaction_time", ""),
-            "order_id": oid,
+            "order_id": a.get("order_id", ""),
             "symbol": a.get("symbol", ""),
             "side": a.get("side", ""),
             "qty": round(float(a.get("cum_qty") or a.get("qty") or 0), 4),
@@ -420,7 +420,10 @@ def main() -> None:
         hist = hist[-500:]
     state["equity_history"] = hist
 
-    Path(DASHBOARD).write_text(json.dumps(state, indent=2), encoding="utf-8")
+    target = Path(DASHBOARD)
+    temporary = target.with_suffix(".tmp")
+    temporary.write_text(json.dumps(state, indent=2), encoding="utf-8")
+    temporary.replace(target)
     print(f"[snapshot] wrote {DASHBOARD} | equity={eq} | "
           f"scenarios={list(state['scenarios'])}")
 

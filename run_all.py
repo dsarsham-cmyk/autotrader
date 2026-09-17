@@ -29,6 +29,7 @@ SCENARIOS = [
 RESTART_DELAY = 15       # seconds to wait before restarting a crashed scenario
 REPORT_HOUR = 21         # UTC hour to send the daily report (after US close)
 REPORT_CHECK_SECONDS = 60
+DASHBOARD_REFRESH_SECONDS = 60
 SERVICE_STARTED_AT = datetime.now(timezone.utc).isoformat()
 HEALTH_STATE: dict = {
     "ok": False,
@@ -39,6 +40,8 @@ HEALTH_STATE: dict = {
     "scenarios": {},
 }
 HEALTH_LOCK = threading.Lock()
+LIVE_DASHBOARD_STATE: dict = {}
+LIVE_DASHBOARD_LOCK = threading.Lock()
 
 
 def build_health(procs, restart_counts: dict[str, int],
@@ -84,7 +87,16 @@ class HealthHandler(BaseHTTPRequestHandler):
         self._headers(204)
 
     def do_GET(self) -> None:  # noqa: N802 - BaseHTTPRequestHandler API
-        if self.path.split("?", 1)[0] not in ("/", "/health", "/status.json"):
+        path = self.path.split("?", 1)[0]
+        if path == "/dashboard.json":
+            with LIVE_DASHBOARD_LOCK:
+                payload = dict(LIVE_DASHBOARD_STATE)
+            self._headers(200 if payload else 503)
+            self.wfile.write(json.dumps(
+                payload or {"error": "live dashboard is starting"}
+            ).encode("utf-8"))
+            return
+        if path not in ("/", "/health", "/status.json"):
             self._headers(404)
             self.wfile.write(b'{"error":"not found"}')
             return
@@ -105,6 +117,34 @@ def start_health_server() -> ThreadingHTTPServer | None:
     threading.Thread(target=server.serve_forever, daemon=True).start()
     print(f"[run_all] health endpoint listening on :{port}", flush=True)
     return server
+
+
+def refresh_live_dashboard_once() -> dict:
+    """Build a read-only Alpaca snapshot for the live web dashboard."""
+    import snapshot
+
+    snapshot.main()
+    payload = json.loads(Path(snapshot.DASHBOARD).read_text(encoding="utf-8"))
+    with LIVE_DASHBOARD_LOCK:
+        LIVE_DASHBOARD_STATE.clear()
+        LIVE_DASHBOARD_STATE.update(payload)
+    return payload
+
+
+def dashboard_refresh_loop() -> None:
+    while True:
+        started = time.time()
+        try:
+            refresh_live_dashboard_once()
+        except Exception as e:
+            print(f"[run_all] live dashboard refresh error: {e}", flush=True)
+        elapsed = time.time() - started
+        time.sleep(max(1, DASHBOARD_REFRESH_SECONDS - elapsed))
+
+
+def start_dashboard_refresher() -> None:
+    threading.Thread(target=dashboard_refresh_loop, daemon=True).start()
+    print("[run_all] live dashboard refresh every 60 seconds", flush=True)
 
 
 def spawn(config: str) -> subprocess.Popen:
@@ -143,6 +183,7 @@ def main() -> None:
     restart_counts = {label: 0 for _config, label in SCENARIOS}
     publish_health(procs, restart_counts, last_report_date)
     start_health_server()
+    start_dashboard_refresher()
 
     while True:
         for i, (config, label, p) in enumerate(procs):
