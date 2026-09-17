@@ -188,6 +188,19 @@ def run(config: dict) -> None:
         details: dict[str, dict] = {}
         iteration_failures = 0
 
+        # Total notional this bot currently has deployed across ALL its
+        # symbols. `capital_fraction` must cap the WHOLE portfolio, not just
+        # each individual position, otherwise two scenarios sharing one paper
+        # account can over-leverage (e.g. 8 positions x 12.5% = 100% each).
+        deployed = 0.0
+        for s in symbols:
+            try:
+                p = broker.get_position(s)
+                if p.base_amount > 0 and p.entry_price > 0:
+                    deployed += p.base_amount * p.entry_price
+            except Exception:
+                pass
+
         for symbol in symbols:
             try:
                 candles = broker.fetch_ohlcv(symbol, timeframe, limit=fetch_limit)
@@ -279,20 +292,31 @@ def run(config: dict) -> None:
                             units = risk.position_size(equity, price, a)
                             if units > 0:
                                 notional = units * price
-                                bp = getattr(broker, "buying_power", None)
-                                if bp is not None and notional > bp:
+                                # Enforce the total-deployment cap: this bot
+                                # may hold at most `capital_fraction` of the
+                                # account equity across all its positions.
+                                cap = equity * risk.config.capital_fraction
+                                if deployed + notional > cap:
                                     log.warning(
-                                        "%s: insufficient buying power "
-                                        "(need %.2f, have %.2f); skipping",
-                                        symbol, notional, bp)
+                                        "%s: total deployment cap reached "
+                                        "(deployed %.2f + %.2f > cap %.2f); skipping",
+                                        symbol, deployed, notional, cap)
                                 else:
-                                    stop, take = risk.stops(price, a)
-                                    broker.market_buy(symbol, notional,
-                                                      stop_price=stop, take_price=take)
-                                    state.set_position(symbol, units, price, stop, take, price)
-                                    state.record_trade("buy", symbol, price, units,
-                                                       notional, 0.0)
-                                    action = f"BUY {units:.6f} @ {price:.4f}"
+                                    bp = getattr(broker, "buying_power", None)
+                                    if bp is not None and notional > bp:
+                                        log.warning(
+                                            "%s: insufficient buying power "
+                                            "(need %.2f, have %.2f); skipping",
+                                            symbol, notional, bp)
+                                    else:
+                                        stop, take = risk.stops(price, a)
+                                        broker.market_buy(symbol, notional,
+                                                          stop_price=stop, take_price=take)
+                                        state.set_position(symbol, units, price, stop, take, price)
+                                        state.record_trade("buy", symbol, price, units,
+                                                           notional, 0.0)
+                                        deployed += notional
+                                        action = f"BUY {units:.6f} @ {price:.4f}"
                         elif not market_open:
                             log.debug("%s: market closed; skipping entry", symbol)
                     elif signal == Signal.SELL and pos.base_amount > 0:
