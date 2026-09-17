@@ -1,0 +1,64 @@
+{
+  "config_high.yaml": {
+    "total_return_pct": 22.94,
+    "annualized_return_pct": 3.37,
+    "final_equity": 122937.02,
+    "round_trips": 401,
+    "win_rate_pct": 35.4,
+    "profit_factor": 1.16,
+    "max_drawdown_pct": 33.78,
+    "sharpe": 0.28,
+    "sortino": 0.4,
+    "per_symbol_pnl": {
+      "TQQQ": 16017.76,
+      "SPXL": 8196.6,
+      "SOXL": 12724.86
+    },
+    "num_trades": 799,
+    "name": "HIGH RISK",
+    "symbols": [
+      "TQQQ",
+      "SPXL",
+      "SOXL"
+    ],
+    "capital_fraction": 0.5,
+    "risk_per_trade": 0.1,
+    "strategy": "volatility_scaled_momentum"
+  },
+  "config_low.yaml": {
+    "total_return_pct": 3.96,
+    "annualized_return_pct": 0.62,
+    "final_equity": 103960.72,
+    "round_trips": 1007,
+    "win_rate_pct": 39.3,
+    "profit_factor": 1.32,
+    "max_drawdown_pct": 5.43,
+    "sharpe": 0.18,
+    "sortino": 0.25,
+    "per_symbol_pnl": {
+      "QQQ": 4898.45,
+      "SPY": 2471.54,
+      "DIA": 1629.41,
+      "IWM": -710.76,
+      "EWJ": 2292.69,
+      "EZU": 2107.63,
+      "EWU": 2227.52,
+      "EWG": 1075.39
+    },
+    "num_trades": 2006,
+    "name": "LOW RISK",
+    "symbols": [
+      "QQQ",
+      "SPY",
+      "DIA",
+      "IWM",
+      "EWJ",
+      "EZU",
+      "EWU",
+      "EWG"
+    ],
+    "capital_fraction": 0.5,
+    "risk_per_trade": 0.01,
+    "strategy": "volatility_scaled_momentum"
+  }
+}

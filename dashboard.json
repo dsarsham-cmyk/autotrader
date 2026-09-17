@@ -1,8 +1,8 @@
 {
-  "last_updated": "2026-09-17T16:32:40.669548+00:00",
+  "last_updated": "2026-09-17T16:37:43.989665+00:00",
   "market_open": true,
   "account": {
-    "equity": 101821.19,
+    "equity": 101759.66,
     "cash": 2547.92,
     "starting_balance": 100000.0
   },
@@ -21,27 +21,27 @@
         "TQQQ": {
           "qty": 235.423249299,
           "entry_price": 71.4,
-          "market_value": 16788.031908,
-          "unrealized_pnl": -21.188092,
-          "current_price": 71.31
+          "market_value": 16776.260745,
+          "unrealized_pnl": -32.959255,
+          "current_price": 71.26
         },
         "SPXL": {
           "qty": 59.885353949,
           "entry_price": 280.69,
-          "market_value": 16790.056687,
-          "unrealized_pnl": -19.163313,
-          "current_price": 280.37
+          "market_value": 16780.47503,
+          "unrealized_pnl": -28.74497,
+          "current_price": 280.21
         },
         "SOXL": {
           "qty": 146.305797353,
           "entry_price": 114.891005,
-          "market_value": 16823.703638,
-          "unrealized_pnl": 14.483543,
-          "current_price": 114.99
+          "market_value": 16791.516362,
+          "unrealized_pnl": -17.703733,
+          "current_price": 114.77
         }
       },
-      "market_value": 50401.79,
-      "unrealized_pnl": -25.87
+      "market_value": 50348.25,
+      "unrealized_pnl": -79.41
     },
     "low": {
       "name": "LOW RISK",
@@ -62,51 +62,51 @@
         "QQQ": {
           "qty": 8.526373074,
           "entry_price": 716.64,
-          "market_value": 6109.743154,
-          "unrealized_pnl": -0.596846,
-          "current_price": 716.57
+          "market_value": 6108.037879,
+          "unrealized_pnl": -2.302121,
+          "current_price": 716.37
         },
         "SPY": {
           "qty": 8.014453406,
           "entry_price": 762.415063,
-          "market_value": 6109.57812,
-          "unrealized_pnl": -0.761878,
-          "current_price": 762.32
+          "market_value": 6108.33588,
+          "unrealized_pnl": -2.004118,
+          "current_price": 762.165
         },
         "DIA": {
           "qty": 11.777630006,
           "entry_price": 518.808962,
-          "market_value": 6109.645566,
-          "unrealized_pnl": -0.694432,
-          "current_price": 518.75
+          "market_value": 6107.643369,
+          "unrealized_pnl": -2.696629,
+          "current_price": 518.58
         },
         "IWM": {
           "qty": 21.286674795,
           "entry_price": 287.05,
-          "market_value": 6110.765733,
-          "unrealized_pnl": 0.425733,
-          "current_price": 287.07
+          "market_value": 6107.359865,
+          "unrealized_pnl": -2.980135,
+          "current_price": 286.91
         },
         "EWJ": {
           "qty": 62.389994895,
           "entry_price": 97.95,
-          "market_value": 6107.3566,
-          "unrealized_pnl": -3.7434,
-          "current_price": 97.89
+          "market_value": 6108.29245,
+          "unrealized_pnl": -2.80755,
+          "current_price": 97.905
         },
         "EZU": {
           "qty": 88.811219299,
           "entry_price": 68.81,
-          "market_value": 6108.879719,
-          "unrealized_pnl": -2.220281,
-          "current_price": 68.785
+          "market_value": 6107.103495,
+          "unrealized_pnl": -3.996505,
+          "current_price": 68.765
         },
         "EWU": {
           "qty": 127.420767306,
           "entry_price": 47.96,
-          "market_value": 6108.564327,
-          "unrealized_pnl": -2.535673,
-          "current_price": 47.9401
+          "market_value": 6109.188688,
+          "unrealized_pnl": -1.911312,
+          "current_price": 47.945
         },
         "EWG": {
           "qty": 142.816078523,
@@ -116,8 +116,8 @@
           "current_price": 42.765
         }
       },
-      "market_value": 48872.06,
-      "unrealized_pnl": -13.7
+      "market_value": 48863.49,
+      "unrealized_pnl": -22.27
     }
   },
   "equity_history": [
@@ -132,6 +132,209 @@
     {
       "ts": "2026-09-17T16:32:40.669548+00:00",
       "equity": 101821.19
+    },
+    {
+      "ts": "2026-09-17T16:37:43.989665+00:00",
+      "equity": 101759.66
     }
-  ]
+  ],
+  "recent_trades": [
+    {
+      "time": "2026-09-17T16:31:45.480335Z",
+      "symbol": "IWM",
+      "side": "buy",
+      "qty": 21.2867,
+      "price": 287.05
+    },
+    {
+      "time": "2026-09-17T16:31:44.122064Z",
+      "symbol": "DIA",
+      "side": "buy",
+      "qty": 11.7776,
+      "price": 518.82
+    },
+    {
+      "time": "2026-09-17T16:31:42.082132Z",
+      "symbol": "SPY",
+      "side": "buy",
+      "qty": 8.0145,
+      "price": 762.45
+    },
+    {
+      "time": "2026-09-17T16:31:36.975904Z",
+      "symbol": "QQQ",
+      "side": "buy",
+      "qty": 8.5264,
+      "price": 716.64
+    },
+    {
+      "time": "2026-09-17T16:30:28.127453Z",
+      "symbol": "EWG",
+      "side": "buy",
+      "qty": 142.8161,
+      "price": 42.79
+    },
+    {
+      "time": "2026-09-17T16:30:27.515805Z",
+      "symbol": "EWU",
+      "side": "buy",
+      "qty": 127.4208,
+      "price": 47.96
+    },
+    {
+      "time": "2026-09-17T16:30:24.827825Z",
+      "symbol": "EZU",
+      "side": "buy",
+      "qty": 88.8112,
+      "price": 68.81
+    },
+    {
+      "time": "2026-09-17T16:30:19.869538Z",
+      "symbol": "EWJ",
+      "side": "buy",
+      "qty": 62.39,
+      "price": 97.95
+    },
+    {
+      "time": "2026-09-17T16:29:36.184898Z",
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 44.3429,
+      "price": 287.07
+    },
+    {
+      "time": "2026-09-17T16:29:35.598915Z",
+      "symbol": "QQQ",
+      "side": "sell",
+      "qty": 17.7645,
+      "price": 716.73
+    },
+    {
+      "time": "2026-09-17T16:29:35.191484Z",
+      "symbol": "SPY",
+      "side": "sell",
+      "qty": 16.6991,
+      "price": 762.4
+    },
+    {
+      "time": "2026-09-17T16:29:34.339791Z",
+      "symbol": "DIA",
+      "side": "sell",
+      "qty": 24.5409,
+      "price": 518.78
+    },
+    {
+      "time": "2026-09-17T16:27:10.184872Z",
+      "symbol": "IWM",
+      "side": "buy",
+      "qty": 44.3429,
+      "price": 287.18
+    },
+    {
+      "time": "2026-09-17T16:27:06.309871Z",
+      "symbol": "DIA",
+      "side": "buy",
+      "qty": 24.5409,
+      "price": 518.9
+    },
+    {
+      "time": "2026-09-17T16:27:04.180671Z",
+      "symbol": "SPY",
+      "side": "buy",
+      "qty": 16.6991,
+      "price": 762.57
+    },
+    {
+      "time": "2026-09-17T16:27:02.803314Z",
+      "symbol": "QQQ",
+      "side": "buy",
+      "qty": 17.7645,
+      "price": 716.84
+    },
+    {
+      "time": "2026-09-17T16:27:02.506485Z",
+      "symbol": "SOXL",
+      "side": "buy",
+      "qty": 146.3058,
+      "price": 114.88
+    },
+    {
+      "time": "2026-09-17T16:26:59.082412Z",
+      "symbol": "SPXL",
+      "side": "buy",
+      "qty": 59.8854,
+      "price": 280.69
+    },
+    {
+      "time": "2026-09-17T16:26:55.110734Z",
+      "symbol": "TQQQ",
+      "side": "buy",
+      "qty": 235.4232,
+      "price": 71.4
+    }
+  ],
+  "backtest": {
+    "high": {
+      "total_return_pct": 22.94,
+      "annualized_return_pct": 3.37,
+      "final_equity": 122937.02,
+      "round_trips": 401,
+      "win_rate_pct": 35.4,
+      "profit_factor": 1.16,
+      "max_drawdown_pct": 33.78,
+      "sharpe": 0.28,
+      "sortino": 0.4,
+      "per_symbol_pnl": {
+        "TQQQ": 16017.76,
+        "SPXL": 8196.6,
+        "SOXL": 12724.86
+      },
+      "num_trades": 799,
+      "name": "HIGH RISK",
+      "symbols": [
+        "TQQQ",
+        "SPXL",
+        "SOXL"
+      ],
+      "capital_fraction": 0.5,
+      "risk_per_trade": 0.1,
+      "strategy": "volatility_scaled_momentum"
+    },
+    "low": {
+      "total_return_pct": 3.96,
+      "annualized_return_pct": 0.62,
+      "final_equity": 103960.72,
+      "round_trips": 1007,
+      "win_rate_pct": 39.3,
+      "profit_factor": 1.32,
+      "max_drawdown_pct": 5.43,
+      "sharpe": 0.18,
+      "sortino": 0.25,
+      "per_symbol_pnl": {
+        "QQQ": 4898.45,
+        "SPY": 2471.54,
+        "DIA": 1629.41,
+        "IWM": -710.76,
+        "EWJ": 2292.69,
+        "EZU": 2107.63,
+        "EWU": 2227.52,
+        "EWG": 1075.39
+      },
+      "num_trades": 2006,
+      "name": "LOW RISK",
+      "symbols": [
+        "QQQ",
+        "SPY",
+        "DIA",
+        "IWM",
+        "EWJ",
+        "EZU",
+        "EWU",
+        "EWG"
+      ],
+      "capital_fraction": 0.5,
+      "risk_per_trade": 0.01,
+      "strategy": "volatility_scaled_momentum"
+    }
+  }
 }

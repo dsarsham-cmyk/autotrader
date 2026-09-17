@@ -33,6 +33,38 @@ SCENARIOS = [
 ]
 
 
+def _recent_fills(api_key: str, api_secret: str, limit: int = 30) -> list[dict]:
+    """Return the most recent completed order fills from Alpaca.
+
+    Uses the raw REST activities endpoint (TradingClient has no equivalent)
+    and deduplicates partial fills by order_id, keeping the final fill.
+    """
+    import urllib.request
+    url = ("https://paper-api.alpaca.markets/v2/account/activities"
+           f"?activity_types=FILL&direction=desc&page_size={limit * 2}")
+    req = urllib.request.Request(url, headers={
+        "APCA-API-KEY-ID": api_key,
+        "APCA-API-SECRET-KEY": api_secret,
+    })
+    data = json.loads(urllib.request.urlopen(req, timeout=15).read())
+    seen: dict[str, dict] = {}
+    for a in data:
+        oid = a.get("order_id")
+        if a.get("type") == "fill" and oid and oid not in seen:
+            seen[oid] = a
+    fills = []
+    for a in seen.values():
+        fills.append({
+            "time": a.get("transaction_time", ""),
+            "symbol": a.get("symbol", ""),
+            "side": a.get("side", ""),
+            "qty": round(float(a.get("cum_qty") or a.get("qty") or 0), 4),
+            "price": round(float(a.get("price") or 0), 2),
+        })
+    fills.sort(key=lambda x: x["time"], reverse=True)
+    return fills[:limit]
+
+
 def load_scenario_meta() -> dict:
     """Return {key: {name, symbols, capital_fraction, strategy}}."""
     out = {}
@@ -68,6 +100,8 @@ def main() -> None:
                     "starting_balance": STARTING_BALANCE},
         "scenarios": {},
         "equity_history": [],
+        "recent_trades": [],
+        "backtest": {},
     }
 
     if api_key and api_secret:
@@ -112,6 +146,23 @@ def main() -> None:
                 "market_value": round(mv, 2),
                 "unrealized_pnl": round(upnl, 2),
             }
+
+    # Recent completed fills (authoritative, from Alpaca activities).
+    if api_key and api_secret:
+        try:
+            state["recent_trades"] = _recent_fills(api_key, api_secret)
+        except Exception as e:
+            print(f"[snapshot] activities error: {e}", file=sys.stderr)
+
+    # Expected performance from the committed backtest results.
+    try:
+        bt = json.loads(Path("backtest_results.json").read_text(encoding="utf-8"))
+        state["backtest"] = {
+            "high": bt.get("config_high.yaml", {}),
+            "low": bt.get("config_low.yaml", {}),
+        }
+    except (OSError, json.JSONDecodeError):
+        state["backtest"] = {}
 
     # Persist rolling equity history across snapshot runs.
     hist = []

@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Auto Trader</title>
+  <title>Auto Trader — Control Center</title>
   <style>
     :root {
       --bg: #0f1115; --card: #1a1d24; --line: #2a2e38; --txt: #e6e6e6;
       --muted: #8b8f98; --green: #4ade80; --red: #f87171; --amber: #fbbf24;
-      --blue: #60a5fa;
+      --blue: #60a5fa; --purple: #c084fc;
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
@@ -16,15 +16,18 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background: var(--bg); color: var(--txt); -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 1000px; margin: 0 auto; padding: 20px 16px 48px; }
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 20px 16px 56px; }
     header { display: flex; align-items: center; justify-content: space-between;
-             flex-wrap: wrap; gap: 10px; margin-bottom: 6px; }
-    h1 { font-size: 20px; margin: 0; }
+             flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
+    h1 { font-size: 21px; margin: 0; }
     .sub { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
     .badge { display: inline-block; padding: 4px 12px; border-radius: 20px;
              font-size: 12px; font-weight: 700; letter-spacing: .02em; }
     .badge.open { background: rgba(74,222,128,.15); color: var(--green); }
     .badge.closed { background: rgba(248,113,113,.15); color: var(--red); }
+    .dot { display:inline-block; width:8px; height:8px; border-radius:50%;
+           background: var(--green); margin-right:6px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:.35 } }
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 12px; margin-bottom: 16px; }
@@ -35,11 +38,11 @@
     .stat .value { font-size: 22px; font-weight: 650; margin-top: 4px; }
     .pos { color: var(--green); } .neg { color: var(--red); }
 
-    h2 { font-size: 14px; margin: 22px 0 10px; color: var(--muted);
+    h2 { font-size: 14px; margin: 24px 0 10px; color: var(--muted);
          text-transform: uppercase; letter-spacing: .05em; font-weight: 600; }
 
     .scenarios { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    @media (max-width: 640px) { .scenarios { grid-template-columns: 1fr; } }
+    @media (max-width: 680px) { .scenarios { grid-template-columns: 1fr; } }
     .scen { background: var(--card); border: 1px solid var(--line);
             border-radius: 12px; padding: 16px; }
     .scen.high { border-top: 3px solid var(--red); }
@@ -57,6 +60,8 @@
          text-transform: uppercase; letter-spacing: .04em; }
     .sym { font-weight: 650; }
     .region { color: var(--muted); font-size: 11.5px; }
+    .side-buy { color: var(--green); font-weight: 600; }
+    .side-sell { color: var(--red); font-weight: 600; }
 
     svg { width: 100%; height: 220px; display: block; }
     .legend { font-size: 12px; margin-top: 8px; display: flex; gap: 16px;
@@ -70,10 +75,13 @@
             font-size: 12px; color: var(--txt); }
     .empty { color: var(--muted); font-size: 13px; padding: 8px 0; }
     .refresh { color: var(--muted); font-size: 12px; text-align: center;
-               margin-top: 20px; }
-    .dot { display:inline-block; width:8px; height:8px; border-radius:50%;
-           background: var(--green); margin-right:6px; animation: pulse 2s infinite; }
-    @keyframes pulse { 0%,100% { opacity:1 } 50% { opacity:.35 } }
+               margin-top: 24px; }
+    .note { background: rgba(96,165,250,.08); border: 1px solid rgba(96,165,250,.25);
+            border-radius: 10px; padding: 12px 14px; font-size: 13px; color: var(--muted);
+            line-height: 1.6; }
+    .note b { color: var(--txt); }
+    .cmd { font-family: ui-monospace, Consolas, monospace; background: var(--line);
+           border-radius: 5px; padding: 1px 7px; font-size: 12px; color: var(--blue); }
   </style>
 </head>
 <body>
@@ -106,8 +114,20 @@
     <div class="legend" id="chartLegend"></div>
   </div>
 
-  <h2>Strategy</h2>
+  <h2>Expected performance (6-year backtest)</h2>
+  <div class="card" id="backtest"></div>
+
+  <h2>Recent trades</h2>
+  <div class="card" id="recentTrades"></div>
+
+  <h2>How it works</h2>
   <div class="card kv" id="strategyInfo"></div>
+  <div class="note" style="margin-top:12px">
+    <b>How to control it:</b> the bot runs 24/7 in the cloud and trades on its own.
+    You get Telegram alerts for every trade, a status update every 15 min while the
+    market is open, and a full daily report after US close. To see everything at a
+    glance, just open this page on your phone.
+  </div>
 
   <div class="refresh">auto-refresh every 60s · data updates every ~30 min</div>
 </div>
@@ -179,12 +199,11 @@ function drawChart(hist) {
     `<span class="${cls(last - first)}"><b>${fmtSigned(last - first)}</b> (${pct((last - first) / first * 100)})</span>`;
 }
 
-function renderScenario(el, key, sc, accountEquity) {
+function renderScenario(el, key, sc) {
   const positions = sc.positions || {};
   const keys = Object.keys(positions);
   const alloc = (sc.capital_fraction || 0.5) * START_BALANCE;
   const upnl = sc.unrealized_pnl || 0;
-  const estEquity = alloc + upnl; // allocated capital + unrealized P&L
 
   let rows = "";
   if (keys.length === 0) {
@@ -205,12 +224,58 @@ function renderScenario(el, key, sc, accountEquity) {
 
   el.innerHTML =
     `<h3>${sc.name || key.toUpperCase()}</h3>` +
-    `<div class="tag">${sc.strategy || ""} · risk/trade ${(sc.risk_per_trade * 100).toFixed(0)}%</div>` +
+    `<div class="tag">${sc.strategy || ""} · risk/trade ${((sc.risk_per_trade || 0) * 100).toFixed(0)}%</div>` +
     `<div class="row"><span>Allocated capital</span><b>${fmt(alloc)}</b></div>` +
     `<div class="row"><span>Market value</span><b>${fmt(sc.market_value)}</b></div>` +
     `<div class="row"><span>Unrealized P&amp;L</span><b class="${cls(upnl)}">${fmtSigned(upnl)}</b></div>` +
-    `<div class="row"><span>Est. equity</span><b>${fmt(estEquity)}</b></div>` +
     `<div style="margin-top:12px">${rows}</div>`;
+}
+
+function renderBacktest(bt) {
+  const el = document.getElementById("backtest");
+  const high = bt.high || {}, low = bt.low || {};
+  if (!high.total_return_pct && !low.total_return_pct) {
+    el.innerHTML = `<div class="empty">Backtest results not available yet.</div>`;
+    return;
+  }
+  const row = (name, h, l, fmtFn) => {
+    const hv = h != null ? fmtFn(h) : "—";
+    const lv = l != null ? fmtFn(l) : "—";
+    return `<tr><td>${name}</td><td class="${cls(h)}">${hv}</td><td class="${cls(l)}">${lv}</td></tr>`;
+  };
+  el.innerHTML =
+    `<table><thead><tr><th>Metric</th><th>HIGH risk</th><th>LOW risk</th></tr></thead><tbody>` +
+    row("Total return (6y)", high.total_return_pct, low.total_return_pct, v => pct(v)) +
+    row("Annualized", high.annualized_return_pct, low.annualized_return_pct, v => pct(v)) +
+    row("Max drawdown", high.max_drawdown_pct, low.max_drawdown_pct, v => pct(v)) +
+    row("Win rate", high.win_rate_pct, low.win_rate_pct, v => v.toFixed(1) + "%") +
+    row("Profit factor", high.profit_factor, low.profit_factor, v => v == null ? "—" : v.toFixed(2)) +
+    row("Sharpe (annual)", high.sharpe, low.sharpe, v => v.toFixed(2)) +
+    `</tbody></table>` +
+    `<div class="note" style="margin-top:12px">These are <b>historical backtest estimates</b> on 6 years of data — not a guarantee of future results. HIGH risk aims for more return but can draw down much more; LOW risk is steadier but earns less.</div>`;
+}
+
+function renderTrades(trades) {
+  const el = document.getElementById("recentTrades");
+  if (!trades || trades.length === 0) {
+    el.innerHTML = `<div class="empty">No trades recorded yet.</div>`;
+    return;
+  }
+  let rows = "";
+  for (const t of trades.slice(0, 20)) {
+    const side = (t.side || "").toLowerCase();
+    const sideCls = side === "buy" ? "side-buy" : "side-sell";
+    const time = t.time ? new Date(t.time).toLocaleString() : "—";
+    rows +=
+      `<tr><td>${time}</td>` +
+      `<td><span class="sym">${t.symbol}</span></td>` +
+      `<td class="${sideCls}">${(side || "").toUpperCase()}</td>` +
+      `<td>${t.qty ?? "—"}</td>` +
+      `<td>${fmt(t.price)}</td></tr>`;
+  }
+  el.innerHTML =
+    `<table><thead><tr><th>Time</th><th>Symbol</th><th>Side</th><th>Qty</th><th>Price</th></tr></thead><tbody>` +
+    rows + `</tbody></table>`;
 }
 
 function renderDashboard(d) {
@@ -238,8 +303,8 @@ function renderDashboard(d) {
   }
   document.getElementById("openCount").textContent = totalPositions;
 
-  renderScenario(document.getElementById("scenHigh"), "high", scenarios.high || {}, equity);
-  renderScenario(document.getElementById("scenLow"), "low", scenarios.low || {}, equity);
+  renderScenario(document.getElementById("scenHigh"), "high", scenarios.high || {});
+  renderScenario(document.getElementById("scenLow"), "low", scenarios.low || {});
 
   // strategy info
   const parts = [];
@@ -254,6 +319,8 @@ function renderDashboard(d) {
   document.getElementById("strategyInfo").innerHTML = parts.join("");
 
   drawChart(d.equity_history || []);
+  renderBacktest(d.backtest || {});
+  renderTrades(d.recent_trades || []);
 }
 
 async function refresh() {
