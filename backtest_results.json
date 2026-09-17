@@ -1,20 +1,20 @@
 {
   "config_high.yaml": {
-    "total_return_pct": 114.05,
-    "annualized_return_pct": 12.98,
-    "final_equity": 214054.71,
-    "round_trips": 418,
-    "win_rate_pct": 35.9,
-    "profit_factor": 1.56,
-    "max_drawdown_pct": 24.45,
-    "sharpe": 0.82,
-    "sortino": 1.25,
+    "total_return_pct": 48.49,
+    "annualized_return_pct": 6.54,
+    "final_equity": 148485.44,
+    "round_trips": 474,
+    "win_rate_pct": 36.3,
+    "profit_factor": 1.57,
+    "max_drawdown_pct": 8.71,
+    "sharpe": 0.89,
+    "sortino": 1.34,
     "per_symbol_pnl": {
-      "TQQQ": 30203.35,
-      "SPXL": 22596.87,
-      "SOXL": 79759.66
+      "TQQQ": 25777.75,
+      "SPXL": 13175.13,
+      "SOXL": 18977.2
     },
-    "num_trades": 833,
+    "num_trades": 945,
     "name": "HIGH RISK",
     "symbols": [
       "TQQQ",
@@ -22,30 +22,30 @@
       "SOXL"
     ],
     "capital_fraction": 0.5,
-    "risk_per_trade": 0.1,
+    "risk_per_trade": 0.01,
     "strategy": "volatility_scaled_momentum"
   },
   "config_low.yaml": {
-    "total_return_pct": 4.34,
-    "annualized_return_pct": 0.68,
-    "final_equity": 104339.1,
-    "round_trips": 1178,
-    "win_rate_pct": 38.4,
+    "total_return_pct": 2.96,
+    "annualized_return_pct": 0.47,
+    "final_equity": 102957.45,
+    "round_trips": 1248,
+    "win_rate_pct": 38.0,
     "profit_factor": 1.37,
-    "max_drawdown_pct": 4.4,
-    "sharpe": 0.2,
-    "sortino": 0.28,
+    "max_drawdown_pct": 4.36,
+    "sharpe": 0.17,
+    "sortino": 0.24,
     "per_symbol_pnl": {
-      "QQQ": 5266.85,
-      "SPY": 2709.46,
-      "DIA": 2066.43,
-      "IWM": -123.92,
-      "EWJ": 1811.54,
-      "EZU": 3120.12,
-      "EWU": 2003.53,
-      "EWG": 1691.11
+      "QQQ": 4170.97,
+      "SPY": 2334.03,
+      "DIA": 1029.55,
+      "IWM": -228.46,
+      "EWJ": 1812.69,
+      "EZU": 2515.94,
+      "EWU": 2433.78,
+      "EWG": 1270.13
     },
-    "num_trades": 2348,
+    "num_trades": 2488,
     "name": "LOW RISK",
     "symbols": [
       "QQQ",
@@ -58,7 +58,7 @@
       "EWG"
     ],
     "capital_fraction": 0.5,
-    "risk_per_trade": 0.01,
+    "risk_per_trade": 0.0025,
     "strategy": "volatility_scaled_momentum"
   }
 }

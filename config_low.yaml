@@ -20,12 +20,14 @@ strategy:
   vol_baseline: 252
   vol_mult: 1.5
 risk:
-  risk_per_trade: 0.01
+  risk_per_trade: 0.0025
   atr_stop_mult: 2.0
   atr_take_mult: 3.0
   max_position_pct: 0.12
-  daily_loss_limit_pct: 0.03
-  max_drawdown_pct: 0.2
+  daily_loss_limit_pct: 0.02
+  max_drawdown_pct: 0.10
+  starting_equity: 100000
+  max_account_loss_pct: 0.10
   break_even_atr: 1.0
   trail_atr: 2.0
   trail_distance_atr: 1.0

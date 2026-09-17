@@ -162,6 +162,7 @@ class AlpacaBroker(Broker):
         from price_feed import AlpacaPriceFeed
         self.client = TradingClient(api_key, api_secret, paper=paper)
         self._price_feed = AlpacaPriceFeed(api_key, api_secret)
+        self._last_account = None
 
     def fetch_ohlcv(self, symbol: str, timeframe: str, limit: int) -> list[list[float]]:
         return self._price_feed.fetch_ohlcv(symbol, timeframe, limit)
@@ -183,7 +184,16 @@ class AlpacaBroker(Broker):
         return float(_retry_call(self.client.get_account).buying_power)
 
     def equity(self, symbol: str) -> float:
-        return float(_retry_call(self.client.get_account).equity)
+        self._last_account = _retry_call(self.client.get_account)
+        return float(self._last_account.equity)
+
+    @property
+    def previous_close_equity(self) -> float | None:
+        """Previous session equity used for a restart-safe daily loss limit."""
+        if self._last_account is None:
+            return None
+        value = getattr(self._last_account, "last_equity", None)
+        return float(value) if value is not None else None
 
     def market_open(self) -> bool:
         """Whether the US market is currently open (per Alpaca's clock)."""
@@ -195,11 +205,12 @@ class AlpacaBroker(Broker):
     def market_buy(self, symbol: str, quote_amount: float,
                    stop_price: float = 0.0, take_price: float = 0.0) -> None:
         from alpaca.trading.requests import MarketOrderRequest, StopLossRequest, TakeProfitRequest
-        from alpaca.trading.enums import OrderSide, TimeInForce
+        from alpaca.trading.enums import OrderClass, OrderSide, TimeInForce
 
         req = MarketOrderRequest(
             symbol=symbol, notional=round(quote_amount, 2),
             side=OrderSide.BUY, time_in_force=TimeInForce.DAY,
+            order_class=OrderClass.BRACKET,
         )
         if stop_price > 0:
             req.stop_loss = StopLossRequest(stop_price=round(stop_price, 2))

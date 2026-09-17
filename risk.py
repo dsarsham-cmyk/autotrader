@@ -16,6 +16,8 @@ class RiskConfig:
     max_position_pct: float = 0.25    # cap any single position at 25% of equity
     daily_loss_limit_pct: float = 0.03  # stop trading for the day after -3%
     max_drawdown_pct: float = 0.20    # hard kill switch after -20% from peak
+    starting_equity: float = 0.0      # fixed account baseline; survives restarts
+    max_account_loss_pct: float = 0.10  # halt after losing 10% of baseline
     capital_fraction: float = 1.0     # fraction of account capital this bot may deploy
                                       # (lets two scenarios share one paper account)
     # Trailing-stop exit plan (locks in profits as a trade moves in favour).
@@ -92,10 +94,21 @@ class RiskManager:
         return stop
 
     # --- Portfolio-level limits ---
-    def update_equity(self, equity: float, day_key: str) -> None:
+    def update_equity(self, equity: float, day_key: str,
+                      day_start_equity: float | None = None) -> None:
         if self.day_start_equity is None or day_key != self.current_day:
-            self.day_start_equity = equity
+            # Alpaca's previous-close equity is the authoritative daily
+            # reference and remains stable if Railway restarts intraday.
+            self.day_start_equity = (
+                day_start_equity if day_start_equity and day_start_equity > 0
+                else equity
+            )
             self.current_day = day_key
+            # A daily halt expires on the next trading day. Account-loss and
+            # drawdown kill switches remain latched until manually reviewed.
+            if self.halt_reason == "daily loss limit":
+                self.halted = False
+                self.halt_reason = ""
         if self.peak_equity is None:
             self.peak_equity = equity
         self.peak_equity = max(self.peak_equity, equity)
@@ -111,6 +124,31 @@ class RiskManager:
             dd = (self.peak_equity - equity) / self.peak_equity
             if dd >= self.config.max_drawdown_pct:
                 self.halt("max drawdown")
+
+        # Fixed loss budget from the configured starting balance. Unlike an
+        # in-memory peak, this protection cannot be erased by a process restart.
+        if self.config.starting_equity > 0:
+            floor = self.config.starting_equity * (1 - self.config.max_account_loss_pct)
+            if equity <= floor:
+                self.halt("account loss budget")
+
+    def restore(self, value: dict | None) -> None:
+        """Restore risk state when local persistent storage is available."""
+        value = value or {}
+        self.peak_equity = value.get("peak_equity")
+        self.day_start_equity = value.get("day_start_equity")
+        self.current_day = value.get("current_day")
+        self.halted = bool(value.get("halted", False))
+        self.halt_reason = str(value.get("halt_reason", ""))
+
+    def snapshot(self) -> dict:
+        return {
+            "peak_equity": self.peak_equity,
+            "day_start_equity": self.day_start_equity,
+            "current_day": self.current_day,
+            "halted": self.halted,
+            "halt_reason": self.halt_reason,
+        }
 
     def halt(self, reason: str) -> None:
         if not self.halted:

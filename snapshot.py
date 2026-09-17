@@ -284,6 +284,10 @@ def load_scenario_meta() -> dict:
             "capital_fraction": cfg.get("risk", {}).get("capital_fraction", 0.5),
             "strategy": cfg["strategy"]["name"],
             "risk_per_trade": cfg.get("risk", {}).get("risk_per_trade", 0.01),
+            "daily_loss_limit_pct": cfg.get("risk", {}).get("daily_loss_limit_pct", 0.03),
+            "max_drawdown_pct": cfg.get("risk", {}).get("max_drawdown_pct", 0.20),
+            "starting_equity": cfg.get("risk", {}).get("starting_equity", STARTING_BALANCE),
+            "max_account_loss_pct": cfg.get("risk", {}).get("max_account_loss_pct", 0.10),
         }
     return out
 
@@ -365,6 +369,10 @@ def main() -> None:
                 "symbols": m["symbols"],
                 "capital_fraction": m["capital_fraction"],
                 "risk_per_trade": m["risk_per_trade"],
+                "daily_loss_limit_pct": m["daily_loss_limit_pct"],
+                "max_drawdown_pct": m["max_drawdown_pct"],
+                "starting_equity": m["starting_equity"],
+                "max_account_loss_pct": m["max_account_loss_pct"],
                 "positions": sc_pos,
                 "market_value": round(mv, 2),
                 "unrealized_pnl": round(upnl, 2),

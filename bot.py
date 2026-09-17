@@ -87,6 +87,8 @@ def risk_config(config: dict) -> RiskConfig:
         max_position_pct=r.get("max_position_pct", 0.25),
         daily_loss_limit_pct=r.get("daily_loss_limit_pct", 0.03),
         max_drawdown_pct=r.get("max_drawdown_pct", 0.20),
+        starting_equity=r.get("starting_equity", 0.0),
+        max_account_loss_pct=r.get("max_account_loss_pct", 0.10),
         break_even_atr=r.get("break_even_atr", 1.0),
         trail_atr=r.get("trail_atr", 2.0),
         trail_distance_atr=r.get("trail_distance_atr", 1.0),
@@ -111,6 +113,12 @@ def build_broker(config: dict):
         from dotenv import load_dotenv
         import os
         load_dotenv()
+        if (mode == "live" and
+                os.getenv("AUTOTRADER_LIVE_CONFIRM") != "I_ACCEPT_REAL_MONEY_RISK"):
+            raise RuntimeError(
+                "Live trading is locked. Keep mode=alpaca_paper until the "
+                "paper audit is approved, then set AUTOTRADER_LIVE_CONFIRM."
+            )
         if market == "crypto":
             return LiveCryptoBroker(
                 config["exchange"]["name"],
@@ -160,6 +168,7 @@ def run(config: dict) -> None:
     risk = RiskManager(risk_config(config))
 
     state = StateStore(config.get("state_file", "state.json"))
+    risk.restore(state.data.get("risk_state"))
     if state.data["balance"] == 0.0 and config["mode"] == "paper":
         state.data["balance"] = config["paper"]["starting_balance"]
     state.data["started_at"] = state.data["started_at"] or time.strftime("%Y-%m-%d %H:%M:%S")
@@ -180,7 +189,8 @@ def run(config: dict) -> None:
         except Exception:
             equity = state.data.get("equity", 0.0)
         day_key = time.strftime("%Y-%m-%d")
-        risk.update_equity(equity, day_key)
+        previous_close_equity = getattr(broker, "previous_close_equity", None)
+        risk.update_equity(equity, day_key, previous_close_equity)
         market_open = broker.market_open()
 
         prices: dict[str, float] = {}
@@ -222,6 +232,14 @@ def run(config: dict) -> None:
                 stop_price = stored.get("stop_price", 0.0)
                 take_price = stored.get("take_price", 0.0)
 
+                # Railway's local state can disappear on a redeploy. Rebuild
+                # an exit plan from Alpaca's real average entry so an existing
+                # position never comes back with a zero stop.
+                if pos.base_amount > 0 and pos.entry_price > 0 and stop_price <= 0:
+                    stop_price, take_price = risk.stops(pos.entry_price, a)
+                    state.set_position(symbol, pos.base_amount, pos.entry_price,
+                                       stop_price, take_price, price)
+
                 action = None
                 sell_base = 0.0
                 sell_price = 0.0
@@ -232,8 +250,10 @@ def run(config: dict) -> None:
                     sell_base = prev
                     sell_price = price
 
-                # --- Client-side stops (brokers without server-side stops) ---
-                elif not broker.server_stops and pos.base_amount > 0:
+                # --- Client-side fallback stops ---
+                # Also check these when a broker supports bracket orders. This
+                # protects positions inherited from older simple orders.
+                elif pos.base_amount > 0:
                     if stop_price > 0 and price <= stop_price:
                         broker.market_sell(symbol, pos.base_amount)
                         action = f"STOP-LOSS @ {price:.4f}"
@@ -382,6 +402,7 @@ def run(config: dict) -> None:
         )
         state.data["halted"] = risk.halted
         state.data["halt_reason"] = risk.halt_reason
+        state.data["risk_state"] = risk.snapshot()
         state.record_equity(equity)
         state.save()
 
