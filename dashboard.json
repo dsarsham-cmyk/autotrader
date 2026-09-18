@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-09-18T06:47:36.071558+00:00",
+  "last_updated": "2026-09-18T07:16:20.890960+00:00",
   "market_open": false,
   "account": {
-    "equity": 102710.36,
+    "equity": 102825.12,
     "cash": 2547.92,
-    "buying_power": 181233.14,
+    "buying_power": 181354.08,
     "last_equity": 97001.02490729901,
-    "day_pnl": 5709.34,
-    "day_pnl_pct": 5.886,
+    "day_pnl": 5824.1,
+    "day_pnl_pct": 6.004,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -29,10 +29,10 @@
         "TQQQ": {
           "qty": 235.423249299,
           "entry_price": 71.4,
-          "market_value": 17084.665202,
-          "unrealized_pnl": 275.445202,
-          "unrealized_pnl_pct": 1.6389999999999998,
-          "current_price": 72.57
+          "market_value": 17108.207527,
+          "unrealized_pnl": 298.987527,
+          "unrealized_pnl_pct": 1.779,
+          "current_price": 72.67
         },
         "SPXL": {
           "qty": 59.885353949,
@@ -45,14 +45,14 @@
         "SOXL": {
           "qty": 146.305797353,
           "entry_price": 114.891005,
-          "market_value": 17264.084088,
-          "unrealized_pnl": 454.863993,
-          "unrealized_pnl_pct": 2.706,
-          "current_price": 118.0
+          "market_value": 17351.867566,
+          "unrealized_pnl": 542.647471,
+          "unrealized_pnl_pct": 3.228,
+          "current_price": 118.6
         }
       },
-      "market_value": 51343.61,
-      "unrealized_pnl": 915.95
+      "market_value": 51454.94,
+      "unrealized_pnl": 1027.28
     },
     "low": {
       "name": "LOW RISK",
@@ -77,34 +77,34 @@
         "QQQ": {
           "qty": 8.526373074,
           "entry_price": 716.64,
-          "market_value": 6148.197096,
-          "unrealized_pnl": 37.857096,
-          "unrealized_pnl_pct": 0.62,
-          "current_price": 721.08
+          "market_value": 6150.925536,
+          "unrealized_pnl": 40.585536,
+          "unrealized_pnl_pct": 0.664,
+          "current_price": 721.4
         },
         "SPY": {
           "qty": 8.014453406,
           "entry_price": 762.415063,
-          "market_value": 6120.8785,
-          "unrealized_pnl": 10.538502,
-          "unrealized_pnl_pct": 0.172,
-          "current_price": 763.73
+          "market_value": 6119.99691,
+          "unrealized_pnl": 9.656912,
+          "unrealized_pnl_pct": 0.158,
+          "current_price": 763.62
         },
         "DIA": {
           "qty": 11.777630006,
           "entry_price": 518.808962,
-          "market_value": 6105.523395,
-          "unrealized_pnl": -4.816603,
-          "unrealized_pnl_pct": -0.079,
-          "current_price": 518.4
+          "market_value": 6110.941105,
+          "unrealized_pnl": 0.601107,
+          "unrealized_pnl_pct": 0.01,
+          "current_price": 518.86
         },
         "IWM": {
           "qty": 21.286674795,
           "entry_price": 287.05,
-          "market_value": 6092.459193,
-          "unrealized_pnl": -17.880807,
-          "unrealized_pnl_pct": -0.293,
-          "current_price": 286.21
+          "market_value": 6088.627592,
+          "unrealized_pnl": -21.712408,
+          "unrealized_pnl_pct": -0.35500000000000004,
+          "current_price": 286.03
         },
         "EWJ": {
           "qty": 62.389994895,
@@ -139,8 +139,8 @@
           "current_price": 42.69
         }
       },
-      "market_value": 48818.83,
-      "unrealized_pnl": -66.93
+      "market_value": 48822.26,
+      "unrealized_pnl": -63.5
     }
   },
   "equity_history": [
@@ -275,6 +275,10 @@
     {
       "ts": "2026-09-18T06:47:36.071558+00:00",
       "equity": 102710.36
+    },
+    {
+      "ts": "2026-09-18T07:16:20.890960+00:00",
+      "equity": 102825.12
     }
   ],
   "recent_trades": [
@@ -576,7 +580,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-09-18T06:47:38.451761+00:00",
+    "generated_at": "2026-09-18T07:16:22.475391+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
