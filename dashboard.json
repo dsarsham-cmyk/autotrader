@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-09-19T07:41:13.496599+00:00",
+  "last_updated": "2026-09-19T08:16:55.883497+00:00",
   "market_open": false,
   "account": {
     "equity": 103117.0,
     "cash": 2547.92,
     "buying_power": 181263.04,
-    "last_equity": 101791.03472517522,
-    "day_pnl": 1325.97,
-    "day_pnl_pct": 1.303,
+    "last_equity": 103116.99909899967,
+    "day_pnl": 0.0,
+    "day_pnl_pct": 0.0,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -475,6 +475,10 @@
     {
       "ts": "2026-09-19T07:41:13.496599+00:00",
       "equity": 103117.0
+    },
+    {
+      "ts": "2026-09-19T08:16:55.883497+00:00",
+      "equity": 103117.0
     }
   ],
   "recent_trades": [
@@ -776,7 +780,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-09-19T07:41:15.494206+00:00",
+    "generated_at": "2026-09-19T08:16:58.258931+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
