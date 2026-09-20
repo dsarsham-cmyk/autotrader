@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-20T16:16:12.827559+00:00",
+  "last_updated": "2026-09-20T16:41:56.123954+00:00",
   "market_open": false,
   "account": {
     "equity": 103117.0,
@@ -735,6 +735,10 @@
     {
       "ts": "2026-09-20T16:16:12.827559+00:00",
       "equity": 103117.0
+    },
+    {
+      "ts": "2026-09-20T16:41:56.123954+00:00",
+      "equity": 103117.0
     }
   ],
   "recent_trades": [
@@ -1036,7 +1040,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-09-20T16:16:14.375258+00:00",
+    "generated_at": "2026-09-20T16:42:00.209387+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
