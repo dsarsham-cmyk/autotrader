@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-09-21T03:45:11.387869+00:00",
+  "last_updated": "2026-09-21T04:16:58.268931+00:00",
   "market_open": false,
   "account": {
-    "equity": 104306.87,
+    "equity": 104259.84,
     "cash": 2547.92,
-    "buying_power": 182422.04,
+    "buying_power": 182374.18,
     "last_equity": 103116.99909899967,
-    "day_pnl": 1189.87,
-    "day_pnl_pct": 1.154,
+    "day_pnl": 1142.84,
+    "day_pnl_pct": 1.108,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -29,10 +29,10 @@
         "TQQQ": {
           "qty": 235.423249299,
           "entry_price": 71.4,
-          "market_value": 17402.486588,
-          "unrealized_pnl": 593.266588,
-          "unrealized_pnl_pct": 3.5290000000000004,
-          "current_price": 73.92
+          "market_value": 17395.423891,
+          "unrealized_pnl": 586.203891,
+          "unrealized_pnl_pct": 3.4869999999999997,
+          "current_price": 73.89
         },
         "SPXL": {
           "qty": 59.885353949,
@@ -45,14 +45,14 @@
         "SOXL": {
           "qty": 146.305797353,
           "entry_price": 114.891004,
-          "market_value": 18689.102554,
-          "unrealized_pnl": 1879.882605,
-          "unrealized_pnl_pct": 11.184,
-          "current_price": 127.74
+          "market_value": 18649.599989,
+          "unrealized_pnl": 1840.38004,
+          "unrealized_pnl_pct": 10.949,
+          "current_price": 127.47
         }
       },
-      "market_value": 53137.96,
-      "unrealized_pnl": 2710.3
+      "market_value": 53091.39,
+      "unrealized_pnl": 2663.73
     },
     "low": {
       "name": "LOW RISK",
@@ -77,18 +77,18 @@
         "QQQ": {
           "qty": 8.526373074,
           "entry_price": 716.64,
-          "market_value": 6180.341523,
-          "unrealized_pnl": 70.001523,
-          "unrealized_pnl_pct": 1.146,
-          "current_price": 724.85
+          "market_value": 6177.698347,
+          "unrealized_pnl": 67.358347,
+          "unrealized_pnl_pct": 1.102,
+          "current_price": 724.54
         },
         "SPY": {
           "qty": 8.014453406,
           "entry_price": 762.415063,
-          "market_value": 6129.534109,
-          "unrealized_pnl": 19.194111,
-          "unrealized_pnl_pct": 0.314,
-          "current_price": 764.81
+          "market_value": 6129.37382,
+          "unrealized_pnl": 19.033822,
+          "unrealized_pnl_pct": 0.312,
+          "current_price": 764.79
         },
         "DIA": {
           "qty": 11.777630006,
@@ -101,10 +101,10 @@
         "IWM": {
           "qty": 21.286674795,
           "entry_price": 287.05,
-          "market_value": 6065.637983,
-          "unrealized_pnl": -44.702017,
-          "unrealized_pnl_pct": -0.732,
-          "current_price": 284.95
+          "market_value": 6067.979517,
+          "unrealized_pnl": -42.360483,
+          "unrealized_pnl_pct": -0.6930000000000001,
+          "current_price": 285.06
         },
         "EWJ": {
           "qty": 62.389994895,
@@ -139,8 +139,8 @@
           "current_price": 42.15
         }
       },
-      "market_value": 48620.99,
-      "unrealized_pnl": -264.77
+      "market_value": 48620.53,
+      "unrealized_pnl": -265.23
     }
   },
   "equity_history": [
@@ -827,6 +827,10 @@
     {
       "ts": "2026-09-21T03:45:11.387869+00:00",
       "equity": 104306.87
+    },
+    {
+      "ts": "2026-09-21T04:16:58.268931+00:00",
+      "equity": 104259.84
     }
   ],
   "recent_trades": [
@@ -1128,7 +1132,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-09-21T03:45:13.858802+00:00",
+    "generated_at": "2026-09-21T04:17:00.217203+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -1137,13 +1141,9 @@
       "guaranteed_daily_trade": false,
       "fills_today": 0,
       "active_days": 1,
-      "observed_weekdays": 2,
-      "active_day_pct": 50.0,
+      "observed_weekdays": 3,
+      "active_day_pct": 33.3,
       "calendar": [
-        {
-          "date": "2026-09-07",
-          "fills": 0
-        },
         {
           "date": "2026-09-08",
           "fills": 0
@@ -1178,6 +1178,10 @@
         },
         {
           "date": "2026-09-18",
+          "fills": 0
+        },
+        {
+          "date": "2026-09-21",
           "fills": 0
         }
       ],
@@ -1249,7 +1253,7 @@
         "key": "live_evidence",
         "label": "Enough live evidence",
         "status": "warn",
-        "detail": "2 observed trading days and 14 sell fills. Too early to judge live profitability reliably."
+        "detail": "3 observed trading days and 14 sell fills. Too early to judge live profitability reliably."
       },
       {
         "key": "risk_protection",
