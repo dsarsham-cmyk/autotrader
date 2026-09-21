@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-09-21T05:16:19.740327+00:00",
+  "last_updated": "2026-09-21T05:43:26.714111+00:00",
   "market_open": false,
   "account": {
-    "equity": 104208.17,
+    "equity": 104321.22,
     "cash": 2547.92,
-    "buying_power": 182295.63,
+    "buying_power": 182438.82,
     "last_equity": 103116.99909899967,
-    "day_pnl": 1091.17,
-    "day_pnl_pct": 1.058,
+    "day_pnl": 1204.22,
+    "day_pnl_pct": 1.168,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -29,30 +29,30 @@
         "TQQQ": {
           "qty": 235.423249299,
           "entry_price": 71.4,
-          "market_value": 17374.235798,
-          "unrealized_pnl": 565.015798,
-          "unrealized_pnl_pct": 3.361,
-          "current_price": 73.8
+          "market_value": 17404.840821,
+          "unrealized_pnl": 595.620821,
+          "unrealized_pnl_pct": 3.543,
+          "current_price": 73.93
         },
         "SPXL": {
           "qty": 59.885353949,
           "entry_price": 280.69,
-          "market_value": 17065.529315,
-          "unrealized_pnl": 256.309315,
-          "unrealized_pnl_pct": 1.525,
-          "current_price": 284.97
+          "market_value": 17060.738487,
+          "unrealized_pnl": 251.518487,
+          "unrealized_pnl_pct": 1.496,
+          "current_price": 284.89
         },
         "SOXL": {
           "qty": 146.305797353,
           "entry_price": 114.891004,
-          "market_value": 18604.245191,
-          "unrealized_pnl": 1795.025242,
-          "unrealized_pnl_pct": 10.679,
-          "current_price": 127.16
+          "market_value": 18677.39809,
+          "unrealized_pnl": 1868.178141,
+          "unrealized_pnl_pct": 11.114,
+          "current_price": 127.66
         }
       },
-      "market_value": 53044.01,
-      "unrealized_pnl": 2616.35
+      "market_value": 53142.98,
+      "unrealized_pnl": 2715.32
     },
     "low": {
       "name": "LOW RISK",
@@ -77,18 +77,18 @@
         "QQQ": {
           "qty": 8.526373074,
           "entry_price": 716.64,
-          "market_value": 6177.272028,
-          "unrealized_pnl": 66.932028,
-          "unrealized_pnl_pct": 1.095,
-          "current_price": 724.49
+          "market_value": 6183.069962,
+          "unrealized_pnl": 72.729962,
+          "unrealized_pnl_pct": 1.1900000000000002,
+          "current_price": 725.17
         },
         "SPY": {
           "qty": 8.014453406,
           "entry_price": 762.415063,
-          "market_value": 6128.492231,
-          "unrealized_pnl": 18.152233,
-          "unrealized_pnl_pct": 0.297,
-          "current_price": 764.68
+          "market_value": 6130.816422,
+          "unrealized_pnl": 20.476424,
+          "unrealized_pnl_pct": 0.335,
+          "current_price": 764.97
         },
         "DIA": {
           "qty": 11.777630006,
@@ -101,10 +101,10 @@
         "IWM": {
           "qty": 21.286674795,
           "entry_price": 287.05,
-          "market_value": 6064.999383,
-          "unrealized_pnl": -45.340617,
-          "unrealized_pnl_pct": -0.742,
-          "current_price": 284.92
+          "market_value": 6070.959652,
+          "unrealized_pnl": -39.380348,
+          "unrealized_pnl_pct": -0.644,
+          "current_price": 285.2
         },
         "EWJ": {
           "qty": 62.389994895,
@@ -139,8 +139,8 @@
           "current_price": 42.15
         }
       },
-      "market_value": 48616.24,
-      "unrealized_pnl": -269.52
+      "market_value": 48630.32,
+      "unrealized_pnl": -255.44
     }
   },
   "equity_history": [
@@ -839,6 +839,10 @@
     {
       "ts": "2026-09-21T05:16:19.740327+00:00",
       "equity": 104208.17
+    },
+    {
+      "ts": "2026-09-21T05:43:26.714111+00:00",
+      "equity": 104321.22
     }
   ],
   "recent_trades": [
@@ -1140,7 +1144,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-09-21T05:16:21.292460+00:00",
+    "generated_at": "2026-09-21T05:43:29.848972+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
