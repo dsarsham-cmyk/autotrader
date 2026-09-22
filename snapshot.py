@@ -319,6 +319,7 @@ def main() -> None:
     }
 
     positions = {}
+    positions_ok = False
     open_orders = []
     recent_orders = []
 
@@ -355,7 +356,9 @@ def main() -> None:
                     "unrealized_pnl": float(p.unrealized_pl or 0.0),
                     "unrealized_pnl_pct": float(p.unrealized_plpc or 0.0) * 100,
                     "current_price": float(p.current_price or p.avg_entry_price),
+                    "previous_close": float(p.lastday_price) if p.lastday_price else None,
                 }
+            positions_ok = True
         except Exception as e:
             print(f"[snapshot] positions error: {e}", file=sys.stderr)
 
@@ -389,6 +392,21 @@ def main() -> None:
             state["recent_trades"] = _recent_fills(api_key, api_secret)
         except Exception as e:
             print(f"[snapshot] activities error: {e}", file=sys.stderr)
+
+    # Complete daily executions, including positions no longer held.
+    # Never substitute since-entry P&L or zero when accounting is unavailable.
+    state["daily_accounting"] = {"status": "unavailable"}
+    if api_key and api_secret and positions_ok and state["account"]["equity"] is not None:
+        try:
+            from daily_pnl import build_daily
+            daily = build_daily(meta, positions, api_key, api_secret,
+                                state["account"]["day_pnl"], datetime.now(timezone.utc))
+            state["daily_accounting"] = daily
+            for key, values in daily["portfolios"].items():
+                state["scenarios"][key].update(values)
+        except Exception as e:
+            state["daily_accounting"]["reason"] = str(e)
+            print(f"[snapshot] daily accounting unavailable: {e}", file=sys.stderr)
 
     # Expected performance from the committed backtest results.
     try:
