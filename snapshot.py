@@ -37,8 +37,9 @@ SCENARIOS = [
 def _recent_fills(api_key: str, api_secret: str, limit: int = 100) -> list[dict]:
     """Return the most recent completed order fills from Alpaca.
 
-    Uses the raw REST activities endpoint (TradingClient has no equivalent)
-    and deduplicates partial fills by order_id, keeping the final fill.
+    Limited fallback sample only. Preserve individual execution quantities
+    and prices; never multiply the final price by cumulative order quantity.
+    The complete history below replaces this sample when available.
     """
     import urllib.request
     page_size = min(100, max(limit, 1))
@@ -49,23 +50,8 @@ def _recent_fills(api_key: str, api_secret: str, limit: int = 100) -> list[dict]
         "APCA-API-SECRET-KEY": api_secret,
     })
     data = json.loads(urllib.request.urlopen(req, timeout=15).read())
-    seen: dict[str, dict] = {}
-    for a in data:
-        oid = a.get("order_id")
-        if a.get("type") == "fill" and oid and oid not in seen:
-            seen[oid] = a
-    fills = []
-    for a in seen.values():
-        fills.append({
-            "time": a.get("transaction_time", ""),
-            "order_id": a.get("order_id", ""),
-            "symbol": a.get("symbol", ""),
-            "side": a.get("side", ""),
-            "qty": round(float(a.get("cum_qty") or a.get("qty") or 0), 4),
-            "price": round(float(a.get("price") or 0), 2),
-        })
-    fills.sort(key=lambda x: x["time"], reverse=True)
-    return fills[:limit]
+    from account_history import compact_executions
+    return compact_executions(data)[:limit]
 
 
 def _enum_value(value) -> str:
@@ -393,6 +379,7 @@ def main() -> None:
         except Exception as e:
             print(f"[snapshot] activities error: {e}", file=sys.stderr)
 
+    state["positions_status"] = "available" if positions_ok else "unavailable"
     # Complete daily executions, including positions no longer held.
     # Never substitute since-entry P&L or zero when accounting is unavailable.
     state["daily_accounting"] = {"status": "unavailable"}
@@ -407,6 +394,23 @@ def main() -> None:
         except Exception as e:
             state["daily_accounting"]["reason"] = str(e)
             print(f"[snapshot] daily accounting unavailable: {e}", file=sys.stderr)
+
+    # A real dated history, not zeros inferred from a truncated recent list.
+    state["account_history"] = {"status": "unavailable"}
+    if api_key and api_secret:
+        try:
+            from account_history import history_base, build_history
+            history_now = datetime.now(timezone.utc)
+            current_fills = (state["daily_accounting"].get("executions")
+                             if state["daily_accounting"]["status"] == "calculated" else None)
+            history = build_history(history_base(api_key, api_secret, history_now),
+                                    current_fills, state["account"], history_now,
+                                    state["market_open"])
+            state["account_history"] = history
+            state["recent_trades"] = history["executions"]
+        except Exception as e:
+            state["account_history"]["reason"] = str(e)
+            print(f"[snapshot] history unavailable: {e}", file=sys.stderr)
 
     # Expected performance from the committed backtest results.
     try:

@@ -33,7 +33,12 @@ def _get(url, key, secret):
 def activities_today(key, secret, now):
     """Read all pages; fail rather than silently truncate a busy trading day."""
     start = now.astimezone(EASTERN).replace(hour=0, minute=0, second=0, microsecond=0)
-    params = {"after": start.isoformat(), "until": now.isoformat(),
+    return activities_between(key, secret, start, now)
+
+
+def activities_between(key, secret, start, end):
+    """One activity ID per execution, preserving partial-fill quantities."""
+    params = {"after": start.isoformat(), "until": end.isoformat(),
               "direction": "asc", "page_size": 100}
     seen = set()
     result = []
@@ -146,7 +151,8 @@ def calculate_daily(meta, positions, activities, closes, account_change, now):
             "unallocated_day_pnl": residual,
             "buy_executions": sum(a["side"] == "buy" for a in fills),
             "sell_executions": sum(a["side"] == "sell" for a in fills),
-            "executions": [{"time": a["transaction_time"], "symbol": a["symbol"],
+            "executions": [{"execution_id": a["id"], "order_id": a.get("order_id"),
+                            "time": a["transaction_time"], "symbol": a["symbol"],
                             "side": a["side"], "qty": float(a["qty"]),
                             "price": float(a["price"])} for a in reversed(fills)],
             "note": "Daily marked trading P&L, including today's closed trades. "
