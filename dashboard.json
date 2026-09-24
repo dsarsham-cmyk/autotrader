@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-09-24T14:46:10.188943+00:00",
+  "last_updated": "2026-09-24T15:17:32.180062+00:00",
   "market_open": true,
   "account": {
-    "equity": 107230.33,
-    "cash": 77113.65,
-    "buying_power": 392781.31,
+    "equity": 107183.36,
+    "cash": 89020.08,
+    "buying_power": 406937.49,
     "last_equity": 107426.81875438873,
-    "day_pnl": -196.49,
-    "day_pnl_pct": -0.183,
+    "day_pnl": -243.46,
+    "day_pnl_pct": -0.227,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -57,59 +57,41 @@
         "SPY": {
           "qty": 8.014453406,
           "entry_price": 762.415063,
-          "market_value": 6131.65794,
-          "unrealized_pnl": 21.317942,
-          "unrealized_pnl_pct": 0.349,
-          "current_price": 765.075,
+          "market_value": 6123.603414,
+          "unrealized_pnl": 13.263416,
+          "unrealized_pnl_pct": 0.217,
+          "current_price": 764.07,
           "previous_close": 767.81
         },
         "DIA": {
           "qty": 11.777630006,
           "entry_price": 518.808962,
-          "market_value": 6025.317735,
-          "unrealized_pnl": -85.022263,
-          "unrealized_pnl_pct": -1.391,
-          "current_price": 511.59,
+          "market_value": 6018.192269,
+          "unrealized_pnl": -92.147729,
+          "unrealized_pnl_pct": -1.508,
+          "current_price": 510.985,
           "previous_close": 514.3
-        },
-        "IWM": {
-          "qty": 21.286674795,
-          "entry_price": 287.05,
-          "market_value": 5966.654945,
-          "unrealized_pnl": -143.685055,
-          "unrealized_pnl_pct": -2.352,
-          "current_price": 280.3,
-          "previous_close": 281.92
-        },
-        "EWJ": {
-          "qty": 62.389994895,
-          "entry_price": 97.95,
-          "market_value": 5956.996713,
-          "unrealized_pnl": -154.103287,
-          "unrealized_pnl_pct": -2.522,
-          "current_price": 95.48,
-          "previous_close": 97.05
         },
         "EZU": {
           "qty": 88.811219299,
           "entry_price": 68.81,
-          "market_value": 6036.05452,
-          "unrealized_pnl": -75.04548,
-          "unrealized_pnl_pct": -1.228,
-          "current_price": 67.965,
+          "market_value": 6021.400668,
+          "unrealized_pnl": -89.699332,
+          "unrealized_pnl_pct": -1.468,
+          "current_price": 67.8,
           "previous_close": 68.08
         }
       },
-      "market_value": 30116.68,
-      "unrealized_pnl": -436.54,
-      "day_pnl": -196.49,
+      "market_value": 18163.2,
+      "unrealized_pnl": -168.58,
+      "day_pnl": -243.53,
       "market_date": "2026-09-24",
       "daily_buy_executions": 0,
-      "daily_sell_executions": 0,
+      "daily_sell_executions": 6,
       "daily_symbols": [
         {
           "symbol": "SPY",
-          "day_pnl": -21.92,
+          "day_pnl": -29.97,
           "start_qty": 8.014453406,
           "current_qty": 8.014453406,
           "previous_close": 767.81,
@@ -117,7 +99,7 @@
         },
         {
           "symbol": "DIA",
-          "day_pnl": -31.92,
+          "day_pnl": -39.04,
           "start_qty": 11.777630006,
           "current_qty": 11.777630006,
           "previous_close": 514.3,
@@ -125,23 +107,23 @@
         },
         {
           "symbol": "IWM",
-          "day_pnl": -34.48,
+          "day_pnl": -38.6,
           "start_qty": 21.286674795,
-          "current_qty": 21.286674795,
+          "current_qty": 0.0,
           "previous_close": 281.92,
-          "execution_count": 0
+          "execution_count": 4
         },
         {
           "symbol": "EWJ",
-          "day_pnl": -97.95,
+          "day_pnl": -111.05,
           "start_qty": 62.389994895,
-          "current_qty": 62.389994895,
+          "current_qty": 0.0,
           "previous_close": 97.05,
-          "execution_count": 0
+          "execution_count": 2
         },
         {
           "symbol": "EZU",
-          "day_pnl": -10.21,
+          "day_pnl": -24.87,
           "start_qty": 88.811219299,
           "current_qty": 88.811219299,
           "previous_close": 68.08,
@@ -1494,9 +1476,67 @@
     {
       "ts": "2026-09-24T14:46:10.188943+00:00",
       "equity": 107230.33
+    },
+    {
+      "ts": "2026-09-24T15:17:32.180062+00:00",
+      "equity": 107183.36
     }
   ],
   "recent_trades": [
+    {
+      "execution_id": "20260924111424566::e74e6c01-e0c7-4b51-a645-daa1e925d960",
+      "order_id": "65df7cb7-57c3-43b2-9503-e48c3c9413a2",
+      "time": "2026-09-24T15:14:24.566742Z",
+      "symbol": "EWJ",
+      "side": "sell",
+      "qty": 0.389994895,
+      "price": 95.27
+    },
+    {
+      "execution_id": "20260924111424565::d2cb8bd3-4d7e-4509-baaa-3dd23bb889e7",
+      "order_id": "65df7cb7-57c3-43b2-9503-e48c3c9413a2",
+      "time": "2026-09-24T15:14:24.565068Z",
+      "symbol": "EWJ",
+      "side": "sell",
+      "qty": 62.0,
+      "price": 95.27
+    },
+    {
+      "execution_id": "20260924105517297::98bd1b06-615c-4468-9d7b-d4aab94c65c0",
+      "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+      "time": "2026-09-24T14:55:17.297332Z",
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 0.286674795,
+      "price": 280.12
+    },
+    {
+      "execution_id": "20260924105517295::d5439097-838b-4170-80f0-acd4a6309a3d",
+      "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+      "time": "2026-09-24T14:55:17.295723Z",
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 3.0,
+      "price": 280.12
+    },
+    {
+      "execution_id": "20260924105516608::8c46bd27-5961-4b0d-8942-39063903abb7",
+      "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+      "time": "2026-09-24T14:55:16.608387Z",
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 4.0,
+      "price": 280.12
+    },
+    {
+      "execution_id": "20260924105515513::acecc732-d8c5-44c3-b4fc-e0d88828dc1f",
+      "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+      "time": "2026-09-24T14:55:15.513053Z",
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 14.0,
+      "price": 280.1
+    },
     {
       "execution_id": "20260923125324785::0c8b5b48-2806-445d-8265-f0eba2888be8",
       "order_id": "9228136d-723f-47de-b8eb-13cad364203f",
@@ -5334,17 +5374,17 @@
     }
   },
   "audit": {
-    "generated_at": "2026-09-24T14:46:13.772368+00:00",
+    "generated_at": "2026-09-24T15:17:37.075397+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
     "cadence": {
       "uses_daily_bars": true,
       "guaranteed_daily_trade": false,
-      "fills_today": 0,
-      "active_days": 7,
+      "fills_today": 6,
+      "active_days": 8,
       "observed_weekdays": 10,
-      "active_day_pct": 70.0,
+      "active_day_pct": 80.0,
       "calendar": [
         {
           "date": "2026-09-11",
@@ -5384,14 +5424,14 @@
         },
         {
           "date": "2026-09-24",
-          "fills": 0
+          "fills": 6
         }
       ],
       "explanation": "The engine checks daily momentum. It may hold or make no trade; daily profit and daily fills are not guaranteed."
     },
     "execution": {
-      "recent_fill_count": 419,
-      "sell_fill_count": 198,
+      "recent_fill_count": 425,
+      "sell_fill_count": 204,
       "churn_count": 29,
       "churn_events": [
         {
@@ -5445,7 +5485,7 @@
           "time": "2026-09-17T16:31:45.480335Z"
         }
       ],
-      "open_positions": 5,
+      "open_positions": 3,
       "protected_positions": 0,
       "simple_buy_orders": 51,
       "bracket_buy_orders": 0
@@ -5455,13 +5495,13 @@
         "key": "live_evidence",
         "label": "Enough live evidence",
         "status": "warn",
-        "detail": "10 observed trading days and 198 sell fills. Too early to judge live profitability reliably."
+        "detail": "10 observed trading days and 204 sell fills. Too early to judge live profitability reliably."
       },
       {
         "key": "risk_protection",
         "label": "Broker-side protection",
         "status": "bad",
-        "detail": "0 of 5 open positions have an active broker-side stop order. Recent filled buys: 0 bracket/OTO, 51 simple."
+        "detail": "0 of 3 open positions have an active broker-side stop order. Recent filled buys: 0 bracket/OTO, 51 simple."
       },
       {
         "key": "execution_churn",
@@ -5487,7 +5527,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-09-24",
-    "generated_at": "2026-09-24T14:46:11.984160+00:00",
+    "generated_at": "2026-09-24T15:17:35.185430+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -5497,14 +5537,14 @@
         "daily_symbols": []
       },
       "low": {
-        "day_pnl": -196.49,
+        "day_pnl": -243.53,
         "market_date": "2026-09-24",
         "daily_buy_executions": 0,
-        "daily_sell_executions": 0,
+        "daily_sell_executions": 6,
         "daily_symbols": [
           {
             "symbol": "SPY",
-            "day_pnl": -21.92,
+            "day_pnl": -29.97,
             "start_qty": 8.014453406,
             "current_qty": 8.014453406,
             "previous_close": 767.81,
@@ -5512,7 +5552,7 @@
           },
           {
             "symbol": "DIA",
-            "day_pnl": -31.92,
+            "day_pnl": -39.04,
             "start_qty": 11.777630006,
             "current_qty": 11.777630006,
             "previous_close": 514.3,
@@ -5520,23 +5560,23 @@
           },
           {
             "symbol": "IWM",
-            "day_pnl": -34.48,
+            "day_pnl": -38.6,
             "start_qty": 21.286674795,
-            "current_qty": 21.286674795,
+            "current_qty": 0.0,
             "previous_close": 281.92,
-            "execution_count": 0
+            "execution_count": 4
           },
           {
             "symbol": "EWJ",
-            "day_pnl": -97.95,
+            "day_pnl": -111.05,
             "start_qty": 62.389994895,
-            "current_qty": 62.389994895,
+            "current_qty": 0.0,
             "previous_close": 97.05,
-            "execution_count": 0
+            "execution_count": 2
           },
           {
             "symbol": "EZU",
-            "day_pnl": -10.21,
+            "day_pnl": -24.87,
             "start_qty": 88.811219299,
             "current_qty": 88.811219299,
             "previous_close": 68.08,
@@ -5545,31 +5585,141 @@
         ]
       }
     },
-    "portfolio_day_pnl": -196.49,
-    "unallocated_day_pnl": 0.0,
+    "portfolio_day_pnl": -243.53,
+    "unallocated_day_pnl": 0.07,
     "buy_executions": 0,
-    "sell_executions": 0,
-    "executions": [],
+    "sell_executions": 6,
+    "executions": [
+      {
+        "execution_id": "20260924111424566::e74e6c01-e0c7-4b51-a645-daa1e925d960",
+        "order_id": "65df7cb7-57c3-43b2-9503-e48c3c9413a2",
+        "time": "2026-09-24T15:14:24.566742Z",
+        "symbol": "EWJ",
+        "side": "sell",
+        "qty": 0.389994895,
+        "price": 95.27
+      },
+      {
+        "execution_id": "20260924111424565::d2cb8bd3-4d7e-4509-baaa-3dd23bb889e7",
+        "order_id": "65df7cb7-57c3-43b2-9503-e48c3c9413a2",
+        "time": "2026-09-24T15:14:24.565068Z",
+        "symbol": "EWJ",
+        "side": "sell",
+        "qty": 62.0,
+        "price": 95.27
+      },
+      {
+        "execution_id": "20260924105517297::98bd1b06-615c-4468-9d7b-d4aab94c65c0",
+        "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+        "time": "2026-09-24T14:55:17.297332Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 0.286674795,
+        "price": 280.12
+      },
+      {
+        "execution_id": "20260924105517295::d5439097-838b-4170-80f0-acd4a6309a3d",
+        "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+        "time": "2026-09-24T14:55:17.295723Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 3.0,
+        "price": 280.12
+      },
+      {
+        "execution_id": "20260924105516608::8c46bd27-5961-4b0d-8942-39063903abb7",
+        "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+        "time": "2026-09-24T14:55:16.608387Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 4.0,
+        "price": 280.12
+      },
+      {
+        "execution_id": "20260924105515513::acecc732-d8c5-44c3-b4fc-e0d88828dc1f",
+        "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+        "time": "2026-09-24T14:55:15.513053Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 14.0,
+        "price": 280.1
+      }
+    ],
     "note": "Daily marked trading P&L, including today's closed trades. Fees, dividends, transfers, unassigned assets and sampling differences remain in the unallocated account change; not guaranteed net profit."
   },
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-09-24T14:46:12.221798+00:00",
+    "past_days_updated_at": "2026-09-24T15:17:35.772169+00:00",
     "coverage_start": "2026-08-23",
     "days": [
       {
         "date": "2026-09-24",
-        "equity": 107230.33,
-        "day_change": -196.49,
-        "day_change_pct": -0.183,
+        "equity": 107183.36,
+        "day_change": -243.46,
+        "day_change_pct": -0.227,
         "status": "intraday",
         "executions_complete": true,
         "buys": 0,
-        "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
+        "sells": 6,
+        "execution_count": 6,
+        "order_count": 2,
+        "executions": [
+          {
+            "execution_id": "20260924111424566::e74e6c01-e0c7-4b51-a645-daa1e925d960",
+            "order_id": "65df7cb7-57c3-43b2-9503-e48c3c9413a2",
+            "time": "2026-09-24T15:14:24.566742Z",
+            "symbol": "EWJ",
+            "side": "sell",
+            "qty": 0.389994895,
+            "price": 95.27
+          },
+          {
+            "execution_id": "20260924111424565::d2cb8bd3-4d7e-4509-baaa-3dd23bb889e7",
+            "order_id": "65df7cb7-57c3-43b2-9503-e48c3c9413a2",
+            "time": "2026-09-24T15:14:24.565068Z",
+            "symbol": "EWJ",
+            "side": "sell",
+            "qty": 62.0,
+            "price": 95.27
+          },
+          {
+            "execution_id": "20260924105517297::98bd1b06-615c-4468-9d7b-d4aab94c65c0",
+            "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+            "time": "2026-09-24T14:55:17.297332Z",
+            "symbol": "IWM",
+            "side": "sell",
+            "qty": 0.286674795,
+            "price": 280.12
+          },
+          {
+            "execution_id": "20260924105517295::d5439097-838b-4170-80f0-acd4a6309a3d",
+            "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+            "time": "2026-09-24T14:55:17.295723Z",
+            "symbol": "IWM",
+            "side": "sell",
+            "qty": 3.0,
+            "price": 280.12
+          },
+          {
+            "execution_id": "20260924105516608::8c46bd27-5961-4b0d-8942-39063903abb7",
+            "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+            "time": "2026-09-24T14:55:16.608387Z",
+            "symbol": "IWM",
+            "side": "sell",
+            "qty": 4.0,
+            "price": 280.12
+          },
+          {
+            "execution_id": "20260924105515513::acecc732-d8c5-44c3-b4fc-e0d88828dc1f",
+            "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+            "time": "2026-09-24T14:55:15.513053Z",
+            "symbol": "IWM",
+            "side": "sell",
+            "qty": 14.0,
+            "price": 280.1
+          }
+        ]
       },
       {
         "date": "2026-09-23",
@@ -9507,6 +9657,60 @@
       }
     ],
     "executions": [
+      {
+        "execution_id": "20260924111424566::e74e6c01-e0c7-4b51-a645-daa1e925d960",
+        "order_id": "65df7cb7-57c3-43b2-9503-e48c3c9413a2",
+        "time": "2026-09-24T15:14:24.566742Z",
+        "symbol": "EWJ",
+        "side": "sell",
+        "qty": 0.389994895,
+        "price": 95.27
+      },
+      {
+        "execution_id": "20260924111424565::d2cb8bd3-4d7e-4509-baaa-3dd23bb889e7",
+        "order_id": "65df7cb7-57c3-43b2-9503-e48c3c9413a2",
+        "time": "2026-09-24T15:14:24.565068Z",
+        "symbol": "EWJ",
+        "side": "sell",
+        "qty": 62.0,
+        "price": 95.27
+      },
+      {
+        "execution_id": "20260924105517297::98bd1b06-615c-4468-9d7b-d4aab94c65c0",
+        "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+        "time": "2026-09-24T14:55:17.297332Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 0.286674795,
+        "price": 280.12
+      },
+      {
+        "execution_id": "20260924105517295::d5439097-838b-4170-80f0-acd4a6309a3d",
+        "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+        "time": "2026-09-24T14:55:17.295723Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 3.0,
+        "price": 280.12
+      },
+      {
+        "execution_id": "20260924105516608::8c46bd27-5961-4b0d-8942-39063903abb7",
+        "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+        "time": "2026-09-24T14:55:16.608387Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 4.0,
+        "price": 280.12
+      },
+      {
+        "execution_id": "20260924105515513::acecc732-d8c5-44c3-b4fc-e0d88828dc1f",
+        "order_id": "4874c00a-0dde-40cb-9457-8fff37ece1dc",
+        "time": "2026-09-24T14:55:15.513053Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 14.0,
+        "price": 280.1
+      },
       {
         "execution_id": "20260923125324785::0c8b5b48-2806-445d-8265-f0eba2888be8",
         "order_id": "9228136d-723f-47de-b8eb-13cad364203f",
