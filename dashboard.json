@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-09-25T13:18:10.591329+00:00",
-  "market_open": false,
+  "last_updated": "2026-09-25T13:45:07.269546+00:00",
+  "market_open": true,
   "account": {
-    "equity": 107305.13,
+    "equity": 107326.19,
     "cash": 89020.08,
-    "buying_power": 407278.46,
+    "buying_power": 407337.42,
     "last_equity": 107263.68887168296,
-    "day_pnl": 41.44,
-    "day_pnl_pct": 0.039,
+    "day_pnl": 62.5,
+    "day_pnl_pct": 0.058,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -57,41 +57,41 @@
         "SPY": {
           "qty": 8.014453406,
           "entry_price": 762.415063,
-          "market_value": 6167.121896,
-          "unrealized_pnl": 56.781898,
-          "unrealized_pnl_pct": 0.9289999999999999,
-          "current_price": 769.5,
+          "market_value": 6166.440667,
+          "unrealized_pnl": 56.100669,
+          "unrealized_pnl_pct": 0.918,
+          "current_price": 769.415,
           "previous_close": 767.18
         },
         "DIA": {
           "qty": 11.777630006,
           "entry_price": 518.808962,
-          "market_value": 6061.003954,
-          "unrealized_pnl": -49.336044,
-          "unrealized_pnl_pct": -0.807,
-          "current_price": 514.62,
+          "market_value": 6059.649526,
+          "unrealized_pnl": -50.690472,
+          "unrealized_pnl_pct": -0.83,
+          "current_price": 514.505,
           "previous_close": 512.68
         },
         "EZU": {
           "qty": 88.811219299,
           "entry_price": 68.81,
-          "market_value": 6056.925156,
-          "unrealized_pnl": -54.174844,
-          "unrealized_pnl_pct": -0.886,
-          "current_price": 68.2,
+          "market_value": 6080.016073,
+          "unrealized_pnl": -31.083927,
+          "unrealized_pnl_pct": -0.509,
+          "current_price": 68.46,
           "previous_close": 68.2
         }
       },
-      "market_value": 18285.05,
-      "unrealized_pnl": -46.73,
-      "day_pnl": 41.44,
+      "market_value": 18306.11,
+      "unrealized_pnl": -25.67,
+      "day_pnl": 62.5,
       "market_date": "2026-09-25",
       "daily_buy_executions": 0,
       "daily_sell_executions": 0,
       "daily_symbols": [
         {
           "symbol": "SPY",
-          "day_pnl": 18.59,
+          "day_pnl": 17.91,
           "start_qty": 8.014453406,
           "current_qty": 8.014453406,
           "previous_close": 767.18,
@@ -99,7 +99,7 @@
         },
         {
           "symbol": "DIA",
-          "day_pnl": 22.85,
+          "day_pnl": 21.49,
           "start_qty": 11.777630006,
           "current_qty": 11.777630006,
           "previous_close": 512.68,
@@ -107,7 +107,7 @@
         },
         {
           "symbol": "EZU",
-          "day_pnl": -0.0,
+          "day_pnl": 23.09,
           "start_qty": 88.811219299,
           "current_qty": 88.811219299,
           "previous_close": 68.2,
@@ -1640,6 +1640,10 @@
     {
       "ts": "2026-09-25T13:18:10.591329+00:00",
       "equity": 107305.13
+    },
+    {
+      "ts": "2026-09-25T13:45:07.269546+00:00",
+      "equity": 107326.19
     }
   ],
   "recent_trades": [
@@ -5534,7 +5538,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-09-25T13:18:14.422621+00:00",
+    "generated_at": "2026-09-25T13:45:10.106460+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -5687,7 +5691,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-09-25",
-    "generated_at": "2026-09-25T13:18:12.985906+00:00",
+    "generated_at": "2026-09-25T13:45:09.344827+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -5697,14 +5701,14 @@
         "daily_symbols": []
       },
       "low": {
-        "day_pnl": 41.44,
+        "day_pnl": 62.5,
         "market_date": "2026-09-25",
         "daily_buy_executions": 0,
         "daily_sell_executions": 0,
         "daily_symbols": [
           {
             "symbol": "SPY",
-            "day_pnl": 18.59,
+            "day_pnl": 17.91,
             "start_qty": 8.014453406,
             "current_qty": 8.014453406,
             "previous_close": 767.18,
@@ -5712,7 +5716,7 @@
           },
           {
             "symbol": "DIA",
-            "day_pnl": 22.85,
+            "day_pnl": 21.49,
             "start_qty": 11.777630006,
             "current_qty": 11.777630006,
             "previous_close": 512.68,
@@ -5720,7 +5724,7 @@
           },
           {
             "symbol": "EZU",
-            "day_pnl": -0.0,
+            "day_pnl": 23.09,
             "start_qty": 88.811219299,
             "current_qty": 88.811219299,
             "previous_close": 68.2,
@@ -5729,7 +5733,7 @@
         ]
       }
     },
-    "portfolio_day_pnl": 41.44,
+    "portfolio_day_pnl": 62.5,
     "unallocated_day_pnl": 0.0,
     "buy_executions": 0,
     "sell_executions": 0,
@@ -5739,15 +5743,15 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-09-25T13:18:13.171955+00:00",
+    "past_days_updated_at": "2026-09-25T13:45:09.519030+00:00",
     "coverage_start": "2026-08-24",
     "days": [
       {
         "date": "2026-09-25",
-        "equity": 107305.13,
-        "day_change": 41.44,
-        "day_change_pct": 0.039,
-        "status": "latest",
+        "equity": 107326.19,
+        "day_change": 62.5,
+        "day_change_pct": 0.058,
+        "status": "intraday",
         "executions_complete": true,
         "buys": 0,
         "sells": 0,
