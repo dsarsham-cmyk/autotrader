@@ -1,13 +1,4 @@
-"""Run both trading scenarios (HIGH risk + LOW risk) as sibling processes.
-
-Each scenario is a separate `bot.py` instance with its own config, state file,
-logbook, and log file. They share one Alpaca paper account; `capital_fraction`
-in each config limits how much of the account each bot may deploy so they do
-not over-allocate.
-
-The wrapper supervises both processes, restarts any that crash, and sends the
-daily Telegram report once per day (after US close, 21:00 UTC).
-"""
+"""Supervise one paper-account execution controller for both portfolios."""
 from __future__ import annotations
 
 import json
@@ -49,11 +40,13 @@ def build_health(procs, restart_counts: dict[str, int],
     """Return a public, non-sensitive snapshot of the cloud engine."""
     scenarios = {}
     for _config, label, process in procs:
-        scenarios[label.lower().replace(" risk", "")] = {
-            "name": label,
-            "running": process.poll() is None,
-            "restarts": restart_counts.get(label, 0),
-        }
+        labels = [name for _, name in SCENARIOS] if label == "PAPER ACCOUNT" else [label]
+        for name in labels:
+            scenarios[name.lower().replace(" risk", "")] = {
+                "name": name, "running": process.poll() is None,
+                "restarts": restart_counts.get(label, 0),
+                "controller": "shared paper account",
+            }
     return {
         "ok": bool(scenarios) and all(s["running"] for s in scenarios.values()),
         "service": "autotrader",
@@ -63,7 +56,18 @@ def build_health(procs, restart_counts: dict[str, int],
         "version": os.getenv("RAILWAY_GIT_COMMIT_SHA", "local")[:8],
         "last_daily_report": last_report_date,
         "scenarios": scenarios,
+        "safety": read_safety_status(),
     }
+
+
+def read_safety_status() -> dict:
+    try:
+        status = json.loads(Path("safety_status.json").read_text(encoding="utf-8"))
+        age = (datetime.now(timezone.utc)-datetime.fromisoformat(status["updated_at"])).total_seconds()
+        status["fresh"] = -5 <= age <= 45
+        return status
+    except (OSError, ValueError, KeyError, TypeError):
+        return {"fresh": False, "errors": ["Safety controller status unavailable"]}
 
 
 def publish_health(procs, restart_counts: dict[str, int],
@@ -148,8 +152,10 @@ def start_dashboard_refresher() -> None:
 
 
 def spawn(config: str) -> subprocess.Popen:
+    if config != "safe_paper_engine.py":
+        raise ValueError("Production supervisor requires the single paper safety engine")
     return subprocess.Popen(
-        [sys.executable, "bot.py", config],
+        [sys.executable, config],
         cwd=str(Path(__file__).resolve().parent),
     )
 
@@ -174,13 +180,13 @@ def maybe_send_daily_report(last_report_date: str | None) -> str | None:
 
 def main() -> None:
     procs: list[tuple[str, str, subprocess.Popen]] = []
-    for config, label in SCENARIOS:
+    for config, label in [("safe_paper_engine.py", "PAPER ACCOUNT")]:
         print(f"[run_all] starting {label} ({config})", flush=True)
         procs.append((config, label, spawn(config)))
 
     last_report_date: str | None = None
     last_report_check = 0.0
-    restart_counts = {label: 0 for _config, label in SCENARIOS}
+    restart_counts = {"PAPER ACCOUNT": 0}
     publish_health(procs, restart_counts, last_report_date)
     start_health_server()
     start_dashboard_refresher()

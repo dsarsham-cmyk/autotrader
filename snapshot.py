@@ -71,6 +71,9 @@ def _order_inventory(client) -> tuple[list[dict], list[dict]]:
             "type": _enum_value(order.type),
             "order_class": _enum_value(order.order_class),
             "status": _enum_value(order.status),
+            "qty": str(order.qty or 0),
+            "filled_qty": str(order.filled_qty or 0),
+            "stop_price": str(order.stop_price or 0),
             "created_at": order.created_at.isoformat() if order.created_at else "",
             "legs": [compact(leg) for leg in (order.legs or [])],
         }
@@ -155,12 +158,9 @@ def build_audit(fills: list[dict], backtest: dict, positions: dict,
             out.extend(flatten(order.get("legs", [])))
         return out
 
-    protective_types = {"stop", "stop_limit", "trailing_stop"}
-    protected_symbols = {
-        order.get("symbol", "")
-        for order in flatten(open_orders)
-        if order.get("type") in protective_types
-    }
+    from paper_safety import stop_coverage
+    protected_symbols = {symbol for symbol, p in positions.items()
+                         if stop_coverage({"symbol": symbol, "qty": p.get("qty", 0)}, open_orders)}
     open_symbols = set(positions)
     protected_count = len(open_symbols & protected_symbols)
 
@@ -426,6 +426,27 @@ def main() -> None:
         state["recent_trades"], state["backtest"], positions,
         open_orders, recent_orders, datetime.now(timezone.utc),
     )
+    from run_all import read_safety_status
+    state["safety"] = read_safety_status()
+    if not Path("safety_status.json").exists():
+        try:
+            import requests
+            response = requests.get("https://autotrader-production-de19.up.railway.app/health", timeout=5)
+            response.raise_for_status()
+            state["safety"] = response.json().get("safety", state["safety"])
+        except Exception:
+            pass
+    safety = state["safety"]
+    safety_ok = safety.get("fresh") and not safety.get("errors") and not safety.get("liquidating")
+    state["audit"]["checks"].append({
+        "key": "account_controller", "label": "Account-wide loss control",
+        "status": "good" if safety_ok else "bad",
+        "detail": (safety.get("reason") or "Paper controller checking risk") if safety.get("fresh")
+                  else "Safety state is missing or stale; process uptime is not risk verification.",
+    })
+    if not safety_ok:
+        state["audit"]["good_enough"] = False
+        state["audit"]["verdict"] = "needs_attention"
 
     # Persist rolling equity history across snapshot runs.
     hist = []

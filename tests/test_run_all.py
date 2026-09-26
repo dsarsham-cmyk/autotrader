@@ -1,5 +1,7 @@
 import run_all
 import json
+from datetime import datetime, timedelta, timezone
+import pytest
 
 
 class _Process:
@@ -52,3 +54,24 @@ def test_live_dashboard_refresh_publishes_snapshot(monkeypatch, tmp_path):
 
     assert result == payload
     assert run_all.LIVE_DASHBOARD_STATE == payload
+
+
+def test_both_portfolios_share_one_controller_health():
+    health = run_all.build_health(
+        [("safe_paper_engine.py", "PAPER ACCOUNT", _Process())],
+        {"PAPER ACCOUNT": 2}, None)
+    assert set(health["scenarios"]) == {"high", "low"}
+    assert all(s["running"] and s["restarts"] == 2 for s in health["scenarios"].values())
+
+
+def test_supervisor_cannot_spawn_legacy_writers():
+    with pytest.raises(ValueError):
+        run_all.spawn("config_high.yaml")
+
+
+def test_safety_status_missing_or_stale_is_not_fresh(monkeypatch, tmp_path):
+    monkeypatch.chdir(tmp_path)
+    assert not run_all.read_safety_status()["fresh"]
+    (tmp_path/"safety_status.json").write_text(json.dumps({
+        "updated_at": (datetime.now(timezone.utc)-timedelta(seconds=60)).isoformat()}))
+    assert not run_all.read_safety_status()["fresh"]

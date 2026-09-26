@@ -116,12 +116,21 @@ def build_report() -> str:
         lines.append(f"  → unrealized P&L: {upnl:+,.2f}")
         lines.append("")
 
-    lines.append(f"⚠️ Errors today: {len(errors)}")
+    from run_all import read_safety_status
+    safety = read_safety_status()
+    errors.extend(safety.get("errors", []))
+    lines.append("Paper safety: " + (safety.get("reason") or "checking"))
+    lines.append(f"Verified stops: {safety.get('verified_stops', '?')}/{safety.get('open_positions', '?')}")
+    if not safety.get("fresh"):
+        errors.append("Safety controller status missing or stale")
+    if safety.get("liquidating"):
+        errors.append("Exit in progress; closure not yet confirmed")
+    lines.append(f"⚠️ Errors / safety issues: {len(errors)}")
     if errors:
         for e in errors[:5]:
             lines.append(f"  • {e[:120]}")
     else:
-        lines.append("✅ All systems normal")
+        lines.append("No reported controller errors; see dashboard for current evidence")
     lines.append("")
 
     lines.append(f"Strategy: volatility_scaled_momentum (daily bars)")

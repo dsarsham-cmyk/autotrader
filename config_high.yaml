@@ -19,17 +19,18 @@ risk:
   atr_stop_mult: 1.5
   atr_take_mult: 5.0
   max_position_pct: 0.33
-  daily_loss_limit_pct: 0.02
+  entry_loss_limit_pct: 0.005
+  daily_loss_limit_pct: 0.01
   max_drawdown_pct: 0.10
   starting_equity: 100000
   max_account_loss_pct: 0.10
   break_even_atr: 1.0
   trail_atr: 2.0
   trail_distance_atr: 1.0
-  capital_fraction: 0.5
+  capital_fraction: 0.25
 day_trading:
-  close_at_eod: false
-  eod_close_time: '22:55'
+  close_at_eod: true
+  close_buffer_seconds: 300
 data:
   fetch_limit: 500
 paper:

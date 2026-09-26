@@ -9,6 +9,9 @@ __pycache__/
 # Runtime state
 state.json
 state_*.json
+safety_state.json
+safety_status.json
+safety_*.tmp
 # csmom_state.json and csmom_dashboard.json are tracked: they persist
 # rebalance/report dates and the dashboard snapshot across cloud runs.
 logs/*

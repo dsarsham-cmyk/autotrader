@@ -11,6 +11,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the app.
 COPY . .
 
-# Default command: run BOTH trading scenarios (HIGH risk + LOW risk).
-# Each is a separate bot.py process supervised by run_all.py.
+# Both paper portfolios share one account-wide safety/execution controller.
 CMD ["python", "run_all.py"]

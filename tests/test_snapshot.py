@@ -37,12 +37,13 @@ def test_audit_detects_unprotected_positions_and_churn():
 
 def test_audit_recognizes_active_stop_protection():
     open_orders = [{
+        "id": "stop1", "qty": "1", "filled_qty": "0", "stop_price": "100",
         "symbol": "SPY", "side": "sell", "type": "stop",
         "order_class": "simple", "status": "new", "legs": [],
     }]
 
     audit = build_audit(
-        [], _backtest(), {"SPY": {}}, open_orders, [],
+        [], _backtest(), {"SPY": {"qty": "1"}}, open_orders, [],
         datetime(2026, 9, 17, 18, 0, tzinfo=timezone.utc),
     )
 

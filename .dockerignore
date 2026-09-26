@@ -9,4 +9,6 @@ logs/
 csmom_state.json
 csmom_dashboard.json
 state*.json
+safety_*.json
+safety_*.tmp
 *.log
