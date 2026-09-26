@@ -247,6 +247,15 @@ def test_stale_quote_blocks_entry(setup):
     assert not api.submitted
 
 
+def test_closed_session_cancels_unfilled_entries(setup):
+    e, api = setup
+    api.clock["is_open"] = False
+    api.open = [{"id": "x", "symbol": "SPY", "side": "buy", "status": "new"}]
+    e.tick()
+    assert api.deleted == ["/v2/orders/x"]
+    assert not api.submitted
+
+
 def test_stale_clock_fails_before_order_submission(setup):
     e, api = setup
     api.clock["timestamp"] = (datetime.now(timezone.utc)-timedelta(minutes=2)).isoformat()

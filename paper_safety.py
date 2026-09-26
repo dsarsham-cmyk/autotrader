@@ -81,6 +81,8 @@ def apply_policy(state, account, clock, positions, policy):
         remaining = (timestamp(clock["next_close"])-now).total_seconds()
         if remaining <= policy["close_buffer_seconds"]:
             reason = reason or "end of session"
+    elif positions:
+        reason = reason or "holdings outside regular session: exit pending next eligible open"
     if state.get("bootstrap") and positions:
         reason = reason or "inherited holdings: remove overnight exposure"
     held_days = state.setdefault("held_days", {})

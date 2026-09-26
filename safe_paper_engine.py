@@ -262,7 +262,12 @@ class Engine:
                 if o.get("side") == "buy":
                     self.cancel(o)
             return self.publish()
-        if not clock["is_open"] or active_orders(orders) and any(
+        if not clock["is_open"]:
+            for order in active_orders(orders):
+                if order.get("side") == "buy":
+                    self.cancel(order)
+            return self.publish()
+        if active_orders(orders) and any(
                 o.get("side") == "buy" for o in active_orders(orders)):
             return self.publish()
         if account.get("trading_blocked") or account.get("account_blocked"):
@@ -384,7 +389,8 @@ def main():
             engine.state["entry_reason"] = "safety API failure; entries locked for this session"
             engine.persist()
             engine.status.update({"updated_at": datetime.now(timezone.utc).isoformat(),
-                                  "errors": [str(exc)], "mode": "paper"})
+                                  "errors": [str(exc)], "mode": "paper",
+                                  "verified_stops": None, "open_positions": None})
             engine.publish()
             print(f"[safety] {exc}", flush=True)
         time.sleep(max(1, 10-(time.monotonic()-started)))
