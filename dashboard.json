@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-09-28T02:16:45.589963+00:00",
+  "last_updated": "2026-09-28T02:45:02.687592+00:00",
   "market_open": false,
   "account": {
-    "equity": 107355.8,
+    "equity": 107358.03,
     "cash": 89020.08,
-    "buying_power": 407420.34,
+    "buying_power": 407426.57,
     "last_equity": 107399.05326455733,
-    "day_pnl": -43.25,
-    "day_pnl_pct": -0.04,
+    "day_pnl": -41.02,
+    "day_pnl_pct": -0.038,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -57,19 +57,19 @@
         "SPY": {
           "qty": 8.014453406,
           "entry_price": 762.415063,
-          "market_value": 6163.194814,
-          "unrealized_pnl": 52.854816,
-          "unrealized_pnl_pct": 0.865,
-          "current_price": 769.01,
+          "market_value": 6162.473513,
+          "unrealized_pnl": 52.133515,
+          "unrealized_pnl_pct": 0.853,
+          "current_price": 768.92,
           "previous_close": 771.35
         },
         "DIA": {
           "qty": 11.777630006,
           "entry_price": 518.808962,
-          "market_value": 6070.308281,
-          "unrealized_pnl": -40.031717,
-          "unrealized_pnl_pct": -0.655,
-          "current_price": 515.41,
+          "market_value": 6073.252689,
+          "unrealized_pnl": -37.087309,
+          "unrealized_pnl_pct": -0.607,
+          "current_price": 515.66,
           "previous_close": 517.49
         },
         "EZU": {
@@ -82,16 +82,16 @@
           "previous_close": 68.71
         }
       },
-      "market_value": 18335.72,
-      "unrealized_pnl": 3.94,
-      "day_pnl": -43.25,
+      "market_value": 18337.95,
+      "unrealized_pnl": 6.17,
+      "day_pnl": -41.03,
       "market_date": "2026-09-27",
       "daily_buy_executions": 0,
       "daily_sell_executions": 0,
       "daily_symbols": [
         {
           "symbol": "SPY",
-          "day_pnl": -18.75,
+          "day_pnl": -19.48,
           "start_qty": 8.014453406,
           "current_qty": 8.014453406,
           "previous_close": 771.35,
@@ -99,7 +99,7 @@
         },
         {
           "symbol": "DIA",
-          "day_pnl": -24.5,
+          "day_pnl": -21.55,
           "start_qty": 11.777630006,
           "current_qty": 11.777630006,
           "previous_close": 517.49,
@@ -117,10 +117,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-17T17:05:45.838354+00:00",
-      "equity": 101881.57
-    },
     {
       "ts": "2026-09-17T17:14:02.582082+00:00",
       "equity": 101809.29
@@ -2116,6 +2112,10 @@
     {
       "ts": "2026-09-28T02:16:45.589963+00:00",
       "equity": 107355.8
+    },
+    {
+      "ts": "2026-09-28T02:45:02.687592+00:00",
+      "equity": 107358.03
     }
   ],
   "recent_trades": [
@@ -6010,7 +6010,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-09-28T02:16:47.813453+00:00",
+    "generated_at": "2026-09-28T02:45:04.644189+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -6169,7 +6169,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-09-27",
-    "generated_at": "2026-09-28T02:16:46.930390+00:00",
+    "generated_at": "2026-09-28T02:45:03.689110+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -6179,14 +6179,14 @@
         "daily_symbols": []
       },
       "low": {
-        "day_pnl": -43.25,
+        "day_pnl": -41.03,
         "market_date": "2026-09-27",
         "daily_buy_executions": 0,
         "daily_sell_executions": 0,
         "daily_symbols": [
           {
             "symbol": "SPY",
-            "day_pnl": -18.75,
+            "day_pnl": -19.48,
             "start_qty": 8.014453406,
             "current_qty": 8.014453406,
             "previous_close": 771.35,
@@ -6194,7 +6194,7 @@
           },
           {
             "symbol": "DIA",
-            "day_pnl": -24.5,
+            "day_pnl": -21.55,
             "start_qty": 11.777630006,
             "current_qty": 11.777630006,
             "previous_close": 517.49,
@@ -6211,8 +6211,8 @@
         ]
       }
     },
-    "portfolio_day_pnl": -43.25,
-    "unallocated_day_pnl": 0.0,
+    "portfolio_day_pnl": -41.03,
+    "unallocated_day_pnl": 0.01,
     "buy_executions": 0,
     "sell_executions": 0,
     "executions": [],
@@ -6221,14 +6221,14 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-09-28T02:16:47.035527+00:00",
+    "past_days_updated_at": "2026-09-28T02:45:03.802692+00:00",
     "coverage_start": "2026-08-26",
     "days": [
       {
         "date": "2026-09-27",
-        "equity": 107355.8,
-        "day_change": -43.25,
-        "day_change_pct": -0.04,
+        "equity": 107358.03,
+        "day_change": -41.02,
+        "day_change_pct": -0.038,
         "status": "latest",
         "executions_complete": true,
         "buys": 0,
@@ -14083,7 +14083,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-09-28T02:16:39.627188+00:00",
+    "updated_at": "2026-09-28T02:44:59.655092+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -14096,7 +14096,7 @@
     "entry_blocked": true,
     "reason": "holdings outside regular session: exit pending next eligible open",
     "liquidating": "holdings outside regular session: exit pending next eligible open",
-    "daily_pnl_pct": -0.04,
+    "daily_pnl_pct": -0.039,
     "market_open": false,
     "open_positions": 3,
     "actions": {
@@ -14115,47 +14115,47 @@
     "signals": {
       "TQQQ": {
         "signal": "buy",
-        "age_seconds": 24
+        "age_seconds": 15
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 24
+        "age_seconds": 15
       },
       "SOXL": {
         "signal": "buy",
-        "age_seconds": 24
+        "age_seconds": 15
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 24
+        "age_seconds": 15
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 24
+        "age_seconds": 15
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 24
+        "age_seconds": 15
       },
       "IWM": {
         "signal": "buy",
-        "age_seconds": 24
+        "age_seconds": 14
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 23
+        "age_seconds": 14
       },
       "EZU": {
         "signal": "buy",
-        "age_seconds": 23
+        "age_seconds": 14
       },
       "EWU": {
         "signal": "buy",
-        "age_seconds": 23
+        "age_seconds": 14
       },
       "EWG": {
         "signal": "buy",
-        "age_seconds": 23
+        "age_seconds": 14
       }
     },
     "state_persistent": true,
