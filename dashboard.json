@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-09-29T16:48:15.257954+00:00",
+  "last_updated": "2026-09-29T17:15:34.314069+00:00",
   "market_open": true,
   "account": {
     "equity": 107290.64,
@@ -64,10 +64,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-19T06:19:37.435092+00:00",
-      "equity": 103117.0
-    },
     {
       "ts": "2026-09-19T06:45:27.775913+00:00",
       "equity": 103117.0
@@ -2062,6 +2058,10 @@
     },
     {
       "ts": "2026-09-29T16:48:15.257954+00:00",
+      "equity": 107290.64
+    },
+    {
+      "ts": "2026-09-29T17:15:34.314069+00:00",
       "equity": 107290.64
     }
   ],
@@ -6065,7 +6065,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-09-29T16:48:17.702773+00:00",
+    "generated_at": "2026-09-29T17:15:37.313607+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -6224,7 +6224,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-09-29",
-    "generated_at": "2026-09-29T16:48:16.836434+00:00",
+    "generated_at": "2026-09-29T17:15:35.747832+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -6251,7 +6251,7 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-09-29T16:48:16.947009+00:00",
+    "past_days_updated_at": "2026-09-29T17:15:35.936140+00:00",
     "coverage_start": "2026-08-28",
     "days": [
       {
@@ -14343,7 +14343,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-09-29T16:48:11.984448+00:00",
+    "updated_at": "2026-09-29T17:15:32.028191+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -14371,47 +14371,47 @@
     "signals": {
       "TQQQ": {
         "signal": "buy",
-        "age_seconds": 28
+        "age_seconds": 5
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 28
+        "age_seconds": 5
       },
       "SOXL": {
         "signal": "buy",
-        "age_seconds": 28
+        "age_seconds": 5
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 28
+        "age_seconds": 5
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 27
+        "age_seconds": 5
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 27
+        "age_seconds": 4
       },
       "IWM": {
         "signal": "buy",
-        "age_seconds": 27
+        "age_seconds": 4
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 27
+        "age_seconds": 4
       },
       "EZU": {
         "signal": "buy",
-        "age_seconds": 27
+        "age_seconds": 4
       },
       "EWU": {
         "signal": "buy",
-        "age_seconds": 27
+        "age_seconds": 4
       },
       "EWG": {
         "signal": "buy",
-        "age_seconds": 27
+        "age_seconds": 4
       }
     },
     "state_persistent": true,
