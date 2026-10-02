@@ -123,12 +123,12 @@ class Engine:
         base=min(book["baseline"],float(account["equity"]))
         result={}
         for c in self.configs:
-            cap=base*c["risk"]["capital_fraction"]
+            cap=math.floor(base*c["risk"]["capital_fraction"]*100+1e-6)/100
             committed=float(book["committed"].get(c["name"],0))
             exposure=sum(abs(float(p["market_value"])) for p in positions if p["symbol"] in c["stock"]["symbols"])
             result[c["name"]]=dict(fraction=c["risk"]["capital_fraction"],
                 daily_cap=round(cap,2),committed=round(committed,2),
-                remaining=max(0,cap-committed),exposure=round(exposure,2))
+                remaining=round(max(0,cap-committed),2),exposure=round(exposure,2))
         return result
 
     def persist(self):

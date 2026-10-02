@@ -97,6 +97,13 @@ def test_pending_experiment_order_expires_without_refilling_daily_budget(setup):
     assert not api.submitted
 
 
+def test_remaining_money_never_exceeds_displayed_daily_cap(setup):
+    e,api=setup
+    api.account.update(equity="107321.42",last_equity="107296.25")
+    budgets=e.category_budgets(api.account,[])
+    assert budgets["LOW RISK"]["remaining"]==budgets["LOW RISK"]["daily_cap"]==53648.12
+
+
 def stop(symbol="TQQQ", qty="2", **extra):
     return dict({"id": "stop-"+symbol, "symbol": symbol, "qty": qty,
                  "filled_qty": "0", "side": "sell", "type": "stop",
