@@ -42,7 +42,7 @@
       "shorting": false,
       "take_profit": false
     },
-    "source_hash": "41c64ff22ad2b48d4ab1e5df2ea8884784bc15924f4d8e7f13763e953b42f505",
+    "source_hash": "12123e984679e501323390627dac1acab6ec58cc2a92ff986a352125e504cb3c",
     "excluded_through": "2026-10-02",
     "created_utc": "2026-10-02T14:10:04.847218+00:00",
     "initial_virtual_usd": 100000,
@@ -57,7 +57,7 @@
   "trades": [],
   "signals": [],
   "status": "awaiting_new_completed_sessions",
-  "updated_utc": "2026-10-02T14:14:14.429451+00:00",
+  "updated_utc": "2026-10-02T14:17:29.628706+00:00",
   "input_hashes": {
     "AAPL": "9b88fb6cba7a03cb6d4de4c18ad9714f8eb8a1e379625d33662f37add3e9e009",
     "MSFT": "facbfc84e1a2ba1ded9e5d36c4e8503c13bf839f51712bbefeb41c05c609352c",

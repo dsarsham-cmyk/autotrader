@@ -30,7 +30,12 @@ RULES = dict(universe=list(SYMBOLS), opening_minutes=5, volume_history=20,
 
 
 def hash_file(path):
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+    content = path.read_bytes()
+    # Git may check out Python as CRLF on Windows and LF on Linux.
+    # Normalize source line endings only; data hashes remain byte-exact.
+    if path.suffix == ".py":
+        content = content.replace(b"\r\n", b"\n")
+    return hashlib.sha256(content).hexdigest()
 
 
 def fetch_symbol(symbol, directory, start, end):

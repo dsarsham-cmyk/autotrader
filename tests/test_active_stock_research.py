@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from active_stock_research import rank, replay, RULES, main
+from active_stock_research import rank, replay, RULES, main, hash_file
 
 
 def stock(ratio=3):
@@ -90,3 +90,16 @@ def test_research_has_no_trading_client_imports():
     source=ast.parse(Path("active_stock_research.py").read_text())
     modules=[node.module for node in ast.walk(source) if isinstance(node,ast.ImportFrom)]
     assert not any(name and (name.startswith("alpaca.trading") or name in ("broker","safe_paper_engine")) for name in modules)
+
+
+def test_source_hash_portable_but_market_data_hash_byte_exact(tmp_path):
+    lf=tmp_path/"lf.py"
+    crlf=tmp_path/"crlf.py"
+    lf.write_bytes(b"print('test')\n")
+    crlf.write_bytes(b"print('test')\r\n")
+    assert hash_file(lf)==hash_file(crlf)
+    a=tmp_path/"a.csv"
+    b=tmp_path/"b.csv"
+    a.write_bytes(b"value\n")
+    b.write_bytes(b"value\r\n")
+    assert hash_file(a)!=hash_file(b)
