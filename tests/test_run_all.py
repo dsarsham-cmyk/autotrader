@@ -60,7 +60,7 @@ def test_both_portfolios_share_one_controller_health():
     health = run_all.build_health(
         [("safe_paper_engine.py", "PAPER ACCOUNT", _Process())],
         {"PAPER ACCOUNT": 2}, None)
-    assert set(health["scenarios"]) == {"high", "low"}
+    assert set(health["scenarios"]) == {"high", "low", "experiment"}
     assert all(s["running"] and s["restarts"] == 2 for s in health["scenarios"].values())
 
 

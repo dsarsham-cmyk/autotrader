@@ -14,6 +14,89 @@ def position(symbol="TQQQ", qty="2"):
             "avg_entry_price": "100"}
 
 
+def test_daily_category_commitments_survive_sales_and_restart(setup):
+    e,api=setup
+    e.tick()
+    committed=e.state["daily_purchase_budget"]["committed"]["HIGH RISK"]
+    restored=engine.Engine(api,e.configs,e.signals,json.loads(engine.STATE.read_text()))
+    assert restored.category_budgets(api.account,[])["HIGH RISK"]["committed"]==pytest.approx(committed)
+    api.account["cash"]="120000"  # a sale/cash increase does not refill allowance
+    restored.state["daily_purchase_budget"]["committed"]["HIGH RISK"]=25000
+    restored.state["attempted"]=[]
+    api.submitted=[]
+    restored.tick()
+    assert not api.submitted
+
+
+def test_next_day_purchase_budget_resets_without_clearing_loss_halts(setup):
+    e,api=setup
+    e.state["daily_purchase_budget"]={"day":"2000-01-01","baseline":100000,
+                                     "committed":{"HIGH RISK":25000}}
+    budget=e.category_budgets(api.account,[])
+    assert budget["HIGH RISK"]["remaining"]==25000
+
+
+def test_untracked_legacy_attempts_cannot_reset_today_spending(setup):
+    e,api=setup
+    e.state["attempted"]=["SPXL"]
+    e.tick()
+    assert e.state["entry_blocked"]
+    assert not api.submitted
+
+
+def test_experiment_budget_and_protective_bracket(setup):
+    e,api=setup
+    config=yaml.safe_load(open("config_experiment.yaml"))
+    signal={"signal":"buy","at":time.time(),"atr":2,"stop_price":95,"limit_cap":110,
+            "market_day":e.state["day"],"deadline":(datetime.now(timezone.utc)+timedelta(hours=1)).isoformat()}
+    exp=engine.Engine(api,e.configs+[config],{"AAPL":signal},e.state)
+    status=exp.tick()
+    order=api.submitted[0]
+    assert order["symbol"]=="AAPL" and order["order_class"]=="bracket"
+    assert order["stop_loss"]["stop_price"]==95
+    assert float(order["qty"])*order["limit_price"]<=1000
+    assert status["reserve_fraction"]==.2
+    assert status["category_budgets"][config["name"]]["daily_cap"]==5000
+
+
+def test_experiment_expired_signal_cannot_enter(setup):
+    e,api=setup
+    config=yaml.safe_load(open("config_experiment.yaml"))
+    signal={"signal":"buy","at":time.time(),"atr":2,"market_day":e.state["day"],
+            "deadline":(datetime.now(timezone.utc)-timedelta(seconds=1)).isoformat()}
+    exp=engine.Engine(api,e.configs+[config],{"AAPL":signal},e.state)
+    exp.tick()
+    assert not api.submitted
+
+
+def test_allocation_reserve_cannot_be_spent(setup):
+    e,api=setup
+    configs=deepcopy(e.configs)
+    configs[0]["risk"]["capital_fraction"]=.4
+    with pytest.raises(ValueError,match="20% reserve"):
+        engine.Engine(api,configs,{})
+
+
+def test_existing_exposure_cannot_consume_reserved_cash_with_new_buy(setup):
+    e,api=setup
+    api.positions=[position("TQQQ","800")]
+    api.open=[stop("TQQQ","800")]
+    e.signals={"SPY":{"signal":"buy","atr":2,"at":time.time()}}
+    e.tick()
+    assert not api.submitted
+
+
+def test_pending_experiment_order_expires_without_refilling_daily_budget(setup):
+    e,api=setup
+    config=yaml.safe_load(open("config_experiment.yaml"))
+    exp=engine.Engine(api,e.configs+[config],{},e.state)
+    api.open=[dict(id="pending",symbol="AAPL",side="buy",status="new",qty="2",
+        submitted_at=(datetime.now(timezone.utc)-timedelta(seconds=90)).isoformat())]
+    exp.tick()
+    assert "/v2/orders/pending" in api.deleted
+    assert not api.submitted
+
+
 def stop(symbol="TQQQ", qty="2", **extra):
     return dict({"id": "stop-"+symbol, "symbol": symbol, "qty": qty,
                  "filled_qty": "0", "side": "sell", "type": "stop",

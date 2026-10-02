@@ -31,6 +31,7 @@ STARTING_BALANCE = 100_000.0
 SCENARIOS = [
     ("high", "config_high.yaml"),
     ("low", "config_low.yaml"),
+    ("experiment", "config_experiment.yaml"),
 ]
 
 

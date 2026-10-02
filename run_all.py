@@ -15,6 +15,7 @@ from pathlib import Path
 SCENARIOS = [
     ("config_high.yaml", "HIGH RISK"),
     ("config_low.yaml", "LOW RISK"),
+    ("config_experiment.yaml", "ACTIVE STOCK EXPERIMENT"),
 ]
 
 RESTART_DELAY = 15       # seconds to wait before restarting a crashed scenario
@@ -42,7 +43,8 @@ def build_health(procs, restart_counts: dict[str, int],
     for _config, label, process in procs:
         labels = [name for _, name in SCENARIOS] if label == "PAPER ACCOUNT" else [label]
         for name in labels:
-            scenarios[name.lower().replace(" risk", "")] = {
+            key="experiment" if name=="ACTIVE STOCK EXPERIMENT" else name.lower().replace(" risk", "")
+            scenarios[key] = {
                 "name": name, "running": process.poll() is None,
                 "restarts": restart_counts.get(label, 0),
                 "controller": "shared paper account",

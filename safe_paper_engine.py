@@ -11,6 +11,7 @@ from pathlib import Path
 import threading
 import time
 import queue
+import math
 from datetime import datetime, timezone
 
 import requests
@@ -76,8 +77,9 @@ class Engine:
     def __init__(self, api, configs, signals, state=None):
         if any(c.get("mode") != "alpaca_paper" or c.get("market") != "stock" for c in configs):
             raise ValueError("Safety engine only accepts Alpaca PAPER stock configurations")
-        if sum(c["risk"]["capital_fraction"] for c in configs) > 1:
-            raise ValueError("Portfolio allocation exceeds account cash")
+        fractions=[float(c["risk"]["capital_fraction"]) for c in configs]
+        if any(not math.isfinite(v) or v<0 for v in fractions) or sum(fractions) > .80000001:
+            raise ValueError("Paper allocations must preserve at least 20% reserve")
         self.api, self.configs, self.signals = api, configs, signals
         self.owner = {s: c for c in configs for s in c["stock"]["symbols"]}
         if len(self.owner) != sum(len(c["stock"]["symbols"]) for c in configs):
@@ -101,6 +103,33 @@ class Engine:
         self.events = queue.Queue(maxsize=100)
         self.previous_event = None
         self.operation_stage = "inventory"
+        self.experiment_health = {}
+
+    def category_budgets(self, account, positions):
+        day=self.state["day"]
+        book=self.state.get("daily_purchase_budget")
+        if not book or book.get("day") != day:
+            # Existing attempts without the new ledger cannot be reconstructed
+            # safely. Migration waits for the next session instead of resetting
+            # any existing intraday purchase/loss allowance.
+            if self.state.get("attempted") and not self.state.get("entry_blocked"):
+                self.state["entry_blocked"]=True
+                self.state["entry_reason"]="daily budget migration: wait for next session"
+            baseline=float(account["last_equity"])
+            legacy={c["name"]:baseline*c["risk"]["capital_fraction"] for c in self.configs
+                    if any(s in c["stock"]["symbols"] for s in self.state.get("attempted",[]))}
+            book=dict(day=day,baseline=baseline,committed=legacy,legacy_allowance_held=bool(legacy))
+            self.state["daily_purchase_budget"]=book
+        base=min(book["baseline"],float(account["equity"]))
+        result={}
+        for c in self.configs:
+            cap=base*c["risk"]["capital_fraction"]
+            committed=float(book["committed"].get(c["name"],0))
+            exposure=sum(abs(float(p["market_value"])) for p in positions if p["symbol"] in c["stock"]["symbols"])
+            result[c["name"]]=dict(fraction=c["risk"]["capital_fraction"],
+                daily_cap=round(cap,2),committed=round(committed,2),
+                remaining=max(0,cap-committed),exposure=round(exposure,2))
+        return result
 
     def persist(self):
         save(STATE, self.state)
@@ -271,6 +300,7 @@ class Engine:
         positions = self.api.call("GET", "/v2/positions")
         orders = self.api.orders()
         daily = apply_policy(self.state, account, clock, positions, self.policy)
+        budgets=self.category_budgets(account,positions)
         if self.state.get("connection_pause"):
             self.state["recovery_checks"] = self.state.get("recovery_checks", 0)+1
             if self.state["recovery_checks"] >= 2:
@@ -314,7 +344,10 @@ class Engine:
                         for s, v in list(self.signals.items())},
             "state_persistent": bool(os.getenv("RAILWAY_VOLUME_MOUNT_PATH") or
                                      os.getenv("AUTOTRADER_STATE_DIR")),
-            "controller_version": "2026-10-02-recovery",
+            "controller_version": "2026-10-02-paper-budgets",
+            "category_budgets": budgets,
+            "reserve_fraction": round(1-sum(c["risk"]["capital_fraction"] for c in self.configs),4),
+            "experiment": dict(self.experiment_health),
         }
         if self.state.get("liquidating"):
             # Global exit is independent of signals, profitability and open/closed
@@ -365,6 +398,21 @@ class Engine:
                     self.status["errors"].append(str(exc))
             return self.publish()
 
+        # Experiment entries are valid only during the opening window. A DAY
+        # order must not linger and unexpectedly open an afternoon position.
+        for order in orders:
+            config=self.owner.get(order.get("symbol"))
+            if (config and config["strategy"]["name"]=="active_opening_range_paper"
+                    and order.get("side")=="buy" and order.get("status") not in TERMINAL):
+                local_clock=timestamp(clock["timestamp"]).astimezone(NY)
+                submitted=order.get("submitted_at") or order.get("created_at")
+                expired=(local_clock.hour>=11 or submitted and
+                         (timestamp(clock["timestamp"])-timestamp(submitted)).total_seconds()>60)
+                if expired:
+                    self.cancel(order)
+                    self.status["actions"][order["symbol"]]="experiment entry expired: cancellation requested"
+                    return self.publish()
+
         # Protective and strategy exits still run while purchases are blocked.
         for p in positions:
             signal = self.signals.get(p["symbol"])
@@ -378,7 +426,8 @@ class Engine:
             # Preserve the existing break-even/trailing exit plan, using a
             # fresh bid rather than yesterday's daily close. Static broker
             # stops stay in force until an exit is actually requested.
-            if signal and time.time()-signal["at"] < 180 and p["symbol"] in self.owner:
+            if (signal and time.time()-signal["at"] < 180 and p["symbol"] in self.owner
+                    and self.owner[p["symbol"]]["strategy"]["name"] != "active_opening_range_paper"):
                 quote = self.api.call("GET", f"/v2/stocks/{p['symbol']}/quotes/latest",
                                       params={"feed": "iex"}, market_data=True)["quote"]
                 age = (datetime.now(timezone.utc)-timestamp(quote["t"])).total_seconds()
@@ -428,13 +477,27 @@ class Engine:
             signal = self.signals.get(symbol)
             if not signal or time.time()-signal["at"] > 180 or signal["signal"] != "buy":
                 continue
+            experimental=config["strategy"]["name"] == "active_opening_range_paper"
+            if experimental and sum(s in config["stock"]["symbols"] for s in self.state.get("attempted",[]))>=5:
+                continue
+            if experimental and (signal.get("market_day")!=self.state["day"] or
+                    timestamp(clock["timestamp"])>=timestamp(signal["deadline"])):
+                continue
             quote = self.api.call("GET", f"/v2/stocks/{symbol}/quotes/latest",
                                   params={"feed": "iex"}, market_data=True)["quote"]
             age = (datetime.now(timezone.utc)-timestamp(quote["t"])).total_seconds()
             if not 0 <= age <= 30 or float(quote.get("ap") or 0) <= 0:
                 continue
             ask, atr_value = float(quote["ap"]), signal["atr"]
+            if experimental:
+                atr_value=ask-float(signal["stop_price"])
             qty, limit = entry_budget(config, account, positions, ask, atr_value)
+            if experimental and limit>float(signal["limit_cap"]):
+                continue
+            category=budgets[config["name"]]
+            total_cap=min(float(account["equity"]),float(account["last_equity"]))*sum(c["risk"]["capital_fraction"] for c in self.configs)
+            total_used=sum(abs(float(p["market_value"])) for p in positions)
+            qty=min(qty,int(max(0,min(category["remaining"],total_cap-total_used))/limit)) if limit>0 else 0
             if qty < 1:
                 continue
             stop = round(ask-atr_value*config["risk"]["atr_stop_mult"], 2)
@@ -447,6 +510,10 @@ class Engine:
                        "take_profit": {"limit_price": take},
                        "client_order_id": identity("entry", self.state["day"], symbol)}
             self.state.setdefault("attempted", []).append(symbol)
+            # Reserve BEFORE submission and persist even after cancellations or
+            # uncertain responses. Sells never refill the daily purchase budget.
+            ledger=self.state["daily_purchase_budget"]["committed"]
+            ledger[config["name"]]=ledger.get(config["name"],0)+qty*limit
             self.persist()
             try:
                 placed = self.submit(payload)
@@ -486,7 +553,7 @@ class Engine:
 
 def main():
     load_dotenv()
-    configs = [yaml.safe_load(Path(p).read_text()) for p in ("config_high.yaml", "config_low.yaml")]
+    configs = [yaml.safe_load(Path(p).read_text()) for p in ("config_high.yaml", "config_low.yaml", "config_experiment.yaml")]
     key, secret = os.environ["ALPACA_API_KEY"], os.environ["ALPACA_API_SECRET"]
     signals = {}
     def collect():
@@ -495,6 +562,8 @@ def main():
         feed = AlpacaPriceFeed(key, secret)
         while True:
             for config in configs:
+                if config["strategy"]["name"] == "active_opening_range_paper":
+                    continue
                 strategy = build_strategy(config["strategy"])
                 for symbol in config["stock"]["symbols"]:
                     try:
@@ -513,6 +582,9 @@ def main():
         state = None
     api = PaperAPI(key, secret)
     engine = Engine(api, configs, signals, state)
+    from active_paper_signals import collect as collect_experiment
+    threading.Thread(target=collect_experiment,args=(PaperAPI(key,secret),configs[-1],signals,
+        engine.experiment_health,key,secret),daemon=True).start()
     if state is None:
         # Seed the preserved drawdown guard from available broker history.
         # Thereafter the volume retains every observed intraday equity high.
