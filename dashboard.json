@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-02T01:45:55.464660+00:00",
+  "last_updated": "2026-10-02T02:16:46.483965+00:00",
   "market_open": false,
   "account": {
     "equity": 107296.28,
@@ -73,10 +73,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-21T15:15:09.676412+00:00",
-      "equity": 107558.75
-    },
     {
       "ts": "2026-09-21T15:42:13.118646+00:00",
       "equity": 107740.17
@@ -2071,6 +2067,10 @@
     },
     {
       "ts": "2026-10-02T01:45:55.464660+00:00",
+      "equity": 107296.28
+    },
+    {
+      "ts": "2026-10-02T02:16:46.483965+00:00",
       "equity": 107296.28
     }
   ],
@@ -6119,7 +6119,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-02T01:45:59.353714+00:00",
+    "generated_at": "2026-10-02T02:16:50.839330+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -6270,7 +6270,7 @@
         "key": "account_controller",
         "label": "Account-wide loss control",
         "status": "good",
-        "detail": "liquidation confirmed; no re-entry today"
+        "detail": "safety API failure; entries locked for this session"
       }
     ]
   },
@@ -6278,7 +6278,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-10-01",
-    "generated_at": "2026-10-02T01:45:57.548414+00:00",
+    "generated_at": "2026-10-02T02:16:48.598645+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 5.64,
@@ -6360,7 +6360,7 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-02T01:45:57.971079+00:00",
+    "past_days_updated_at": "2026-10-02T02:16:49.025953+00:00",
     "coverage_start": "2026-08-30",
     "days": [
       {
@@ -14569,7 +14569,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-10-02T01:45:55.433648+00:00",
+    "updated_at": "2026-10-02T02:16:45.459213+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -14580,7 +14580,7 @@
       "max_drawdown_pct": 0.1
     },
     "entry_blocked": true,
-    "reason": "liquidation confirmed; no re-entry today",
+    "reason": "safety API failure; entries locked for this session",
     "liquidating": null,
     "daily_pnl_pct": 0.005,
     "market_open": false,
@@ -14597,47 +14597,47 @@
     "signals": {
       "TQQQ": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 30
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 30
       },
       "SOXL": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 30
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 30
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 30
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 30
       },
       "IWM": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 30
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 12
+        "age_seconds": 30
       },
       "EZU": {
         "signal": "buy",
-        "age_seconds": 12
+        "age_seconds": 30
       },
       "EWU": {
         "signal": "sell",
-        "age_seconds": 12
+        "age_seconds": 30
       },
       "EWG": {
         "signal": "buy",
-        "age_seconds": 12
+        "age_seconds": 29
       }
     },
     "state_persistent": true,
