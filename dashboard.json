@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-02T05:46:11.122880+00:00",
+  "last_updated": "2026-10-02T06:21:54.398593+00:00",
   "market_open": false,
   "account": {
     "equity": 107296.28,
@@ -64,10 +64,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-21T19:15:00.118863+00:00",
-      "equity": 108822.96
-    },
     {
       "ts": "2026-09-21T19:42:12.764746+00:00",
       "equity": 109118.56
@@ -2062,6 +2058,10 @@
     },
     {
       "ts": "2026-10-02T05:46:11.122880+00:00",
+      "equity": 107296.28
+    },
+    {
+      "ts": "2026-10-02T06:21:54.398593+00:00",
       "equity": 107296.28
     }
   ],
@@ -6110,7 +6110,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-02T05:46:12.334714+00:00",
+    "generated_at": "2026-10-02T06:21:56.898564+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -6269,7 +6269,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-10-02",
-    "generated_at": "2026-10-02T05:46:12.109754+00:00",
+    "generated_at": "2026-10-02T06:21:56.099659+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -6296,7 +6296,7 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-02T05:46:12.133282+00:00",
+    "past_days_updated_at": "2026-10-02T06:21:56.372497+00:00",
     "coverage_start": "2026-08-31",
     "days": [
       {
@@ -14518,7 +14518,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-10-02T05:46:05.676119+00:00",
+    "updated_at": "2026-10-02T06:21:45.712303+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -14566,23 +14566,23 @@
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 2
+        "age_seconds": 3
       },
       "IWM": {
         "signal": "buy",
-        "age_seconds": 2
+        "age_seconds": 3
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 2
+        "age_seconds": 3
       },
       "EZU": {
         "signal": "buy",
-        "age_seconds": 2
+        "age_seconds": 3
       },
       "EWU": {
         "signal": "sell",
-        "age_seconds": 2
+        "age_seconds": 3
       },
       "EWG": {
         "signal": "buy",
