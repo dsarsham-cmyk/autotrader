@@ -21,6 +21,13 @@ from paper_safety import (NY, TERMINAL, timestamp, market_day, active_orders,
 
 STATE = Path(os.getenv("AUTOTRADER_STATE_DIR", os.getenv("RAILWAY_VOLUME_MOUNT_PATH", "."))) / "safety_state.json"
 STATUS = Path("safety_status.json")
+PROTECTION_RECOVERY_SECONDS = 30
+
+
+class APIError(RuntimeError):
+    def __init__(self, method, path, status):
+        super().__init__(f"Paper API {method} {path}: HTTP {status}")
+        self.method, self.status = method, status
 
 
 def save(path, value):
@@ -42,7 +49,7 @@ class PaperAPI:
         if response.status_code == 404 and missing_ok:
             return None
         if not response.ok:
-            raise RuntimeError(f"Paper API {method} {path}: HTTP {response.status_code}")
+            raise APIError(method, path, response.status_code)
         return response.json() if response.content else None
 
     def orders(self):
@@ -93,12 +100,121 @@ class Engine:
         self.status = {}
         self.events = queue.Queue(maxsize=100)
         self.previous_event = None
+        self.operation_stage = "inventory"
 
     def persist(self):
         save(STATE, self.state)
 
     def cancel(self, order):
+        self.operation_stage = "write"
         self.api.call("DELETE", f"/v2/orders/{order['id']}")
+
+    def submit(self, payload):
+        self.operation_stage = "write"
+        return self.api.submit_once(payload)
+
+    def handle_failure(self, exc):
+        transient = (isinstance(exc, requests.exceptions.RequestException)
+                     or isinstance(exc, APIError) and (exc.status == 429 or exc.status >= 500))
+        if transient and self.operation_stage == "inventory":
+            self.state["connection_pause"] = True
+            self.state["recovery_checks"] = 0
+            self.state["connection_error"] = str(exc)
+        else:
+            # An uncertain write must be reconciled; a read outage is separate
+            # from a latched daily loss cutoff.
+            self.state["entry_blocked"] = True
+            self.state["entry_reason"] = "broker operation failed or uncertain; entries locked for this session"
+        self.persist()
+        self.status.update({"updated_at": datetime.now(timezone.utc).isoformat(),
+                            "errors": [str(exc)], "mode": "paper",
+                            "verified_stops": None, "open_positions": None})
+        return self.publish()
+
+    def repair_partial(self, position, orders):
+        """Cancel the remainder, then cover the actual fill with a standalone stop.
+
+        Return True only for a recognized entry undergoing bounded repair.
+        Unknown holdings still take the original emergency exit path.
+        """
+        symbol = position["symbol"]
+        repairs = self.state.setdefault("protection_repairs", {})
+        repair = repairs.get(symbol)
+        if repair is None:
+            expected = identity("entry", self.state["day"], symbol)
+            parent = next((o for o in orders if o.get("symbol") == symbol
+                           and o.get("client_order_id") == expected
+                           and o.get("order_class") == "bracket"
+                           and o.get("side") == "buy"
+                           and o.get("status") == "partially_filled"
+                           and 0 < float(o.get("filled_qty") or 0) < float(o.get("qty") or 0)), None)
+            if parent is None:
+                return False
+            legs = parent.get("legs") or []
+            stop_leg = next((o for o in legs if o.get("side") == "sell"
+                             and o.get("type") == "stop"), {})
+            take_leg = next((o for o in legs if o.get("side") == "sell"
+                             and o.get("type") == "limit"), {})
+            stop_price = float(stop_leg.get("stop_price") or 0)
+            take_price = float(take_leg.get("limit_price") or 0)
+            if not 0 < stop_price < take_price or float(position["qty"]) <= 0:
+                return False
+            repair = {"started_at": time.time(), "stop_price": stop_price,
+                      "take_price": take_price, "entry_id": expected}
+            repairs[symbol] = repair
+            self.persist()
+        if time.time()-repair["started_at"] >= PROTECTION_RECOVERY_SECONDS:
+            self.status["errors"].append(f"{symbol}: protection repair exceeded 30 seconds")
+            return False
+        pending = active_orders(orders, symbol)
+        own_stop = next((o for o in pending if o.get("client_order_id", "").startswith("safe-protect-")), None)
+        if own_stop:
+            self.status["actions"][symbol] = "filled shares awaiting broker stop verification"
+            return True
+        if pending:
+            # Cancel roots once. Canceling a bracket root also cancels its legs.
+            for root in orders:
+                if root.get("symbol") == symbol:
+                    self.cancel(root)
+            orders = self.api.orders()
+            if active_orders(orders, symbol):
+                self.status["actions"][symbol] = "partial fill: canceling unfilled remainder before protection"
+                return True
+        # Cancellation may race with another fill; re-read the actual position.
+        actual = next((p for p in self.api.call("GET", "/v2/positions")
+                       if p["symbol"] == symbol), None)
+        if actual is None:
+            repairs.pop(symbol, None)
+            self.persist()
+            self.status["actions"][symbol] = "partial-fill position already closed; reconciling inventory"
+            return True
+        quote = self.api.call("GET", f"/v2/stocks/{symbol}/quotes/latest",
+                              params={"feed": "iex"}, market_data=True)["quote"]
+        age = (datetime.now(timezone.utc)-timestamp(quote["t"])).total_seconds()
+        if not 0 <= age <= 30 or float(actual["qty"]) <= 0:
+            return False
+        if float(quote.get("bp") or 0) <= repair["stop_price"]:
+            return False  # price has already crossed the intended stop: exit
+        if time.time()-repair["started_at"] >= PROTECTION_RECOVERY_SECONDS:
+            return False
+        payload = {"symbol": symbol, "side": "sell", "type": "stop",
+                   "qty": quantity(actual["qty"]), "stop_price": repair["stop_price"],
+                   "time_in_force": "day",
+                   "client_order_id": identity("protect", self.state["day"], symbol,
+                                              repair["entry_id"]+"|"+quantity(actual["qty"]))}
+        placed = self.submit(payload)
+        if placed.get("status") in TERMINAL:
+            return False
+        self.state.setdefault("partial_take_prices", {})[symbol] = repair["take_price"]
+        self.persist()
+        refreshed = self.api.orders()
+        if stop_coverage(actual, refreshed):
+            repairs.pop(symbol, None)
+            self.persist()
+            self.status["actions"][symbol] = "partial fill retained; actual filled quantity protected at broker"
+        else:
+            self.status["actions"][symbol] = "stop submitted for filled shares; verification pending"
+        return True
 
     def exit_position(self, position, orders, reason):
         symbol = position["symbol"]
@@ -133,7 +249,7 @@ class Engine:
                    "time_in_force": "day",
                    "client_order_id": identity("exit", self.state["day"], symbol,
                                               f"{qty}|{retries.get('generation', 0)}")}
-        order = self.api.submit_once(payload)
+        order = self.submit(payload)
         if order.get("status") in {"rejected", "canceled", "expired"}:
             # A confirmed terminal order cannot fill again. A fresh inventory
             # and a 60-second cooldown precede the next uniquely identified exit.
@@ -146,6 +262,7 @@ class Engine:
         return f"exit requested: {reason}"
 
     def tick(self):
+        self.operation_stage = "inventory"
         clock = self.api.call("GET", "/v2/clock")
         clock_age = (datetime.now(timezone.utc)-timestamp(clock["timestamp"])).total_seconds()
         if not -5 <= clock_age <= 30:
@@ -154,6 +271,12 @@ class Engine:
         positions = self.api.call("GET", "/v2/positions")
         orders = self.api.orders()
         daily = apply_policy(self.state, account, clock, positions, self.policy)
+        if self.state.get("connection_pause"):
+            self.state["recovery_checks"] = self.state.get("recovery_checks", 0)+1
+            if self.state["recovery_checks"] >= 2:
+                self.state.pop("connection_pause", None)
+                self.state.pop("connection_error", None)
+                self.state.pop("recovery_checks", None)
         held = {p["symbol"] for p in positions}
         for symbol in list(self.state.setdefault("exit_intents", {})):
             if symbol not in held and not active_orders(orders, symbol):
@@ -162,6 +285,14 @@ class Engine:
             if symbol not in held:
                 del self.state["trailing_highs"][symbol]
                 self.state.setdefault("trailing_stops", {}).pop(symbol, None)
+        for symbol in list(self.state.setdefault("protection_repairs", {})):
+            p = next((p for p in positions if p["symbol"] == symbol), None)
+            if ((p is not None and stop_coverage(p, orders))
+                    or (p is None and not active_orders(orders, symbol))):
+                del self.state["protection_repairs"][symbol]
+        for symbol in list(self.state.setdefault("partial_take_prices", {})):
+            if symbol not in held and not active_orders(orders, symbol):
+                del self.state["partial_take_prices"][symbol]
         self.persist()  # latch the cutoff BEFORE sending any order
         self.status = {
             "updated_at": datetime.now(timezone.utc).isoformat(), "mode": "paper",
@@ -178,6 +309,7 @@ class Engine:
                         for s, v in list(self.signals.items())},
             "state_persistent": bool(os.getenv("RAILWAY_VOLUME_MOUNT_PATH") or
                                      os.getenv("AUTOTRADER_STATE_DIR")),
+            "controller_version": "2026-10-02-recovery",
         }
         if self.state.get("liquidating"):
             # Global exit is independent of signals, profitability and open/closed
@@ -204,6 +336,13 @@ class Engine:
         # flatten it rather than silently trading with a software-only stop.
         unprotected = [p for p in positions if not stop_coverage(p, orders)]
         if unprotected:
+            fatal = []
+            for p in unprotected:
+                if not self.repair_partial(p, orders):
+                    fatal.append(p)
+            if not fatal:
+                # No other exposure is allowed during protection transitions.
+                return self.publish()
             self.state["entry_blocked"] = True
             self.state["entry_reason"] = "broker protection missing or unverified"
             self.state["liquidating"] = self.state["entry_reason"]
@@ -252,8 +391,10 @@ class Engine:
                     stop = manager.trailing_stop(entry, high, signal["atr"], previous_stop)
                     self.state["trailing_stops"][p["symbol"]] = stop
                     self.persist()
-                    if bid <= stop:
-                        self.status["actions"][p["symbol"]] = self.exit_position(p, orders, "trailing exit")
+                    take = self.state.get("partial_take_prices", {}).get(p["symbol"])
+                    if bid <= stop or (take and bid >= take):
+                        reason = "take-profit exit" if take and bid >= take else "trailing exit"
+                        self.status["actions"][p["symbol"]] = self.exit_position(p, orders, reason)
                         return self.publish()
 
         if self.state.get("entry_blocked"):
@@ -266,6 +407,8 @@ class Engine:
             for order in active_orders(orders):
                 if order.get("side") == "buy":
                     self.cancel(order)
+            return self.publish()
+        if self.state.get("connection_pause"):
             return self.publish()
         if active_orders(orders) and any(
                 o.get("side") == "buy" for o in active_orders(orders)):
@@ -301,7 +444,7 @@ class Engine:
             self.state.setdefault("attempted", []).append(symbol)
             self.persist()
             try:
-                placed = self.api.submit_once(payload)
+                placed = self.submit(payload)
                 if placed.get("order_class") != "bracket" or placed.get("status") in {"rejected", "canceled", "expired"}:
                     raise RuntimeError(f"{symbol}: protective bracket was not accepted")
                 self.status["actions"][symbol] = "bracket entry submitted; fills and active stops awaiting verification"
@@ -314,8 +457,14 @@ class Engine:
         return self.publish()
 
     def publish(self):
-        self.status["entry_blocked"] = self.state.get("entry_blocked", False)
-        self.status["reason"] = self.state.get("entry_reason", "")
+        paused = self.state.get("connection_pause", False)
+        repairing = bool(self.state.get("protection_repairs"))
+        self.status["connection_paused"] = paused
+        self.status["protection_repairing"] = repairing
+        self.status["entry_blocked"] = bool(self.state.get("entry_blocked", False) or paused or repairing)
+        self.status["reason"] = self.state.get("entry_reason", "") or (
+            "connection recovery: waiting for two complete broker checks" if paused else
+            "partial fill: protecting actual filled shares" if repairing else "")
         self.status["liquidating"] = self.state.get("liquidating")
         save(STATUS, self.status)
         event = json.dumps({k: self.status.get(k) for k in
@@ -384,14 +533,7 @@ def main():
         try:
             engine.tick()
         except Exception as exc:
-            # Stop new exposure on incomplete/uncertain broker reads.
-            engine.state["entry_blocked"] = True
-            engine.state["entry_reason"] = "safety API failure; entries locked for this session"
-            engine.persist()
-            engine.status.update({"updated_at": datetime.now(timezone.utc).isoformat(),
-                                  "errors": [str(exc)], "mode": "paper",
-                                  "verified_stops": None, "open_positions": None})
-            engine.publish()
+            engine.handle_failure(exc)
             print(f"[safety] {exc}", flush=True)
         time.sleep(max(1, 10-(time.monotonic()-started)))
 

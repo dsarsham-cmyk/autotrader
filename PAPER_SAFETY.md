@@ -22,8 +22,13 @@ does not establish profitability under this new policy.
 - Existing positions require verified active sell-stop quantity covering the
   complete holding. Held/inactive, undersized and stop-limit orders do not qualify.
   Missing protection blocks new exposure and triggers account liquidation.
-  Partially filled bracket entries whose stops have not activated are canceled
-  and exited; there is no grace period that labels them protected.
+  For a recognized partially filled bracket, cancel its unfilled remainder and
+  wait for broker-confirmed cancellation. Re-read actual position quantity and
+  submit a standalone DAY stop-market order covering exactly that quantity.
+  No additional entries are allowed during this transition. It is shown as
+  unprotected until verified, and failure or a 30-second deadline triggers
+  the original account liquidation. Original take-profit is retained as a
+  software exit using fresh quotes; stop coverage remains broker-side.
 - Existing break-even/trailing rules remain software exits using fresh quotes;
   a static broker stop remains in force until an exit is requested.
 - At most one entry attempt per symbol per NY date. All orders have deterministic
@@ -48,6 +53,12 @@ Safety state is written atomically to the Railway volume at
 observed peaks survive process restarts and deployments. Missing/corrupt state
 blocks entries that date and queues inherited holdings for liquidation.
 The application does not silently treat a state loss as permission to trade.
+
+Temporary failures reading broker inventory pause new purchases. Two consecutive
+complete, fresh clock/account/position/order reads restore entry eligibility;
+daily loss halts and unfinished exits remain latched independently. Another
+failure restarts the recovery count. Authentication failures and uncertain
+financial writes retain the session lock and require reconciliation.
 
 `/health` and `/dashboard.json` expose a public paper-only `safety` object:
 freshness, triggers, verified stops, actual open-position count, pending actions
