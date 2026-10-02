@@ -347,6 +347,7 @@ class Engine:
             "controller_version": "2026-10-02-paper-budgets",
             "category_budgets": budgets,
             "reserve_fraction": round(1-sum(c["risk"]["capital_fraction"] for c in self.configs),4),
+            "budget_migration_unknown": bool(self.state["daily_purchase_budget"].get("legacy_allowance_held")),
             "experiment": dict(self.experiment_health),
         }
         if self.state.get("liquidating"):
