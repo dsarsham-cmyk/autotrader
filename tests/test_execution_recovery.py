@@ -181,6 +181,27 @@ def test_uncertain_write_is_not_auto_cleared(setup):
     assert e.state["entry_blocked"] and not api.submitted
 
 
+def test_stop_accepted_then_response_lost_is_reconciled_without_duplicate(setup, monkeypatch):
+    e, api = setup
+    partial(api, e)
+    cancel_immediately(api, monkeypatch)
+    submit = api.submit_once
+    def lose_response(payload):
+        submit(payload)
+        raise requests.exceptions.ReadTimeout("response lost after acceptance")
+    monkeypatch.setattr(api, "submit_once", lose_response)
+    with pytest.raises(requests.exceptions.ReadTimeout):
+        e.tick()
+    e.handle_failure(requests.exceptions.ReadTimeout("uncertain write"))
+    monkeypatch.setattr(api, "submit_once", submit)
+    e.tick()
+    assert len(api.submitted) == 1
+    assert e.status["verified_stops"] == 1
+    assert e.state["partial_take_prices"]["TQQQ"] == 120
+    assert not e.state["protection_repairs"]
+    assert e.state["entry_blocked"]  # uncertainty did not unlock entries
+
+
 @pytest.mark.parametrize("code", [429, 500, 503])
 def test_transient_http_reads_can_recover(setup, code):
     e, api = setup

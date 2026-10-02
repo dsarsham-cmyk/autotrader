@@ -289,6 +289,11 @@ class Engine:
             p = next((p for p in positions if p["symbol"] == symbol), None)
             if ((p is not None and stop_coverage(p, orders))
                     or (p is None and not active_orders(orders, symbol))):
+                if p is not None:
+                    # A stop POST may have timed out after broker acceptance.
+                    # Preserve the exit plan when its coverage is reconciled.
+                    self.state.setdefault("partial_take_prices", {})[symbol] = (
+                        self.state["protection_repairs"][symbol]["take_price"])
                 del self.state["protection_repairs"][symbol]
         for symbol in list(self.state.setdefault("partial_take_prices", {})):
             if symbol not in held and not active_orders(orders, symbol):
