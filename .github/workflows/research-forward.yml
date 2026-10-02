@@ -2,8 +2,8 @@ name: Read-only active-stock forward experiment
 
 on:
   schedule:
-    # 00:15 Bucharest summer / 23:15 winter; after the US close in both seasons.
-    - cron: '15 21 * * 1-5'
+    # 00:20 Bucharest summer / 23:20 winter; allows the SIP 15-minute delay.
+    - cron: '20 21 * * 1-5'
   workflow_dispatch: {}
 
 permissions:

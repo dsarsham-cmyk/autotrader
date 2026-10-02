@@ -1,6 +1,6 @@
 import numpy as np
 import pytest
-from active_stock_research import rank, replay, RULES, main, hash_file
+from active_stock_research import rank, replay, RULES, main, hash_file, download_edges
 
 
 def stock(ratio=3):
@@ -103,3 +103,11 @@ def test_source_hash_portable_but_market_data_hash_byte_exact(tmp_path):
     a.write_bytes(b"value\n")
     b.write_bytes(b"value\r\n")
     assert hash_file(a)!=hash_file(b)
+
+
+def test_download_excludes_subscription_restricted_recent_minutes():
+    import pandas as pd
+    edges=download_edges("2026-09-01","2026-10-03",now=pd.Timestamp("2026-10-02T14:00:00Z"))
+    assert edges[-1]==pd.Timestamp("2026-10-02T13:44:00Z")
+    older=download_edges("2026-09-01","2026-09-20",now=pd.Timestamp("2026-10-02T14:00:00Z"))
+    assert older[-1]==pd.Timestamp("2026-09-20T00:00:00Z")

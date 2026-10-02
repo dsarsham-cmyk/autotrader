@@ -41,8 +41,8 @@
     "shorting": false,
     "take_profit": false
   },
-  "source_hash": "12123e984679e501323390627dac1acab6ec58cc2a92ff986a352125e504cb3c",
-  "generated_utc": "2026-10-02T14:17:43.050519+00:00",
+  "source_hash": "f25ff0a182adbf77e992289f68e3ed4b28db82be28f23624c5f6a1dbd9011bc9",
+  "generated_utc": "2026-10-02T14:22:06.288326+00:00",
   "runs": {
     "base": {
       "full": {

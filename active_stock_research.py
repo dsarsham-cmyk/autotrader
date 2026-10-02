@@ -38,6 +38,20 @@ def hash_file(path):
     return hashlib.sha256(content).hexdigest()
 
 
+def download_edges(start, end, now=None):
+    # Existing SIP access excludes the latest 15 minutes. Never silently
+    # substitute exchange-only IEX data for consolidated volume research.
+    current = pd.Timestamp.now(tz="UTC") if now is None else pd.Timestamp(now)
+    finish = min(pd.Timestamp(end,tz="UTC"),current-pd.Timedelta(minutes=16))
+    beginning = pd.Timestamp(start,tz="UTC")
+    if finish <= beginning:
+        raise ValueError("No permitted historical data window")
+    edges=pd.date_range(beginning,finish,freq="90D").tolist()
+    if edges[-1] != finish:
+        edges.append(finish)
+    return edges
+
+
 def fetch_symbol(symbol, directory, start, end):
     from alpaca.data.historical import StockHistoricalDataClient
     from alpaca.data.requests import StockBarsRequest
@@ -45,9 +59,7 @@ def fetch_symbol(symbol, directory, start, end):
     from alpaca.data.enums import DataFeed, Adjustment
     client = StockHistoricalDataClient(os.environ["ALPACA_API_KEY"], os.environ["ALPACA_API_SECRET"])
     frames = []
-    edges = pd.date_range(start, end, freq="90D", tz="UTC").tolist()
-    if edges[-1] != pd.Timestamp(end, tz="UTC"):
-        edges.append(pd.Timestamp(end, tz="UTC"))
+    edges = download_edges(start,end)
     for left, right in zip(edges, edges[1:]):
         request = StockBarsRequest(symbol_or_symbols=[symbol], timeframe=TimeFrame.Minute,
             start=left.to_pydatetime(), end=right.to_pydatetime(), feed=DataFeed.SIP,
@@ -56,16 +68,18 @@ def fetch_symbol(symbol, directory, start, end):
             try:
                 frame = client.get_stock_bars(request).df.reset_index()
                 break
-            except Exception:
+            except Exception as error:
                 if attempt == 2:
-                    raise RuntimeError(f"Data download failed for {symbol}; no result claimed") from None
+                    category="subscription restriction" if "subscription" in str(error).lower() else type(error).__name__
+                    raise RuntimeError(f"Data download failed for {symbol}: {category}; no result claimed") from None
                 time.sleep(2**attempt)
         frames.append(frame)
     data = pd.concat(frames).drop_duplicates(["symbol", "timestamp"])
     path = directory / f"{symbol}.csv"
     data.to_csv(path,index=False)
     path.with_suffix(".metadata.json").write_text(json.dumps(dict(symbol=symbol,
-        start=start,end=end,feed="sip",adjustment="raw",sha256=hash_file(path),rows=len(data)),indent=2))
+        start=start,requested_end=end,actual_end=edges[-1].isoformat(),feed="sip",
+        adjustment="raw",sha256=hash_file(path),rows=len(data)),indent=2))
     print(f"Downloaded {symbol}: {len(data)} minute bars",flush=True)
 
 
