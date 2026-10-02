@@ -23,6 +23,9 @@ logs/*
 
 # Market data cache
 cache/
+research_runs/
+research_forward/frozen_rules.json
+research_forward/forward_*.csv
 
 # Desktop app build artifacts
 build/

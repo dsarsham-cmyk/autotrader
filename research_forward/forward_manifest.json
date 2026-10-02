@@ -1,0 +1,29 @@
+{
+  "rules": {
+    "universe": ["AAPL", "MSFT", "NVDA", "AMZN", "META", "GOOG", "TSLA", "AMD", "JPM", "BAC", "XOM", "CVX", "WMT", "DIS", "NFLX", "INTC", "UBER", "PLTR", "AVGO", "MU"],
+    "opening_minutes": 5,
+    "volume_history": 20,
+    "relative_volume_min": 2.0,
+    "select_top": 5,
+    "minimum_price": 5,
+    "minimum_prior_daily_dollars": 20000000,
+    "risk_per_trade": 0.001,
+    "total_initial_risk": 0.005,
+    "max_symbol_exposure": 0.2,
+    "max_total_exposure": 0.75,
+    "daily_entry_cutoff": 0.005,
+    "daily_exit_trigger": 0.01,
+    "permanent_drawdown": 0.1,
+    "entry_deadline_minute": 90,
+    "exit_minute": 385,
+    "max_attempts_per_symbol": 1,
+    "shorting": false,
+    "take_profit": false
+  },
+  "source_hash": "41c64ff22ad2b48d4ab1e5df2ea8884784bc15924f4d8e7f13763e953b42f505",
+  "excluded_through": "2026-10-02",
+  "created_utc": "2026-10-02T14:10:04.847218+00:00",
+  "initial_virtual_usd": 100000,
+  "broker_orders_enabled": false,
+  "mode": "After-close replay of future completed sessions; not a live tick execution test"
+}

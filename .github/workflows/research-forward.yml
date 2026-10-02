@@ -1,0 +1,50 @@
+name: Read-only active-stock forward experiment
+
+on:
+  schedule:
+    # 00:15 Bucharest summer / 23:15 winter; after the US close in both seasons.
+    - cron: '15 21 * * 1-5'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: autotrader
+  cancel-in-progress: false
+
+jobs:
+  simulated-forward-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install existing research dependencies
+        run: pip install -r requirements.txt
+      - name: Compute deterministic replay window
+        run: |
+          python -c "import json,datetime,os; m=json.load(open('research_forward/forward_manifest.json')); start=datetime.date.fromisoformat(m['excluded_through'])-datetime.timedelta(days=70); end=datetime.datetime.now(datetime.timezone.utc).date()+datetime.timedelta(days=1); f=open(os.environ['GITHUB_ENV'],'a'); print('RESEARCH_START='+str(start),file=f); print('RESEARCH_END='+str(end),file=f)"
+      - name: Simulate future completed sessions (NO ORDERS)
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+        run: python active_stock_research.py --download --forward --start "$RESEARCH_START" --end "$RESEARCH_END" --output research_forward
+      - name: Preserve simulated daily/trade/signal evidence as a workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: simulated-forward-evidence
+          path: research_forward/forward_*.csv
+          retention-days: 90
+      - name: Publish simulated summary (no broker account data)
+        run: |
+          git config user.name "autotrader-bot"
+          git config user.email "bot@autotrader.local"
+          git add research_forward/forward_results.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update simulated active-stock forward evidence"
+            git push
+          fi

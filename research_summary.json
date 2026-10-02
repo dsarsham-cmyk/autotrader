@@ -1,0 +1,225 @@
+{
+  "rules": {
+    "universe": [
+      "AAPL",
+      "MSFT",
+      "NVDA",
+      "AMZN",
+      "META",
+      "GOOG",
+      "TSLA",
+      "AMD",
+      "JPM",
+      "BAC",
+      "XOM",
+      "CVX",
+      "WMT",
+      "DIS",
+      "NFLX",
+      "INTC",
+      "UBER",
+      "PLTR",
+      "AVGO",
+      "MU"
+    ],
+    "opening_minutes": 5,
+    "volume_history": 20,
+    "relative_volume_min": 2.0,
+    "select_top": 5,
+    "minimum_price": 5,
+    "minimum_prior_daily_dollars": 20000000,
+    "risk_per_trade": 0.001,
+    "total_initial_risk": 0.005,
+    "max_symbol_exposure": 0.2,
+    "max_total_exposure": 0.75,
+    "daily_entry_cutoff": 0.005,
+    "daily_exit_trigger": 0.01,
+    "permanent_drawdown": 0.1,
+    "entry_deadline_minute": 90,
+    "exit_minute": 385,
+    "max_attempts_per_symbol": 1,
+    "shorting": false,
+    "take_profit": false
+  },
+  "source_hash": "41c64ff22ad2b48d4ab1e5df2ea8884784bc15924f4d8e7f13763e953b42f505",
+  "generated_utc": "2026-10-02T14:15:53.251335+00:00",
+  "runs": {
+    "base": {
+      "full": {
+        "sessions": 437,
+        "total_return_pct": -1.311596115999969,
+        "max_close_drawdown_pct": 1.641356286999962,
+        "worst_day_pct": -0.28957866958566614,
+        "mean_daily_pct": -0.0030131679364095473,
+        "profitable_days": 36,
+        "days_at_least_1pct": 0
+      },
+      "final_period": {
+        "sessions": 88,
+        "total_return_pct": 0.16644584239311477,
+        "max_close_drawdown_pct": 0.19431156120214288,
+        "worst_day_pct": -0.19431156120214288,
+        "mean_daily_pct": 0.0018948808825073528,
+        "profitable_days": 9,
+        "days_at_least_1pct": 0
+      },
+      "final_start": "2026-05-28",
+      "trades": 108,
+      "final_trades": 16,
+      "costs_bps": 10,
+      "delay_minutes": 1,
+      "permanent_halt": false
+    },
+    "higher_cost": {
+      "full": {
+        "sessions": 437,
+        "total_return_pct": -2.4766757019999086,
+        "max_close_drawdown_pct": 2.6495510924999244,
+        "worst_day_pct": -0.30535016126679304,
+        "mean_daily_pct": -0.005731775864954329,
+        "profitable_days": 30,
+        "days_at_least_1pct": 0
+      },
+      "final_period": {
+        "sessions": 88,
+        "total_return_pct": -0.003807857109761059,
+        "max_close_drawdown_pct": 0.2301849460219163,
+        "worst_day_pct": -0.19776270602603896,
+        "mean_daily_pct": -3.8862301893583986e-05,
+        "profitable_days": 7,
+        "days_at_least_1pct": 0
+      },
+      "final_start": "2026-05-28",
+      "trades": 108,
+      "final_trades": 16,
+      "costs_bps": 25,
+      "delay_minutes": 1,
+      "permanent_halt": false
+    },
+    "delayed": {
+      "full": {
+        "sessions": 437,
+        "total_return_pct": -0.5863371762999781,
+        "max_close_drawdown_pct": 0.9673524228238528,
+        "worst_day_pct": -0.1876741052676767,
+        "mean_daily_pct": -0.0013395529596478624,
+        "profitable_days": 38,
+        "days_at_least_1pct": 0
+      },
+      "final_period": {
+        "sessions": 88,
+        "total_return_pct": 0.1405272015797321,
+        "max_close_drawdown_pct": 0.1815660072641334,
+        "worst_day_pct": -0.1051876504676974,
+        "mean_daily_pct": 0.0015990597719165646,
+        "profitable_days": 8,
+        "days_at_least_1pct": 0
+      },
+      "final_start": "2026-05-28",
+      "trades": 95,
+      "final_trades": 14,
+      "costs_bps": 10,
+      "delay_minutes": 2,
+      "permanent_halt": false
+    }
+  },
+  "cash_return_pct": 0,
+  "untouched_holdout_claim": false,
+  "real_trading_approved": false,
+  "limitations": [
+    "20 current stocks: selection/survivorship bias; not all-stock paper replication",
+    "Incomplete and early-close sessions excluded; data availability affects stock ranking",
+    "No shorting, news classifier or point-in-time universe",
+    "OHLC fill assumptions omit quotes, partial fills, queue position, taxes and FX",
+    "Intraminute low guard is a conservative bound, not actual synchronized prices",
+    "No automatic deployment or brokerage orders; prospective test still required"
+  ],
+  "historical_screen_passed": false,
+  "verdict": "Rejected for strategy promotion: fails profitability/cost screening. Not a daily-income solution.",
+  "data_range": [
+    "2025-01-02",
+    "2026-10-01"
+  ],
+  "quality_summary": {
+    "AAPL": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    },
+    "MSFT": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    },
+    "NVDA": {
+      "complete_sessions": 437,
+      "excluded_sessions": 1
+    },
+    "AMZN": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    },
+    "META": {
+      "complete_sessions": 434,
+      "excluded_sessions": 4
+    },
+    "GOOG": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    },
+    "TSLA": {
+      "complete_sessions": 436,
+      "excluded_sessions": 2
+    },
+    "AMD": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    },
+    "JPM": {
+      "complete_sessions": 433,
+      "excluded_sessions": 5
+    },
+    "BAC": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    },
+    "XOM": {
+      "complete_sessions": 429,
+      "excluded_sessions": 9
+    },
+    "CVX": {
+      "complete_sessions": 425,
+      "excluded_sessions": 13
+    },
+    "WMT": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    },
+    "DIS": {
+      "complete_sessions": 432,
+      "excluded_sessions": 6
+    },
+    "NFLX": {
+      "complete_sessions": 292,
+      "excluded_sessions": 146
+    },
+    "INTC": {
+      "complete_sessions": 436,
+      "excluded_sessions": 2
+    },
+    "UBER": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    },
+    "PLTR": {
+      "complete_sessions": 434,
+      "excluded_sessions": 4
+    },
+    "AVGO": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    },
+    "MU": {
+      "complete_sessions": 435,
+      "excluded_sessions": 3
+    }
+  }
+}
