@@ -109,6 +109,81 @@ def test_full_bracket_with_active_stop_kept_intact(setup):
     assert e.status["verified_stops"] == 1
 
 
+def full_fill(api, e, monkeypatch, qty="8"):
+    partial(api, e)
+    parent = dict(api.open[0], status="filled", qty=qty, filled_qty=qty)
+    api.positions = [position(qty=qty)]
+    parent["legs"][0]["qty"] = qty
+    parent["legs"][1]["qty"] = qty
+    # Real OPEN inventories omit the filled entry; take-profit roots the group.
+    take = dict(parent["legs"][1], status="new", legs=[parent["legs"][0]])
+    api.open = [take]
+    e.state["attempted"] = ["TQQQ"]
+    original = api.call
+    expected = parent["client_order_id"]
+    def call(method, path, **kwargs):
+        if path == "/v2/orders:by_client_order_id":
+            assert method == "GET"
+            assert kwargs["params"]["client_order_id"] == expected
+            return parent
+        return original(method, path, **kwargs)
+    monkeypatch.setattr(api, "call", call)
+    return parent
+
+
+def test_full_fill_held_nested_stop_converted_not_falsely_verified(setup, monkeypatch):
+    e, api = setup
+    full_fill(api, e, monkeypatch)
+    assert not stop_coverage(api.positions[0], api.open)
+    cancel_immediately(api, monkeypatch)
+    e.tick()
+    assert api.deleted == ["/v2/orders/take"]
+    assert len(api.submitted) == 1
+    assert api.submitted[0]["type"] == "stop"
+    assert float(api.submitted[0]["qty"]) == 8
+    assert stop_coverage(api.positions[0], api.open)
+    assert not e.state.get("liquidating")
+    e.tick()
+    assert e.status["verified_stops"] == 1
+    assert len(api.submitted) == 1
+
+
+def test_full_fill_unverified_cancel_is_bounded_across_restart(setup, monkeypatch):
+    e, api = setup
+    full_fill(api, e, monkeypatch)
+    e.tick()
+    assert e.status["protection_repairing"] and not api.submitted
+    e.state["protection_repairs"]["TQQQ"]["started_at"] = time.time()-31
+    e.persist()
+    restored = engine.Engine(api, e.configs, e.signals, json.loads(engine.STATE.read_text()))
+    restored.tick()
+    assert restored.state["liquidating"] == "broker protection missing or unverified"
+
+
+@pytest.mark.parametrize("change", [{"side": "sell"}, {"status": "new"},
+    {"filled_qty": "0"}, {"filled_qty": "3"}, {"client_order_id": "other"},
+    {"symbol": "SPY"}, {"order_class": "simple"}])
+def test_full_fill_recovery_refuses_unproven_parent(setup, monkeypatch, change):
+    e, api = setup
+    parent = full_fill(api, e, monkeypatch)
+    parent.update(change)
+    e.tick()
+    assert e.state.get("liquidating")
+    assert not any(p["type"] == "stop" for p in api.submitted)
+
+
+def test_full_fill_standalone_stop_then_strategy_exit(setup, monkeypatch):
+    e, api = setup
+    full_fill(api, e, monkeypatch)
+    cancel_immediately(api, monkeypatch)
+    e.tick()
+    e.signals["TQQQ"]["signal"] = "sell"
+    e.tick()
+    e.tick()
+    assert api.submitted[-1]["type"] == "market"
+    assert api.submitted[-1]["side"] == "sell"
+
+
 def test_partial_take_profit_preserved_after_conversion(setup, monkeypatch):
     e, api = setup
     partial(api, e)

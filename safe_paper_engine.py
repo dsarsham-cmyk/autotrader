@@ -161,7 +161,7 @@ class Engine:
         return self.publish()
 
     def repair_partial(self, position, orders):
-        """Cancel the remainder, then cover the actual fill with a standalone stop.
+        """Reconcile our bracket, then protect actual fills with a standalone stop.
 
         Return True only for a recognized entry undergoing bounded repair.
         Unknown holdings still take the original emergency exit path.
@@ -175,10 +175,25 @@ class Engine:
                            and o.get("client_order_id") == expected
                            and o.get("order_class") == "bracket"
                            and o.get("side") == "buy"
-                           and o.get("status") == "partially_filled"
-                           and 0 < float(o.get("filled_qty") or 0) < float(o.get("qty") or 0)), None)
+                           and o.get("status") in {"partially_filled", "filled"}
+                           and 0 < float(o.get("filled_qty") or 0) <= float(o.get("qty") or 0)), None)
             if parent is None:
-                return False
+                # Filled entry parents disappear from the OPEN inventory; the
+                # remaining group can be rooted at its take-profit leg. Fetch
+                # our exact deterministic entry, never infer ownership from a
+                # symbol or treat a held stop as verified protection.
+                if symbol not in self.state.get("attempted", []):
+                    return False
+                parent = self.api.call("GET", "/v2/orders:by_client_order_id",
+                    params={"client_order_id": expected, "nested": "true"}, missing_ok=True)
+                if (not parent or parent.get("symbol") != symbol
+                        or parent.get("client_order_id") != expected
+                        or parent.get("side") != "buy"
+                        or parent.get("order_class") != "bracket"
+                        or parent.get("status") not in {"filled", "partially_filled"}
+                        or not 0 < float(position["qty"]) <= float(parent.get("filled_qty") or 0)
+                        or not 0 < float(parent.get("filled_qty") or 0) <= float(parent.get("qty") or 0)):
+                    return False
             legs = parent.get("legs") or []
             stop_leg = next((o for o in legs if o.get("side") == "sell"
                              and o.get("type") == "stop"), {})
@@ -207,7 +222,7 @@ class Engine:
                     self.cancel(root)
             orders = self.api.orders()
             if active_orders(orders, symbol):
-                self.status["actions"][symbol] = "partial fill: canceling unfilled remainder before protection"
+                self.status["actions"][symbol] = "bracket recovery: canceling conflicting orders before protection"
                 return True
         # Cancellation may race with another fill; re-read the actual position.
         actual = next((p for p in self.api.call("GET", "/v2/positions")
@@ -240,7 +255,7 @@ class Engine:
         if stop_coverage(actual, refreshed):
             repairs.pop(symbol, None)
             self.persist()
-            self.status["actions"][symbol] = "partial fill retained; actual filled quantity protected at broker"
+            self.status["actions"][symbol] = "entry retained; actual filled quantity protected at broker"
         else:
             self.status["actions"][symbol] = "stop submitted for filled shares; verification pending"
         return True
@@ -344,7 +359,7 @@ class Engine:
                         for s, v in list(self.signals.items())},
             "state_persistent": bool(os.getenv("RAILWAY_VOLUME_MOUNT_PATH") or
                                      os.getenv("AUTOTRADER_STATE_DIR")),
-            "controller_version": "2026-10-02-paper-budgets",
+            "controller_version": "2026-10-07-full-fill-protection-recovery",
             "category_budgets": budgets,
             "reserve_fraction": round(1-sum(c["risk"]["capital_fraction"] for c in self.configs),4),
             "budget_migration_unknown": bool(self.state["daily_purchase_budget"].get("legacy_allowance_held")),
@@ -370,6 +385,14 @@ class Engine:
                 self.state["entry_reason"] = "liquidation confirmed; no re-entry today"
                 self.persist()
             return self.publish()
+
+        # An intentional exit cancels its protective orders first. Finish that
+        # persisted exit rather than rebuilding a stop and reversing the exit.
+        for p in positions:
+            intent = self.state["exit_intents"].get(p["symbol"])
+            if intent:
+                self.status["actions"][p["symbol"]] = self.exit_position(p, orders, intent)
+                return self.publish()
 
         # If an inherited/external position has no verified broker protection,
         # flatten it rather than silently trading with a software-only stop.
@@ -537,7 +560,7 @@ class Engine:
         self.status["entry_blocked"] = bool(self.state.get("entry_blocked", False) or paused or repairing)
         self.status["reason"] = self.state.get("entry_reason", "") or (
             "connection recovery: waiting for two complete broker checks" if paused else
-            "partial fill: protecting actual filled shares" if repairing else "")
+            "bracket recovery: protecting actual filled shares" if repairing else "")
         self.status["liquidating"] = self.state.get("liquidating")
         save(STATUS, self.status)
         event = json.dumps({k: self.status.get(k) for k in
