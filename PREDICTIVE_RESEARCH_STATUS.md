@@ -930,3 +930,54 @@ present-day universe/full-session exclusions, raw splits, assumed SIP receipt,
 OHLC fills and approximate account guards remain limitations. No orders,
 deployment, live money, increased risk or model promotion. Objective unmet;
 new neural terminology cannot substitute for accurate profitable predictions.
+
+## Neural training-loss convergence audit — October 10, 2026
+
+Added isolated `neural_convergence_research.py`, preserving the prior evaluated
+source and results. Same architecture, initialization seed, input arms, splits,
+calibration, trades and budgets; one new declared TRAIN-only stopping policy:
+maximum 1,000 epochs, tolerance1e-5, no-improvement patience20, no random holdout
+or validation-based early stopping. No epochs were chosen from test P&L.
+Official MLP documentation accessed October10:
+https://scikit-learn.org/stable/modules/generated/sklearn.neural_network.MLPClassifier.html
+and installed sklearn1.9.1 `_update_no_improvement_count` were checked. The
+report retains every training loss curve and independently replays its
+best-loss/no-improvement rule. A verified training plateau is NOT a global
+optimum, calibrated profitability or evidence of market predictability.
+
+All 44 folds reached a verified training plateau with no warnings. Summary
+inputs stopped at 65-162 epochs, ordered-path inputs at 99-834 epochs; none
+hit the new 1,000-epoch cap. Thus the previous epoch cap was genuinely a
+limitation for some fits, but removing it did not create a profitable predictor.
+Same 427 historical test sessions / 4,079 filled evaluation candidates. Primary:
+
+| Features | Gate | Active days | Winning active days | Net USD |
+|---|---:|---:|---:|---:|
+| Summary | .50 | 309 | 54.37% | -1,080.00 |
+| Summary | .65 | 183 | 61.20% | -559.96 |
+| Summary | .90 | 0 | undefined | 0 |
+| Summary + ordered path | .50 | 316 | 58.54% | -944.22 |
+| Summary + ordered path | .65 | 248 | 58.87% | -778.20 |
+| Summary + ordered path | .90 | 0 | undefined | 0 |
+
+All 18 cost/latency/gate outcomes failed the target screen. The path .50 arm
+improved on the 100-epoch neural result (56.43%, -1,051.19 USD) but remains
+negative; summary .65 worsened from -522.26 to -559.96 USD. No favorable subset
+is promoted. Weighted Brier scores .244477 summary / .242808 ordered path;
+training plateau did not imply improved probability quality or economic edge.
+All simulated budget/position/planned-risk checks passed. These are not
+whole-account production guard or actual fill validations.
+
+369 tests passed (four existing sklearn deprecation warnings), including seven
+new tests for plateau replay, finite loss evidence, temporal overlap, invariance
+of training loss/epochs to calibration labels and future test features/labels.
+Frozen prospective model and source hashes still match. Complete ignored local
+result `research_runs/neural_convergence/results.json` SHA256:
+`d03c4f53b13e36e695c467c9bb1b90d0ed6793ce49c8d7b0094bf4a50a607473`.
+All evaluated dependency hashes matched. Existing exposure, present-day universe,
+complete-session exclusions, raw splits, SIP delay and OHLC execution limitations
+remain. No orders, deployment, real money, risk increase or model promotion.
+Objective remains unmet. This audit removes premature stopping as a sufficient
+explanation for failure of this architecture; useful next research must seek
+additional causally available signal information, not repeat an epoch/profit
+search on the same already-exposed days.
