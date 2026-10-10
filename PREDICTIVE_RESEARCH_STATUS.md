@@ -745,3 +745,63 @@ fallback, predecision spread eligibility, immutable quote hashes, partial
 collection rejection and equal fresh-limit semantics. Frozen prospective source
 hashes still match. No deployment, broker orders, real money, cost reduction,
 risk-limit relaxation or model promotion. Objective remains unmet.
+
+## Stricter stops with policy-specific retraining — October 10, 2026
+
+Added isolated `tighter_stop_simulator.py` and `tighter_stop_research.py`.
+Stops are 1% (reference), 0.5% and 0.25%; widening is rejected. Target remains
+0.4%, horizon 60 minutes, SIP information cutoff 10:00 NY, assumed receipt
+10:15 and entry 10:16. Four models are refitted/calibrated separately on each
+stop policy's past filled-trade labels; test candidates are NOT filtered by
+future fills. 240 warmup dates, 60 prior calibration dates, 20-date test blocks
+give 22 folds and 427 observed historical test sessions in the extended stock
+dataset. These dates were already exposed: NOT independent forward evidence.
+
+Fixed stock/category budgets remain 1%/5%, maximum three positions, planned
+trade risk 0.05%, cash-only non-refunding purchase reservation. Existing daily
+and permanent guard approximations remain; gap execution may exceed a trigger.
+No production strategy/configuration was modified. Primary 0.50-gate results
+include 10 bps per side and cumulative virtual starting equity of 100,000 USD:
+
+| Stop | Model | Active days | Winning active days | Net USD | Worst day USD |
+|---|---|---:|---:|---:|---:|
+| 1% | Logistic | 314 | 55.73% | -1,044.38 | -35.06 |
+| 1% | Boosted | 305 | 55.41% | -1,045.08 | -34.53 |
+| 1% | Classical RBF | 341 | 48.39% | -1,136.23 | -32.83 |
+| 1% | Simulated quantum | 328 | 45.43% | -1,069.59 | -33.18 |
+| 0.5% | Logistic | 221 | 44.34% | -752.24 | -20.09 |
+| 0.5% | Boosted | 195 | 40.00% | -728.21 | -20.24 |
+| 0.5% | Classical RBF | 200 | 36.50% | -755.96 | -19.62 |
+| 0.5% | Simulated quantum | 213 | 39.44% | -735.54 | -19.81 |
+| 0.25% | Logistic | 2 | 0.00% | -8.62 | -4.35 |
+| 0.25% | Boosted | 7 | 28.57% | -25.42 | -12.87 |
+| 0.25% | Classical RBF | 11 | 36.36% | -28.38 | -8.64 |
+| 0.25% | Simulated quantum | 4 | 25.00% | -10.94 | -4.38 |
+
+Lower loss is not edge: tighter stops changed labels and made models abstain
+or lose more often. At gate .65 the 0.5% boosted variant earned +9.81 USD on
+only FOUR active days (75% wins). At gate .90 the 1% logistic reference earned
++3.59 USD on only TWO active days (100% wins). Neither establishes the target.
+All 108 outcomes (12 stop/model cases, three gates, three cost/timing cases)
+failed the screen. All simulated stock/category/position/planned-risk checks,
+including the actual tighter-stop planned risk, passed. No daily gap-trigger
+overshoot occurred in these historical outcomes; a synthetic severe-gap test
+demonstrates overshoot remains possible despite planned-risk compliance.
+
+For exact target/stop exits without gaps, the algebraic TRADE break-even win
+rate falls from 85.73% to 77.80% to 69.26%. This is NOT predicted day accuracy.
+At 20 bps per side even the 0.4% target nets slightly negative. Cost assumptions
+were not reduced to manufacture profitability.
+
+Complete local results: ignored `research_runs/tighter_stops/results.json`,
+SHA256 `f55702a093cf5c8856ea83e85f272c7653d9b536713d3206fb1441f9ff64e49c`.
+Recorded dependency hashes match current sources. 343 tests passed (four
+existing sklearn deprecation warnings), including 16 new tests for stricter
+labels, past-only fitting, future-label isolation, reference accounting parity,
+stop-first OHLC ordering, gaps, budgets and no-trade handling. Minute-bar fill
+assumptions, present-day universe, full-session selection, raw splits and EOD
+peak guards remain limitations. Quantum remains a four-qubit CPU simulation.
+No orders, deployment, real money or model promotion. Objective remains unmet.
+This rejects tighter fixed stops as a sufficient repair of these predictors;
+next work must address signal/conditional net-outcome quality rather than
+selecting rare historical winning days or relaxing loss limits.
