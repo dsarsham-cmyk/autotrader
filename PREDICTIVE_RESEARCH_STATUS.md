@@ -2148,3 +2148,56 @@ the isolated runtime (the skipped count is not presented as passed tests).
 Frozen prospective sources/model still match. No orders, deployment, model
 promotion, increased risk, quantum hardware fees or real money. Full objective
 remains unachieved; successful training is not successful trading.
+
+## 2026-10-10 — Next-minute profit protection comparison completed
+
+Added isolated profit-lock path and unchanged original cash/risk bookkeeping.
+Preserved initial1% stop, .4% target, stock1%/category5% budgets, three positions
+and planned-risk .05%. A completed minute with high>=entry raw+.3% and close
+above the proposed stop plus one cent may request a tighter cost-adjusted stop
+for NEXT minute. Proposed stop yields+.02% net at exact modeled stop fill;
+never activates at/above the profit target or lowers original protection.
+Same-bar low cannot retroactively execute a new stop. Gap execution uses the
+less favorable actual open, so profit is not guaranteed. Source distinction:
+[Alpaca order documentation](https://docs.alpaca.markets/us/docs/orders-at-alpaca)
+also describes stop-triggered market execution as potentially different from
+the stop price. This simulated amended fixed stop is NOT a confirmed broker
+trailing/bracket replacement implementation; none has been deployed.
+
+Logistic/boosted models train on each policy's OWN known past fill labels;
+future unknowns remain candidates. Actual runner exit0: all18 fixed-stop
+reference outcomes reproduce exact trades/daily/net. Four cases36 outcomes,
+all complete429-session ledgers, all reported prefix risk checks pass, zero
+target-screen passes. Actual GET calendar audit confirms all429 sessions for
+all36 variants, including early closes.
+
+Primary10bps/16min,100k virtual sleeve:
+
+| Model/gate |Fixed netUSD|Profit-lock netUSD|Lock active days|Lock win%|Lock exits|
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Logistic .5|-1129.16|-1083.28|318|61.01|144|
+| Logistic .65|-668.34|-870.54|257|61.87|112|
+| Logistic .9|-5.90|-3.36|6|83.33|2|
+| Boosted .5|-1157.31|-1178.19|319|55.49|140|
+| Boosted .65|-557.38|-940.28|237|57.38|96|
+| Boosted .9|0.00|0.00|0|not applicable|0|
+
+One .9/logistic/10bps/17min variant has positive0.18USD net on SIX active
+days. This tiny exposed sample is not validation of profitability or90%
+winning days, and is NOT promoted. Substantially active variants remain net
+negative. Changing exit protection also changes labels/selection, so this is
+not a same-trade counterfactual ablation. No widening stops or leverage.
+Study SHA256:
+`690e31130d6ae665e5f3bf5306792fbfd941f8c823221f47c6ec4f785053f14e`.
+Calendar audit SHA256:
+`359ee1a91751af569ad94938bb45ec4be9595f320daf3ca84d02359256bcd1bd`.
+
+533 original-runtime tests passed/six Torch tests skipped, four existing sklearn
+warnings. Nine new tests cover exact disabled-policy reproduction, next-minute
+activation, same-bar initial-stop priority, gaps below profit lock, invalid
+request close/infeasible cost, missing next minute, unchanged planned-risk
+sizing/caps and own past labels/future unknown retention. An initial fixture
+incorrectly allowed a valid later activation; narrowed fixture to isolate the
+intended bad-close case, without changing strategy or historical inputs.
+Frozen prospective sources/model still match. No orders, deployment, model
+promotion, increased risk or real money. Full objective remains unachieved.
