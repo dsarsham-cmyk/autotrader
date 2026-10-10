@@ -1268,3 +1268,66 @@ session selection, raw splits/revisions, venue sparsity, unverified live receipt
 and OHLC/EOD-peak guard assumptions remain limitations. No orders, deployment,
 real money, increased limits or model promotion. Objective remains unmet: the
 coherent IEX feed and faster entry do not suffice to make these models profitable.
+
+## 2026-10-10 — No-forecast selection benchmark
+
+Added `predictive_null_benchmark.py` to test whether fresh-IEX model ranking
+adds value beyond selection without a forecast. This is NOT another promoted
+strategy or independent validation. Exact original source/input hashes were
+checked; all twelve fresh-entry model/gate outcomes and trades reproduced the
+completed IEX study. Same 427 exposed sessions, entry delay one minute, stop
+1%, target 0.4%, 60-minute horizon, costs 10bps per side and existing budgets.
+
+Five fixed seeds (11,23,37,53,71), with every result retained and no best-seed
+choice, deterministically hash date/symbol to select at most three candidates
+BEFORE fills. No replacing an unfilled selection using future knowledge.
+For each model/gate, controls rank only that model's eligible probability-gated
+pool; these test ranking, NOT the value of the gate. Five additional controls
+select from all eligible candidates without using model probabilities; their
+different coverage/fills mean they are not identical-coverage ranking tests.
+Ordinal selection scores are explicitly NOT forecast probabilities.
+
+Primary 0.50-gate ranking comparison, cumulative simulated USD:
+
+| Model | Model net | Mean of five pool controls | Mean daily advantage, bps | Descriptive interval, bps |
+|---|---:|---:|---:|---:|
+| Logistic | -1,137.23 | -1,183.66 | 0.0110 | [-0.0496, 0.0733] |
+| Boosted | -1,206.05 | -1,140.56 | -0.0155 | [-0.0622, 0.0300] |
+| MLP | -1,227.00 | -1,197.46 | -0.0070 | [-0.0615, 0.0480] |
+| Simulated quantum | -1,149.76 | -1,213.64 | 0.0151 | [-0.0399, 0.0651] |
+
+The 0.65-gate intervals also include zero. At 0.90, most models abstain;
+logistic and its pool controls have identical -21.17 USD outcomes. Tiny
+floating-point differences around 1e-18bps are numerical zero, not an edge.
+Intervals use paired per-session returns against the five-control mean and a
+fixed 20-observed-session circular block bootstrap with 1,024 replicates.
+They are descriptive, not proof of equivalence, stationarity, causality or
+correction for repeated research. Seeds are not independent market days.
+
+All-eligible controls, each on the same observed sessions:
+
+| Seed | Active days | Winning active days | Net USD |
+|---|---:|---:|---:|
+| 11 | 357 | 45.66% | -1,335.93 |
+| 23 | 328 | 46.95% | -981.90 |
+| 37 | 346 | 45.09% | -1,201.41 |
+| 53 | 349 | 44.99% | -1,226.66 |
+| 71 | 336 | 46.13% | -1,140.50 |
+
+Twelve model outcomes, sixty matched-pool controls and five all-eligible
+controls: 77 outcomes, zero target-screen passes. All simulated category,
+stock, position and planned-risk checks passed. Source hashes still match.
+419 tests passed, including eight new null-selection reproducibility,
+probability-independence, pre-fill selection and paired-comparison tests;
+four existing sklearn deprecation warnings. Frozen prospective model/source
+hashes remain unchanged. Full ignored report
+`research_runs/predictive_null/results.json` SHA256:
+`6785c740ad55bc4e6f568fc4aa9553fa99c96ac3e8d69598bc9dafcf411ebe3c`.
+
+Conclusion: no clear model-ranking advantage demonstrated by this benchmark;
+all adequately active model outcomes remain negative after costs. This does
+not establish that no predictive edge can exist. Exposed outcomes, fixed
+universe, raw split/revision, SIP completeness and unverified live receipt
+remain limitations. No orders, deployment, increased risk or model promotion.
+The 90% profitable-active-day objective remains unachieved; independent
+prospective evidence is still required.
