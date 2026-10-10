@@ -1,0 +1,186 @@
+{
+  "adjustment": "raw",
+  "calibration_first": "2026-07-09",
+  "calibration_last": "2026-10-01",
+  "cloud_scheduled": false,
+  "collector_implemented": false,
+  "counts": {
+    "target_004": {
+      "cal_last_observed": "2026-10-01",
+      "calibration_rows": 598,
+      "target_fraction": 0.004,
+      "train_last_observed": "2026-07-08",
+      "training_rows": 6034
+    },
+    "target_010": {
+      "cal_last_observed": "2026-10-01",
+      "calibration_rows": 598,
+      "target_fraction": 0.01,
+      "train_last_observed": "2026-07-08",
+      "training_rows": 6019
+    }
+  },
+  "features": [
+    "return",
+    "range",
+    "location",
+    "vwap_distance",
+    "observed_return_volatility",
+    "log1p_relative_volume",
+    "gap",
+    "prior_five_return",
+    "prior_volatility",
+    "opening_coverage",
+    "prior_return",
+    "last_five_return",
+    "last_five_volume_share",
+    "prior_terminal_age_fraction",
+    "cross_section_mean_return",
+    "positive_breadth"
+  ],
+  "feed": "sip",
+  "forward_records": 0,
+  "forward_start": "2026-10-12",
+  "input_evidence": {
+    "AAPL": {
+      "regular_dates": 690,
+      "sha256": "88170cba4f8d2452fd488a724c0fad67c2dde022bf3ee4a6594586f1d04ab11d"
+    },
+    "AMD": {
+      "regular_dates": 690,
+      "sha256": "383e8714367cc802fc8e41292e7f28579492914cf89b00f873a11a0a7cb07f7b"
+    },
+    "AMZN": {
+      "regular_dates": 690,
+      "sha256": "a19ab82aa0251b4a6fefb7e2896c7830e654d93b1a589950c674ccbbbc180ce8"
+    },
+    "AVGO": {
+      "regular_dates": 690,
+      "sha256": "0c3ed71c5bc351e5d8fd14301b92834763eee4c833b4f0e6cacfcc22914d7fa2"
+    },
+    "BAC": {
+      "regular_dates": 690,
+      "sha256": "0f1d31a4e68dc4b49c4596969bf38cb7dc6b645b0df4bbe5bfb09a21db6ebd6d"
+    },
+    "CVX": {
+      "regular_dates": 690,
+      "sha256": "d7c9b676eb986d9890d83f7b7f380dbfb4a432af8aa72f1b1b96974441284311"
+    },
+    "DIS": {
+      "regular_dates": 690,
+      "sha256": "20dd0b34b80c5d93b1f42fd3abf0ee604c2d1b8ccd4e17b154a18a686aeeced0"
+    },
+    "GOOG": {
+      "regular_dates": 690,
+      "sha256": "e64cbf5f33f22fe31512259e1ae91ccf67a30cb3f5c25f62c96c48700145b774"
+    },
+    "INTC": {
+      "regular_dates": 690,
+      "sha256": "acee67d3e894a28387d04a8c0262817adbdcdf9877d7230ab486f9fe68cf70a5"
+    },
+    "JPM": {
+      "regular_dates": 690,
+      "sha256": "19914df26945db4a1f9511d406e86abf2a364505a620dd3a930690450ef19a30"
+    },
+    "META": {
+      "regular_dates": 690,
+      "sha256": "3ba07d6c59ef914ba8b6a89093e22a8f3c59205efbe7b94d29a124dc6c7a92a1"
+    },
+    "MSFT": {
+      "regular_dates": 690,
+      "sha256": "13f8a3c9470734d3400ff14771017a89f805b19ce39e0162b5dad1497542dd78"
+    },
+    "MU": {
+      "regular_dates": 690,
+      "sha256": "f3a3bab4f00a943fa2b9cf4b096ac88b08c92787a2e309f2494585ad45a290ef"
+    },
+    "NFLX": {
+      "regular_dates": 690,
+      "sha256": "744a698c57b295161b09e35fd617a4096bc7263624ad9600bfd0a119bb1fdde4"
+    },
+    "NVDA": {
+      "regular_dates": 690,
+      "sha256": "845c6836c8862f09d0006937347100f578d52b79af844d07976c8d613538cfc5"
+    },
+    "PLTR": {
+      "regular_dates": 690,
+      "sha256": "1abbede4cd88a440a2f5e92e6480b28b6000fdcc5937c7a82fd2b392840d743e"
+    },
+    "TSLA": {
+      "regular_dates": 690,
+      "sha256": "9cb5bf0256d2c093e9a2d1b4c2dc154a352b18d1a2ef0b93e99b5c3410b6198a"
+    },
+    "UBER": {
+      "regular_dates": 690,
+      "sha256": "2850b61181bd5cbfed797d2f4c3e6b4da7e6f4b9a4127c8193b6ce72254e1d5f"
+    },
+    "WMT": {
+      "regular_dates": 690,
+      "sha256": "2bfb5c5b35cd4860317dbde2e40115f943ad761380681903e940309a639d988b"
+    },
+    "XOM": {
+      "regular_dates": 690,
+      "sha256": "7fd476b86d153580f422fdbac4a06be285106b851852e99059ce0f6a1ce8bc90"
+    }
+  },
+  "limitations": [
+    "Frozen fitted comparator, not independent forecast evidence",
+    "No approved profitable model; exposed studies failed target",
+    "Pure inference cannot replace actual input receipt and pre-entry external timestamp anchor"
+  ],
+  "mode": "causal_split_shadow_only",
+  "orders": false,
+  "prior_exploration_failed_target": true,
+  "production_approved": false,
+  "reference_sha256": "e8a6420ad96a0ae4f114dfcbb31dd666d5ed04b830e551a4512d5e5f043a5db3",
+  "rule": {
+    "category_cap": 0.05,
+    "cost_bps": 10,
+    "cutoff_minute": 30,
+    "execution_latency_minutes": 1,
+    "horizon_minutes": 60,
+    "information_delay_minutes": 15,
+    "max_positions": 3,
+    "planned_trade_risk": 0.0005,
+    "probability_threshold": 0.65,
+    "stock_cap": 0.01,
+    "stop_fraction": 0.01,
+    "stress_cost_bps": 20,
+    "targets": [
+      0.004,
+      0.01
+    ]
+  },
+  "runtime_versions": {
+    "joblib": "1.6.0",
+    "numpy": "2.5.3",
+    "pandas": "3.0.5",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "threadpoolctl": "3.7.0"
+  },
+  "symbols": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "META",
+    "GOOG",
+    "TSLA",
+    "AMD",
+    "JPM",
+    "BAC",
+    "XOM",
+    "CVX",
+    "WMT",
+    "DIS",
+    "NFLX",
+    "INTC",
+    "UBER",
+    "PLTR",
+    "AVGO",
+    "MU"
+  ],
+  "trained_through": "2026-10-01",
+  "training_last": "2026-07-08"
+}

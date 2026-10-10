@@ -2811,3 +2811,47 @@ later-exit missing observations, no restarting after unknown, gap overshoot,
 same-bar stop-first, own-label past-only fitting/future isolation and algebra.
 Frozen prospective source/model hashes still match. No orders/deployment/live
 money or promotion. Full90%-profitable-active-days objective remains unachieved.
+
+### Fixed causal/split shadow comparator bundle — 2026-10-10
+
+Existing `control_v2` collector uses21 old features and is NOT the16-feature
+causal/split-normalized research model. Do not attribute its future results to
+the corrected or1%-target models. Existing collector, model, manifest, sources
+and cloud schedule remain unchanged; both old source/artifact checks pass.
+
+`causal_shadow_bundle.py` now fits/freezes two logistic/calibrated shadow heads
+at `research_prospective/causal_split_shadow_v1`: targets.4% and1%, same16
+date-effective split inputs and separate OWN past known-filled labels.
+Training6034 and6019 rows respectively, past calibration598 rows each.
+Training date groups end2026-07-08, calibration2026-07-09..2026-10-01; declared
+strictly future forward start2026-10-12. No retraining after freeze, model
+promotion, budget/risk/cost change, trading API writes or production deployment.
+Both heads are failed-exploration COMPARATORS, not approved profitable candidates.
+
+Actual freezer completed, models serialized and reloaded with exact own
+artifact/source/runtime checks. Artifact6921 bytes, no raw provider bars or
+credentials. Fixed threshold.65,10bps per side/stress20, fifteen-minute assumed
+information delay plus one-minute entry latency,60-minute horizon,1% stop,
+stock1%/category5%/three positions/planned risk.05%. Existing control stays fixed.
+
+Pure inference validates complete30-bar current packets, no later current bars,
+no future historical dates, fresh prior terminal context, matched fixed universe
+and finite consistent OHLCV. It retains all causally eligible candidates and
+returns BOTH probabilities without orders. Pure inference is explicitly NOT
+an authenticated prospective observation: receipt provenance, pre-entry external
+timestamp anchor, collection failures/missed sessions and outcome audit are
+still required. No collector or cloud job yet exists for THIS bundle. Forward
+observations remain ZERO. Do not report this setup as forward validation.
+
+New artifact SHA256:
+`01a5997c7780bb14142248cc3a8db12c1ee62d923bd74842e7358c02bf76c45e`.
+New manifest SHA256:
+`27174cbfc11b1a90fd3ab203de33ffb50c6530643507810712fd60f350b7f145`.
+`requirements-causal-shadow.txt` separately pins the serialized core runtime,
+including threadpoolctl; production requirements unchanged.599 tests passed,
+six Torch skipped/four existing sklearn warnings. Six new tests cover exact
+original logistic/calibration prediction parity, disjoint fitting dates/future
+label isolation, research input parity without future close, invalid/incomplete/
+future/stale input rejection, future split isolation, overwrite rejection, and
+artifact hash verification before deserialization. This closes a model-identity
+gap in preparing the actual comparative test, not the profitability objective.

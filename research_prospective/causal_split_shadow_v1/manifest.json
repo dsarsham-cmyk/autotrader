@@ -1,0 +1,38 @@
+{
+  "manifest": {
+    "artifact_sha256": "01a5997c7780bb14142248cc3a8db12c1ee62d923bd74842e7358c02bf76c45e",
+    "broker_orders_enabled": false,
+    "created_utc": "2026-10-10T19:36:36.107925+00:00",
+    "execution_latency_minutes": 1,
+    "feature_cutoff_minute": 30,
+    "feed": "sip",
+    "forward_start": "2026-10-12",
+    "history_provenance_required": true,
+    "information_delay_minutes": 15,
+    "production_approved": false,
+    "required_external_timestamp_anchor": true,
+    "research_only": true,
+    "schema": 1,
+    "source_hash_format": "python_lf_normalized",
+    "source_sha256": {
+      "active_stock_research.py": "f25ff0a182adbf77e992289f68e3ed4b28db82be28f23624c5f6a1dbd9011bc9",
+      "balanced_target_research.py": "5ff46a65398a1e9b6f00eff468ae05f8820acaefb117f5936b4b33d1dd7d324f",
+      "balanced_target_simulator.py": "8244db2b29777a2ffff6b8ef0fde2f454d68c0ce537016c90d7fe0614c5d4686",
+      "causal_opening_inventory.py": "eb776fc19be2f8af036a825d11b90cc897e2dfd0eed8c6591e70e958bab92b4c",
+      "causal_shadow_bundle.py": "5ccb97f273880bf15a7b5b0a96b23b9c22ff8f4819930e95ed8191a5bbb78ada",
+      "causal_sparse_research.py": "38c758c64238927ae1b2344a8e111dd3f911a3d0b87d5abc432bee1179cb6c9e",
+      "causal_sparse_simulator.py": "a3d59e4ec6465d05e9edab8070b0388de95dfa3671b0c871f7d36f8c17622b62",
+      "finbert_comparison_audit.py": "171f2cb0f7a2db1d600c069eaa0313418f28edc8664848d70b117a63195d04f4",
+      "fixed_trade_cost_diagnostic.py": "7735803a51a69889bf4c46efc91e9f6db1835df42d117819eacd252fe638f7e9",
+      "macro_context_research.py": "94c969770ac4146b4a0bd39a0ab39fce8288ebb60c4e3bd097357df8986ec4e2",
+      "predictive_portfolio_research.py": "ae4771adee92abae0a3c64c074e753f4269555a3e04eabcc3bcfe474db8a5cb8",
+      "predictive_research.py": "f1c3b75d070d47ba4c1eec3f506a9ffde3f514111ee86ac2bc6edea85ce7c966",
+      "prospective_forecast_evidence.py": "93804b32046f313b921fe4d2a708c21d2b85a518717db683d27fc76cf03b0315",
+      "prospective_series_audit.py": "a4f08f8942cbd2a1e36f34450d0d96e29ce536dd60e82128b8310775c376f033",
+      "split_context_audit.py": "fa97468d0bbcdaf7fd68ee1696484dfb01fad3ad5ba9d5cfa2cbf34b7255ccba",
+      "split_predictive_research.py": "9c0b772896c92042a89576fc572d9e12ca6979a9c278d32ca96d2b0013293dd6"
+    },
+    "trained_through": "2026-10-01"
+  },
+  "manifest_sha256": "27174cbfc11b1a90fd3ab203de33ffb50c6530643507810712fd60f350b7f145"
+}

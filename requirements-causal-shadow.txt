@@ -1,0 +1,11 @@
+# Isolated research-only serialized shadow runtime; no production requirements change.
+numpy==2.5.3
+pandas==3.0.5
+scipy==1.18.1
+scikit-learn==1.9.1
+joblib==1.6.0
+threadpoolctl==3.7.0
+requests==2.34.2
+python-dotenv==1.2.3
+alpaca-py>=0.20,<1
+cryptography==50.0.1
