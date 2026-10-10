@@ -2290,3 +2290,79 @@ terminal state, stale/missing evidence, side-adjusted sign, duplicate/order
 rejection, invalid fill and explicit timezone. Frozen prospective model/sources
 still match. No orders, deployment, model promotion, risk/cost relaxation or
 real money. Requested90% profitable winning days remain unachieved.
+
+## 2026-10-10 — Date-effective split input normalization, isolated research
+
+Added `split_context_audit.py` and `split_predictive_research.py`. GET-only
+corporate-action endpoint documented at
+https://docs.alpaca.markets/us/v1.1/reference/corporateactions-1.
+Actual complete response returns four forward splits in the fixed universe:
+WMT3:1 on2024-02-26, NVDA10:1 on2024-06-10, AVGO10:1 on2024-07-15 and
+NFLX10:1 on2025-11-17. Latest downloaded records are NOT authenticated
+historical announcement receipts. No point-in-time delivery claim.
+
+New isolated feature builder rescales accumulated past closing prices divided
+by the new/old share ratio and past opening volumes multiplied by that ratio,
+only when ex_date is reached. Earlier output features remain unchanged.
+Missing effective session applies the unit change before next observed session.
+Current raw intraday prices, candidate eligibility, execution labels, budgets,
+costs, stop distances and frozen prospective source/model are unchanged.
+No-event builder exactly reproduces original causal16-feature inputs.
+
+Actual input audit exited0:13,355 input rows,84 affected rows on84 dates.
+Raw apparent gap versus normalized same-unit gap on effective dates:
+
+| Symbol | Raw gap percent | Same-unit gap percent |
+|---|---:|---:|
+| WMT |-66.324903|+1.025290|
+| NVDA |-90.042610|-0.426095|
+| AVGO |-90.015698|-0.156978|
+| NFLX |-90.045883|-0.458833|
+
+This identifies concrete input distortion, NOT its causal contribution to
+production losses or proof that correcting it yields profitable predictions.
+The correction exists only in research, not a production bug-fix deployment.
+Dividends/spin-offs/mergers, fixed current universe, historical revisions and
+unauthenticated original data delivery remain limitations.
+Input audit SHA256:
+`dbf4219c336460c59e1f84ffaf830b072fd1ade0ec78ccd4d8c3d32fb166089c`.
+Corporate-action receipt SHA256:
+`d805990261708d3f40e567c23dda5587e31089f020f96267aed72e2c154d94bd`.
+
+554 original-runtime tests passed/six Torch tests skipped, four existing
+sklearn warnings. Ten new tests cover exact no-event control, no backdating,
+current raw units, future close isolation, missing effective sessions,
+reverse-split direction, invalid/conflicting events, all-candidate ordering,
+reference reconciliation and unknown full results. No orders or deployment.
+Actual matched economic comparison exited0. Both models fitted using only
+known past labels and corrected date-effective input features; original18
+control outcomes exactly reproduce saved trades/daily/net. All36 outcomes
+have complete429-session ledgers; actual GET calendar audit confirms coverage.
+All reported stock/category/position/planned-risk checks pass; zero target
+screen passes. Reconciliation is not independent reproduction of fills/risks.
+
+Primary corrected results at10bps per side, entry delay16minutes:
+
+| Model/gate | Active days | Winning percent | Net USD |
+|---|---:|---:|---:|
+| Logistic .5 |324|56.48|-1114.80|
+| Logistic .65 |220|60.00|-777.31|
+| Logistic .9 |2|100.00|+3.54|
+| Boosted .5 |322|51.86|-1226.46|
+| Boosted .65 |173|57.80|-627.81|
+| Boosted .9 |0|not applicable|0.00|
+
+The100% figure is just TWO exposed active observations, descriptive interval
+34.237–100%, not evidence of90% future winning days or profitability. The
+one-minute delayed variant also has two wins/+3.54USD, not independent data.
+At gates with substantial activity, correcting bad units does not rescue
+profitability; .65 logistic worsens from-668.34 to-777.31USD and boosted from
+-557.38 to-627.81USD. Cleaner inputs are necessary but not a new predictive edge.
+No promising subset is promoted or allowed to reset the exposure history.
+Study SHA256:
+`15f3cd573ba7312626ac47e0556d699d191b4ceedfd87e0d5114a3efeb827a87`.
+Calendar audit SHA256:
+`a50a5e21f106e60468e1fd92ce777120c3336eae8c0494b0597214a7c57dd412`.
+Frozen prospective source/model still match. No broker orders, deployment,
+automatic model promotion, increased limits, cost reduction or real money.
+Requested90% profitable winning days remain unmet.
