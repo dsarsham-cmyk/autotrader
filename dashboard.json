@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-10-10T06:17:14.982189+00:00",
+  "last_updated": "2026-10-10T12:57:33.860485+00:00",
   "market_open": false,
   "account": {
-    "equity": 107149.37,
-    "cash": 107149.37,
-    "buying_power": 428597.48,
-    "last_equity": 107165.72,
-    "day_pnl": -16.35,
-    "day_pnl_pct": -0.015,
+    "equity": 107148.62,
+    "cash": 107148.62,
+    "buying_power": 428594.48,
+    "last_equity": 107148.62,
+    "day_pnl": 0.0,
+    "day_pnl_pct": 0.0,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -104,10 +104,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-24T05:15:28.480803+00:00",
-      "equity": 107375.1
-    },
     {
       "ts": "2026-09-24T05:43:15.623569+00:00",
       "equity": 107349.91
@@ -2103,6 +2099,10 @@
     {
       "ts": "2026-10-10T06:17:14.982189+00:00",
       "equity": 107149.37
+    },
+    {
+      "ts": "2026-10-10T12:57:33.860485+00:00",
+      "equity": 107148.62
     }
   ],
   "recent_trades": [
@@ -7347,7 +7347,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-10T06:17:18.652453+00:00",
+    "generated_at": "2026-10-10T12:57:39.111622+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -7506,7 +7506,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-10-10",
-    "generated_at": "2026-10-10T06:17:16.870393+00:00",
+    "generated_at": "2026-10-10T12:57:36.134227+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -7531,7 +7531,7 @@
       }
     },
     "portfolio_day_pnl": 0.0,
-    "unallocated_day_pnl": -16.35,
+    "unallocated_day_pnl": 0.0,
     "buy_executions": 0,
     "sell_executions": 0,
     "executions": [],
@@ -7540,14 +7540,14 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-10T06:17:16.965508+00:00",
+    "past_days_updated_at": "2026-10-10T12:57:36.315626+00:00",
     "coverage_start": "2026-09-08",
     "days": [
       {
         "date": "2026-10-10",
-        "equity": 107149.37,
-        "day_change": -16.35,
-        "day_change_pct": -0.015,
+        "equity": 107148.62,
+        "day_change": 0.0,
+        "day_change_pct": 0.0,
         "status": "latest",
         "executions_complete": true,
         "buys": 0,
@@ -7558,10 +7558,10 @@
       },
       {
         "date": "2026-10-09",
-        "equity": null,
-        "day_change": null,
-        "day_change_pct": null,
-        "status": "missing_equity",
+        "equity": 107148.62,
+        "day_change": -17.1,
+        "day_change_pct": -0.016,
+        "status": "closed",
         "executions_complete": true,
         "buys": 21,
         "sells": 24,
@@ -18227,7 +18227,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-10-10T06:17:12.980842+00:00",
+    "updated_at": "2026-10-10T12:57:33.303496+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -18240,13 +18240,13 @@
     "entry_blocked": false,
     "reason": "",
     "liquidating": null,
-    "daily_pnl_pct": -0.015,
+    "daily_pnl_pct": 0.0,
     "market_open": false,
     "open_positions": 0,
     "actions": {},
     "errors": [],
     "verified_stops": 0,
-    "baseline_equity": 107165.72,
+    "baseline_equity": 107148.62,
     "peak_equity": 110658.87,
     "allocations": {
       "HIGH RISK": 0.25,
@@ -18256,47 +18256,47 @@
     "signals": {
       "TQQQ": {
         "signal": "buy",
-        "age_seconds": 3
+        "age_seconds": 19
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 3
+        "age_seconds": 19
       },
       "SOXL": {
         "signal": "buy",
-        "age_seconds": 3
+        "age_seconds": 19
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 2
+        "age_seconds": 19
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 2
+        "age_seconds": 19
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 2
+        "age_seconds": 18
       },
       "IWM": {
         "signal": "buy",
-        "age_seconds": 2
+        "age_seconds": 18
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 2
+        "age_seconds": 18
       },
       "EZU": {
         "signal": "sell",
-        "age_seconds": 2
+        "age_seconds": 18
       },
       "EWU": {
         "signal": "sell",
-        "age_seconds": 2
+        "age_seconds": 18
       },
       "EWG": {
         "signal": "sell",
-        "age_seconds": 2
+        "age_seconds": 18
       }
     },
     "state_persistent": true,
@@ -18304,23 +18304,23 @@
     "category_budgets": {
       "HIGH RISK": {
         "fraction": 0.25,
-        "daily_cap": 26787.34,
+        "daily_cap": 26787.15,
         "committed": 0.0,
-        "remaining": 26787.34,
+        "remaining": 26787.15,
         "exposure": 0
       },
       "LOW RISK": {
         "fraction": 0.5,
-        "daily_cap": 53574.68,
+        "daily_cap": 53574.31,
         "committed": 0.0,
-        "remaining": 53574.68,
+        "remaining": 53574.31,
         "exposure": 0
       },
       "ACTIVE STOCK EXPERIMENT": {
         "fraction": 0.05,
-        "daily_cap": 5357.46,
+        "daily_cap": 5357.43,
         "committed": 0.0,
-        "remaining": 5357.46,
+        "remaining": 5357.43,
         "exposure": 0
       }
     },
@@ -18329,7 +18329,7 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-10-10T06:17:02.017201+00:00",
+      "updated_at": "2026-10-10T12:57:25.687430+00:00",
       "history_symbols": 20,
       "errors": [],
       "eligible_signals": [
