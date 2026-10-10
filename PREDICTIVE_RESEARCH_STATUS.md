@@ -2201,3 +2201,51 @@ incorrectly allowed a valid later activation; narrowed fixture to isolate the
 intended bad-close case, without changing strategy or historical inputs.
 Frozen prospective sources/model still match. No orders, deployment, model
 promotion, increased risk or real money. Full objective remains unachieved.
+
+## 2026-10-10 — Same-forecast exit ablation reveals trimmed-winner cost
+
+Previous profit-lock test retrained own labels, changing selections as well
+as exits. Added `fixed_forecast_profit_lock.py`: freeze the original causal
+probabilities/candidate proposals, compare fixed versus protected exits, use
+own evolving capital and unchanged caps for the risk replay. Original18
+control outcomes reproduce exact trades/daily/net. Separate fixed-entry/qty
+diagnostic isolates exit mechanics but is explicitly risk_approved=false:
+unchanged reference quantities can violate caps on changed capital. It is
+NOT sold as an executable policy. Aggregate account-guard contexts are marked
+unavailable for individual-path diagnostics; unknown counterfactual prices
+remain unknown, no zero fill or omitted loss.
+
+Actual runner exited0, four cases36 variants, all complete429-session ledgers,
+all reported stock/category/position/planned-risk checks pass, zero positive
+net outcomes and zero passing target screens. Actual broker-calendar GET
+confirms all429 expected sessions for all36 variants.
+
+Primary10bps/16min,100k virtual sleeve, same proposals:
+
+| Model/gate |Original netUSD|Protected replay netUSD|Active days|Protected win%|
+| --- | ---: | ---: | ---: | ---: |
+| Logistic .5|-1129.16|-1167.92|319|58.93|
+| Logistic .65|-668.34|-687.03|223|65.02|
+| Logistic .9|-5.90|-7.66|4|75.00|
+| Boosted .5|-1157.31|-1203.13|321|55.45|
+| Boosted .65|-557.38|-583.95|180|61.11|
+| Boosted .9|0.00|0.00|0|not applicable|
+
+Actual same-quantity logistic .65 diagnostic over380 paired trades:
+13 original losing/flat trades become wins, but69 winners are trimmed;
+total net change-18.68USD. The replay's higher daily win percentage does NOT
+make more money. This identifies a concrete exit-payoff tradeoff, not proof
+of future behavior. Do not promote an exit simply because it makes more days
+green. Same frozen classifier probabilities refer to the original exit labels,
+so this is an exit-mechanism study, not a recalibrated predictive model.
+Study SHA256:
+`65eadd4c816f07e6abe87d1ed6d3f4f2627c3d1f7d89b447d4c1d2fc25d1e020`.
+Calendar audit SHA256:
+`024e24ea54aa0d7e85828873fb8d055a31065b3fe7f7b9f34b4fd7278d8d8796`.
+
+538 original-runtime tests passed/six Torch tests skipped, four existing
+sklearn warnings. Five new tests cover entry/qty preservation without trading
+approval, missing counterfactual prices, aggregate guard refusal, changed
+entry/net rejection and retained no-trade interpretation. Frozen prospective
+model/sources still match. No orders/deploy, strategy promotion, risk increase
+or real money. The requested90% winning days AND net profit remain unachieved.
