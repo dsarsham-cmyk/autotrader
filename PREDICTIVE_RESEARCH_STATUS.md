@@ -1800,3 +1800,26 @@ disagreement, partial outcomes and no-trade interpretation. Full suite:
 497 passed, four existing sklearn warnings. Original FinBERT process still
 live at43,232/56,284 headlines. Economic sentiment effect remains unknown;
 no deployment, orders, promotion, risk changes or real money.
+
+## 2026-10-10 — FinBERT inference completed; economic comparison now running
+
+Original CPU process terminated successfully (exit0), all56,284 distinct
+headlines scored in1517.2 seconds for63,205 retained article versions.
+Original research runtime verified completed status, exact protocol/source,
+pinned model weight and news-manifest digests, every required headline hash
+and valid normalized finite probabilities. Completed private cache SHA256:
+`9994ca15115f70f053d79746ec17c7d01dec930527a43b76762d548453cfd7db`.
+
+Full fixed-batch checker then terminated exit0: all five predeclared batches
+0,8000,16000,32000,56000,160 headlines total, reproduced with maximum
+absolute difference0.0 each. No missing fixed batches. This is a sample
+reproduction, not recalculation of every score or independent market/news
+receipt authentication. Checker report SHA256:
+`442b635a7c83ca2d5004c8d8a6a112713aafd69f878f35f881fb1f3f07f43e1f`.
+
+Started the actual matched economic runner in the original research runtime.
+The process is live; no completed economic result exists at this observation.
+Same costs/budgets/limits and historical reference reproduction remain
+required. News sentiment remains different from profit probability, and the
+historical study is not independent forward evidence. No deployment, orders,
+promotion, increased risk or real money. Objective remains unachieved.
