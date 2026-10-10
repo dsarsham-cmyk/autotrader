@@ -1921,3 +1921,55 @@ no need for later bars after an early exit/unfilled entry, own past labels and
 future unknown retention, and actual-close calendar handling for two hours.
 Frozen prospective model/sources still match. No deployment, orders, promotion,
 increased budget/stop distance, real money or false target achievement.
+
+## 2026-10-10 — Prior-correlation selection completed, still negative net
+
+Tested whether ranking the top three model probabilities concentrates the
+same stock movement. Reused frozen completed causal forecasts WITHOUT
+altering probabilities or refitting: greedy descending probability rank,
+maximum three stocks; after the first, accept only if every chosen pair has
+correlation<=.5 over the prior60 observed session dates, at least40 joint
+observations. Returns use each prior observed regular open and last15:55-or-
+later close, without cross-day split returns. Missing/constant pair history
+does not become zero correlation. Never use the current/future close, selected
+future fill or outcome completeness to choose a substitute. No-eligible dates
+remain present with unchanged below-gate forecasts.
+
+Executed four cases36 outcomes, terminal exit0. All18 original ranked
+reference outcomes reproduced exactly. All36 have complete429-session
+ledgers, all reported stock/category/position/planned-risk checks pass, zero
+target screens pass. Actual calendar GET audit confirms all429 sessions
+including early closes. Inspected7,156 pair-history records: every available
+latest date strictly precedes its forecast date; missing pairs remain unknown.
+The saved selection evidence contains joint counts, chosen/rejected stocks,
+correlations and per-pair input digests. This is provenance for this historical
+calculation, not authentication of original data delivery or stable future
+correlations.
+
+Primary10bps/16min results, virtual100k research sleeve:
+
+| Model/gate | Original rank netUSD | Correlation selection netUSD | Active days | Win% |
+| --- | ---: | ---: | ---: | ---: |
+| Logistic .5|-1129.16|-1156.57|330|52.73|
+| Logistic .65|-668.34|-613.73|213|62.44|
+| Logistic .9|-5.90|-5.90|4|75.00|
+| Boosted .5|-1157.31|-1195.36|321|51.40|
+| Boosted .65|-557.38|-541.03|172|59.30|
+| Boosted .9|0.00|0.00|0|not applicable|
+
+Small .65 improvements remain negative net, not a profitable90% discovery.
+Gate .9 again yields four small negative-net days or none; they cannot support
+the requested winning-day claim. Historical outcomes remain exposed; fixed
+universe, raw data/revisions, original receipts and modeled execution limits
+remain. No independent validation or production approval.
+Study SHA256:
+`6941e946035b403853cb98f68a980c05e1f3b81c9d72f93b4068d05644bc853a`.
+Calendar audit SHA256:
+`7cfad55993c61da1b801ed74285894236b1a3c75b2cc1aecd7700a9dbe42d7d0`.
+
+517 tests passed, four existing sklearn warnings. Seven new tests cover
+unchanged probabilities, correlated rejection, current/future return isolation,
+missing pair handling, retained no-trade date, baseline reproduction and no
+replacement for future missing selected outcomes. Frozen prospective model
+and sources still match. No deployment, orders, promotion, increased risk or
+real money. The full objective remains unachieved.
