@@ -39,6 +39,16 @@ jobs:
       - name: Install isolated research dependencies
         if: steps.plan.outputs.run == 'true' || inputs.validate_only == true
         run: pip install -r requirements-prospective.txt
+      - name: Checkout encryption helper separately from frozen forecast code
+        if: steps.plan.outputs.run == 'true' || inputs.validate_only == true
+        uses: actions/checkout@v4
+        with:
+          path: evidence-tools
+      - name: Validate dedicated evidence key
+        if: steps.plan.outputs.run == 'true' || inputs.validate_only == true
+        env:
+          PROSPECTIVE_EVIDENCE_KEY: ${{ secrets.PROSPECTIVE_EVIDENCE_KEY }}
+        run: python evidence-tools/research_evidence_crypto.py validate
       - name: Validate only - not a trading test
         if: inputs.validate_only == true
         run: python prospective_cloud_runner.py validate
@@ -61,8 +71,8 @@ jobs:
       - name: Encrypt private data after forecast timestamping
         if: always() && steps.plan.outputs.run == 'true' && inputs.validate_only != true
         env:
-          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
-        run: python prospective_cloud_runner.py seal
+          PROSPECTIVE_EVIDENCE_KEY: ${{ secrets.PROSPECTIVE_EVIDENCE_KEY }}
+        run: python evidence-tools/research_evidence_crypto.py seal
       - name: Retain encrypted private data evidence
         if: always()
         uses: actions/upload-artifact@v4

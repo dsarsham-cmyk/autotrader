@@ -437,3 +437,28 @@ chronology, original-input prefix changes, nonprospective dates, ZIP digest
 tampering and write-once backup behavior. Synthetic 100% on one fixture is
 explicitly not independent validation. No new actual forecast, winning day,
 profit or paper order was produced. Objective remains unmet.
+
+## Full input reproduction and dedicated evidence encryption
+
+Added `prospective_full_audit.py`: verifies retained raw-data hashes, reconstructs
+historical inputs, reproduces all published probability/mean/Q10 predictions
+with the frozen model, and obtains complete after-close SIP outcomes for the
+single-session simulated evaluator. No orders or production approval. Actual
+environment-check run still contains zero forecasts and zero evaluated sessions.
+A roundtrip using the real frozen model and a synthetic packet passed; it is
+software verification, not prospective performance. Cumulative capital replay,
+automatic after-close auditing and broker execution validation remain absent.
+
+Security correction: current Alpaca paper secret was verified to remain in the
+public HANDOFF and its history. Broker-secret-derived encryption is therefore
+NOT confidential. No actual private forecast archive had been produced with it.
+New `research_evidence_crypto.py` uses a separate random 256-bit key, provisioned
+as GitHub secret PROSPECTIVE_EVIDENCE_KEY and protected locally with Windows
+current-user DPAPI. There is no broker-secret fallback. The workflow uses this
+separate helper without changing pinned forecast sources or model. The local
+DPAPI copy requires the same Windows profile; recovery arrangements remain to
+be established. Broker credentials have NOT been rotated; explicit approval
+was requested separately. Public credential exposure remains unresolved.
+
+282 local tests passed. New encryption workflow cloud validation is pending.
+No new genuine forecast, profitable day or independent validation was obtained.
