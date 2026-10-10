@@ -1723,3 +1723,32 @@ scores remain ignored private cache files. No orders, deployment, model
 promotion, increased risk or real money. Original-version omissions, provider
 receipt timing, attribution/truncation, fixed universe and OHLC assumptions
 still prevent independent validation. Objective remains unachieved.
+
+## 2026-10-10 — Actual FinBERT checkpoint reproduction, PARTIAL
+
+The original inference process remains live; it has not been restarted because
+of an observation timeout or an incomplete status file. Added
+`finbert_checkpoint_audit.py` to independently recalculate predeclared saved
+batches from the pinned model and original headline bytes. Fixed batch starts
+0,8000,16000,32000,56000 are selected before economic outcome inspection,
+not chosen from favorable sentiment/profit results. Model file digests, source
+digest, input archive and exact runtime package versions must match. Partial
+mode reports unavailable batches; full mode requires completed inference and
+all five batches. Changed headline membership or scores beyond1e-7 fail closed.
+
+Executed the checker in the isolated NLP runtime, terminal exit0. Three actual
+available batches (0,8000,16000),96 headlines, reproduced EXACTLY: maximum
+absolute difference0.0 in each. Batches32000/56000 were not yet available.
+Report status `partial_fixed_batch_reproduction`, all_fixed_batches_checked=false,
+entire_corpus_outputs_reproduced=false, economic_validation=false,
+independent_validation_pass=false. This is not proof of every score, authentic
+historical news delivery, future return prediction or profitability.
+Ignored report `research_runs/finbert_checkpoint_audit/results.json` SHA256:
+`0ce5c4deca9522084e34d149bf47d78166bfae435aa9ea279b65860fff79e113`.
+
+483 tests passed, including five new fixed-offset, exact/tolerance, altered
+normalized score, missing membership and nonfinite rejection tests. Four
+existing sklearn deprecation warnings. Frozen prospective model/source hashes
+still match. Economic comparison remains pending until the original full
+inference process completes. No orders, deployment, promotion, real money or
+risk-limit changes. Objective remains unachieved.
