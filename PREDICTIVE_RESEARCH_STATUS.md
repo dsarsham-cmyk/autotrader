@@ -1973,3 +1973,50 @@ missing pair handling, retained no-trade date, baseline reproduction and no
 replacement for future missing selected outcomes. Frozen prospective model
 and sources still match. No deployment, orders, promotion, increased risk or
 real money. The full objective remains unachieved.
+
+## 2026-10-10 — Basket-day prediction on corrected causal input also failed
+
+The daily meta approach already existed; did NOT claim it was new. Its old
+complete-session dataset has later-data selection limitations. Added isolated
+`causal_daily_gate_research.py` using corrected sparse candidate forecasts.
+Original boosted stock .65 control reproduced exactly before deriving labels.
+Past meta labels are positive cumulative base-policy DAY net, conditional on
+known past activity, not individual trade wins. Current features use opening
+inputs and cross-fitted stock scores only; unknown base outcomes cannot enter
+training/calibration. All future feature dates remain. Effective eligibility
+gating is explicit and preserves original stock_probability/day_probability.
+
+Same fixed prior meta recipe (120-date warmup,30 calibration,20-date future
+blocks; logistic/boosted; .65/.9 gates), same budgets/stops/cost variants.
+Actual runner exited0: five cases15 outcomes,309 test sessions2025-07-11 to
+2026-10-01, all complete, all reported risk checks pass, zero target passes.
+Actual broker GET calendar audit confirms every309 session is present across
+all15 outcomes. Meta labels refer to base-policy capital; gated capital/share
+counts may differ. This remains exposed historical evidence.
+
+Primary10bps/16min,100k virtual sleeve, MATCHED309-session span:
+
+| Day policy |Active days|Win%|NetUSD|
+| --- | ---: | ---: | ---: |
+| Stock control, no day gate|130|57.69|-343.47|
+| Logistic daily gate .65|53|49.06|-210.84|
+| Boosted daily gate .65|42|50.00|-108.94|
+| Logistic daily gate .9|0|not applicable|0.00|
+| Boosted daily gate .9|0|not applicable|0.00|
+
+Lower total losses through fewer active days are NOT improved profitable
+prediction: winning-day percentage decreases and net remains negative. High
+gates simply abstain, not90% winning days. No complete variant is positive net.
+Do not compare these309-session net totals with earlier429-session totals as
+if they were matched periods. No production promotion or independent pass.
+Study SHA256:
+`bfda37698a61d5232e8aa78743a5720fa7a4cfb86048e5f099068879b036921c`.
+Calendar audit SHA256:
+`0b2eca5701b491d6cebea83a5eabb8ad328ecc81109276aa1865c330130ffab7`.
+
+521 tests passed, four existing sklearn warnings. Four new tests verify
+unknown outcome retention/exclusion from training, day-feature independence
+from labels, all test dates kept with explicit original probabilities, and
+known no-trade days not winning labels. Frozen prospective sources/model
+still match. No deployment, orders, promotion, increased risk or real money.
+The full requested objective remains unachieved.
