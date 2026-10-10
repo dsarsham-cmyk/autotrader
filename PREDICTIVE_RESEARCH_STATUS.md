@@ -1554,3 +1554,53 @@ universe, raw splits/revisions, missing whole calendar days, original receipt
 timing and OHLC/end-of-day-peak assumptions still limit inference. Correcting
 future-completeness conditioning did not suffice to produce an economic edge.
 Independent forward evidence and the90% objective remain unachieved.
+
+## 2026-10-10 — Headline-event input collection IN PROGRESS
+
+Shifted input research beyond another price-only classifier sweep. Added
+`news_research_cache.py`, `news_event_features.py` and the matched comparison
+runner `news_predictive_research.py`. Actual authenticated historical-news GET
+returned HTTP200 using existing account access; no plan purchase or orders.
+The official [news API](https://docs.alpaca.markets/us/reference/news-3) documents
+date/symbol queries, pagination,50-item maximum pages, ordering by update date
+and rate limiting. Observed account response rate limit200/minute; this private
+downloader uses two workers with a shared maximum120requests/minute plus bounded
+retry. This observed access is not a universal entitlement/pricing guarantee.
+
+Fixed20-stock query,2024-01-01 through2026-10-02,34 monthly/bounded intervals,
+headline responses with include_content=false. Raw provider pages and receipt
+metadata are PRIVATE under ignored `cache/news_context`, with immutable byte
+hashes and exact request parameters. Identical existing pages are reused;
+changed pages, missing receipts, repeated pagination tokens, partial interval
+coverage or contradictory article revisions fail closed. This is not original
+delivery evidence, and raw provider texts are not published to the dashboard.
+
+Collection is currently RUNNING, not a completed dataset or strategy result.
+The executed comparison and complete dataset digests will be reported only
+after complete archive verification; a partial archive is rejected by the
+loader. The prepared comparison holds the causal stock/date universe and
+trading limits fixed, replays price-only results exactly against the preceding
+reference, and adds eleven headline-event inputs to the same two classifiers.
+No stock is removed because it has no retained news. No threshold/seed choice
+is made retrospectively.
+
+Headline inputs count retained versions over24hours and the last hour, with
+fixed earnings/guidance/deal/payout/regulatory/analyst and positive/negative
+token proxies plus multi-symbol ambiguity. These are crude fixed rules, NOT
+FinBERT, a trained language model, authenticated sentiment or a quantum oracle.
+The classifier learns their weights only on past training/calibration dates.
+The retained text version is assigned at its provider UPDATE time and must be
+strictly before10:00NY; it is never backdated to the earlier creation date.
+Newly revised future text cannot enter earlier features. Original versions
+lost from the provider's latest-version archive are NOT recovered. Resulting
+historical omission/revision bias and unverified original receipt remain;
+zero news means no retained version in this archive/window, not proof no news
+existed. Any subsequent result will be exploratory, not forward validation.
+
+465 tests passed, including thirteen new paginated receipt/reuse/hash checks,
+denial/no-fallback, token-cycle/partial/archive-interval/revision rejection,
+future article/revision isolation, exclusive cutoff,24-hour window, DST and
+no-news stock retention tests; four existing sklearn deprecation warnings.
+The comparison runner compiles but its economic results are NOT yet executed.
+Frozen prospective model/source hashes still match. No deployment, strategy
+promotion, real money or risk-limit changes. Objective remains unachieved.
