@@ -1436,3 +1436,56 @@ fixed current universe, corporate actions/raw revisions, full-SIP-session
 exclusions and OHLC/guard assumptions remain limitations. The stricter entry
 is rejected as a sufficient solution: adequately active outcomes still lose
 after costs and do not approach90% winning days. Objective remains unachieved.
+
+## 2026-10-10 — Quantified future-completeness conditioning
+
+Added `causal_opening_inventory.py`, an isolated past-only SIP opening-feature
+builder and input-universe audit. This corrects candidate membership in the
+NEW research input path; it does not rewrite old studies or the frozen forward
+producer. Original `active_stock_research.load_universe` calls `sessions`, which
+requires all390 minutes before exposing a stock/day to predictive features.
+That outcome-availability condition is not known at the opening signal cutoff.
+Previously reported historical results already explicitly warned of this bias;
+it has now been quantified from actual source caches, not synthetic examples.
+
+The replacement uses exact first30 bars plus prior observed terminal closes
+at15:55-or-later. Today's later close is appended AFTER today's features, never
+used to qualify its current opening. Cross-sectional mean/breadth includes all
+opening-eligible stocks, independently of later outcome completeness. Sixteen
+features are built (not an exact21-feature ablation); source SIP/raw cache
+metadata and byte hashes are verified before loading. No fill or closing price
+is synthesized, and missing outcomes are unknown, not no-trade wins.
+
+Actual inventory2024-02-01 through2026-10-01 (includes training/development
+dates, NOT669 independent outer-test sessions):
+
+- 13,355 opening-eligible stock/day rows across669 observed dates.
+- 502 rows have usable opening information but fail the original390-bar filter.
+- Removing these changes cross-sectional mean/breadth on346 dates, all changes
+  material above1e-12; not floating-point-only differences.
+- Most affected symbols: NFLX308 rows, AVGO86; remainder108 across18symbols.
+- 407 of502 excluded rows nevertheless have every minute of the fixed modeled
+  entry46/47 through horizon106/107 window. The missing bars are elsewhere.
+- 95 rows also lack at least one required minute in that fixed window.
+
+The retrospective window-coverage check is OUTCOME metadata only; it does not
+choose current candidates. Coverage alone is not authenticated execution or
+a sparse-bar portfolio simulator. No P&L, model predictions, retraining or
+whole-period performance screen was produced by this inventory. Correcting
+this bias may improve OR worsen results; it does not explain actual production
+losses or establish an economic edge. Next research replay must forecast all
+opening candidates before examining outcome availability, and treat selected
+unknown outcomes as incomplete evidence, not silently drop or substitute them.
+
+440 tests passed, including seven new current/future-close isolation,
+cross-section independence, incomplete-opening rejection, past-history timing,
+required-history and outcome-window metadata tests; four existing sklearn
+deprecation warnings. Frozen prospective source/model hashes unchanged.
+Ignored complete report `research_runs/causal_opening_inventory/results.json`
+SHA256 `81ccaca86a9a02d31e63d0d49f4a0d1ca584e0b5329ba10504b9e894c2cf7dcb`.
+Evaluated dependency hashes matched. Whole missing dates still require a
+separate exchange calendar; fixed-current-universe selection, raw corporate
+actions/revisions and unverified original delivery remain limitations. No
+orders, deployment, model promotion, real money or increased limits. The
+90% profitable-active-day objective remains unmet; this is a concrete
+correction to the research method, not a claimed profitable formula.
