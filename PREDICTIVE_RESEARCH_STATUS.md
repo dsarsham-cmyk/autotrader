@@ -366,3 +366,32 @@ rejection tested with a fake key. Validation-only mode collects zero forecasts.
 Railway read-only status showed CLI-upload source=null, current October 7 engine
 deployment unchanged. Cloud publication/dispatch result must be recorded after
 verification; this preparation alone is not a completed live forward test.
+
+### Cloud publication and validation verified
+
+Published on main, commit `1365f9a6efa87210fd9b3e053d4195f191ebc178`.
+GitHub workflow ID 380564964 returned state ACTIVE. Manual validation-only
+dispatch returned HTTP 204; specific run 38058605995 completed SUCCESS:
+https://github.com/dsarsham-cmyk/autotrader/actions/runs/38058605995
+
+Linux installed isolated dependencies, matched the frozen model/source hashes,
+and loaded the own sklearn artifact successfully. Collection step was SKIPPED.
+Downloaded artifact 11671084251, created 2026-10-10T14:11:39Z, and inspected
+`research_runs/cloud_status.json`: environment validation only, orders=false,
+production-approved=false, recorded-sessions=0, exact artifact model hash
+`b6a15150f4a87407d2709503e1eebe057a2f51b62fbfc9de7c6216ed742318e1`.
+This authenticates an environment check, NOT a future forecast, trade, win or
+readiness verdict. Encrypted-data collection steps were correctly skipped.
+
+Workflow checkout is pinned to this validated source commit so later unrelated
+research edits cannot silently mutate or invalidate the experiment. Any new
+model/source protocol must be a separately identified experiment, not updates
+to v2 evidence. GitHub's workflow SHA identifies workflow configuration; pinned
+checkout/ref and frozen source hashes identify actual forecast code.
+
+Read-only Railway status AFTER publication confirms same engine deployment
+94d8114f-563c-4027-8fa0-7e9be70e8183, SUCCESS, created October 7; source remains
+null (CLI-upload). No trading engine deployment or restart occurred.
+First eligible scheduled collection attempt is Monday October 12; exact timing
+is not guaranteed by GitHub. Future forecast collection, timely external anchor,
+profitability, risk behavior and 90% wins remain unverified. Goal not complete.

@@ -25,6 +25,9 @@ jobs:
     timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Keep this experiment fixed even while other research code evolves.
+          ref: 1365f9a6efa87210fd9b3e053d4195f191ebc178
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
