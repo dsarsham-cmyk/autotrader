@@ -671,3 +671,77 @@ matched eligibility, quantum kernel routing, invalid/ambiguous/stale quotes,
 DST boundaries and rejecting partial collection. Frozen prospective source
 hashes still match. No broker orders, deployment, real money, cost reduction,
 leverage increase or model promotion. Goal remains unmet.
+
+## Mixed delayed-SIP context plus near-entry IEX quotes: separate protocol
+
+Added `hybrid_iex_research.py`, NOT a feed substitution into the frozen SIP
+model. Primary documentation accessed October 10, 2026:
+https://docs.alpaca.markets/us/docs/market-data-faq and
+https://docs.alpaca.markets/us/reference/stocklatestquotes-1.
+IEX is one exchange, not consolidated SIP/NBBO. Read-only account checks returned
+HTTP200 for historical IEX quotes and latest IEX quote. Since today is Saturday,
+this authenticates ACCESS, not a live regular-session freshness/latency test.
+No market-data subscription or broker configuration was changed.
+
+New declared timing: SIP opening context ends 10:00 NY and is assumed available
+10:15. IEX quote window 10:15:20-10:15:30 (exclusive end, two-second seed), with
+entry no earlier than 10:16. This leaves 30 seconds for actual receipt, inference
+and external anchoring; real collector timing remains unverified. Historical
+receipt today cannot authenticate the original real-time delivery latency.
+New features combine nine IEX quote measures with fresh-midpoint movement versus
+the delayed SIP close. BOTH matched arms fix the simulated entry limit to the
+same latest known IEX midpoint x1.001. No future open is used to reprice it.
+Thus comparison within this study is matched, but comparisons to old frozen
+control cannot attribute changes solely to new features: limit policy and
+eligibility changed. The frozen model/protocol were NOT modified.
+
+Fixed six-stock/180-date plan inherited from the previous study, not selected
+by favorable payouts. GET-only multi-symbol pagination fetched 526,122 IEX
+quotes in 180 complete API pages, zero date-fetch errors. Raw pages plus merged
+records retained privately (139,005,184 bytes) with identities and byte hashes
+in ignored `research_runs/hybrid_iex/`. Of 1,080 stock windows, 366 were usable,
+368 lacked conservative fresh-quote coverage and 346 had terminal spread above
+the fixed 20-bps ceiling. The ceiling is a BEFORE-decision eligibility rule,
+not a reduced execution-cost assumption. IEX sparse/wide quotes do not prove
+a broker outage. This protocol is fitted/calibrated on its own mixed-feed
+historical inputs; no existing SIP classifier is presented as IEX-compatible.
+
+Four paired model types, fixed .50/.65/.90 gates and the existing 10/20-bps and
+extra-minute stress cases produced 72 outcomes, all failing the research target
+screen. Four chronological test folds cover 61 eligible sampled test sessions
+after 100 warmup dates and 30-date prior calibration blocks. Missing eligibility
+does not become a profitable day. Primary .50-gate results:
+
+| Model | Features (both use fresh limit) | Active days | Winning active days | Simulated net USD |
+|---|---|---:|---:|---:|
+| Logistic | SIP context | 23 | 34.78% | -103.94 |
+| Logistic | context + IEX | 26 | 42.31% | -94.11 |
+| Boosted | SIP context | 17 | 35.29% | -100.57 |
+| Boosted | context + IEX | 26 | 42.31% | -104.39 |
+| Classical RBF | SIP context | 33 | 45.45% | -141.80 |
+| Classical RBF | context + IEX | 25 | 48.00% | -100.63 |
+| Simulated quantum | SIP context | 28 | 46.43% | -101.51 |
+| Simulated quantum | context + IEX | 21 | 42.86% | -65.68 |
+
+At .65, quantum+IEX traded six active days, 66.67% wins, -9.08 USD. At .90,
+logistic+IEX had a ONE-day +1.9242 USD/100% outcome: Wilson interval 20.65-100%.
+Twenty-bps stress did not fill that candidate. A single winning day is not a
+90% model, independent validation or a deployable improvement. Other .90
+variants were inactive except two bar-context logistic days (50%, -9.84 USD).
+All simulated category/stock/position/planned-risk checks passed; whole-account
+production guards and actual execution remain unverified by this study.
+
+Results and exact source/input hashes retained in ignored
+`research_runs/hybrid_iex_evaluation/`. Existing historical exposure, selected
+universe/dates, complete-session bar exclusions, quote conditions/executable
+size and original publication latency remain limitations. Evidence rejects
+these models/protocol, not every use of fresh single-venue data. Next research
+must test economic asymmetry of exits and calibrated net outcomes, not treat
+freshness or large model confidence as proof of edge.
+
+327 tests passed, including mixed-feed chronology, nanosecond cutoff, stale/
+ambiguous/naive timestamp rejection, all-symbol/all-page IEX retrieval without
+fallback, predecision spread eligibility, immutable quote hashes, partial
+collection rejection and equal fresh-limit semantics. Frozen prospective source
+hashes still match. No deployment, broker orders, real money, cost reduction,
+risk-limit relaxation or model promotion. Objective remains unmet.
