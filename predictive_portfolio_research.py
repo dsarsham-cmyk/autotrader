@@ -18,6 +18,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import brier_score_loss
 from active_stock_research import load_universe
 from predictive_research import raw_score, wilson
+from fixed_trade_cost_diagnostic import trade_record
 
 PROTOCOL = dict(status='exploration_only', calibration='profit conditional on simulated limit fill', universe='fixed current 20-stock universe',
     decision_minutes=[15,30], exits=['60_minutes','session','target_60','target_session'],
@@ -159,7 +160,7 @@ def portfolio(predictions, by_date, minute, horizon, threshold, costs_bps=10, de
                 o=p['outcome']
                 if o['exit_minute']==k:
                     pnl=p['qty']*(o['exit']-o['entry']); realized+=pnl
-                    trades.append(dict(date=date,symbol=p['symbol'],pnl=pnl,reason=o['reason']))
+                    trades.append(trade_record(date,p['symbol'],p['qty'],o['entry'],o['exit'],o['cost'],o['reason']))
                     held.remove(p)
             adverse=start+realized+sum(p['qty']*(by_date[date][p['symbol']][0][k,2]*(1-p['outcome']['cost'])-p['outcome']['entry']) for p in held)
             worst=min(worst,adverse/start-1)
@@ -169,7 +170,7 @@ def portfolio(predictions, by_date, minute, horizon, threshold, costs_bps=10, de
                     a=by_date[date][p['symbol']][0]
                     px=float(a[min(k+1,389),0])*(1-p['outcome']['cost'])
                     pnl=p['qty']*(px-p['outcome']['entry']);realized+=pnl
-                    trades.append(dict(date=date,symbol=p['symbol'],pnl=pnl,reason='account_guard'))
+                    trades.append(trade_record(date,p['symbol'],p['qty'],p['outcome']['entry'],px,p['outcome']['cost'],'account_guard'))
                 held=[];guard=True
             if adverse<=peak*.9 or adverse<=90000: permanent=True
         equity=start+realized;peak=max(peak,equity)

@@ -103,3 +103,43 @@ then test independently with frozen rules and actual execution evidence.
 Verification now: 218 local tests passed. Six additional quote tests check
 complete pagination, rejection of repeated tokens, freshness/invalid-quote
 coverage, time weighting, and missing data not being treated as zero cost.
+
+## Fixed-trade gross/net decomposition
+
+Added `fixed_trade_cost_diagnostic.py` and explicit simulated quantities,
+raw entry/exit prices and cost drag to portfolio trade records. Repeated the
+same experiments into separate ignored `*_accounting` directories. Verified
+all 240 original outcomes have exactly unchanged active-day counts and profit
+figures (largest difference zero USD). This changes evidence, not decisions.
+
+Accounting sensitivity keeps original fills, sizes, price paths and exits
+fixed, varying only the charged per-side cost through 0, 1, 2, 5, 10 and 20 bps.
+It is NOT a executable lower-cost strategy replay: lower costs could change
+calibration, fills, quantities, subsequent equity and guard actions. Zero-cost
+outcomes cannot be promoted. The input artifacts are hashed in
+`research_runs/cost_diagnostic/results.json`.
+
+There are 80 primary model/horizon/time/threshold configurations. Of the 20
+configurations with at least 30 active days, none reaches 90% even at zero
+cost; maximum is 66.67%. Three configurations have slightly positive gross
+profit, including duplicate trades at different thresholds; that is not three
+independent discoveries. Thirty active days is only a descriptive filter,
+NOT the validation minimum or evidence of statistical significance.
+
+For target-within-60-minute kernels at threshold 0.50:
+
+| Model | Active days | Gross USD | Assumed cost drag USD | Net USD | Zero-cost winning days |
+|---|---:|---:|---:|---:|---:|
+| Classical RBF | 148 | -41.91 | 434.12 | -476.02 | 61.49% |
+| Simulated quantum fidelity | 148 | -160.86 | 440.08 | -600.94 | 57.43% |
+
+Conclusion for these tested rules: execution assumptions contribute
+substantially to losses, but eliminating them does not establish a sufficient
+predictive edge or the target. Next model work needs new defensible signal
+inputs and regime/abstention evaluation, not mere architecture substitution.
+Forecast probability of any profit must also be assessed alongside expected
+profit and downside magnitude; a high win rate alone is not enough.
+
+223 tests pass, including gross/net reconciliation, cost monotonicity on fixed
+trades, missing-evidence rejection and abstention not being counted as wins.
+No deployment, automatic promotion, budget changes or real money used.
