@@ -1191,3 +1191,80 @@ complete-session selection, raw splits/revisions, assumed receipt, OHLC fills
 and EOD-peak guard limitations remain. No orders, deployment, real money,
 increased limits or model promotion. Objective remains unmet; changing reward
 targets alone is not a sufficient repair of these forecasting models.
+
+## Own-feed IEX bar prediction and one-minute entry — October 10, 2026
+
+Added isolated `iex_bar_predictive_research.py`. Historical GET-only collection
+fetched4,963,844 IEX/raw minute bars for all20 existing stock symbols, Jan2024
+through October1,2026;399,154,798 CSV bytes retained privately in ignored
+`cache/iex_bar_context/` with exact hashes/request metadata. No subscription,
+account setting or order was changed. Downloader refuses existing-file
+overwrite, contradictory overlapping bars and silent feed fallback.
+
+Primary documentation accessed October10:
+[Alpaca feed FAQ](https://docs.alpaca.markets/us/docs/market-data-faq) and
+[real-time bar semantics](https://docs.alpaca.markets/us/docs/real-time-stock-pricing-data).
+Free real-time IEX is one exchange, not consolidated SIP. Historical bar
+revisions and timestamps do not authenticate original receipt. Receiving the
+complete context, computing and externally anchoring a forecast between10:00
+and10:01 remains UNVERIFIED; this research does not claim a working live-feed
+collector or compatibility with the existing frozen SIP forecast model.
+
+Sixteen inputs use ONLY own IEX opening/prior-session observations: observed
+return/range/location/VWAP/volatility/relative volume, gap/prior returns,
+opening coverage, last-five observed return/volume, prior-terminal age and
+cross-sectional mean/breadth. At least24 opening bars and terminal bar
+starting09:59 are required; sparse/stale windows abstain. Prior last closing
+observations must be15:55-or-later. No synthesized missing prices. Today's
+closing bar is appended after today's features; its absence cannot disqualify
+the current opening. IEX market features are calculated independently of later
+SIP completeness. SIP is used solely for simulated outcome prices/fills, not
+as a feature or a substitute for missing IEX volume.
+
+Both timing policies are fitted/calibrated on their OWN past labels: entry
+minute31(10:01NY), versus46(10:16NY), with60-minute horizon. Timing changes the
+holding window and fill distribution as well as signal age, so differences
+cannot be attributed solely to latency. Same stock/category/quantity/stop and
+cost limits. Match predecision input eligibility; retain ineligible days as
+abstention, not wins.12,240 eligible /593 sparse-or-stale /20 missing session
+rows across feature-complete history.22 outer folds /427 test sessions /8,348
+observed candidates /8,072 eligible test candidates.3,976 fresh and3,916 delayed
+filled eligible outcomes; different fills are not erased by matched eligibility.
+
+Primary0.50-gate results, costs10bps each side, stop1%, target0.4%:
+
+| Entry delay | Model | Active days | Winning active days | Net USD |
+|---|---|---:|---:|---:|
+| 1 minute | Logistic | 312 | 56.09% | -1,137.23 |
+| 1 minute | Boosted | 309 | 51.13% | -1,206.05 |
+| 1 minute | MLP | 309 | 51.46% | -1,227.00 |
+| 1 minute | Simulated quantum | 328 | 43.29% | -1,149.76 |
+| 16 minutes | Logistic | 311 | 56.59% | -1,065.92 |
+| 16 minutes | Boosted | 325 | 50.46% | -1,135.49 |
+| 16 minutes | MLP | 313 | 54.95% | -1,077.37 |
+| 16 minutes | Simulated quantum | 335 | 46.87% | -1,120.46 |
+
+At0.65, fresh logistic251days/56.57%/-889.11USD; delayed221days/59.28%/
+-705.28USD. Fresh MLP209days/56.46%/-769.11USD; delayed166days/59.04%/
+-607.65USD. All adequately active outcomes remain negative. At0.90 fresh
+logistic9days/66.67%/-21.17USD, delayed logistic7days/71.43%/-14.12USD;
+delayed MLP had ONE winning day/+1.66USD, other arms abstained. None proves90%.
+Eight cases x3gates x3cost/latency variants =72outcomes, ALL failing the screen.
+All simulated budget/position/planned-risk checks passed. All44 neural fits
+reached verified train-only plateaus. Quantum fits retained existing SVC
+deprecation warnings in report metadata; they are not production trading errors.
+Quantum is a four-qubit CPU simulation, not hardware.
+
+411 tests passed (four existing sklearn deprecation warnings), including nine
+new own-feed feature isolation, future-close/absence isolation, independence
+from future SIP completeness, sparse/stale abstention, SIP-cache rejection and
+separate timing-policy label-refitting tests through all model routes. Frozen
+prospective model/source hashes still match. Complete ignored local report
+`research_runs/iex_bar_predictive/results.json` SHA256:
+`002795724765aa8a1aa05a9d0042ba331df0f37ea401970fa4c0826d0c2302ae`.
+Evaluated dependency hashes matched. Previously exposed stock outcome dates
+remain exploratory even with newly collected inputs. Fixed-universe/full-SIP-
+session selection, raw splits/revisions, venue sparsity, unverified live receipt
+and OHLC/EOD-peak guard assumptions remain limitations. No orders, deployment,
+real money, increased limits or model promotion. Objective remains unmet: the
+coherent IEX feed and faster entry do not suffice to make these models profitable.
