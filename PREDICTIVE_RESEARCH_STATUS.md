@@ -67,3 +67,39 @@ Verification: 212 local tests passed, including normalization/PSD of the
 fidelity kernel, invariance of existing predictions to changes in future
 candidate rows, chronological date separation, conservative stop/target
 ordering and portfolio caps. These verify implementation, not profitability.
+
+## Completed quote-cost pilot
+
+`quote_cost_audit.py` fetched 353,118 SIP quotes across 72 fixed 30-second
+assessment windows, with a 10-second seed interval. All 72 requests completed
+pagination (86 API pages). Symbols: AAPL, NVDA, TSLA, JPM, DIS, QQQ. Dates:
+2025-03-03, 2025-09-02, 2026-04-01, 2026-09-23; NY times 09:45, 10:00, 15:55.
+These handpicked windows are a limited diagnostic, NOT a representative
+execution study. Raw responses and hashes are preserved locally in ignored
+`research_runs/quote_cost_audit/`; no strategy costs were changed.
+
+For each window, spreads are weighted by elapsed quote duration, not update
+count. Crossed/invalid quotes interrupt coverage. Quotes older than two seconds
+are excluded conservatively: this freshness rule does not prove data outages,
+since an unchanged valid NBBO can persist without a new update.
+
+| Symbol | Median of window median full spreads, bps | Largest window p95, bps | Minimum fresh coverage |
+|---|---:|---:|---:|
+| AAPL | 1.57 | 8.32 | 100.00% rounded |
+| NVDA | 1.15 | 5.89 | 100.00% rounded |
+| TSLA | 2.67 | 14.71 | 100.00% rounded |
+| JPM | 6.04 | 16.19 | 79.11% |
+| DIS | 4.00 | 15.68 | 83.26% |
+| QQQ | 0.61 | 3.37 | 100.00% rounded |
+
+The full spread is not a per-side total execution cost. Half-spread estimates
+depend on using midpoint as benchmark and on executable size; delay, market
+impact, fees and commissions are not captured. In particular, 10 bps per side
+is often conservative versus quoted spread, but cannot be replaced by the
+smallest observed spread to obtain a profitable backtest. Next research must
+separate prediction quality from cost sensitivity and retain stress outcomes,
+then test independently with frozen rules and actual execution evidence.
+
+Verification now: 218 local tests passed. Six additional quote tests check
+complete pagination, rejection of repeated tokens, freshness/invalid-quote
+coverage, time weighting, and missing data not being treated as zero cost.
