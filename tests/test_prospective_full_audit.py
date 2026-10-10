@@ -1,4 +1,5 @@
 from datetime import datetime,timedelta
+import base64
 import hashlib
 import io
 import json
@@ -8,27 +9,40 @@ import numpy as np
 import pytest
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 import prospective_full_audit as audit
+from research_evidence_crypto import encrypt_bytes,SECRET_NAME
 
 
-def encrypt_tar(name='receipts/raw.json',secret='fixture-secret'):
+KEY=b'k'*32
+
+
+def encrypt_tar(name='receipts/raw.json'):
     buffer=io.BytesIO()
     with tarfile.open(fileobj=buffer,mode='w:gz') as tar:
         entry=tarfile.TarInfo(name);payload=b'own-data';entry.size=len(payload)
         tar.addfile(entry,io.BytesIO(payload))
-    key=hashlib.sha256(b'autotrader-prospective-evidence-v1\0'+secret.encode()).digest()
-    nonce=b'012345678901'
-    return nonce+AESGCM(key).encrypt(nonce,buffer.getvalue(),b'autotrader-prospective-evidence-v1')
+    return encrypt_bytes(buffer.getvalue(),KEY)
 
 
-def test_authenticated_private_archive_and_wrong_key():
+def test_authenticated_private_archive_and_wrong_key(monkeypatch):
+    monkeypatch.setenv(SECRET_NAME,base64.b64encode(KEY).decode())
+    monkeypatch.delenv('ALPACA_API_SECRET',raising=False)
     encrypted=encrypt_tar()
-    assert audit.decrypt_private_archive(encrypted,'fixture-secret')['receipts/raw.json']==b'own-data'
-    with pytest.raises(Exception): audit.decrypt_private_archive(encrypted,'wrong-key')
+    assert audit.decrypt_private_archive(encrypted)['receipts/raw.json']==b'own-data'
+    monkeypatch.setenv(SECRET_NAME,base64.b64encode(b'x'*32).decode())
+    with pytest.raises(Exception): audit.decrypt_private_archive(encrypted)
 
 
 @pytest.mark.parametrize('name',['../escape','/absolute'])
-def test_unsafe_archive_paths_rejected_without_extraction(name):
-    with pytest.raises(ValueError): audit.decrypt_private_archive(encrypt_tar(name),'fixture-secret')
+def test_unsafe_archive_paths_rejected_without_extraction(name,monkeypatch):
+    monkeypatch.setenv(SECRET_NAME,base64.b64encode(KEY).decode())
+    with pytest.raises(ValueError): audit.decrypt_private_archive(encrypt_tar(name))
+
+
+def test_legacy_broker_derived_envelope_is_rejected():
+    nonce=b'012345678901'
+    old=nonce+AESGCM(KEY).encrypt(nonce,b'old-data',b'autotrader-prospective-evidence-v1')
+    with pytest.raises(ValueError,match='Dedicated v2'):
+        audit.decrypt_private_archive(old)
 
 
 def test_retained_input_hash_and_basename_uniqueness():

@@ -8,13 +8,11 @@ from datetime import datetime,time,timedelta,timezone
 import hashlib
 import io
 import json
-import os
 from pathlib import Path,PurePosixPath
 import tarfile
 import zipfile
 from zoneinfo import ZoneInfo
 
-from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 import joblib
 import numpy as np
 import sklearn
@@ -29,13 +27,10 @@ from prospective_outcome_audit import inspect_run,verify_archive,save_once_or_id
 from research_evidence_crypto import MAGIC,evidence_key,decrypt_bytes
 
 
-def decrypt_private_archive(encrypted,secret):
-    if len(encrypted)<28: raise ValueError('Truncated encrypted evidence')
-    if encrypted.startswith(MAGIC): plaintext=decrypt_bytes(encrypted,evidence_key())
-    else:
-        # Legacy synthetic fixtures only; no real v1 private collection exists.
-        key=hashlib.sha256(b'autotrader-prospective-evidence-v1\0'+secret.encode()).digest()
-        plaintext=AESGCM(key).decrypt(encrypted[:12],encrypted[12:],b'autotrader-prospective-evidence-v1')
+def decrypt_private_archive(encrypted):
+    if not encrypted.startswith(MAGIC):
+        raise ValueError('Dedicated v2 encryption required; broker-derived envelopes rejected')
+    plaintext=decrypt_bytes(encrypted,evidence_key())
     files={};total=0
     with tarfile.open(fileobj=io.BytesIO(plaintext),mode='r:gz') as archive:
         for member in archive:
@@ -126,7 +121,12 @@ def completed_market_data(session,work):
     return arrays,hashlib.sha256(encoded).hexdigest()
 
 
-def audit_run(run_id,backup,model_dir):
+def load_verified_sessions(run_id,backup,model_dir):
+    """GET/digest/decrypt/reproduce chain; accepted arrays are research inputs.
+
+    Late anchors are exclusions, not inactive days. This function does not
+    evaluate profits or reset capital, allowing one cumulative series replay.
+    """
     envelope=read_manifest(model_dir)
     inspection=inspect_run(run_id,backup,envelope)
     work=backup/str(run_id);packets=[];ciphertexts=[]
@@ -139,26 +139,41 @@ def audit_run(run_id,backup,model_dir):
                     packets.append((json.loads(archive.read(name)),meta))
                 elif name.endswith('private_evidence.aesgcm'):
                     ciphertexts.append(archive.read(name))
-    report=dict(run_id=run_id,forecast_packets=len(packets),sessions=[],orders=False,
-        independent_validation_pass=False,production_approved=False,
-        status='no_prospective_forecasts' if not packets else 'future_outcome_audit')
-    if packets:
+    accepted=[];excluded=[]
+    by_hash={a['record_sha256']:a for a in inspection['anchors']}
+    timely=[]
+    for packet,meta in packets:
+        anchor=by_hash[packet['record_sha256']]
+        if not anchor['timely_external_anchor']:
+            excluded.append(dict(session_date=packet['record']['session_date'],status='excluded_late_external_anchor'))
+        else:
+            timely.append((packet,dict(meta,verified_upload_completed_at=anchor['artifact_upload_completed_utc'])))
+    if timely:
         if len(ciphertexts)!=1: raise ValueError('One authenticated private input archive required')
-        files=decrypt_private_archive(ciphertexts[0],os.environ['ALPACA_API_SECRET'])
-        by_hash={a['record_sha256']:a for a in inspection['anchors']}
-        for packet,meta in packets:
-            anchor=by_hash[packet['record_sha256']]
-            meta=dict(meta,verified_upload_completed_at=anchor['artifact_upload_completed_utc'])
-            if not anchor['timely_external_anchor']:
-                report['sessions'].append(dict(session_date=packet['record']['session_date'],status='excluded_late_external_anchor'))
-                continue
+        files=decrypt_private_archive(ciphertexts[0])
+        for packet,meta in timely:
             opening=reproduce(packet,files,model_dir,work)
             completed,market_hash=completed_market_data(packet['record']['session_date'],work)
-            result=evaluate_simulated_session(packet,meta,envelope,opening,completed)
-            result.update(input_predictions_reproduced=True,outcome_sip_sha256=market_hash)
-            report['sessions'].append(result)
+            accepted.append(dict(packet=packet,metadata=meta,raw_opening=opening,
+                completed_bars=completed,outcome_sip_sha256=market_hash,
+                input_predictions_reproduced=True,run_id=run_id))
+    return inspection,accepted,excluded
+
+
+def audit_run(run_id,backup,model_dir):
+    envelope=read_manifest(model_dir)
+    inspection,accepted,excluded=load_verified_sessions(run_id,backup,model_dir)
+    work=backup/str(run_id)
+    report=dict(run_id=run_id,forecast_packets=inspection['forecast_packets'],sessions=[],excluded=excluded,orders=False,
+        independent_validation_pass=False,production_approved=False,
+        status='no_prospective_forecasts' if not inspection['forecast_packets'] else 'future_outcome_audit')
+    for bundle in accepted:
+        result=evaluate_simulated_session(bundle['packet'],bundle['metadata'],envelope,
+            bundle['raw_opening'],bundle['completed_bars'])
+        result.update(input_predictions_reproduced=True,outcome_sip_sha256=bundle['outcome_sip_sha256'])
+        report['sessions'].append(result)
     (work/'full_audit.json').write_text(json.dumps(report,indent=2,allow_nan=False))
-    print(json.dumps(dict(run_id=run_id,forecast_packets=len(packets),evaluated_sessions=len(report['sessions']),
+    print(json.dumps(dict(run_id=run_id,forecast_packets=inspection['forecast_packets'],evaluated_sessions=len(report['sessions']),
         independent_validation_pass=False,orders=False)))
     return report
 

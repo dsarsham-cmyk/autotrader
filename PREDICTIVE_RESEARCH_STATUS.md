@@ -466,3 +466,55 @@ Dedicated-key validation and frozen-model environment validation passed on
 Linux. Forecast collection and private archive sealing were skipped in this
 validation-only run; it does not verify a real cloud encryption/collection run.
 No new genuine forecast, profitable day or independent validation was obtained.
+
+## Cumulative audit and recent retrospective control check
+
+Added `prospective_series_audit.py`. It calls the remote digest/anchor/decrypt/
+input reproduction chain for each specified run, records a completed exchange
+calendar, rejects duplicated sessions, and passes all accepted days together
+through the unchanged frozen simulator. Capital is not reset between days.
+Missing market sessions are gaps, not inactivity or wins. Half-days remain
+unsupported and visible as gaps. It reports net/gross costs, end-of-day drawdown,
+conservative adverse mark versus prior EOD peak, losing observed-session streak,
+budgets, planned risk and probability reliability conditional on modeled fills.
+Stock rows are correlated, not independent trading-day observations. The pure
+evaluator does not authenticate callers; the CLI performs the provenance chain.
+No performance screen grants trading permission. It is still a virtual small
+sleeve, not a replay of the entire production account or an intraday peak guard.
+Automatic auditing and durable archival beyond GitHub retention remain absent.
+
+Removed the old broker-derived-envelope decryption path entirely. Full auditing
+uses only the dedicated evidence key; it no longer requires a broker secret
+to decrypt. Broker credentials are still unchanged pending rotation approval.
+
+Real cumulative audit of runs 38058605995 and 38060365417 authenticated and
+backed up both ZIPs, including artifact 11672633478 from the latter. Both are
+environment checks: ZERO prospective predictions/evaluated/active sessions,
+zero profit, performance screen false. Before forward start October 12, the
+calendar guard correctly performs no broker calendar request.
+
+New `frozen_control_retrospective.py` checks the existing model, without fitting
+or selecting thresholds, on October 5-9 cached SIP data. It is EXPLORATORY:
+model created October 10 after these observations; dates were already exposed.
+October 6 lacks a complete CVX session and is explicitly excluded, not counted
+as a no-trade day. Remaining four days generated 80 candidate predictions.
+
+| Assumed per-side cost | Extra entry delay from minute 30 | Active days | Winning active days | Simulated net USD |
+|---|---:|---:|---:|---:|
+| 10 bps | 16 minutes | 4 | 75.0% | -0.112576 |
+| 20 bps | 16 minutes | 2 | 0.0% | -0.017609 |
+| 10 bps | 17 minutes | 3 | 66.7% | -2.182664 |
+
+Primary daily results: October 5 -6.110275, October 7 +1.273787,
+October 8 +1.604345, October 9 +3.119567 USD. These are NOT the paper broker's
+actual daily account results. The fixed model's assumed-fill candidate Brier
+score was .234658 over 33 filled candidates; only nine filled candidates had
+p>=.65, none p>=.80. Tiny/correlated samples do not establish calibration.
+Raw results/hashes retained in ignored `research_runs/frozen_control_retrospective/`.
+This is further evidence that a high winning-day percentage alone is not profit.
+
+295 tests passed, including cumulative losses changing subsequent whole-share
+sizing, missing/duplicate/no-trade sessions, late anchors, probability errors,
+legacy envelope rejection and future path invariance of retrospective features.
+Frozen predictive source hashes still match. No engine deployment, order,
+leverage change, risk relaxation or model promotion occurred. Goal remains unmet.
