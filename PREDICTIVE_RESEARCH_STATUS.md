@@ -238,3 +238,42 @@ availability and verifies it cannot become an earlier trade/stop; invalid
 delay inputs rejected. Added diagnostic regression test ensures delayed
 primary outcomes are included and distinct feature/gate identities retained.
 Research remains local; no live/real-money activation or risk changes.
+
+## Prospective forecast evidence boundary
+
+Added `prospective_forecast_evidence.py`, a read/write-once local research
+boundary, with no model fitting, scheduling or broker/order access. A frozen
+manifest binds model bytes, forecast-source bytes, training end date, a
+strictly future start date, matched feed, feature cutoff and assumed data lag.
+Capture uses the current clock, rejects early/late/backdated submissions,
+verifies retained raw-response/calendar file hashes, confirms a calendar
+session exists, and requires an exact complete opening-bar packet without
+duplicate/future timestamps or unconsumed pagination. Receipt must precede
+capture and the hypothetical entry must follow capture. Model/source changes
+or duplicate session writes fail rather than silently replacing evidence.
+
+This is not yet an activated forecast collector. No production experiment was
+frozen by this turn, no new actual forecasts were recorded, and no real-world
+forward observation was added. All test packets and simulated clocks were
+temporary test fixtures. Actual training-data provenance and deriving features
+and forecasts from retained raw inputs still require collector integration.
+
+Local hashes and clock checks cannot independently authenticate when a file
+was created: an external timestamp anchor and independently verifiable raw
+receipt provenance are still required. Inspection always reports zero verified
+external anchors and independent-validation=false; a local caller-editable
+flag cannot be treated as authenticated evidence. Even timestamp-authenticated
+forecasts would not by themselves prove executable profitability or 90% wins.
+
+Existing `research_forward` is a DIFFERENT frozen ORB after-close replay, not
+the predictive models. Current summary shows five sessions October 5–9,
+zero filled trades, zero profit. It supplies no winning active days and must
+not be reported as a successful forecast or production execution test.
+
+249 local tests pass. Sixteen new boundary tests cover exclusive recording,
+early/late/backdating rejection, future training, feed mismatch, invalid/raw
+receipts, future raw bars, changed models/sources and tampering. Remaining work:
+fit and identify explicit research control artifacts; integrate a read-only
+collector with real receipt times and an external anchor; record genuinely
+future predictions and outcomes. Failed models stay research controls, not
+automatically promoted trading candidates. Objective remains active/unmet.
