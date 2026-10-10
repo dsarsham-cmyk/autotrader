@@ -2291,6 +2291,61 @@ rejection, invalid fill and explicit timezone. Frozen prospective model/sources
 still match. No orders, deployment, model promotion, risk/cost relaxation or
 real money. Requested90% profitable winning days remain unachieved.
 
+## 2026-10-10 — Past-frequency predictive/economic baselines completed
+
+Added `past_frequency_predictor.py` and `past_frequency_research.py`. Fixed
+baselines use ONLY known-filled outcomes in each prior60-session calibration
+window: global frequency with Laplace smoothing, and stock frequency shrunk
+toward that past global rate using predeclared20-row mass. No price features,
+future-derived vocabulary, test labels, future counts or tuning of mass/gates.
+Shrinkage is an empirical frequency rule, not certified Bayesian uncertainty.
+Unknown/unfilled past labels are not inserted as losing/winning observations.
+Same future candidates, chronological22 folds and portfolio risk/cost rules.
+Equal-probability selection retains the original alphabetical tie convention.
+
+Actual runner exited0. Both new18 baseline outcomes have complete429-session
+ledgers, zero positive-net variants and zero target-screen passes. Existing
+54 model outcomes are imported unchanged and ledger-reconciled, NOT newly
+executed/retrained by this baseline runner. Combined72 outcomes:70 complete,
+two existing unknown full-result ledgers (stock-interaction logistic .5/10bps
+missing selected NFLX2025-06-26); overall calendar coverageFALSE. Actual GET
+calendar confirms429 expected sessions and recognizes incomplete spans.
+All reported prefix risk checks pass, not independent fill/risk reproduction.
+
+Primary10bps per side, delay16:
+
+| Baseline/gate | Active days | Winning percent | Net USD |
+|---|---:|---:|---:|
+| Recent global .5 |286|44.06|-918.80|
+| Recent global .65 |0|not applicable|0.00|
+| Recent global .9 |0|not applicable|0.00|
+| Shrunk stock .5 |322|52.17|-1223.21|
+| Shrunk stock .65 |188|60.11|-574.35|
+| Shrunk stock .9 |0|not applicable|0.00|
+
+Exact same4161 known-filled test keys and recomputed model Brier scores were
+verified before comparison; test outcome membership is scoring-only, not
+forecast/selection filtering. Global baseline Brier.251226, shrunk stock.248214.
+Price-only logistic.242525 and boosted.243595 both improve descriptive error
+relative to either simple baseline. All six models beat global baseline;
+five beat shrunk stock, interaction logistic.248294 does not. The12 paired
+comparisons reuse the SAME observations, not12 independent discoveries.
+No significance, independence or profitability is inferred from these small
+descriptive score differences. Probability-score improvement does not ensure
+positive payoff after loss severity/costs; the joint90%/profit goal remains unmet.
+
+Study SHA256:
+`72023a14328dabb6d32fa6c6f940048907712ded572d862e6fa913ab65a86e27`.
+Calendar audit SHA256:
+`7d4ff3d2d7b36f28448903cabd125eedf2d57471dd1077b7cd0759618f23f247`.
+575 tests passed/six Torch skipped/four existing sklearn warnings. Five new
+tests cover count/smoothing/shrinkage math, no-history stock fallback,
+future label/feature/price/candidate isolation, one-class smoothing and
+future/duplicate/missing/unknown evidence rejection. Frozen prospective model/
+sources still match. Exposed dates/current universe/revisions/original delivery/
+execution assumptions remain limitations. No orders/deployment/promotion,
+increased leverage/budgets, reduced costs or real money. Goal remains unachieved.
+
 ## 2026-10-10 — Date-effective split input normalization, isolated research
 
 Added `split_context_audit.py` and `split_predictive_research.py`. GET-only
