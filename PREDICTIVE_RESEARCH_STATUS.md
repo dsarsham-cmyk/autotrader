@@ -582,3 +582,92 @@ invariance, no filtering of future nonfills, future-feature isolation and
 contradictory cache-overlap rejection. No orders, engine deployment, risk-limit
 change or promotion. Next research needs materially different predictive
 information, not relabeling abstention or lowering the required success rate.
+
+## New information: historical displayed-quote microstructure, matched ablation
+
+Research motivation: queue imbalance can carry information about the NEXT
+mid-price tick, not automatically a profitable hour-long delayed trade. Primary
+source accessed October 10, 2026:
+https://arxiv.org/abs/1512.03492 (Gould/Bonart, Queue Imbalance as a One-Tick-Ahead
+Price Predictor). Historical API behavior/quote fields checked against Alpaca:
+https://docs.alpaca.markets/us/reference/stockquotes-1 and
+https://docs.alpaca.markets/us/docs/real-time-stock-pricing-data.
+The API's inclusive end requires cutoff minus one nanosecond; every response
+page is checked rather than treating an initial page as complete.
+
+Added `quote_microstructure_research.py`: a GET-only collector and nine features
+from the final ten seconds BEFORE 10:00 NY, with two-second seeds. Features
+describe time-weighted displayed bid/ask imbalance, spread, weighted-midpoint
+pressure, observed midpoint change/volatility and a normalized best-quote flow
+proxy. They are NOT full depth, executed order flow or a calibrated fair value.
+Conflicting same-timestamp quote states interrupt coverage rather than allowing
+arbitrary last-record wins. Quotes at/after cutoff cannot affect features.
+Crossed/invalid/stale states interrupt eligibility; terminal quote must be fresh.
+Two-second quote-age eligibility is a conservative model rule, NOT proof that
+an unchanged exchange quote expired or a broker feed failed.
+
+Fixed request plan persisted before collection: six present-day stocks AAPL,
+MSFT, NVDA, TSLA, JPM, DIS; 180 evenly spaced eligible historical dates from
+2024-02-01 through 2026-10-01. Retained 564,377 raw historical SIP quotes across
+1,080 windows/1,080 complete API pages, 74,761,957 bytes, zero fetch errors.
+874 windows met >=90% known-prefix coverage and terminal-freshness rules; 206
+were explicitly ineligible. More JPM/DIS exclusions show sampling/eligibility
+bias, not an outage. Private raw JSON, request identities, plan, receipt times
+and hashes remain ignored in `research_runs/quote_microstructure/`; no quote
+data or keys published. Original market caches were unchanged.
+
+`quote_feature_ablation.py` recomputes quote features from byte-verified raw
+archives and verifies the original bar hashes/request identities/full collection
+before fitting. Bar-only and bar+NBBO arms use IDENTICAL eligible candidates and
+date splits. Four chronological test folds span 80 sampled test sessions after
+100 warmup dates; calibration uses the immediately prior 30 sampled dates.
+Only past simulated fills condition fit/calibration; future candidates are not
+prefiltered by eventual fills. Models: logistic, boosted, classical RBF and the
+existing four-qubit/two-layer CPU-simulated fidelity kernel. Kernel scaler/PCA
+fits past training only; matched quantum/classical projection and max 600 past
+train/calibration rows. No hardware/computational advantage is claimed.
+
+Fixed .50/.65/.90 gates, 10-bps cost each side, feature cutoff minute 30,
+15-minute assumed SIP publication delay and 1-minute execution latency were
+declared before evaluating outcomes. Existing stop/target, 1% stock cap, 5%
+category cap and three-position cap stay unchanged. Twenty-bps cost and extra
+entry-minute stress are separately reported. No favorable instantaneous-SIP
+simulation substitutes for the actual delayed-information constraint.
+
+Primary .50-gate results (same 80 sampled test sessions):
+
+| Model | Features | Active days | Winning active days | Simulated net USD |
+|---|---|---:|---:|---:|
+| Logistic | bars only | 36 | 50.00% | -108.86 |
+| Logistic | bars + NBBO | 35 | 45.71% | -114.71 |
+| Boosted | bars only | 37 | 54.05% | -85.68 |
+| Boosted | bars + NBBO | 45 | 53.33% | -111.73 |
+| Classical RBF | bars only | 34 | 47.06% | -123.79 |
+| Classical RBF | bars + NBBO | 49 | 51.02% | -157.63 |
+| Simulated quantum | bars only | 39 | 48.72% | -94.80 |
+| Simulated quantum | bars + NBBO | 40 | 57.50% | -83.49 |
+
+At .65, quantum bar-only had +9.90 USD/9 active days/77.78% wins, but an extra
+entry minute changed it to -5.78 USD/10 active days/50% wins. This is a tiny,
+fragile exploratory result, NOT a profitable validated strategy or proof of
+quantum advantage. Adding NBBO at .65 gave quantum -2.94 USD/6 days/66.67%
+and boosted -.51 USD/5 days/80%. Boosted bar-only gave +1.99 USD on only seven
+active days (85.71%); insufficient and not attributable to quote information.
+Every .90 gate abstained entirely. All 72 model/feature/gate/stress outcomes
+failed the target screen. Allocation/position/planned-risk checks passed for
+all simulated cases, not real production execution or whole-account guards.
+
+Results/hashes retained in ignored `research_runs/quote_ablation/`. Sampled,
+already-exposed dates, present-day universe, full-session bar exclusions,
+historical revisions and unmodeled quote execution conditions remain limitations.
+No new independent forward observation exists. It would be wrong to claim that
+this experiment disproves all order-book learning: it rejects this small NBBO
+feature set under the current delay/horizon/cost constraints. Next hypotheses
+must match the signal's usable receipt time and forecast horizon, rather than
+pretend the signal is instantly accessible or lower loss limits.
+
+318 tests passed, covering future quote/label isolation, temporal splits,
+matched eligibility, quantum kernel routing, invalid/ambiguous/stale quotes,
+DST boundaries and rejecting partial collection. Frozen prospective source
+hashes still match. No broker orders, deployment, real money, cost reduction,
+leverage increase or model promotion. Goal remains unmet.
