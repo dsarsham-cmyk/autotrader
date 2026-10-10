@@ -2249,3 +2249,44 @@ approval, missing counterfactual prices, aggregate guard refusal, changed
 entry/net rejection and retained no-trade interpretation. Frozen prospective
 model/sources still match. No orders/deploy, strategy promotion, risk increase
 or real money. The requested90% winning days AND net profit remain unachieved.
+
+## 2026-10-10 — Actual recent PAPER fill-to-NBBO quote audit, no cost reduction
+
+Existing quote pilot already has72 completed small windows; do not present
+this as the first spread check or as representative total execution cost.
+Added GET-only `paper_fill_quote_audit.py`: latest20 FILL activities from
+paper account, historical SIP quotes in a bounded seed/fill window, latest
+quote at/before each activity transaction_time with maximum age2sec. Future
+quotes ignored, conflicting/invalid terminal state not replaced by an earlier
+favorable quote, stale/missing evidence remains unknown. Raw activity/quote
+receipts are private ignored files, exact input/source hashes in report.
+No broker order/replace/cancel request or subscription change.
+
+Actual run exited0: all20 recent fills matched, no missing quote evidence.
+They are concentrated in ONE eight-second EOD closing batch:
+2026-10-09T19:55:23.408569Z to19:55:31.35602Z. This is not an entry/exit,
+all-session, all-market or independent representative sample. Largest quote
+age0.400817sec.16 fills fall within/at the last displayed spread, four outside;
+this does not prove a fill bug because paper transaction timing versus quote
+changes/original delivery remains unauthenticated.
+
+Median full quoted spread0.655024bps. Median signed fill deviation from
+contemporaneous quote midpoint0.424681bps (range .096902–1.846226bps).
+These are NOT broker fees, decision-to-fill latency, market impact, queue
+costs or actual real-money execution cost. Therefore research10/20bps cost
+assumptions remain unchanged, cost_assumptions_changed=false. Primary source:
+[Alpaca paper-trading documentation](https://docs.alpaca.markets/us/docs/paper-trading)
+states simulated fills do not account for market impact, latency slippage,
+queue position and regulatory fees. Paper sample cannot certify live costs
+or make an exposed historical strategy independently validated/profitable.
+
+Private completed report SHA256:
+`d0c3a8290307eeb20d958ff531ead32e03e0d7928088d70f8e9a7d19f275f32d`.
+Activity receipt SHA256:
+`a2ae4fdfe964f067b847cc0cc8663deab862792dd4ca69bccc8e2fbc417eb3ef`.
+544 original-runtime tests passed/six Torch tests skipped, four existing
+sklearn warnings. Six new tests cover future quote isolation, invalid/conflict
+terminal state, stale/missing evidence, side-adjusted sign, duplicate/order
+rejection, invalid fill and explicit timezone. Frozen prospective model/sources
+still match. No orders, deployment, model promotion, risk/cost relaxation or
+real money. Requested90% profitable winning days remain unachieved.
