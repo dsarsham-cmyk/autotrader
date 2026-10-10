@@ -1489,3 +1489,68 @@ actions/revisions and unverified original delivery remain limitations. No
 orders, deployment, model promotion, real money or increased limits. The
 90% profitable-active-day objective remains unmet; this is a concrete
 correction to the research method, not a claimed profitable formula.
+
+## 2026-10-10 — Causal opening forecasts with timestamp-indexed outcomes
+
+Added `causal_sparse_research.py` and `causal_sparse_simulator.py`. The new
+16-feature opening universe is forecast without conditioning test membership
+on future390-bar completeness. Logistic/boosted models fit/calibrate only
+known PAST filled outcomes, using240-date warmup,60-date calibration and20-date
+outer blocks. Test candidates are all forecast before checking their outcomes.
+Same stop1%, target0.4%,60-minute horizon,10bps each side, delayed SIP entry
+minute46, stock/category1%/5%, at most3positions and planned trade risk0.05%.
+
+Timestamp-indexed observed bars replace the requirement for an entire390-bar
+session. Known unfilled entries do not need later prices; a known stop/target
+exit does not require post-exit bars. Missing prices before a required exit
+remain UNKNOWN, never filled by interpolation, price padding or future-dip
+assumptions. Selection is before fills; an unknown selected outcome stops
+the entire cumulative ledger and makes full-period net/win-rate unavailable.
+Later days cannot restart equity or substitute another stock. Availability
+lists after such a gap are only model ranking before risk sizing, not claimed
+actual orders. Known-prefix accounting is explicitly separate.
+
+Actual22 outer folds,8,562 forecasts PER model,429 observed test sessions,
+2025-01-16 through2026-10-01. This is a replacement feature/history policy,
+not a matched causal-only ablation of previous21-feature results. The date
+count differs because current eligibility no longer requires future complete
+sessions and prior terminal observations are independently retained.
+
+Primary costs10bps / entry delay16:
+
+| Model | Gate | Active days | Winning active days | Net USD |
+|---|---:|---:|---:|---:|
+| Logistic | 0.50 | 319 | 55.49% | -1,129.16 |
+| Logistic | 0.65 | 223 | 61.88% | -668.34 |
+| Logistic | 0.90 | 4 | 75.00% | -5.90 |
+| Boosted | 0.50 | 321 | 52.02% | -1,157.31 |
+| Boosted | 0.65 | 180 | 57.78% | -557.38 |
+| Boosted | 0.90 | 0 | not applicable | 0.00 |
+
+Two models x3gates x3cost/latency variants =18 outcomes, zero target-screen
+passes. Selected outcomes happened to be fully recoverable in ALL eighteen
+observed-span runs; no unknown selected dates or stopped ledger in this actual
+study. This is not a guarantee for future missing data, nor proof of complete
+exchange-calendar coverage. All simulated stock/category/position/planned-risk
+checks passed. Known-prefix metrics therefore cover the observed span here.
+
+Fixed-trade zero-cost diagnostics at0.65: logistic gross+5.24USD/64.57% wins;
+boosted gross-40.49USD/60.00%. Zero-cost accounting freezes fills and quantities,
+is not a deployable replay, and still does not approach90% winning days. Costs
+are modeled assumptions, not verified commissions. No adequate active variant
+is profitable after modeled costs.
+
+452 tests passed, including twelve new exact complete-data path/portfolio
+reproduction, irrelevant-post-exit absence, unknown-required-price handling,
+known unfilled entry, stop-first gap loss, no substitution/capital restart,
+unselected-unknown isolation, loss-guard/gap overshoot, invalid observed bar
+rejection and both-model past-only fit/future-unknown forecast tests. Four
+existing sklearn deprecation warnings. Frozen prospective model/source hashes
+remain unchanged. Full ignored report `research_runs/causal_sparse/results.json`
+SHA256 `6ed179baa6ce9692268fde0439711d35284d7233a68fee3ee976251f93c243df`.
+Evaluated dependency hashes matched. No orders, deployment, model promotion,
+real money or increased risk. Historical outcomes remain exposed; fixed current
+universe, raw splits/revisions, missing whole calendar days, original receipt
+timing and OHLC/end-of-day-peak assumptions still limit inference. Correcting
+future-completeness conditioning did not suffice to produce an economic edge.
+Independent forward evidence and the90% objective remain unachieved.
