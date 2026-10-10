@@ -1,0 +1,76 @@
+name: Causal split shadow comparators - NO ORDERS
+
+on:
+  schedule:
+    # NY-time guard selects summer/winter alternative; never backfill.
+    - cron: '57 13,14 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      validate_only:
+        description: Validate isolated environment without collecting predictions
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: causal-split-shadow-comparators
+  cancel-in-progress: false
+
+jobs:
+  shadow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 7dec3a115c0ad4c0fef7edca7f5e724679e4228f
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-causal-shadow.txt
+      - name: Check shadow preparation window
+        id: plan
+        run: python causal_shadow_collector.py plan
+      - name: Install isolated shadow runtime
+        if: steps.plan.outputs.run == 'true' || inputs.validate_only == true
+        run: pip install -r requirements-causal-shadow.txt
+      - name: Validate dedicated private-evidence key
+        if: steps.plan.outputs.run == 'true' || inputs.validate_only == true
+        env:
+          PROSPECTIVE_EVIDENCE_KEY: ${{ secrets.PROSPECTIVE_EVIDENCE_KEY }}
+        run: python research_evidence_crypto.py validate
+      - name: Validate shadow only - not a prospective trading observation
+        if: inputs.validate_only == true
+        run: python causal_shadow_collector.py validate
+      - name: Collect paired shadow predictions - GET only
+        if: steps.plan.outputs.run == 'true' && inputs.validate_only != true
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+        run: python causal_shadow_collector.py collect
+      - name: Timestamp shadow predictions and status externally
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: causal-shadow-forecast-${{ github.run_id }}
+          path: |
+            research_prospective/causal_split_shadow_v1/predictions/*.json
+            research_runs/causal_shadow_cloud_status.json
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Encrypt private shadow inputs after public timestamping
+        if: always() && steps.plan.outputs.run == 'true' && inputs.validate_only != true
+        env:
+          PROSPECTIVE_EVIDENCE_KEY: ${{ secrets.PROSPECTIVE_EVIDENCE_KEY }}
+        run: python causal_shadow_collector.py seal
+      - name: Retain encrypted shadow evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: causal-shadow-private-encrypted-${{ github.run_id }}
+          path: research_runs/private_evidence.aesgcm
+          if-no-files-found: ignore
+          retention-days: 90
