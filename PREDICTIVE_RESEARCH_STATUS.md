@@ -1752,3 +1752,30 @@ existing sklearn deprecation warnings. Frozen prospective model/source hashes
 still match. Economic comparison remains pending until the original full
 inference process completes. No orders, deployment, promotion, real money or
 risk-limit changes. Objective remains unachieved.
+
+## 2026-10-10 — Exchange-calendar coverage checked against broker GET receipt
+
+Executed `research_calendar_audit.py` against completed causal-sparse and
+headline-event studies. The broker calendar contains429 sessions from
+2025-01-16 through2026-10-01. All18 sparse and36 headline variants contain
+all429 ledger dates: no missing dates, non-calendar rows or incompatible
+session windows. The three early closes (2025-07-03,2025-11-28,2025-12-24)
+remain in the evaluation; the fixed model horizon ends before those closes.
+This confirms ledger calendar coverage, NOT prediction quality or profits.
+Previously reported negative net results are unchanged.
+
+The receipt is retrospective, not an authenticated original schedule
+delivery. Calendar completeness does not authenticate historical stock/news
+delivery, fill assumptions or independent validation. Duplicate dates and
+incompatible windows fail closed; a missing ledger day is not silently called
+a no-trade day. All approval/independent-validation/order flags remain false.
+Private calendar receipt SHA256:
+`ba9e4c440e0dbe1d8f50851beacd9b65c393f727999c71bf0b54bde797cae61f`.
+Private completed report SHA256:
+`d97cafd41637cbe0420b1edb10c913d0942ab58c06dcb1b076bdddc157057837`.
+
+488 tests passed, four existing sklearn warnings; frozen prospective sources
+and model still match. Original FinBERT inference process remains running;
+at the actual observation35,232 of56,284 distinct headlines had completed.
+No full inference/economic result is claimed yet. No orders, deployment,
+promotion, risk increase or real money. Objective remains unachieved.
