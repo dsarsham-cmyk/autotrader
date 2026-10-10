@@ -143,3 +143,58 @@ profit and downside magnitude; a high win rate alone is not enough.
 223 tests pass, including gross/net reconciliation, cost monotonicity on fixed
 trades, missing-evidence rejection and abstention not being counted as wins.
 No deployment, automatic promotion, budget changes or real money used.
+
+## VWAP/volume/regime and payoff forecasts
+
+Added `regime_predictive_research.py`. Fixed experiment before its first run:
+decision after 30 completed minutes; +0.4% price target, exits within 60
+minutes or by end of day; baseline versus ten additional opening VWAP,
+path-efficiency, realized-volatility, historical same-window volume, prior
+range, recent return/volume, dispersion and breadth features. All current-day
+features stop at the decision minute. Prior volume/ranges are appended only
+after that day's signal. VWAP uses OHLC typical-price approximation.
+
+Three past-fitted boosted forecasts: probability of net positive return,
+expected net return and 10th percentile of net return. Separate recent past
+calibration fits probability scaling, mean residual offset and a fixed 10th
+percentile residual correction. Thresholds 0.65 and 0.90 were fixed in advance.
+Compare probability alone versus additionally requiring expected return >0
+and Q10 >-1%. This distribution gate is not an increase of existing risk or a
+guaranteed stop-loss bound. Portfolio sizing, costs and guards unchanged.
+
+Same 176 exposed exploratory test dates; no independent evidence. Primary
+results at probability threshold 0.65 and 10 bps per side:
+
+| Inputs | Exit | Gate | Active days | Winning days | Net USD |
+|---|---|---|---:|---:|---:|
+| Baseline | 60 minutes | Probability | 81 | 60.49% | -221.10 |
+| Extended | 60 minutes | Probability | 69 | 49.28% | -254.52 |
+| Baseline | 60 minutes | Mean/Q10 | 5 | 60.00% | -5.13 |
+| Extended | 60 minutes | Mean/Q10 | 5 | 60.00% | -7.88 |
+| Baseline | Session | Probability | 145 | 48.28% | -725.99 |
+| Extended | Session | Probability | 140 | 50.00% | -577.49 |
+| Both | Session | Mean/Q10 | 0 | Undefined | 0 |
+
+Probability threshold 0.90 produced no active days. None of 48
+configuration/stress outcomes passes the target. Added features do not establish
+an advantage; abstention reduces simulated loss but does not establish the
+requested trading profitability. Do not select the least-negative configuration
+as a successful model. Raw results and dependency/data hashes are in ignored
+`research_runs/regime_predictive/results.json`.
+
+227 tests passed. New tests alter post-decision price/volume and future test
+candidate features/labels to verify prior signal/forecast invariance. They also
+check past-only volume normalization and constant-price VWAP. Technical
+correctness is not evidence of a predictive edge.
+
+### Forward data-access requirement verified
+
+Read-only latest-quote API checks on October 10: SIP returned HTTP 403, IEX
+returned HTTP 200 (AAPL quote timestamp 2026-10-09T20:36:06.667843082Z, weekend
+last available quote). Historical SIP access does NOT establish real-time SIP
+entitlement. A SIP-trained opening-volume model cannot silently use IEX live
+volume or issue a backdated forecast after delayed SIP data become available.
+Before any valid forward test, either train on matching historical IEX inputs
+or explicitly simulate the SIP information delay and subsequent decision/entry
+times. No subscription purchase/change made; no forward collector or model
+deployment claimed. Objective remains unmet.
