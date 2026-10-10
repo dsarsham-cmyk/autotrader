@@ -198,3 +198,43 @@ Before any valid forward test, either train on matching historical IEX inputs
 or explicitly simulate the SIP information delay and subsequent decision/entry
 times. No subscription purchase/change made; no forward collector or model
 deployment claimed. Objective remains unmet.
+
+## Delayed-SIP causal execution experiment
+
+`regime_predictive_research.py --information-delay 15` now trains labels and
+calibrates forecasts for the delayed entry, not the original earlier entry.
+Features end at session minute 30 (10:00 NY), assumed availability at minute
+45 (10:15), simulated entry at minute 46 (10:16). Additional execution-latency
+stress enters at minute 47. The publication lag is an explicit assumption,
+not a measured guarantee; a future collector must check actual receipt times.
+Limits stay frozen from the feature cutoff price while waiting. No retrospective
+repricing, historical earlier execution, or real-time SIP entitlement claimed.
+
+Outputs are separate from the zero-information-delay study:
+`research_runs/regime_predictive_delay_15/results.json`, 48 configurations,
+176 exposed test sessions. Primary probability-only threshold 0.65 results:
+
+| Inputs | Exit | Active days | Winning active days | Net USD |
+|---|---|---:|---:|---:|
+| Baseline | 60 minutes | 96 | 55.21% | -247.39 |
+| Extended | 60 minutes | 64 | 60.94% | -135.99 |
+| Baseline | Session | 143 | 59.44% | -407.98 |
+| Extended | Session | 140 | 55.71% | -419.79 |
+
+Expected-return/Q10 gate yields only one or two active days in the shorter
+horizon, both configurations net negative, and none for session exits.
+Threshold 0.90 yields no trades. No variant passed the target screen.
+
+Fixed-trade diagnostic now reads the protocol's primary entry delay instead of
+silently filtering only delay=1, and preserves feature/gate identity. Separate
+output `research_runs/cost_diagnostic/delayed.json`. Extended inputs with
+60-minute exit: gross +21.36 USD, cost drag 157.35 USD, net -135.99 USD. At a
+hypothetical 2 bps per side on the exact same trades: -10.11 USD and 64.06%
+winning days; even at zero costs: 67.19% winning days. These are accounting
+sensitivities, not new executable strategies or independent observations.
+
+233 tests passed. Added causality test makes price crash before delayed data
+availability and verifies it cannot become an earlier trade/stop; invalid
+delay inputs rejected. Added diagnostic regression test ensures delayed
+primary outcomes are included and distinct feature/gate identities retained.
+Research remains local; no live/real-money activation or risk changes.

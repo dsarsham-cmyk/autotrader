@@ -54,11 +54,13 @@ def run(inputs,output):
         raw=path.read_bytes()
         report['input_hashes'][str(path)]=hashlib.sha256(raw).hexdigest()
         source=json.loads(raw)
+        primary_delay=source.get('protocol',{}).get('entry_delay',1)
         for case in source['cases']:
             for result in case['outcomes']:
-                if result['costs_bps']!=10 or result['delay']!=1: continue
+                if result['costs_bps']!=10 or result['delay']!=primary_delay: continue
                 report['cases'].append(dict(input=str(path),
                     model=case.get('model',case.get('kernel')),minute=case.get('minute',15),
+                    feature_set=case.get('feature_set'),gate=case.get('gate'),entry_delay=primary_delay,
                     horizon=case['horizon'],threshold=result['threshold'],**diagnostic(result)))
     output.parent.mkdir(parents=True,exist_ok=True)
     output.write_text(json.dumps(report,indent=2,allow_nan=False))

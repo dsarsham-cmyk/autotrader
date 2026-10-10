@@ -90,7 +90,16 @@ def forecasts(train,calibration,test,outcomes):
         q10_return=downside.predict(tx)+downside_offset)
 
 
-def run(data,output):
+def timing(information_delay):
+    if not isinstance(information_delay,int) or isinstance(information_delay,bool) or not 0<=information_delay<=60:
+        raise ValueError('Information delay must be integer minutes from 0 to 60')
+    return dict(feature_cutoff_minute=30,forecast_available_minute=30+information_delay,
+        entry_minute=31+information_delay,entry_delay=1+information_delay)
+
+
+def run(data,output,information_delay=0):
+    clock=timing(information_delay)
+    entry_delay=clock['entry_delay']
     by_date,evidence=load_universe(data)
     extended=extended_rows(by_date)
     dates=sorted({r['date'] for r in extended})
@@ -98,7 +107,8 @@ def run(data,output):
         dependency_sha256={name:hashlib.sha256(Path(name).read_bytes().replace(b'\r\n',b'\n')).hexdigest()
             for name in ['regime_predictive_research.py','predictive_portfolio_research.py',
                 'fixed_trade_cost_diagnostic.py','active_stock_research.py','predictive_research.py']},
-        protocol=dict(decision_minute=30,horizons=['target_60','target_session'],
+        protocol=dict(**clock,information_delay_minutes=information_delay,
+            feed='sip',data_delay_is_assumed_not_measured=True,horizons=['target_60','target_session'],
             feature_sets=['baseline','vwap_volume_regime'],thresholds=[.65,.9],
             gate_variants=['probability_only','positive_mean_and_q10_above_minus_1pct'],
             mean_minimum=0,q10_minimum=-.01,orders=False),
@@ -107,11 +117,13 @@ def run(data,output):
             'VWAP is a bar typical-price approximation, not trade-level exact VWAP',
             'Q10 describes a distribution tail, not a guaranteed maximum loss',
             'Past-only fit does not eliminate repeated-experiment selection bias',
+            'Data publication delay is assumed; a live collector must verify actual receipt timestamps',
+            'Signal-based limit stays frozen while waiting for data; no later-price repricing',
             'OHLC execution, costs and portfolio guards retain simulator limitations'],cases=[])
     output.mkdir(parents=True,exist_ok=True)
     for horizon in ['target_60','target_session']:
         outcomes={(r['date'],r['symbol']):path_outcome(by_date[r['date']][r['symbol']][0],
-            r['signal_price'],30,horizon) for r in extended}
+            r['signal_price'],30,horizon,delay=entry_delay) for r in extended}
         for feature_set in ['baseline','vwap_volume_regime']:
             rows=[dict(r,features=r['features'][:len(FEATURES)]) for r in extended] if feature_set=='baseline' else extended
             predictions,folds=[],[]
@@ -136,18 +148,22 @@ def run(data,output):
                 case=dict(feature_set=feature_set,model='boosted_probability_mean_q10',horizon=horizon,
                     gate=gate,minute=30,folds=folds,outcomes=[])
                 for threshold in [.65,.9]:
-                    for cost,delay in [(10,1),(20,1),(10,2)]:
+                    for cost,delay in [(10,entry_delay),(20,entry_delay),(10,entry_delay+1)]:
                         case['outcomes'].append(portfolio(selected,by_date,30,horizon,threshold,cost,delay))
                 report['cases'].append(case)
                 (output/'results.json').write_text(json.dumps(report,indent=2,allow_nan=False))
                 print(json.dumps(dict(features=feature_set,horizon=horizon,gate=gate,primary=[
                     {k:r[k] for k in ['threshold','active_days','active_day_win_rate_pct','profit_usd','target_screen_pass']}
-                    for r in case['outcomes'] if r['costs_bps']==10 and r['delay']==1])),flush=True)
+                    for r in case['outcomes'] if r['costs_bps']==10 and r['delay']==entry_delay])),flush=True)
     return report
 
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--data',type=Path,default=Path('cache/active_stocks'))
-    parser.add_argument('--output',type=Path,default=Path('research_runs/regime_predictive'))
-    args=parser.parse_args();run(args.data,args.output)
+    parser.add_argument('--output',type=Path)
+    parser.add_argument('--information-delay',type=int,default=0)
+    args=parser.parse_args()
+    destination=args.output or Path('research_runs')/('regime_predictive' if args.information_delay==0
+        else f'regime_predictive_delay_{args.information_delay}')
+    run(args.data,destination,args.information_delay)

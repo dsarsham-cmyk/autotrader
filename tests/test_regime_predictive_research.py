@@ -1,5 +1,7 @@
 import numpy as np
-from regime_predictive_research import extended_rows,forecasts,vwap
+import pytest
+from regime_predictive_research import extended_rows,forecasts,vwap,timing
+from predictive_portfolio_research import path_outcome
 
 
 def data():
@@ -35,3 +37,21 @@ def test_prediction_does_not_fit_on_test_features_or_labels():
     after=forecasts(rows[:100],rows[100:140],rows[140:],outcomes)
     for key in before:
         assert np.allclose(before[key][:-1],after[key][:-1])
+
+
+def test_delayed_data_not_backdated():
+    clock=timing(15)
+    assert clock['feature_cutoff_minute']==30
+    assert clock['forecast_available_minute']==45
+    assert clock['entry_minute']==46
+    a=data()['0000']['A'][0]
+    a[31]=[80,81,79,80,1000]
+    a[46]=[100,100.2,99.8,100,1000]
+    result=path_outcome(a,100,30,'target_60',delay=clock['entry_delay'])
+    assert result['entry_minute']==46 and result['entry']==pytest.approx(100.1)
+    assert result['exit_minute']>=46
+
+
+@pytest.mark.parametrize('delay',[-1,61,True,15.5])
+def test_invalid_information_delay_rejected(delay):
+    with pytest.raises(ValueError): timing(delay)

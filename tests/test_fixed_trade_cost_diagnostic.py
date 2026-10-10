@@ -1,5 +1,6 @@
 import pytest
-from fixed_trade_cost_diagnostic import trade_record,diagnostic
+import json
+from fixed_trade_cost_diagnostic import trade_record,diagnostic,run
 
 
 def outcome(trades):
@@ -37,3 +38,17 @@ def test_bad_reconciliation_rejected():
     t=trade_record('a','A',1,100.1,100*.999,.001,'stop')
     bad=outcome([t]);bad['profit_usd']=100
     with pytest.raises(ValueError): diagnostic(bad)
+
+
+def test_diagnostic_honors_delayed_protocol_and_preserves_case_identity(tmp_path):
+    t=trade_record('a','A',1,100.1,101*.999,.001,'target')
+    delayed=dict(outcome([t]),costs_bps=10,delay=16,threshold=.65)
+    immediate=dict(delayed,delay=1)
+    source=dict(protocol={'entry_delay':16},cases=[dict(model='boosted',minute=30,
+        horizon='target_60',feature_set='extended',gate='mean',outcomes=[immediate,delayed])])
+    path=tmp_path/'input.json';path.write_text(json.dumps(source))
+    result=run([path],tmp_path/'output.json')
+    assert len(result['cases'])==1
+    assert result['cases'][0]['entry_delay']==16
+    assert result['cases'][0]['feature_set']=='extended'
+    assert result['cases'][0]['gate']=='mean'
