@@ -518,3 +518,67 @@ sizing, missing/duplicate/no-trade sessions, late anchors, probability errors,
 legacy envelope rejection and future path invariance of retrospective features.
 Frozen predictive source hashes still match. No engine deployment, order,
 leverage change, risk relaxation or model promotion occurred. Goal remains unmet.
+
+## Two-stage daily-basket forecasting: tested, not promoted
+
+New hypothesis in `daily_meta_research.py`: predict profit of the entire selected
+daily basket instead of relying only on individual stock probabilities. Stage
+one is a boosted stock classifier with strictly earlier training/calibration
+dates (120-date warmup, last 40 dates for calibration, 20-date future blocks).
+It is calibrated conditional on historical simulated fills; future candidates
+are never prefiltered by their eventual fills. Meta labels use the cumulative
+base policy on these cross-fitted forecasts, not in-sample stock predictions.
+The second model uses opening features and stock scores, never current fills
+or future P&L. It fits only earlier active-date labels with a separate 30-date
+calibration block. Logistic and boosted day classifiers are compared at fixed
+.65 and .90 gates. Missing fit evidence is an abstention, not a win. The gated
+policy can have different share counts from the base-policy meta labels.
+
+First dataset (2025-2026): 176 outer test sessions, 15 stock cross-fit folds,
+296 meta-history dates, 89 base-active history dates. Primary unfiltered result
+84 active days, 55.95% wins, -208.01 simulated USD. All four gates produced
+zero active days: 6 of 9 meta folds lacked sufficient past active calibration
+evidence, and the later forecasts did not generate filled gated orders. Zero
+activity is failure to establish the target, not 100% profitable days.
+
+To test whether sample scarcity caused this failure, fetched 3,138,245 new SIP
+minute bars for the same 20 stocks over 2024. These are owned historical API
+downloads, with SIP/raw metadata and byte hashes, in ignored
+`cache/daily_meta_sip_2024/`. `daily_meta_dataset.py` joins them with the untouched
+original cache into `cache/daily_meta_extended/`. It checks feed/adjustment/hash,
+retains source metadata, sorts timestamps, deduplicates identical observations
+and rejects contradictory overlapping revisions. Original data, trained frozen
+model and prospective experiment were NOT changed. Raw split discontinuities
+remain a feature-quality limitation; no overnight simulated gains are invented.
+
+Extended dataset: 28 stock cross-fit folds, 547 meta-history dates, 216
+base-active history dates and 427 outer test sessions. The same fixed protocol
+produced these primary 10-bps-per-side, 16-minute-delay outcomes:
+
+| Daily model/gate | Active days | Winning active days | Simulated net USD |
+|---|---:|---:|---:|
+| Base stock model, no day gate | 165 | 62.42% | -465.62 |
+| Logistic day gate >=.65 | 55 | 56.36% | -219.43 |
+| Boosted day gate >=.65 | 57 | 56.14% | -217.60 |
+| Either day model >=.90 | 0 | not defined | 0.00 |
+
+13 of 22 meta folds could fit; 9 lacked sufficient past evidence. Maximum day
+forecast was .8353 logistic/.8396 boosted, not .90. Lower absolute loss with
+gates mostly reflects fewer trades; winning-day accuracy worsened, so it is
+NOT a demonstrated predictive improvement. Additional-minute stress losses
+were -290.76 logistic/-289.69 boosted; 20-bps stress losses -368.40/-372.79.
+At 20 bps per side, the fixed +.4% gross target itself nets slightly negative
+after multiplicative costs, an explicit limitation of this stress case.
+All 30 outcomes across the two datasets failed the research screen. Primary
+extended baseline Wilson interval was 54.83-69.45%, far below the target.
+All simulated allocation/position/planned-risk checks passed; that still does
+not prove whole-account production risk behavior or actual broker execution.
+
+Results/provenance retained in ignored `research_runs/daily_meta/` and
+`research_runs/daily_meta_extended/`. All historical dates are exploratory and
+exposed; no new independent future observation or profitable strategy exists.
+307 tests passed, including stock/meta chronology, future-label/activity
+invariance, no filtering of future nonfills, future-feature isolation and
+contradictory cache-overlap rejection. No orders, engine deployment, risk-limit
+change or promotion. Next research needs materially different predictive
+information, not relabeling abstention or lowering the required success rate.
