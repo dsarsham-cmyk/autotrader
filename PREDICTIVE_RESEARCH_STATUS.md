@@ -2446,3 +2446,56 @@ First report SHA256:
 six new tests cover past-only weights/half-life/mass, future-label and
 future-candidate isolation, overlap/classes and actual weighted scaler mean.
 No deployment/orders/real money, no risk/cost relaxation. Goal remains unmet.
+
+## 2026-10-10 — Recency numerical audit and exact economic replay completed
+
+First warning-bearing implementation retained in commit14e9c65 and private
+first report. Added fail-closed weighted-scaler audit, without changing fitted
+parameters: negative variance is accepted ONLY on an exactly constant column,
+within tiny rounding tolerance, with actual unit scale and finite parameters/
+transforms. Unexpected fitting warnings or substantive/nonconstant negative
+variance fail. Known sqrt warnings captured and classified in fold metadata,
+not blanket suppressed. Official weighted-scaler reference:
+https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.StandardScaler.html.
+
+Actual separate audited rerun exited0. All54 outcomes AND forecast rows exactly
+reproduce first run.88 weighted fits audited:44 explained sqrt warnings, only
+feature9 `opening_coverage`, exactly constant1; most negative stored variance
+-1.4699279110654225e-42. sklearn already uses unit scale for that constant column;
+no parameter/forecast/economic change. This is numerical correctness evidence,
+not a new predictive edge or independent financial validation.
+
+Primary outcomes at gate.65,10bps per side, delay16:
+
+| Model/half-life | Active days | Winning percent | Net USD |
+|---|---:|---:|---:|
+| Logistic/unweighted |220|60.00|-777.31|
+| Logistic/60 |209|61.72|-688.97|
+| Logistic/120 |219|62.10|-718.23|
+| Boosted/unweighted |173|57.80|-627.81|
+| Boosted/60 |186|53.76|-643.79|
+| Boosted/120 |203|59.11|-571.94|
+
+Weighted inputs improve some losses, not profitability or90% winning days.
+All54 ledgers complete over429 sessions; actual GET calendar audit confirms
+coverage. All reported prefix risk checks pass, zero target-screen passes.
+High-confidence .9 primary logistic60 has two active/50%/-9.52USD,
+logistic120 three active/66.67%/-7.57USD; boosted abstains. Unweighted .9
+control's two wins/+3.54USD remains the same sparse nonvalidated artifact,
+not evidence for promoting a model. Two weighted delayed17-minute .9 variants
+are positive: logistic60 two wins/+3.40USD, descriptive interval34.237–100%;
+logistic120 three wins/+5.35USD, interval43.849–100%. These are retained, not
+hidden, but2/3 exposed observations and one-minute-sensitive sign changes do
+not establish90% profitable future days. Do NOT claim all weighted variants
+are negative. All variants retained, no winner selected
+from this exposed experiment. Frozen prospective/production state unchanged.
+
+Audited study SHA256:
+`8af20f95300b34840c41a6783b0d3b159f24d689589ff677def75682d3113216`.
+Calendar audit SHA256:
+`16c17c94cab15d19b98ffaadc4cd59f4293e79f750092589cce42402d7eaf014`.
+563 tests passed/six Torch tests skipped/four existing sklearn warnings.
+Seven new tests now include rejection of real/nonconstant/nonfinite variance
+errors and accepting only proven exact-constant tiny rounding without mutation.
+No orders, deployment, increased budgets/leverage, cost reduction, automatic
+promotion or real money. Full objective remains unachieved.

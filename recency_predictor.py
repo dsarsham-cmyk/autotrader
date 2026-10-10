@@ -1,4 +1,5 @@
 """Past-only exponential sample weighting; not a trading recommendation."""
+import warnings
 import numpy as np
 from sklearn.ensemble import HistGradientBoostingClassifier
 from sklearn.linear_model import LogisticRegression
@@ -33,6 +34,28 @@ def weight_summary(weights, rows):
         effective_size_is_independent_observation_count=False)
 
 
+def audit_scaler(scaler, x):
+    """Only exact-constant tiny negative variance is explainable rounding.
+
+    sklearn may take sqrt before replacing constant-column scale with1.
+    Preserve fitted transforms; do not silently clip substantive variance.
+    """
+    variance,mean,scale = scaler.var_,scaler.mean_,scaler.scale_
+    if any(not np.isfinite(a).all() or a.shape != (x.shape[1],) for a in [variance,mean,scale]):
+        raise ValueError('Nonfinite or invalid weighted scaler parameters')
+    if (scale<=0).any() or not np.isfinite(scaler.transform(x)).all():
+        raise ValueError('Invalid weighted scaler transform')
+    negative = np.flatnonzero(variance<0)
+    tolerance = 32*len(x)*np.finfo(float).eps**2*np.maximum(mean**2,1)
+    for column in negative:
+        if not np.all(x[:,column] == x[0,column]) or variance[column]<-tolerance[column] or scale[column]!=1:
+            raise ValueError('Unexplained negative weighted variance')
+    return dict(negative_variance_columns=negative.tolist(),
+        negative_variances=variance[negative].tolist(),
+        exact_constant_rounding_only=True,finite_training_transform=True,
+        fitted_parameters_changed=False)
+
+
 def fit(train,calibration,test,labels,kind,history_dates,half_life):
     if kind not in ['logistic','boosted'] or not all([train,calibration,test]):
         raise ValueError('Known model and nonempty chronological partitions required')
@@ -54,7 +77,16 @@ def fit(train,calibration,test,labels,kind,history_dates,half_life):
         else HistGradientBoostingClassifier(max_iter=100,max_leaf_nodes=7,min_samples_leaf=30,
                                             l2_regularization=10,random_state=19,early_stopping=False))
     model = Pipeline([('scale',StandardScaler()),('classifier',classifier)])
-    model.fit(x,y,scale__sample_weight=weights,classifier__sample_weight=weights)
+    with warnings.catch_warnings(record=True) as observed:
+        warnings.simplefilter('always')
+        model.fit(x,y,scale__sample_weight=weights,classifier__sample_weight=weights)
+    normalization = audit_scaler(model.named_steps['scale'],x)
+    for warning in observed:
+        if not (issubclass(warning.category,RuntimeWarning) and
+                str(warning.message)=='invalid value encountered in sqrt' and
+                normalization['negative_variance_columns']):
+            raise ValueError('Unexplained weighted fitting warning')
+    normalization['explained_sqrt_warning_count'] = len(observed)
     calibrator = LogisticRegression(C=1,max_iter=1000,random_state=19)
     calibrator.fit(raw_score(model,cx),cy,sample_weight=cal_weights)
     probabilities = calibrator.predict_proba(raw_score(model,tx))[:,1]
@@ -65,6 +97,7 @@ def fit(train,calibration,test,labels,kind,history_dates,half_life):
         calibration_weight_summary=weight_summary(cal_weights,calibration),
         scaler_mean=model.named_steps['scale'].mean_.tolist(),
         scaler_scale=model.named_steps['scale'].scale_.tolist(),
+        normalization_audit=normalization,
         calibration_coefficients=calibrator.coef_.tolist(),calibration_intercept=calibrator.intercept_.tolist(),
         future_labels_used=False,orders=False)
     return probabilities,metadata

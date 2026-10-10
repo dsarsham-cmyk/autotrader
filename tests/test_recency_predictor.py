@@ -2,7 +2,7 @@ from copy import deepcopy
 import numpy as np
 import pandas as pd
 import pytest
-from recency_predictor import fit,past_weights,weight_summary
+from recency_predictor import fit,past_weights,weight_summary,audit_scaler
 
 
 def fixture():
@@ -68,3 +68,24 @@ def test_weighted_scaler_matches_direct_past_weighted_mean():
     assert metadata['scaler_mean'] == pytest.approx(expected)
     assert np.all((probabilities>=0)&(probabilities<=1))
     assert metadata['future_labels_used'] is False and metadata['orders'] is False
+
+
+def test_variance_rounding_requires_exact_constant_scale_one_and_tiny_error():
+    from sklearn.preprocessing import StandardScaler
+    x = np.column_stack([np.ones(80),np.arange(80)])
+    scaler = StandardScaler().fit(x)
+    scaler.var_[0] = -1e-31
+    audit = audit_scaler(scaler,x)
+    assert audit['negative_variance_columns'] == [0]
+    assert audit['fitted_parameters_changed'] is False
+    scaler.var_[0] = -1e-4
+    with pytest.raises(ValueError,match='Unexplained'):
+        audit_scaler(scaler,x)
+    scaler.var_[0] = 0
+    scaler.var_[1] = -1e-31
+    with pytest.raises(ValueError,match='Unexplained'):
+        audit_scaler(scaler,x)
+    scaler.var_[1] = 1
+    scaler.scale_[0] = float('nan')
+    with pytest.raises(ValueError,match='Nonfinite'):
+        audit_scaler(scaler,x)
