@@ -2423,3 +2423,26 @@ Torch runtime. Frozen prospective sources/model still match. All outcome dates
 previously exposed, current split announcement delivery unauthenticated,
 fixed-universe/revision/receipt/fill limitations remain. No orders, deployment,
 automatic promotion, increased risk or real money. Goal remains unachieved.
+
+## 2026-10-10 — Fixed recency-weight hypothesis, first run retained
+
+Added `recency_predictor.py` and `recency_predictive_research.py`. Same
+split-normalized16 inputs, expanding past training/separate60-session
+calibration/20-session future blocks; fixed60/120-observed-session exponential
+half-lives. Mean-one weights separately in train/calibration preserve total
+row mass; weighted scaler/classifier/calibrator, no future labels or outcome
+filtering of test candidates. Effective row-weight size is NOT an independent
+observation count. All54 first-run outcomes complete; all18 unweighted control
+outcomes exactly reproduce saved daily/trade/net reference. Zero target-screen
+passes, all reported prefix risk checks pass. This is exposed exploration.
+
+First run contains StandardScaler weighted-variance sqrt RuntimeWarnings.
+Finite forecasts alone do NOT explain those warnings; numerical audit is
+required before relying on this implementation. This first report/source
+version is retained, not retroactively edited to hide warnings.
+First report SHA256:
+`7ff17516de8189235ed4aa376f1b05394fbf8e26e6c5c8423715aeb9bbf2797a`.
+562 tests passed/six Torch skipped/four pre-existing sklearn warnings;
+six new tests cover past-only weights/half-life/mass, future-label and
+future-candidate isolation, overlap/classes and actual weighted scaler mean.
+No deployment/orders/real money, no risk/cost relaxation. Goal remains unmet.
