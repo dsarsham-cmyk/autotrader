@@ -1,0 +1,19 @@
+{
+  "protocol": {
+    "backfill_allowed": false,
+    "created_utc": "2026-10-10T19:42:56.712417+00:00",
+    "forward_start": "2026-10-12",
+    "orders": false,
+    "parent_manifest_sha256": "27174cbfc11b1a90fd3ab203de33ffb50c6530643507810712fd60f350b7f145",
+    "pre_entry_external_upload_anchor_required": true,
+    "private_inputs_required": true,
+    "production_approved": false,
+    "schema": 1,
+    "source_sha256": {
+      "causal_shadow_collector.py": "a2cd2c307777839bbcac4486b62c4f4cf6a0087d7dd5848b1d9f1c8423bb93bd",
+      "requirements-causal-shadow.txt": "ae71deec8ce40996f494b9ec9dc2ed9b890e46fad7e8b00cfc192467cfbca00e",
+      "research_evidence_crypto.py": "bc6e9e97d7c616d209873e3580692cc9788e729fccf0e903ae3adbf2c8444a99"
+    }
+  },
+  "protocol_sha256": "c7a26c74323e7966b08a23eadb7bfdabf2fec7b4e2e31a414d71b735551e2241"
+}
