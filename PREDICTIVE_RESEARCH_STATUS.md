@@ -1126,3 +1126,68 @@ raw corporate-action/distribution changes, historical revisions and OHLC/guard
 approximations remain limitations. No orders, deployment, real money, risk
 increase or model promotion. Objective remains unmet: these cross-asset proxies
 do not supply the required profitable predictive advantage under this protocol.
+
+## Larger reward targets without wider stops — October 10, 2026
+
+Added isolated `reward_policy_simulator.py` and `reward_policy_research.py`.
+Predeclared targets0.4% (reference), 0.8%, 1.2%, unchanged stop1%, maximum
+60-minute holding horizon, cash-only stock/category caps1%/5%, max three
+positions, planned trade risk0.05%, delayed SIP entry and existing guard
+approximations. No lower-cost assumption, larger quantity, wider stop or longer
+maximum horizon. Nevertheless a larger target can keep a winning trade exposed
+longer WITHIN that cap; equal planned limits do not imply identical realized
+risk. Gaps may exceed stop/guard triggers; no artificial clipping of losses.
+
+Classifiers are independently refitted/calibrated on each policy's strictly
+past filled outcomes. Test predictions/selection precede knowledge of fill;
+no replacement with a retrospectively known fill. Linear, boosted, train-only
+plateau MLP and four-qubit simulated quantum-kernel models use the same21
+features and22 chronological folds /427 test sessions. All66 neural fits reached
+verified training plateaus. Quantum stays a CPU simulation, not hardware.
+The0.4% reference reproduces corresponding previous account outcomes exactly
+for all four models, including the higher-cost/extra-minute stress cases.
+
+Exact target/stop algebra at10bps per side yields TRADE break-even rates85.73%,
+66.68%,54.55%. These are not forecast win rates: actual target frequency,
+horizon exits, fills and gaps change the distribution. Increasing potential
+reward does not itself supply information about which trades will win.
+Primary0.50-gate outcomes:
+
+| Target | Model | Active days | Winning active days | Net USD |
+|---|---|---:|---:|---:|
+| 0.4% | Logistic | 314 | 55.73% | -1,044.38 |
+| 0.4% | Boosted | 305 | 55.41% | -1,045.08 |
+| 0.4% | MLP | 309 | 54.37% | -1,080.00 |
+| 0.4% | Simulated quantum | 328 | 45.43% | -1,069.59 |
+| 0.8% | Logistic | 177 | 51.41% | -304.96 |
+| 0.8% | Boosted | 63 | 41.27% | -315.34 |
+| 0.8% | MLP | 28 | 46.43% | -156.42 |
+| 0.8% | Simulated quantum | 38 | 34.21% | -181.45 |
+| 1.2% | Logistic | 21 | 42.86% | -44.76 |
+| 1.2% | Boosted | 12 | 25.00% | -49.31 |
+| 1.2% | MLP | 0 | undefined | 0 |
+| 1.2% | Simulated quantum | 9 | 0.00% | -112.09 |
+
+At0.65, target0.8% logistic traded16days/37.5%/-73.99USD, boosted1day/0%/
+-11.47USD, MLP abstained, quantum2days/0%/-40.03USD. Target1.2% logistic
+traded one losing day/-4.15USD; other0.65 arms abstained. All larger-target0.90
+arms abstained. The old reference's two-day+3.59USD/100% remains insufficient.
+12cases x3gates x3cost/latency variants =108outcomes, ALL failing the screen.
+All simulated allocation/position/planned-risk checks passed, not actual
+production execution. Better algebra and lower dollar loss from abstention
+did not deliver either the90% goal or a demonstrated profitable strategy.
+
+402 tests passed (four existing sklearn deprecation warnings), including13new
+tests for fixed-policy validation, reference parity, changed-label refitting
+through all model routes, post-horizon exclusion, stop-first/gap accounting,
+equal quantities/limits and future-outcome isolation. Repeated SVC deprecation
+warnings also occurred during historical quantum fits; not trading errors or
+proof of model validity. Frozen prospective model/source hashes still match.
+Complete ignored local result `research_runs/reward_policy/results.json`
+SHA256 `2074fa88a8c057d760940aa27ae8ecaf6ad0b6e4e4fc9c177abb3ea3fe062af3`;
+evaluated dependency hashes matched. All historic outcomes exposed; target
+experiments are exploratory, not independent observations. Fixed-universe,
+complete-session selection, raw splits/revisions, assumed receipt, OHLC fills
+and EOD-peak guard limitations remain. No orders, deployment, real money,
+increased limits or model promotion. Objective remains unmet; changing reward
+targets alone is not a sufficient repair of these forecasting models.
