@@ -2612,3 +2612,59 @@ Frozen prospective model/sources still match. All historical outcomes already
 exposed; survival/revision/original delivery/fill assumptions remain. No orders,
 deployment, automatic promotion, increased leverage/budgets, reduced costs or
 real money. Requested90% profitable winning days remain unachieved.
+
+## 2026-10-10 — Corrected causal/sparse conditional-payoff study completed
+
+Added `causal_payoff_research.py`, reusing the earlier conditional gain/loss
+head recipe, NOT presenting it as the first payoff-model experiment. Previous
+study used different21-feature/full-session-filtered inputs; this uses corrected
+causal16 price context, date-effective split units and sparse timestamp-indexed
+outcomes. All opening candidates retained; only KNOWN PAST fills fit heads.
+Expected net return=P(win)*mean(net gain)-(1-P(win))*mean(net loss).
+Separate past calibration offsets, same probability forecasters, budgets,
+stop/target, timing and10/20bps stress. No future-derived execution substitution.
+
+Actual runner exited0:44 chronological folds across two model families, no
+unresolved fitting warnings. Original calibrated probability forecasts exactly
+reproduced; all18 probability-only reference outcomes reproduce daily/trades/
+net. Six model/selector cases54 outcomes all complete429-session ledgers, zero
+target-screen passes, all reported prefix risk checks pass. Actual broker GET
+calendar confirms full429-session spans. Not independent fill/risk reproduction.
+
+Primary10bps per side, delay16, true probability gate.65:
+
+| Model/selector | Active days | Winning percent | Net USD |
+|---|---:|---:|---:|
+| Logistic probability only |220|60.00|-777.31|
+| Logistic positive expectancy/probability rank |7|71.43|-13.27|
+| Logistic positive expectancy/net rank |7|71.43|-13.27|
+| Boosted probability only |173|57.80|-627.81|
+| Boosted positive expectancy/probability rank |10|50.00|-27.50|
+| Boosted positive expectancy/net rank |10|50.00|-27.50|
+
+Loss reduction is mostly abstention, not demonstrated profitable prediction.
+Positive expectancy is a MODEL estimate, not actual economic truth. At.9 the
+logistic filters retain the same two original control wins/+3.54USD; delayed
+variant the same two days/+3.54USD. These are duplicate sparse observations,
+not newly discovered opportunities or evidence for90% future winning days.
+The boosted.9 cases abstain. All results retained without model promotion.
+
+Ordinal scores only implement selection ordering: simulator gate.5 is NOT
+calibrated probability. Original true gate is `probability_threshold`, actual
+forecast preserved in `forecast_probability`. Calendar audit now records true
+gate, ordinal flag and selector separately and rejects ordinal records lacking
+the true gate. Existing archived calendar reports/source versions untouched;
+this is metadata clarification, not a trading-risk/behavior change.
+
+Study SHA256:
+`f5b0b9a2512aa4de4689b0d0f734bf656db3a8dde235981b543b1f3c703f392a`.
+Calendar audit SHA256:
+`e989f7f803754b32a51b1f4a118f4784c357e0bc18e87af8359261e715418244`.
+579 tests passed/six Torch skipped/four existing sklearn warnings. Three new
+payoff tests cover unknown-past exclusion with future candidate retention,
+future outcome isolation, raw probability preservation, zero expectancy and
+ordinal-vs-true high gate. Fourth new calendar test preserves that distinction.
+Frozen prospective model/sources still match. Exposed dates/current universe/
+revisions/original delivery/execution assumptions remain limitations. No broker
+orders, deployment, increased leverage/budgets, reduced costs, automatic
+promotion or real money. Full90% profitable-days objective remains unachieved.

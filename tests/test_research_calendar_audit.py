@@ -48,3 +48,16 @@ def test_two_hour_horizon_checked_against_actual_close_not_one_hour_default():
     c=calendar();c['2026-10-13']['close']='12:00'
     r=inspect(s,c)
     assert r['cases'][0]['unsupported_session_windows']==['2026-10-13']
+
+
+def test_ordinal_selection_gate_is_not_reported_as_true_forecast_gate():
+    s=source(['2026-10-12','2026-10-13'])
+    s['cases'][0]['selector']='positive_expectancy_net_rank'
+    o=s['cases'][0]['outcomes'][0]
+    o.update(threshold=.5,probability_threshold=.9,simulator_threshold_is_ordinal=True)
+    r=inspect(s,calendar())['cases'][0]
+    assert r['threshold']==.5 and r['probability_threshold']==.9
+    assert r['simulator_threshold_is_ordinal'] is True and r['selector']=='positive_expectancy_net_rank'
+    del o['probability_threshold']
+    with pytest.raises(ValueError,match='separate true probability'):
+        inspect(s,calendar())

@@ -26,6 +26,9 @@ def inspect(source,calendar):
         first=min(f['test_first'] for f in case['folds']);last=max(f['test_last'] for f in case['folds'])
         expected={d:row for d,row in calendar.items() if first<=d<=last}
         for outcome in case['outcomes']:
+            ordinal=outcome.get('simulator_threshold_is_ordinal',False)
+            if not isinstance(ordinal,bool) or (ordinal and 'probability_threshold' not in outcome):
+                raise ValueError('Ordinal simulator gate requires separate true probability threshold')
             dates=[d['date'] for d in outcome['daily']]
             if len(dates)!=len(set(dates)): raise ValueError('Duplicate ledger date')
             missing=sorted(set(expected)-set(dates));extra=sorted(set(dates)-set(expected))
@@ -39,6 +42,9 @@ def inspect(source,calendar):
                 if row['close']!='16:00': early.append(date)
             calendar_complete=bool(expected) and not missing and not extra and not unsupported
             cases.append(dict(model=case['model'],feature_set=case.get('feature_set'),
+                selector=case.get('selector'),
+                probability_threshold=outcome.get('probability_threshold',outcome['threshold']),
+                simulator_threshold_is_ordinal=ordinal,
                 threshold=outcome['threshold'],costs_bps=outcome['costs_bps'],delay=outcome['delay'],horizon_minutes=horizon,
                 first=first,last=last,expected_exchange_sessions=len(expected),ledger_sessions=len(dates),
                 missing_ledger_dates=missing,non_calendar_ledger_dates=extra,
