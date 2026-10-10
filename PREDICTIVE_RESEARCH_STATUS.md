@@ -2668,3 +2668,34 @@ Frozen prospective model/sources still match. Exposed dates/current universe/
 revisions/original delivery/execution assumptions remain limitations. No broker
 orders, deployment, increased leverage/budgets, reduced costs, automatic
 promotion or real money. Full90% profitable-days objective remains unachieved.
+
+### Historical modeled-boundary quote context — 2026-10-10
+
+Completed GET-only audit `modeled_execution_quote_audit.py`: select40 equally
+spaced chronological date/symbol trades from403 corrected causal logistic
+trades at probability.65,10bps per side, delay16. Selection never uses P&L,
+quotes or favorable spread. Forty distinct dates2025-01-21 through2026-10-01,
+not a representative all-market sample or independent validation.
+
+Entry/exit minute boundaries give80 phase observations but only77 distinct
+symbol/time queries: duplicate observations are not independent evidence.
+All77 queries returned fresh latest-at-or-before boundary SIP quotes within
+two seconds, with complete bounded pagination. Conflicting terminal quotes,
+invalid quotes, stale quotes and future-only quotes do not fall back to an
+earlier favorable snapshot. Median full quoted spread3.5020bps;95th percentile
+11.3235bps across77 unique queries. Not measured total trading costs.
+
+Neither boundary is an authenticated execution timestamp: entry bar first
+trade can occur after boundary and stop/target exit can occur inside the minute.
+Consequently no modeled-fill-vs-quote comparison, price repricing, actual
+slippage/fees/impact/queue/fillability claim, raw-size share-unit inference or
+cost reduction follows. The receipt contains no authentication headers.
+10/20bps assumptions, production engine and frozen forward control unchanged.
+
+Private report SHA256:
+`f6792d026b72cdb8900e67053f78872c690382c50083710fdc5de70f691c4c8d`.
+582 tests passed, six Torch skipped, four existing sklearn warnings. Three new
+tests cover chronological/P&L-independent sampling, duplicate identities,
+NY daylight-saving boundary conversion, invalid windows, future/conflicting/
+stale/invalid quotes and absence of actual fill or real-cost claims. Frozen
+prospective source and model hashes still match. No orders or deployment.
