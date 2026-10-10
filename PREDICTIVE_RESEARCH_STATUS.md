@@ -1331,3 +1331,52 @@ universe, raw split/revision, SIP completeness and unverified live receipt
 remain limitations. No orders, deployment, increased risk or model promotion.
 The 90% profitable-active-day objective remains unachieved; independent
 prospective evidence is still required.
+
+## 2026-10-10 — Automatic after-close forward outcome audit
+
+Added `prospective_audit_runner.py` and the separate read-only workflow
+`.github/workflows/predictive-outcome-audit.yml`. Scheduled weekdays at21:30UTC,
+after regular NY close plus the16-minute delayed SIP availability margin in
+both DST seasons. GitHub timing is not guaranteed. This does NOT modify the
+frozen forecast producer, refit/promote its model, change budgets, deploy the
+trading engine or place orders.
+
+The runner discovers every producer workflow run since the frozen manifest's
+creation, with pagination and duplicate/wrong-workflow rejection. Failed
+terminal runs are included, not removed based on results. Nonterminal runs are
+recorded separately and prevent a performance screen pass. Existing auditors
+verify remote artifact ZIP digests and conservative upload-completion timing,
+decrypt dedicated-key inputs, reproduce forecasts and cumulatively evaluate
+completed market sessions. Missing forecasts remain missing evidence, not
+no-trade wins. Decrypted inputs are NOT uploaded; only discovery/results JSON
+reports are retained for90days. Original encrypted evidence retention remains
+90days; this is not permanent archival or guaranteed scheduling.
+
+426 tests passed, including seven new discovery, pagination, failed/pending
+run inclusion, source-mismatch and validation-only isolation tests; four
+existing sklearn deprecation warnings. Frozen source/model hashes unchanged.
+Actual local GET audit discovered the two prior validation-only producer runs,
+verified their archive digests and found zero completed forward sessions and
+zero forecasts. Full local report SHA256:
+`595d62ecd4b2d16df7c0469eb309f54784922bf890432d73758a2aa72fc63209`.
+
+Both new workflow routes were executed in GitHub, not merely configured:
+
+- [Environment validation38068235565](https://github.com/dsarsham-cmyk/autotrader/actions/runs/38068235565)
+  completed SUCCESS on source01eed0c. Artifact11675722061 ZIP SHA256
+  `129f4b8a0263acf5b6636e0b418fc1200d756605852e50499f261b2b040d34b8`;
+  report explicitly environment-validation-only, zero forecasts.
+- [Read-only full audit38068303906](https://github.com/dsarsham-cmyk/autotrader/actions/runs/38068303906)
+  completed SUCCESS. Artifact11675936934 ZIP SHA256
+  `85eb2f49fc661739e4a6fded5e03950c3c91f112f27fbb2bd1caaca978b6bbc6`;
+  contains only discovery/results JSON. Actual cloud GitHub read permissions
+  and prior archive verification worked. Zero completed/verified sessions,
+  no pending runs, performance screen FALSE, independent validation FALSE.
+
+Both artifacts were downloaded, remote-digest verified and backed up locally
+under ignored `research_runs/prospective_audit_cloud/`. Saturday environment/
+empty-period success is NOT prediction success. Earliest eligible frozen
+forward session remains2026-10-12. Actual future forecast anchoring, encrypted
+input reproduction, completed-market-data retrieval and cumulative profitability
+on real forward sessions remain unverified. This workflow automates those
+checks; it does not establish90% winning active days or approve real money.
