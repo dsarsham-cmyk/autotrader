@@ -2855,3 +2855,61 @@ label isolation, research input parity without future close, invalid/incomplete/
 future/stale input rejection, future split isolation, overwrite rejection, and
 artifact hash verification before deserialization. This closes a model-identity
 gap in preparing the actual comparative test, not the profitability objective.
+
+### Separate shadow collector registered and cloud-validated — 2026-10-10
+
+`causal_shadow_collector.py` adds separate GET-only prospective collection for
+the fixed causal/split shadow bundle. Parent model/manifest/description are
+unchanged: the description's earlier `collector_implemented=false` is retained
+as a historical freeze-time statement, not retroactively edited. Current
+collector protocol is the separate immutable `collector_protocol.json`.
+
+Protocol SHA256:
+`c7a26c74323e7966b08a23eadb7bfdabf2fec7b4e2e31a414d71b735551e2241`.
+Its collector/crypto/requirements sources are fixed at commit
+`7dec3a115c0ad4c0fef7edca7f5e724679e4228f`, before future cutoff2026-10-12.
+New `.github/workflows/causal-shadow-prospective.yml` checks out that exact commit.
+Its summer/winter weekday schedules are NY-time gated; manual dispatch defaults
+to VALIDATE ONLY. Existing control_v2 collector/workflow/source/model untouched.
+
+Collection prepares100-calendar-day SIP/raw historical context before the
+capture window; CSV/metadata hashes are retained and rechecked. Strict prior
+dates, raw complete30-minute opening timestamps, calendar horizon, current
+corporate-action pagination and receipt clock chronology are checked. Any late
+input/inference/retention fails without a forecast claim. No backfill or overwrite.
+Historical SDK receipts do NOT prove original historical delivery/revisions;
+missing timestamps/duplicate/future/off-minute opening bars fail closed.
+
+Public packets contain paired probabilities, receipts' hashes and local timing,
+NOT raw provider bars or signal prices. Raw opening/calendar/splits/history and
+full inference snapshots stay private, encrypted with the dedicated256-bit
+evidence key AFTER public forecast upload. Broker secrets are never encryption
+keys. A captured packet remains locally evidenced/external-anchor-pending;
+upload-step completion plus one second must be independently verified before
+the hypothetical entry, not inferred from artifact creation or local flags.
+
+Actual GitHub validation-only run38080987609 completed SUCCESS:
+https://github.com/dsarsham-cmyk/autotrader/actions/runs/38080987609
+Linux Python3.12 pinned runtime, both frozen heads, source/protocol integrity and
+dedicated key passed. Collection/encryption of trading-day inputs were SKIPPED.
+Downloaded actual artifact11679858830 has verified ZIP SHA256:
+`d6ede8f366b5a21c22db64cc6edb50b2e4e561e6567d0d041b2a6598b0e0f5b6`.
+It contains ONLY `research_runs/causal_shadow_cloud_status.json`, reporting
+`shadow_environment_validated_only`, zero sessions, ordersfalse, independent
+validationfalse. Not a forward observation or profitability result.
+
+606 tests passed/six Torch skipped/four existing sklearn warnings. Seven new
+collector tests cover exact raw timestamps (including nanoseconds), incomplete/
+duplicate/future packets, DST/weekends, private snapshots/public minimization,
+immutable capture, late data/inference, history hash/feed, calendar/pagination,
+and status safety flags. Local parent/new collector checks and old control
+source/artifact checks still pass. No broker writes, production deployment,
+automatic promotion, increased budgets/leverage/loss limits or real money.
+
+New shadow AFTER-CLOSE AUDITOR IS STILL PENDING. Existing control_v2 auditor
+does not understand this paired-probability schema; do not count its results for
+these heads. Need independent upload anchor verification, private-data recovery,
+exact input/inference reproduction, all scheduled/missed/failed session discovery,
+and separate continuous budgeted outcome ledgers. Scheduled collection can miss
+deadlines; those are missing evidence, not wins or backfilled observations.
+Genuine forward observations remain ZERO. Full objective remains unachieved.
