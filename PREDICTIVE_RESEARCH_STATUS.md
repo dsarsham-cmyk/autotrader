@@ -2752,3 +2752,62 @@ full chronological control/permission spans, original probability preservation,
 and all possible20..60 active-day count/gate combinations: the existing rounded
 Wilson helper changes no decisions for this fixed protocol. Frozen prospective
 model and source hashes still match. Goal remains active and unachieved.
+
+### Own-label balanced1% target — 2026-10-10
+
+`balanced_target_simulator.py` is an isolated copy of the causal sparse
+simulator, with predeclared .4% control and1% alternative targets only. Original
+source unchanged. Stop remains1%, horizon60 minutes, same stock/category/
+position/planned-risk caps, raw gap losses, conservative same-bar stop-first,
+10/20bps per side and delay16/17. A later exit can lengthen exposure inside the
+same horizon; no extra sizing, loss relaxation, leverage or production change.
+
+`balanced_target_research.py` uses corrected date-effective split features,
+all causal opening candidates and its OWN past1%-target labels/calibration.
+Only known past filled outcomes train; unknown future candidates still get
+forecasts before selection. Missing selected outcomes stop the entire cumulative
+ledger. This is not the first target study: earlier studies used different
+inputs/full-session filters. Exposed outcomes remain development evidence.
+
+Actual runner exited0,44 newly fitted chronological folds with no unresolved
+warnings. All18 .4% control daily/trades/net/unknown outcomes exactly reproduced.
+All36 control/new outcomes complete429-session ledgers; all reported prefix risk
+checks pass and actual broker GET calendar confirms span. No target passes.
+
+Primary10bps per side/delay16,1%-target own-label models:
+
+| Model/gate | Active days | Winning percent | Net USD |
+|---|---:|---:|---:|
+| Logistic .5 |75|48.00|-201.32|
+| Logistic .65 |2|100.00|+14.01|
+| Logistic .9 |0|Unavailable|0.00|
+| Boosted .5 |23|26.09|-159.13|
+| Boosted .65 |1|0.00|-27.10|
+| Boosted .9 |0|Unavailable|0.00|
+
+The positive .65 logistic sample is2025-10-06(+6.6406USD) and2026-06-08
+(+7.3703USD): two different dates from the .4%-target/.9 control's two wins,
+but still exposed, sparse and NOT independent evidence. Wilson interval
+[34.237%,100%], far below required lower bound. Higher costs retain only one
+day/+4.97USD; delay17 retains only one day/+7.37USD. All three positive variants
+reuse subsets of the same TWO observations, not independent discoveries.
+
+Algebra, NOT a forecast: with ideal target/stop-only exits and10bps per side,
+.4% target has approx .1994% net gain versus1.1978% net stop loss, requiring
+85.7286% winning TRADES for break-even.1% target changes ideal gain to .7982%
+and break-even to60.0100%, without changing ideal stop loss. It does not create
+better entries,90% winning DAYS, or account-level1% daily profit. Gaps, horizon
+exits, execution uncertainty and actual costs invalidate the idealized ratio.
+At20bps, the .4% ideal target gain is negative; its algebraic break-even exceeds
+100%, meaning no feasible target/stop-only win fraction, not a probability claim.
+
+Study SHA256:
+`e8a6420ad96a0ae4f114dfcbb31dd666d5ed04b830e551a4512d5e5f043a5db3`.
+Calendar audit SHA256:
+`aeb4843b73b3a8de39441f678b38a6933daafbdb323068da4c4fd24c030927c0`.
+593 tests passed/six Torch skipped/four existing sklearn warnings. Six new
+tests cover control path/portfolio equivalence, unchanged stop/quantity/risk,
+later-exit missing observations, no restarting after unknown, gap overshoot,
+same-bar stop-first, own-label past-only fitting/future isolation and algebra.
+Frozen prospective source/model hashes still match. No orders/deployment/live
+money or promotion. Full90%-profitable-active-days objective remains unachieved.
