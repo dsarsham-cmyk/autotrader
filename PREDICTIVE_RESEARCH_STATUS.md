@@ -2020,3 +2020,36 @@ from labels, all test dates kept with explicit original probabilities, and
 known no-trade days not winning labels. Frozen prospective sources/model
 still match. No deployment, orders, promotion, increased risk or real money.
 The full requested objective remains unachieved.
+
+## 2026-10-10 — Trainable circuit first run archived, structural issue found
+
+Implemented four-qubit, two-layer differentiable CPU statevector simulation,
+bounded past-only PCA4 inputs, repeated RY data encoding, trainable RY/RZ,
+CZ ring, four local-Z expectation readouts and a classical linear head.
+Inspired by the parameterized-circuit method described in
+[IBM Quantum Learning](https://quantum.cloud.ibm.com/learning/en/courses/quantum-machine-learning/qvc-qnn).
+This does NOT imply stock predictability or quantum computational advantage.
+Same600 bounded past train/calibration rows for projected logistic control
+and circuit,80 fixed training epochs, own past filled outcomes/calibration.
+Torch remains isolated; additional pinned research dependencies were installed
+there, not in production. Initial import failed on missing cryptography;
+installed matching50.0.1 in the isolated environment, then actual run exit0.
+
+Found during actual gradient audit that terminal RZ phases commute with the
+chosen Z readout: last-layer phase gradients near floating noise (~1.16e-7),
+versus earlier phases >=.01088 on the fixed diagnostic fixture. Those terminal
+parameters cannot be claimed effective trainable predictive parameters.
+Preserve first implementation in Git and private output before correcting
+gate ordering; do not retrofit old results as corrected-model evidence.
+Original study SHA256:
+`0e6bca6857323881c9893021bbe8768047b14b35a3031689f1d7c57249835f86`.
+First circuit .65 primary:39 active days,64.10% wins, -27.58USD net;
+.5 full result unknown due missing selected data; .9 no active days.
+No target achievement or model promotion is claimed from this first run.
+
+Original environment523 tests passed/three Torch tests skipped (no Torch),
+four existing sklearn warnings. Actual isolated runtime executed all five
+new tests successfully, including state norm, gradients and deterministic
+training. Frozen prospective sources/model still match; no orders/deploy,
+real money or budget/stop changes. Next action: structural gate-order fix,
+explicit terminal-phase sensitivity test, separately named full rerun.
