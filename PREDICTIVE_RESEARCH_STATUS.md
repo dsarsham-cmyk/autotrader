@@ -1051,3 +1051,78 @@ real money, increased risk or model promotion. Objective unmet; these extra
 inputs do not demonstrate the required accuracy/profitability. Further work
 must address signal and payoff together without turning a tiny selected tail
 into an apparent 90% result or claiming an independent test on exposed dates.
+
+## Cross-asset ETF context — October 10, 2026
+
+Added isolated `macro_context_research.py`. Fixed SPY/TLT/UUP/GLD proxies BEFORE
+evaluating their contribution, not selected by stock test payouts. Read-only
+historical Alpaca SIP/raw requests fetched January2024 through October1,2026:
+SPY579,254 minute bars, TLT489,744, UUP169,633, GLD440,430; total1,679,061.
+New ignored cache `cache/macro_context_sip/` contains CSVs and feed/time/byte-hash
+metadata. Downloader refuses overwrite. No subscription, broker setting or
+position was changed. These ETFs are INPUTS, not added trading instruments.
+
+Primary sources accessed October10,2026:
+[SPY fund](https://www.ssga.com/us/en/individual/etfs/state-street-spdr-sp-500-etf-trust-spy),
+[TLT fund](https://www.ishares.com/us/products/239454/TLT),
+[UUP disclosure](https://www.sec.gov/Archives/edgar/data/1383151/000119312526083557/uup-20251231.htm),
+[GLD fund](https://www.spdrgoldshares.com/usa/gld/), and
+[Alpaca feed/entitlement FAQ](https://docs.alpaca.markets/us/docs/market-data-faq).
+They support proxy identities and feed semantics, NOT profitable predictability.
+TLT price is not an interest rate, UUP is not a spot FX feed and GLD is not
+physical gold execution. No causal macroeconomic-announcement model is claimed.
+
+Each proxy contributes ten first-30-minute/past-session features: observed
+return/range/location, typical-price VWAP distance, observed-return volatility,
+relative opening volume against prior windows, overnight gap, prior five-day
+return, prior volatility and opening coverage. Two extra features are stock
+opening return/gap minus SPY counterparts, giving 21-vs63 matched input arms.
+Missing opening data or insufficient prior closes makes the candidate abstain
+in BOTH arms. Sparse proxies use first/last observed opening bars, not invented
+09:30 prices; coverage is explicit. At least five observed bars and terminal
+bar start at/after09:58 NY are required. Today's 15:59 close is appended only
+AFTER today's signal, and its absence does NOT invalidate today's opening.
+No post-10:00 input enters today's features. Prior closes affect tomorrow,
+not an earlier forecast. Actual original SIP receipt remains unverified.
+
+11,211 eligible / 1,622 ineligible rows across feature-complete history. The
+22-fold outer test retains 427 sessions / 8,348 observed candidates, with 7,423
+eligible / 3,543 filled eligible outcomes. Missing inputs do not erase sessions
+or become winning days. This is a changed sample versus prior studies, so only
+within-study matched comparisons isolate ETF context. Stock outcome dates were
+already exposed; newly fetched proxy information is NOT independent validation.
+Same 1%-stop, 0.4%-target, 60-minute horizon, delayed entry and 10bps-per-side:
+
+| Model | Features | Gate | Active days | Winning active days | Net USD |
+|---|---|---:|---:|---:|---:|
+| Logistic | Matched summary | .50 | 272 | 54.78% | -963.01 |
+| Logistic | + ETF context | .50 | 259 | 55.21% | -893.06 |
+| Logistic | Matched summary | .65 | 179 | 55.87% | -737.08 |
+| Logistic | + ETF context | .65 | 90 | 53.33% | -443.48 |
+| Boosted | Matched summary | .50 | 275 | 53.09% | -1,028.77 |
+| Boosted | + ETF context | .50 | 276 | 50.36% | -1,012.22 |
+| Boosted | Matched summary | .65 | 135 | 55.56% | -531.14 |
+| Boosted | + ETF context | .65 | 102 | 50.00% | -416.04 |
+| MLP | Matched summary | .50 | 282 | 53.19% | -982.60 |
+| MLP | + ETF context | .50 | 265 | 53.96% | -905.52 |
+| MLP | Matched summary | .65 | 156 | 57.69% | -505.49 |
+| MLP | + ETF context | .65 | 137 | 56.93% | -503.86 |
+
+At .90 augmented logistic has ONE winning day/+1.66 USD; all other arms
+abstain. No target evidence. Six cases / 54 gate-cost-latency outcomes all
+failed the screen. All simulated budget/position/planned-risk checks passed.
+Both neural arms reached verified train-only plateaus in all 22 folds. Weighted
+filled-candidate Brier scores worsened with ETF context: logistic .244148 to
+.246744, boosted .242665 to .246720, MLP .244915 to .245471. Lower dollar loss
+with fewer selected trades does not establish improved forecasting or edge.
+
+389 tests passed (four existing sklearn deprecation warnings), including nine
+new DST/cutoff, current future-close/absence isolation, prior-volume, missing
+proxy retention and ambiguous-source tests. Frozen prospective model/source
+hashes still match. Complete ignored result `research_runs/macro_context/results.json`
+SHA256 `774569507f5b3dbda5cc520e65d837c3511c0953a9209595116bebf8cc10ddd5`;
+evaluated dependency hashes match. Current-universe/full-session stock selection,
+raw corporate-action/distribution changes, historical revisions and OHLC/guard
+approximations remain limitations. No orders, deployment, real money, risk
+increase or model promotion. Objective remains unmet: these cross-asset proxies
+do not supply the required profitable predictive advantage under this protocol.
