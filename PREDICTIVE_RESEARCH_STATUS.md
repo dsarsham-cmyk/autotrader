@@ -2103,3 +2103,48 @@ existing sklearn warnings; all six dedicated classifier tests actually pass
 in the isolated Torch runtime. Production still has no Torch; frozen sources
 and model match. No quantum hardware/fees, orders, deployment, model promotion,
 increased risk or real money. Full objective remains unachieved.
+
+## 2026-10-10 — Quantum training stabilized; economic objective still fails
+
+Added `quantum_training_plateau.py` and isolated runner. Same corrected
+circuit, parameters, seed, past600-row scaling/PCA/training/calibration and
+optimizer; reproduce each saved80-epoch weight artifact EXACTLY before
+continuing. Stop only from PAST TRAINING loss: minimum160 epochs, last64
+loss values range<=1e-5, hard cap512. Test/calibration values do not decide
+stopping. A training-loss plateau is NOT proof of global convergence, a
+global optimum, forecast calibration or profitable prediction.
+
+Actual isolated tests3 passed, including exact80-epoch trajectory, future
+input invariance of training/stopping and incompatible checkpoint rejection.
+Actual full runner exit0: all22 original80-epoch weight artifacts reproduce,
+all22 training fits meet the declared plateau criterion in160–214 epochs,
+none needs the cap. Same429 test-date span; no retraining on future outcomes.
+
+Primary10bps/16min,100k virtual sleeve:
+
+| Gate |80epoch control active/win%/netUSD|Stabilized active/win%/netUSD|
+| --- | --- | --- |
+| .5 |101 known-prefix / UNKNOWN / UNKNOWN|100 known-prefix / UNKNOWN / UNKNOWN|
+| .65 |39 /64.10 /-27.58|39 /66.67 /-20.29|
+| .9 |0 /not applicable /0.00|0 /not applicable /0.00|
+
+Matched improvement .65 is7.28USD, still negative,39 active observations,
+not90% winning days. One-minute latency stress .65 has61.54% wins and
+-66.43USD net;20bps stress .65 has0% wins and-88.94USD. No complete variant
+has positive net. Across nine reference plus nine new variants:14 complete
+ledgers, four unknown-full-result ledgers, zero target-screen passes, all
+reported prefix risk checks true. New .5/10bps variants first lack selected
+NFLX outcome2025-08-26 and stop the ledger, never restart capital or substitute
+a favorable known stock. Broker GET calendar audit expects429 sessions,
+confirms14 complete spans and marks four stopped spans incomplete.
+
+Study SHA256:
+`fc770787831a199035060e32b9d0d9e9f9bc91b291bc163c6f3f1df8fbeecc35`.
+Calendar audit SHA256:
+`eddf7c310883964025e9819369450ab9453d075a0bcefcf62eea24db4b1c12fd`.
+Original environment524 tests passed/six Torch tests skipped, four existing
+sklearn warnings; the three new Torch tests actually execute successfully in
+the isolated runtime (the skipped count is not presented as passed tests).
+Frozen prospective sources/model still match. No orders, deployment, model
+promotion, increased risk, quantum hardware fees or real money. Full objective
+remains unachieved; successful training is not successful trading.
