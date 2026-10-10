@@ -325,3 +325,44 @@ local absolute paths/byte hashes, raw historical context provenance is not yet
 bound into captured receipts, and externally authenticated timestamps plus
 outcome/execution reconciliation are still absent. Do not claim cloud readiness,
 running forward collection, profitability, independent validation or 90% wins.
+
+## Portable cloud experiment v2 — prepared October 10
+
+Prepared `research_prospective/control_v2` with the SAME fitted research-control
+weights and artifact hash as local v1, not a new successful model. Manifest
+uses repository-relative forecast sources and normalized Python LF hashes;
+market inputs/artifact hashes remain byte-exact. It additionally requires
+retained historical feature-input CSV hashes in every receipt. V1 is retained
+as an earlier local prototype; changed code correctly invalidates its source
+checks rather than rewriting that old manifest.
+
+V2 manifest SHA256:
+`120ce320b515f989524bdcdb489d1dc690f81ea69d1966392a54b450b1749c06`.
+Collector and model are research-only, forecast start October 12, zero future
+observations. `requirements-prospective.txt` isolates and matches artifact
+dependencies without changing production `requirements.txt`.
+
+`predictive-prospective.yml` prepares a separate read-only GitHub Actions job
+before the 10:15 NY data-availability window, with summer/winter UTC alternatives
+and a DST-aware local-time guard. It does not share production concurrency,
+retrain, write repository contents, deploy Railway, submit broker orders or
+auto-promote a model. It rejects missing/late data instead of backfilling.
+GitHub scheduled jobs can be delayed or dropped: scheduled workflow is not
+proof of successful forecast collection.
+
+Public artifact contains forecast hashes/predictions and classified status,
+not raw provider bars or historical CSVs. Raw evidence is AES-GCM encrypted in
+a separate artifact after the time-sensitive forecast timestamping step. The
+key is domain-separated SHA256 of the existing high-entropy Alpaca secret;
+that secret is never logged or stored in repository files. The user must retain
+the relevant old secret to decrypt archives after credential rotation. Upload
+retention is 90 days, not indefinite persistence. External verification must
+check GitHub artifact creation time and contents/hash versus the hypothetical
+entry; do not infer an authenticated early anchor from a local captured time.
+
+Local checks: 262 tests pass; environment/model/hash validation succeeded;
+Saturday plan correctly returned false. Encryption roundtrip and tamper
+rejection tested with a fake key. Validation-only mode collects zero forecasts.
+Railway read-only status showed CLI-upload source=null, current October 7 engine
+deployment unchanged. Cloud publication/dispatch result must be recorded after
+verification; this preparation alone is not a completed live forward test.

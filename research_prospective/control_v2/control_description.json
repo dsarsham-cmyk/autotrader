@@ -1,0 +1,1268 @@
+{
+  "broker_orders_enabled": false,
+  "calibration_first": "2026-07-09",
+  "calibration_last": "2026-10-01",
+  "features": [
+    "intraday_return",
+    "gap",
+    "range",
+    "location",
+    "relative_opening_volume",
+    "prior_return",
+    "prior_five_return",
+    "prior_volatility",
+    "market_open_return",
+    "cross_section_rank",
+    "late_vs_early_return",
+    "distance_from_opening_vwap",
+    "opening_path_efficiency",
+    "opening_realized_volatility",
+    "same_window_relative_volume",
+    "opening_range_vs_prior_daily_range",
+    "last_five_return",
+    "last_five_volume_share",
+    "cross_section_dispersion",
+    "market_positive_breadth",
+    "market_above_vwap_breadth"
+  ],
+  "feed": "sip",
+  "input_evidence": {
+    "complete_sessions": {
+      "AAPL": 435,
+      "AMD": 435,
+      "AMZN": 435,
+      "AVGO": 435,
+      "BAC": 435,
+      "CVX": 425,
+      "DIS": 432,
+      "GOOG": 435,
+      "INTC": 436,
+      "JPM": 433,
+      "META": 434,
+      "MSFT": 435,
+      "MU": 435,
+      "NFLX": 292,
+      "NVDA": 437,
+      "PLTR": 434,
+      "TSLA": 436,
+      "UBER": 435,
+      "WMT": 435,
+      "XOM": 429
+    },
+    "excluded": {
+      "AAPL": [
+        {
+          "bars": 357,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 310,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 282,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "AMD": [
+        {
+          "bars": 365,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 332,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 288,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "AMZN": [
+        {
+          "bars": 359,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 341,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 306,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "AVGO": [
+        {
+          "bars": 305,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 348,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 346,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "BAC": [
+        {
+          "bars": 255,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 235,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 234,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "CVX": [
+        {
+          "bars": 231,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 222,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-12-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 221,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-05-06",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-05-18",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-05-20",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-05-27",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-06-29",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-07-16",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-08-11",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-08-25",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-09-04",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "DIS": [
+        {
+          "bars": 389,
+          "date": "2025-01-21",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 231,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 224,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 228,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-04-06",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-09-18",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "GOOG": [
+        {
+          "bars": 309,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 321,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 255,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "INTC": [
+        {
+          "bars": 350,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 354,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "JPM": [
+        {
+          "bars": 389,
+          "date": "2025-02-07",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 262,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-07-29",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 238,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 238,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "META": [
+        {
+          "bars": 297,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-09-12",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 357,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 283,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "MSFT": [
+        {
+          "bars": 298,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 300,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 281,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "MU": [
+        {
+          "bars": 315,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 305,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 345,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "NFLX": [
+        {
+          "bars": 389,
+          "date": "2025-01-02",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-01-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-01-06",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 384,
+          "date": "2025-01-07",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 386,
+          "date": "2025-01-08",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-01-10",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-01-13",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-01-14",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-01-15",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-01-16",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-01-29",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-01-30",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-01-31",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-02-05",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-02-06",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-02-11",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-02-12",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-02-13",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-02-14",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-02-18",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 382,
+          "date": "2025-02-19",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-02-20",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-02-21",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-02-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-02-25",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-02-27",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-03-20",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-03-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-03-26",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-03-27",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-03-31",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-04-23",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-04-25",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-04-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 384,
+          "date": "2025-04-30",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-05-01",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-05-02",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-05-06",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-05-07",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-05-08",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-05-09",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-05-13",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-05-14",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-05-16",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 380,
+          "date": "2025-05-19",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 386,
+          "date": "2025-05-20",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-05-21",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 371,
+          "date": "2025-05-22",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 373,
+          "date": "2025-05-23",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-05-27",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 369,
+          "date": "2025-05-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-05-29",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-05-30",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 374,
+          "date": "2025-06-02",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 384,
+          "date": "2025-06-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 386,
+          "date": "2025-06-04",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 386,
+          "date": "2025-06-05",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 384,
+          "date": "2025-06-06",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 365,
+          "date": "2025-06-09",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 386,
+          "date": "2025-06-11",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 365,
+          "date": "2025-06-12",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 380,
+          "date": "2025-06-13",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-06-16",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 379,
+          "date": "2025-06-17",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 381,
+          "date": "2025-06-18",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-06-20",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-06-23",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-06-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 379,
+          "date": "2025-06-25",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 384,
+          "date": "2025-06-26",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-06-27",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 386,
+          "date": "2025-06-30",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 230,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 377,
+          "date": "2025-07-07",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 380,
+          "date": "2025-07-08",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 381,
+          "date": "2025-07-09",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-07-11",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 382,
+          "date": "2025-07-14",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-07-15",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-07-22",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-07-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 384,
+          "date": "2025-07-25",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-07-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 386,
+          "date": "2025-07-29",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-07-30",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 384,
+          "date": "2025-07-31",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-08-01",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 374,
+          "date": "2025-08-04",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-08-05",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-08-06",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 379,
+          "date": "2025-08-07",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 386,
+          "date": "2025-08-08",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 379,
+          "date": "2025-08-11",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 375,
+          "date": "2025-08-12",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 376,
+          "date": "2025-08-13",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-08-14",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-08-15",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-08-18",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 386,
+          "date": "2025-08-19",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-08-20",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 381,
+          "date": "2025-08-21",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 378,
+          "date": "2025-08-22",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 380,
+          "date": "2025-08-25",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 353,
+          "date": "2025-08-26",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 354,
+          "date": "2025-08-27",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 372,
+          "date": "2025-08-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-08-29",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-09-02",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 370,
+          "date": "2025-09-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-09-04",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 374,
+          "date": "2025-09-05",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 367,
+          "date": "2025-09-08",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 384,
+          "date": "2025-09-09",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 382,
+          "date": "2025-09-10",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-09-12",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-09-15",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 367,
+          "date": "2025-09-16",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 382,
+          "date": "2025-09-17",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-09-18",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 380,
+          "date": "2025-09-19",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 376,
+          "date": "2025-09-22",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 377,
+          "date": "2025-09-23",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 377,
+          "date": "2025-09-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-09-25",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 368,
+          "date": "2025-09-26",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-09-29",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-09-30",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-10-01",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 387,
+          "date": "2025-10-02",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-10-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 380,
+          "date": "2025-10-06",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-10-07",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-10-08",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-10-09",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 372,
+          "date": "2025-10-13",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-10-14",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 372,
+          "date": "2025-10-15",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 385,
+          "date": "2025-10-16",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 381,
+          "date": "2025-10-17",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-10-20",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-10-27",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-10-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 383,
+          "date": "2025-10-29",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-10-30",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 381,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 382,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "NVDA": [
+        {
+          "bars": 378,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "PLTR": [
+        {
+          "bars": 386,
+          "date": "2025-04-07",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 382,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 352,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 282,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "TSLA": [
+        {
+          "bars": 386,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "UBER": [
+        {
+          "bars": 272,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 250,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 238,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "WMT": [
+        {
+          "bars": 260,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 255,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 234,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ],
+      "XOM": [
+        {
+          "bars": 254,
+          "date": "2025-07-03",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2025-09-04",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 226,
+          "date": "2025-11-28",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 232,
+          "date": "2025-12-24",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-05-20",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 388,
+          "date": "2026-07-15",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-08-06",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-09-17",
+          "reason": "Incomplete normal session; half-days excluded too"
+        },
+        {
+          "bars": 389,
+          "date": "2026-09-18",
+          "reason": "Incomplete normal session; half-days excluded too"
+        }
+      ]
+    },
+    "hashes": {
+      "AAPL": "9b88fb6cba7a03cb6d4de4c18ad9714f8eb8a1e379625d33662f37add3e9e009",
+      "AMD": "d2bccb273d0c97c9ec9e6d8806ebf21887b6d6288a31e4508897a041a5c11742",
+      "AMZN": "fe8c1c0a32b262fcd3bbafb192192d6a11b5c0a000a617679f2d997d1d92692d",
+      "AVGO": "c5fea5f27cd93095d238763a9e0346873accde29d5b5c3cb0b42638a5f86417f",
+      "BAC": "938853d2fb8b8239d1ca02ebcc50d0e397bfa9138759ed313bd4296e7d26057b",
+      "CVX": "35ec368057330aab5f2443bfe7b2652b7fe206e9478bcb86925fd7447fa19888",
+      "DIS": "eee6bfcbad90779b6982edcf4dab746930cbaadb5d8d717e4a48ec0f05d08849",
+      "GOOG": "b6bc2f5e7635717279c23f3fa4d08bc894b54a53d06a27bd4e73d1949052372b",
+      "INTC": "80f194ed1b3a57078538e416b104f69dd4ef98088deb19f13caf18b29accdf10",
+      "JPM": "e5bb61257dd65e46cacdfcaf6534f8b701c159cceee983daca0b05311d7ddf04",
+      "META": "e8615ec6a0147c05d1a8bc40c8794ac58333a8c22b5bc37d967fd4cce18493ff",
+      "MSFT": "facbfc84e1a2ba1ded9e5d36c4e8503c13bf839f51712bbefeb41c05c609352c",
+      "MU": "6ea00bdcd18dc7f632cd048eeb83d0a9626b0788b2a30b6622bf90baa4ff7310",
+      "NFLX": "ac422787e99cef0cd4354290f77a14235a63f70d0b8cd69f6a83177ce8e383f4",
+      "NVDA": "8a8d2556c449d97dd99817618fd312c53a4d603e0fc1644c8e2b4029f2924367",
+      "PLTR": "bc8ec77325262c583065407e1b72f95b21840445e1a1425d3a603a529959e76d",
+      "TSLA": "6cbd03ccea062c4dd05f47568dd3473e4880fdf76bec470488bbb821bb4aecb3",
+      "UBER": "3726afddd6afcbb3a0dfbbeaac91c5e36d3dbd3c0663047cbfd6976449bf052f",
+      "WMT": "b9e5cf487587eda203cc47e2b310abd0c55ade37017168c2113f907b87b02778",
+      "XOM": "a6b35f247b4eb238e3d26edfe042acda71f36e1a14266752d153edeaf283e561"
+    }
+  },
+  "mode": "prospective_research_control_only",
+  "prior_exploration_failed_target": true,
+  "production_approved": false,
+  "rule": {
+    "category_cap_fraction": 0.05,
+    "execution_latency_minutes": 1,
+    "feature_cutoff_minute": 30,
+    "horizon": "target_60",
+    "information_delay_minutes": 15,
+    "max_positions": 3,
+    "per_side_cost_bps": 10,
+    "stock_cap_fraction": 0.01,
+    "stop_fraction": 0.01,
+    "target_fraction": 0.004,
+    "threshold": 0.65
+  },
+  "sklearn_version": "1.9.1",
+  "symbols": [
+    "AAPL",
+    "MSFT",
+    "NVDA",
+    "AMZN",
+    "META",
+    "GOOG",
+    "TSLA",
+    "AMD",
+    "JPM",
+    "BAC",
+    "XOM",
+    "CVX",
+    "WMT",
+    "DIS",
+    "NFLX",
+    "INTC",
+    "UBER",
+    "PLTR",
+    "AVGO",
+    "MU"
+  ],
+  "trained_through": "2026-10-01",
+  "training_last": "2026-07-08"
+}

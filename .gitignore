@@ -24,6 +24,8 @@ logs/*
 # Market data cache
 cache/
 research_runs/
+research_prospective/*/predictions/
+research_prospective/*/receipts/
 research_forward/frozen_rules.json
 research_forward/forward_*.csv
 

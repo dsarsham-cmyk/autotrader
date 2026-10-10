@@ -30,6 +30,17 @@ def file_digest(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
+def source_digest(path):
+    raw=Path(path).read_bytes()
+    if Path(path).suffix=='.py': raw=raw.replace(b'\r\n',b'\n')
+    return hashlib.sha256(raw).hexdigest()
+
+
+def source_matches(manifest):
+    hash_function=source_digest if manifest.get('source_hash_format')=='python_lf_normalized' else file_digest
+    return all(hash_function(path)==value for path,value in manifest['source_sha256'].items())
+
+
 def write_once(path,value):
     path=Path(path)
     path.parent.mkdir(parents=True,exist_ok=True)
@@ -39,7 +50,8 @@ def write_once(path,value):
         handle.write(encoded)
 
 
-def freeze(directory,artifact_path,source_paths,trained_through,forward_start,feed='sip',information_delay=15):
+def freeze(directory,artifact_path,source_paths,trained_through,forward_start,feed='sip',information_delay=15,
+           source_root=None,history_provenance_required=False):
     now=utc_now()
     train=date.fromisoformat(trained_through)
     start=date.fromisoformat(forward_start)
@@ -51,11 +63,14 @@ def freeze(directory,artifact_path,source_paths,trained_through,forward_start,fe
     if feed=='sip' and information_delay<15:
         raise ValueError('Current SIP protocol requires at least 15 assumed delay minutes')
     if not source_paths: raise ValueError('Frozen forecast source evidence required')
+    refs={str(Path(p).resolve().relative_to(Path(source_root).resolve())).replace('\\','/')
+          if source_root else str(Path(p).resolve()):source_digest(p) for p in source_paths}
     artifact_hash=file_digest(artifact_path)
     manifest=dict(schema=1,created_utc=now.isoformat(),trained_through=trained_through,
         forward_start=forward_start,feed=feed,feature_cutoff_minute=30,
         information_delay_minutes=information_delay,execution_latency_minutes=1,
-        artifact_sha256=artifact_hash,source_sha256={str(Path(p).resolve()):file_digest(p) for p in source_paths},
+        artifact_sha256=artifact_hash,source_sha256=refs,source_hash_format='python_lf_normalized',
+        history_provenance_required=history_provenance_required,
         research_only=True,broker_orders_enabled=False,production_approved=False,
         required_external_timestamp_anchor=True)
     envelope=dict(manifest=manifest,manifest_sha256=digest(manifest))
@@ -131,9 +146,12 @@ def capture(directory,artifact_path,session_date,input_receipt,predictions):
         raise ValueError('Forecast symbol missing from raw observations')
     if file_digest(artifact_path)!=manifest['artifact_sha256']:
         raise ValueError('Frozen model artifact changed')
-    for source,expected in manifest['source_sha256'].items():
-        if file_digest(source)!=expected:
-            raise ValueError('Frozen forecast source changed')
+    if not source_matches(manifest): raise ValueError('Frozen forecast source changed')
+    history=input_receipt.get('history_files',{})
+    if manifest.get('history_provenance_required') and not history:
+        raise ValueError('Historical feature-input provenance required')
+    for source,expected in history.items():
+        if file_digest(source)!=expected: raise ValueError('Historical feature-input file changed')
     symbols=[]
     for prediction in predictions:
         if set(prediction)!={'symbol','probability','mean_return','q10_return'}:

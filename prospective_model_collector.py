@@ -25,7 +25,7 @@ import prospective_forecast_evidence as evidence
 SOURCES=['prospective_model_collector.py','prospective_forecast_evidence.py',
     'regime_predictive_research.py','predictive_portfolio_research.py',
     'predictive_research.py','active_stock_research.py','intraday_research.py',
-    'fixed_trade_cost_diagnostic.py']
+    'fixed_trade_cost_diagnostic.py','prospective_cloud_runner.py']
 
 
 def freeze_control(data,directory,forward_start,training_end='2026-10-01'):
@@ -56,7 +56,8 @@ def freeze_control(data,directory,forward_start,training_end='2026-10-01'):
     directory.mkdir(parents=True,exist_ok=True)
     model_path=directory/'model.joblib'
     joblib.dump(artifact,model_path)
-    envelope=evidence.freeze(directory,model_path,SOURCES,training_end,forward_start)
+    envelope=evidence.freeze(directory,model_path,SOURCES,training_end,forward_start,
+        source_root=Path.cwd(),history_provenance_required=True)
     evidence.write_once(directory/'control_description.json',
         {k:v for k,v in artifact.items() if k!='fitted'})
     print(json.dumps(dict(status='frozen_research_control_not_trading_candidate',
@@ -112,10 +113,9 @@ def collect(directory,history):
     path=directory/'model.joblib'
     if evidence.file_digest(path)!=manifest['artifact_sha256']:
         raise ValueError('Changed model; not deserialized')
-    for source,expected in manifest['source_sha256'].items():
-        if evidence.file_digest(source)!=expected: raise ValueError('Changed source; collector refused')
+    if not evidence.source_matches(manifest): raise ValueError('Changed source; collector refused')
     # Precompute history BEFORE requests; slow runs miss the deadline safely.
-    prior,_=load_universe(history)
+    prior,quality=load_universe(history)
     prior={d:stocks for d,stocks in prior.items() if d<session}
     dates=sorted(prior)
     if not dates or (local.date()-datetime.fromisoformat(dates[-1]).date()).days>4:
@@ -144,7 +144,9 @@ def collect(directory,history):
     receipt=dict(feed='sip',calendar_session_date=session,feature_cutoff_utc=cutoff.astimezone(timezone.utc).isoformat(),
         last_bar_end_utc=cutoff.astimezone(timezone.utc).isoformat(),received_utc=received.isoformat(),
         raw_response_path=str(raw_path),calendar_response_path=str(calendar_path),
-        raw_response_sha256=evidence.file_digest(raw_path),calendar_response_sha256=evidence.file_digest(calendar_path))
+        raw_response_sha256=evidence.file_digest(raw_path),calendar_response_sha256=evidence.file_digest(calendar_path),
+        history_files={str((history/f'{symbol}.csv').resolve()):value for symbol,value in quality['hashes'].items()},
+        history_last_complete_session=dates[-1])
     packet=evidence.capture(directory,path,session,receipt,predictions)
     print(json.dumps(dict(status='local_prospective_research_forecast',record_sha256=packet['record_sha256'],
         predictions=len(predictions),orders=False,external_anchor_verified=False)))

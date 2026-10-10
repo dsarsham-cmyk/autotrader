@@ -1,0 +1,31 @@
+{
+  "manifest": {
+    "artifact_sha256": "b6a15150f4a87407d2709503e1eebe057a2f51b62fbfc9de7c6216ed742318e1",
+    "broker_orders_enabled": false,
+    "created_utc": "2026-10-10T14:09:13.390670+00:00",
+    "execution_latency_minutes": 1,
+    "feature_cutoff_minute": 30,
+    "feed": "sip",
+    "forward_start": "2026-10-12",
+    "history_provenance_required": true,
+    "information_delay_minutes": 15,
+    "production_approved": false,
+    "required_external_timestamp_anchor": true,
+    "research_only": true,
+    "schema": 1,
+    "source_hash_format": "python_lf_normalized",
+    "source_sha256": {
+      "active_stock_research.py": "f25ff0a182adbf77e992289f68e3ed4b28db82be28f23624c5f6a1dbd9011bc9",
+      "fixed_trade_cost_diagnostic.py": "7735803a51a69889bf4c46efc91e9f6db1835df42d117819eacd252fe638f7e9",
+      "intraday_research.py": "639f3909f8436377897059501f2fc8a4945d168147d31982a7e3e5ecef2e3508",
+      "predictive_portfolio_research.py": "ae4771adee92abae0a3c64c074e753f4269555a3e04eabcc3bcfe474db8a5cb8",
+      "predictive_research.py": "f1c3b75d070d47ba4c1eec3f506a9ffde3f514111ee86ac2bc6edea85ce7c966",
+      "prospective_cloud_runner.py": "558cbf01cb9efd45025b440b33ad930e29936e71324483d51024d21133182f98",
+      "prospective_forecast_evidence.py": "93804b32046f313b921fe4d2a708c21d2b85a518717db683d27fc76cf03b0315",
+      "prospective_model_collector.py": "5bda4c6fff4f4384e7462624e10ca00bd7f7147e023a849dafdaf200bfa86264",
+      "regime_predictive_research.py": "7c0691aa563953bb435d645a79579aba9a58a02b0765ecc462aaf28728522011"
+    },
+    "trained_through": "2026-10-01"
+  },
+  "manifest_sha256": "120ce320b515f989524bdcdb489d1dc690f81ea69d1966392a54b450b1749c06"
+}
