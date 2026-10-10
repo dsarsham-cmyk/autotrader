@@ -2366,3 +2366,60 @@ Calendar audit SHA256:
 Frozen prospective source/model still match. No broker orders, deployment,
 automatic model promotion, increased limits, cost reduction or real money.
 Requested90% profitable winning days remain unmet.
+
+## 2026-10-10 — Completed split-normalized classical/quantum matched study
+
+Added `split_quantum_research.py`; actual isolated CPU run exited0.
+Six cases: original raw versus date-effective split input, each with projected
+logistic, corrected80-epoch variational circuit and train-only plateau circuit.
+Past-only PCA4, bounded600 train/calibration rows, same four-qubit/two-layer
+statevector, seed19, calibration and portfolio constraints. No hardware purchase,
+quantum advantage claim, production model replacement or risk/cost relaxation.
+
+All27 raw-input control outcomes exactly reproduce original trades/daily/net;
+all66 original fold spans, preprocessing and fitted artifacts reproduced.
+For each split-normalized plateau fit, its own corrected-input80-epoch artifact
+reproduces before continuing; this is NOT the old raw-input model hash.
+Both raw and normalized22-fold plateau cases stabilized on training loss alone,
+raw160–214 epochs, normalized160–228, no cap reached. This does not certify
+global convergence or trading accuracy. Split events never adjust earlier
+feature rows. Current raw entry/exit units, labels and eligibility unchanged.
+
+Primary split-normalized outcomes at10bps per side, delay16:
+
+| Model/gate | Active days | Winning percent | Net USD |
+|---|---:|---:|---:|
+| Projected logistic .5 |320|57.19|-985.80|
+| Projected logistic .65 |240|57.92|-786.71|
+| Projected logistic .9 |0|not applicable|0.00|
+| Quantum80 .5 |60 known-prefix|unknown|unknown|
+| Quantum80 .65 |25|48.00|-153.56|
+| Quantum80 .9 |0|not applicable|0.00|
+| Quantum plateau .5 |61 known-prefix|unknown|unknown|
+| Quantum plateau .65 |26|57.69|-132.39|
+| Quantum plateau .9 |0|not applicable|0.00|
+
+Raw .65 quantum80 has39 active/64.10%/-27.58USD; plateau39/66.67%/-20.29USD.
+Correcting units worsens these economic outcomes, rather than revealing a
+profitable hidden quantum model. Fewer active days do not imply better accuracy.
+
+Across54 outcomes:44 complete429-session ledgers, ten unknown full results,
+zero positive-net complete variants and zero target-screen passes. All
+reported prefix stock/category/position/planned-risk checks pass, not an
+independent reproduction of execution/risk behavior. Actual GET calendar audit
+marks44 spans interpretable and ten incomplete; overall complete coverage is
+FALSE, not silently advertised as54 full-period tests.
+Raw .5 quantum80/plateau10bps stop at missing selected NFLX2025-08-26;
+normalized .5 quantum80/plateau all cost/delay variants stop at selected
+NFLX2025-05-22. Missing outcomes remain unknown, no substitution/reset/removal.
+
+Study SHA256:
+`6c067489adf99efdffcbe0f8ff40a6fc4fc9c25f36a6d1d670320249fe92911d`.
+Calendar audit SHA256:
+`df64283de530ec5ec431643768da692c0c27d7a8b54cc49bccc0bb4633b1dbd3`.
+556 original-runtime tests passed/six Torch tests skipped, four existing sklearn
+warnings. Eleven quantum/plateau/new-comparison tests actually pass in isolated
+Torch runtime. Frozen prospective sources/model still match. All outcome dates
+previously exposed, current split announcement delivery unauthenticated,
+fixed-universe/revision/receipt/fill limitations remain. No orders, deployment,
+automatic promotion, increased risk or real money. Goal remains unachieved.
