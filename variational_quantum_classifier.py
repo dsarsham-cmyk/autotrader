@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from quantum_kernel_research import bounded_sample
 
 PROTOCOL=dict(qubits=4,layers=2,encoding='RY bounded PCA input, reuploaded each layer',
-    trainable_gates='RY/RZ per qubit and layer',entangler='CZ ring',readout='four Z expectations plus classical linear head',
+    trainable_gates='RZ then RY per qubit and layer, phase before noncommuting rotation',entangler='CZ ring',readout='four Z expectations plus classical linear head',
     train_cap=600,calibration_cap=600,epochs=80,learning_rate=.03,weight_decay=.01,
     seed=19,cpu_threads=1,complex_dtype='complex64',model='variational circuit, not fixed quantum kernel',orders=False)
 
@@ -35,9 +35,10 @@ def circuit(angles,weights):
         return updated
     for layer in range(2):
         for q in range(4):
-            state=ry(state,angles[:,q],q);state=ry(state,weights[layer,q,0],q)
+            state=ry(state,angles[:,q],q)
             signs=torch.where((indices&(1<<q))==0,-1.,1.)
             state=state*torch.exp(.5j*weights[layer,q,1]*signs)
+            state=ry(state,weights[layer,q,0],q)
         for q in range(4):
             both=((indices>>q)&1)&((indices>>((q+1)%4))&1)
             state=state*torch.where(both.bool(),-1.,1.)

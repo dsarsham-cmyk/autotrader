@@ -50,3 +50,12 @@ def test_zero_rotation_angles_leave_zero_state():
     s=circuit(torch.zeros((2,4)),torch.zeros((2,4,2)))
     assert torch.equal(s[:,0],torch.ones(2,dtype=torch.complex64))
     assert torch.equal(observables(s),torch.ones((2,4)))
+
+
+@pytest.mark.skipif(not TORCH,reason='Torch only in isolated research runtime')
+def test_terminal_phase_parameters_affect_noncommuting_readout():
+    import torch
+    x=torch.tensor([[.2,.4,.6,.8],[-.1,.3,.5,.9]])
+    w=torch.full((2,4,2),.17,requires_grad=True)
+    observables(circuit(x,w)).sum().backward()
+    assert (w.grad[1,:,1].abs()>.001).all()

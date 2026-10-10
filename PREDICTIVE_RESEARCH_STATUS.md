@@ -2053,3 +2053,53 @@ new tests successfully, including state norm, gradients and deterministic
 training. Frozen prospective sources/model still match; no orders/deploy,
 real money or budget/stop changes. Next action: structural gate-order fix,
 explicit terminal-phase sensitivity test, separately named full rerun.
+
+## 2026-10-10 — Corrected trainable quantum circuit completed, no profitable pass
+
+Archived first implementation in commit eb3f989. Corrected each learned
+phase to precede a noncommuting learned RY rotation rather than end next to
+the Z readout. Actual terminal-phase sensitivity test now shows all four
+last-layer phase gradients >.001 on the fixed fixture. Isolated runtime
+executed all six tests successfully. Deterministic training, state norms,
+finite gradients, unchanged past preprocessing under altered future input,
+and preserved predictions for existing test rows remain verified.
+
+Separately named `research_runs/variational_quantum_corrected/results.json`
+completed, actual exit0,22 folds per model,18 outcomes. Classical projected
+control reproduced the initial run EXACTLY. All22 circuit weight-artifact
+digests changed after gate correction; all22 training losses decreased.
+This verifies effective optimization, NOT convergence/global optimality or
+future predictive profit.80-epoch budget remains explicitly not certified
+converged. Past-only scaler/PCA,600-row bounds, calibration and same market
+source/forecasts limits are recorded along with per-fold weights/losses.
+
+Primary10bps/16min,100k virtual sleeve:
+
+| Model/gate |Active days|Win%|Full netUSD|
+| --- | ---: | ---: | ---: |
+| Projected logistic .5|326|54.29|-1166.58|
+| Projected logistic .65|205|55.12|-739.45|
+| Projected logistic .9|0|not applicable|0.00|
+| Corrected circuit .5|101 known prefix|UNKNOWN|UNKNOWN|
+| Corrected circuit .65|39|64.10|-27.58|
+| Corrected circuit .9|0|not applicable|0.00|
+
+All18 target screens false,16 complete ledgers, two circuit .5/10bps ledgers
+(16/17min) stop on selected unknown NFLX history. Primary first unknown is
+2025-08-26. No favorable replacement, capital restart or omitted unknown day.
+All reported prefix budget/risk checks pass. Actual broker-calendar audit
+records429 expected sessions, coverage complete for16 outcomes and incomplete
+for two stopped ledgers. No complete variant has positive net. Fewer losing
+trades, sparse39-day observations or a .9 classifier gate cannot certify90%
+winning days. Historical outcomes remain exposed; this is not independent
+validation or evidence against all possible trainable circuit designs.
+Corrected study SHA256:
+`f5a0dca9152b0d90b0560d6b7730d94f20259539e1895d7a35beec16cb632145`.
+Calendar audit SHA256:
+`3d3f137b17dfc596324684d66ef2e0a6caae0cacb7e73b073180aebfff68d877`.
+
+Original environment523 tests passed/four Torch-only tests skipped, four
+existing sklearn warnings; all six dedicated classifier tests actually pass
+in the isolated Torch runtime. Production still has no Torch; frozen sources
+and model match. No quantum hardware/fees, orders, deployment, model promotion,
+increased risk or real money. Full objective remains unachieved.
