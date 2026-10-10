@@ -1,0 +1,49 @@
+name: Paired causal shadow outcome audit - NO ORDERS
+on:
+  schedule:
+    # After NY regular close plus delayed-SIP buffer in both DST seasons.
+    - cron: '30 21 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      validate_only:
+        description: Validate environment without claiming prospective evidence
+        type: boolean
+        default: true
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: paired-causal-shadow-outcome-audit
+  cancel-in-progress: false
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: requirements-causal-shadow.txt
+      - run: pip install -r requirements-causal-shadow.txt
+      - name: Verify paired shadow evidence and continuous virtual outcomes
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+          PROSPECTIVE_EVIDENCE_KEY: ${{ secrets.PROSPECTIVE_EVIDENCE_KEY }}
+        run: |
+          if [ '${{ inputs.validate_only }}' = 'true' ]; then
+            python causal_shadow_audit.py --validate-only
+          else
+            python causal_shadow_audit.py
+          fi
+      - name: Retain derived shadow audit only - no decrypted raw inputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: causal-shadow-outcome-audit-${{ github.run_id }}
+          path: research_runs/causal_shadow_audit/*.json
+          if-no-files-found: warn
+          retention-days: 90
