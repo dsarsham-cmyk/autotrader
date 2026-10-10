@@ -981,3 +981,73 @@ Objective remains unmet. This audit removes premature stopping as a sufficient
 explanation for failure of this architecture; useful next research must seek
 additional causally available signal information, not repeat an epoch/profit
 search on the same already-exposed days.
+
+## Premarket context on matched eligible candidates — October 10, 2026
+
+Added isolated `premarket_predictive_research.py`. Reads the existing owned
+SIP/raw extended cache (no new broker request), verifying each complete CSV
+against its metadata byte hash. Extracts 08:00-inclusive / 09:30-exclusive
+America/New_York minute bars with explicit timezone/DST handling, rejecting
+duplicate, non-minute, naive or malformed observations. 855,408 observed
+premarket bars across the fixed 20-stock cache. Historical bar timestamps do
+NOT authenticate original publication/receipt; sparse/revised bars remain a
+limitation. The existing delayed-SIP 10:00 cutoff / 10:16 entry is unchanged.
+
+Ten additional features describe premarket return/range/location, distance from
+typical-price VWAP, volatility between observed bars, relative window volume
+against 20 prior windows, opening price versus last premarket close, opening
+close versus premarket VWAP, observed-bar fraction and terminal age. Today's
+volume does not enter its own historical benchmark. Eligibility requires at
+least five observed premarket bars and last bar starting at/after09:25, prior
+window history and positive current/prior volume. Summary-only and augmented
+arms have IDENTICAL eligibility. Thus within-study comparison isolates features;
+comparison against earlier unfiltered studies does not. Missing context is not
+silently replaced by regular-session or IEX data.
+
+12,595 feature rows eligible, 237 sparse/stale, one missing window across all
+feature-complete history. The chronological outer test has 427 sessions / 8,348
+observed candidates / 8,209 eligible candidates / 4,012 filled eligible outcomes.
+All ineligible test rows/sessions are retained as abstention; zero selection
+score for missing context is explicitly NOT a forecast probability. Future fill
+does not decide eligibility or whether a candidate is forecast. Same trained
+linear/boosted classifiers and train-plateau MLP in paired 21-vs31-feature arms.
+Both neural arms reached verified train-only plateaus in all 22 folds.
+
+Primary 10bps-per-side, 1%-stop, 0.4%-target, 60-minute results:
+
+| Model | Features | Gate | Active days | Winning active days | Net USD |
+|---|---|---:|---:|---:|---:|
+| Logistic | Matched summary | .50 | 315 | 55.24% | -1,046.25 |
+| Logistic | + premarket | .50 | 314 | 56.69% | -1,059.12 |
+| Logistic | Matched summary | .65 | 218 | 61.01% | -706.65 |
+| Logistic | + premarket | .65 | 219 | 61.64% | -696.47 |
+| Boosted | Matched summary | .50 | 319 | 56.74% | -986.47 |
+| Boosted | + premarket | .50 | 319 | 55.80% | -964.49 |
+| Boosted | Matched summary | .65 | 162 | 58.02% | -481.53 |
+| Boosted | + premarket | .65 | 145 | 57.24% | -422.93 |
+| MLP | Matched summary | .50 | 321 | 53.58% | -1,162.06 |
+| MLP | + premarket | .50 | 324 | 56.79% | -1,088.33 |
+| MLP | Matched summary | .65 | 173 | 61.27% | -598.98 |
+| MLP | + premarket | .65 | 212 | 62.74% | -653.02 |
+
+At .90 the augmented MLP had two winning active days/+3.56 USD, not validation
+of 90%; augmented logistic had two days/50%/-9.44 USD. Matched summary logistic
+retained its previously observed two-day +3.59 USD, other .90 arms abstained.
+Six cases x three gates x three cost/latency cases = 54 outcomes, ALL failing
+the target screen. Premarket context improves some measures modestly, not a
+robust profitable edge. All simulated allocation/position/planned-risk checks
+passed. They do not certify production execution or whole-account guard behavior.
+
+380 tests passed (four existing sklearn deprecation warnings), including eleven
+new DST/cutoff, prior-volume, missing/stale context, source rejection, unknown
+future fill, future label and integrated post-cutoff/missing-window invariance
+tests. Frozen prospective model/source hashes still match. Complete ignored
+local result `research_runs/premarket_predictive/results.json` SHA256:
+`3726bce86f1de8fd6e18033246ecc3165236b012de432ca311b40318ba996330`.
+Evaluated dependency hashes matched after completion. Historical exposure,
+present-day universe, complete-session selection, raw splits and approximate
+VWAP/volatility/OHLC/account guards remain limitations. No orders, deployment,
+real money, increased risk or model promotion. Objective unmet; these extra
+inputs do not demonstrate the required accuracy/profitability. Further work
+must address signal and payoff together without turning a tiny selected tail
+into an apparent 90% result or claiming an independent test on exposed dates.
