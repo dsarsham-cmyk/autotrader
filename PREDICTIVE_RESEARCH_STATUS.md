@@ -1663,3 +1663,63 @@ original text versions or authenticate historical delivery: omission/revision
 bias remains, as do exposed outcomes, current-universe, corporate-action and
 OHLC assumptions. New historical inputs do not turn exposed outcome dates into
 independent validation. Objective remains unachieved; no variant is promoted.
+
+## 2026-10-10 — Pretrained financial-language input INFERENCE IN PROGRESS
+
+Added `finbert_headline_inference.py`, `finbert_news_features.py` and
+`finbert_predictive_research.py`. This is a new representation of the same
+headlines, not another claim that crude token counts are full NLP. The official
+[ProsusAI FinBERT card](https://huggingface.co/ProsusAI/finbert) describes
+financial sentiment classification with positive/negative/neutral softmax
+outputs and Financial PhraseBank fine-tuning; these are NOT probabilities of
+future stock returns or profitable trading days. The
+[authors' repository](https://github.com/ProsusAI/finBERT) identifies the code's
+Apache2.0 license. Model files remain private; no paid inference is used.
+
+Pinned public checkpoint `4556d13015211d73dccd3fdd39d39232506f3e43`, provider
+commit metadata2023-05-23, before the study's2024 starting inputs. Expected
+published PyTorch weight SHA256 verified against provider LFS metadata and
+actual downloaded bytes:
+`e15a7b5738df7f17553399b6d94c6e2ff69c89245d066e8e5d183f5803a554e3`.
+Six whitelisted configuration/tokenizer/card/weight files were verified by
+Git blob or LFS digests. Actual snapshot receipt SHA256:
+`e414a084ca168001d516268fdc3389de8d57cc2913aab56dfb01a29f8c0ebc37`.
+No custom remote model code: trust_remote_code=false, local-files-only load,
+explicit weights_only=true, CPU float32, evaluation/inference mode, four CPU
+threads, fixed32-headline batches and96-token truncation. No market fine-tuning
+of FinBERT. The later downstream return classifiers fit on PAST market labels.
+
+Installed a separate runtime at
+`C:\Users\Ars7am\AppData\Local\AutoTraderResearch\nlp-env` (Windows app
+redirects its actual storage into its package-local cache). The initial long
+workspace path failed package installation; the shorter isolated path succeeded
+without changing Windows settings. Torch2.13.0+cpu / Transformers4.57.3 /
+NumPy2.5.3 / tokenizers0.22.2 / safetensors0.8.0. Original production/research
+`.venv` still has no torch package; frozen prospective sources/model match.
+
+Actual live CPU inference started and has written verified-context per-batch
+checkpoints:63,205 articles reduce to56,284 distinct exact headline strings.
+At the recorded inspection9,632 had completed; this is a RUNNING observation,
+not a completed corpus, forecasting score or economic result. Cache loader
+rejects partial inference, changed source/archive/model/protocol and missing
+headline scores. Reusing identical text does not reuse another article's
+timestamp: feature attribution still uses each retained version's UPDATE time.
+No future revision is backdated before publication; no-news candidates remain
+present, and absent sentiment is not invented as neutral.
+
+Prepared matched comparison: existing27 headline-event/causal-price inputs
+versus the same27 plus seven24-hour/last-hour sentiment means and dispersion
+inputs. Same stock/date universe, budget/stop/cost/timing rules, two downstream
+classifiers and predeclared gates. Original headline reference must reproduce
+exactly before an effect is reported. The economic comparison has NOT run yet;
+it cannot run until all sentiment scores are complete and provenance-matched.
+
+478 tests passed, including thirteen new sentiment normalization, immutable
+checkpoint context, incomplete archive/cache rejection, UTF8 text hashing,
+future-revision/cutoff isolation, no-news retention, missing-score failure,
+dispersion and exact archive/model/source binding tests. Four existing sklearn
+deprecation warnings. The downstream runner compiles. Raw inputs, weights and
+scores remain ignored private cache files. No orders, deployment, model
+promotion, increased risk or real money. Original-version omissions, provider
+receipt timing, attribution/truncation, fixed universe and OHLC assumptions
+still prevent independent validation. Objective remains unachieved.
