@@ -1874,3 +1874,50 @@ Matched audit SHA256:
 499 tests passed, four existing sklearn warnings. Frozen prospective model
 and sources still match. No deployment, orders, increased risk or real money.
 The requested90% winning days with net profit remains unachieved.
+
+## 2026-10-10 — Own-label60/120-minute holding comparison completed
+
+Tested whether the one-hour timeout cuts off profitable price movements.
+Added an isolated duration simulator, preserving original producer/research
+sources. Same16 causal opening inputs and candidate universe, same .4%
+target/1% stop, stock1%/category5% caps, three positions, planned risk .05%,
+10/20bps costs and16/17-minute entry delays. Longer holding changes duration
+of exposure, not a claim of identical realized risk. Only60/120 minutes were
+declared, both ending before13:00 early closes. Logistic/boosted models learn
+each duration's OWN past known-fill labels; no model trained for one hour is
+silently reused for two hours. Future unknown candidates remain forecast.
+
+Actual runner exited0: four cases36 outcomes,22 folds429 test sessions.
+All18 one-hour reference outcomes reproduced exactly, including actual trades
+and daily capital. All36 complete/no unknown selected outcomes, all reported
+stock/category/positions/planned-risk checks pass, zero target-screen passes.
+Actual broker GET calendar audit exited0: all36 cover429 sessions including
+all three early closes, without missing/extra dates or incompatible windows.
+
+Primary10bps/16min results, 100k virtual research sleeve:
+
+| Model/gate |60min netUSD|120min netUSD|120min active days|120min win%|
+| --- | ---: | ---: | ---: | ---: |
+| Logistic .5|-1129.16|-1151.10|325|54.46|
+| Logistic .65|-668.34|-866.95|254|58.66|
+| Logistic .9|-5.90|0.00|0|not applicable|
+| Boosted .5|-1157.31|-1314.55|331|51.66|
+| Boosted .65|-557.38|-677.98|194|59.79|
+| Boosted .9|0.00|0.00|0|not applicable|
+
+The larger boosted .65 winning-day percentage does NOT make it profitable:
+net deteriorates. A .9 classifier gate gives no active two-hour trading days,
+not90% winning days. All complete outcomes remain exposed historical evidence;
+none is independently validated or approved for production.
+Private study SHA256:
+`eb4f46fcea36bf65ba64e376f1b630d9e441673c2ef2c9553ac0c416b99dca39`.
+Private calendar audit SHA256:
+`0ad39e1a2e63edb2b72d39c2b1fdb2e007f646750389bebb3b4632ebbd71791b`.
+
+510 tests passed, four existing sklearn warnings. New coverage proves exact
+one-hour path/portfolio reproduction at both timing/cost assumptions, later
+target attribution, missing second-hour data failure, unchanged stop/budgets,
+no need for later bars after an early exit/unfilled entry, own past labels and
+future unknown retention, and actual-close calendar handling for two hours.
+Frozen prospective model/sources still match. No deployment, orders, promotion,
+increased budget/stop distance, real money or false target achievement.

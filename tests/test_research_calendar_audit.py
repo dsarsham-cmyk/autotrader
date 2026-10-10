@@ -41,3 +41,10 @@ def test_short_session_incompatible_with_horizon_rejected():
     c=calendar();c['2026-10-13']['close']='11:00'
     r=inspect(source(['2026-10-12','2026-10-13']),c)
     assert r['cases'][0]['unsupported_session_windows']==['2026-10-13']
+
+
+def test_two_hour_horizon_checked_against_actual_close_not_one_hour_default():
+    s=source(['2026-10-12','2026-10-13']);s['cases'][0]['outcomes'][0]['horizon_minutes']=120
+    c=calendar();c['2026-10-13']['close']='12:00'
+    r=inspect(s,c)
+    assert r['cases'][0]['unsupported_session_windows']==['2026-10-13']

@@ -30,15 +30,16 @@ def inspect(source,calendar):
             if len(dates)!=len(set(dates)): raise ValueError('Duplicate ledger date')
             missing=sorted(set(expected)-set(dates));extra=sorted(set(dates)-set(expected))
             unsupported=[];early=[]
-            # This short fixed horizon ends before regular and13:00 half closes.
-            latest_exit=570+30+outcome['delay']+60
+            horizon=outcome.get('horizon_minutes',60)
+            if horizon not in (60,120) or isinstance(horizon,bool): raise ValueError('Unsupported research horizon')
+            latest_exit=570+30+outcome['delay']+horizon
             for date,row in expected.items():
                 close=time.fromisoformat(row['close']);close_minute=close.hour*60+close.minute
                 if row['open']!='09:30' or latest_exit>=close_minute: unsupported.append(date)
                 if row['close']!='16:00': early.append(date)
             calendar_complete=bool(expected) and not missing and not extra and not unsupported
             cases.append(dict(model=case['model'],feature_set=case.get('feature_set'),
-                threshold=outcome['threshold'],costs_bps=outcome['costs_bps'],delay=outcome['delay'],
+                threshold=outcome['threshold'],costs_bps=outcome['costs_bps'],delay=outcome['delay'],horizon_minutes=horizon,
                 first=first,last=last,expected_exchange_sessions=len(expected),ledger_sessions=len(dates),
                 missing_ledger_dates=missing,non_calendar_ledger_dates=extra,
                 unsupported_session_windows=unsupported,early_close_dates=early,
@@ -51,7 +52,7 @@ def inspect(source,calendar):
         limitations=['Retrospective provider calendar receipt is not a point-in-time original schedule receipt',
             'Missing ledger dates may be unknown selected outcomes, not absence of forecasts or losing days',
             'Complete calendar coverage does not authenticate stock prices/fills, original delivery or profitability',
-            'Fixed60-minute model horizon only; not full production engine session/EOD behavior'])
+            'Only declared60/120-minute research horizons; not full production engine session/EOD behavior'])
 
 
 def run(inputs,output):
