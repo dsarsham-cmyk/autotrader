@@ -2699,3 +2699,56 @@ tests cover chronological/P&L-independent sampling, duplicate identities,
 NY daylight-saving boundary conversion, invalid windows, future/conflicting/
 stale/invalid quotes and absence of actual fill or real-cost claims. Frozen
 prospective source and model hashes still match. No orders or deployment.
+
+### Past forecast-day support screen — 2026-10-10
+
+`past_forecast_support_research.py` implements a causal permission screen on
+the two corrected sparse/split models' existing forecasts. This is NOT a new
+fitted predictor, certified probability or independent validation. For every
+forecast date, inspect the preceding60 forecast sessions of the UNGATED
+counterfactual control at the same probability gate/cost/delay. Require full
+60-session warmup, at least20 active control days, positive net control P&L
+and the active-day Wilson lower bound at least the original probability gate.
+Current/future outcomes are excluded. Flat/no-trade days never count as wins.
+
+Reference control history differs from the gated strategy's realized history;
+this is a control-stability screen, not simulated feedback from actual gated
+profit. Zero selection score denotes denied permission, not zero predicted
+probability; `forecast_probability` retains the original calibrated forecast.
+Window overlap, correlated financial days and exposed multiple comparisons
+mean the nominal Wilson bound is not guaranteed coverage or a live certificate.
+
+Actual runner exited0:18 original outcomes reproduced exactly (daily/trades/
+net) and18 screened outcomes, all36 complete429-session ledgers. All reported
+prefix budget/stock/position/risk checks pass; actual broker GET calendar
+confirms the full observed span. No target passes. ALL18 screened variants
+abstain, yielding zero active days and zero profit, NOT100% accuracy or success.
+
+Primary10bps per side/delay16 control diagnostics across full60-session windows:
+
+| Model/gate | Max active support days | Best control net USD | Highest lower bound with >=20 active days |
+|---|---:|---:|---:|
+| Logistic .5 |52|-63.53|53.974%|
+| Logistic .65 |47|+8.82|61.915%|
+| Logistic .9 |2|+3.54|Unavailable|
+| Boosted .5 |52|-78.59|59.761%|
+| Boosted .65 |34|-17.43|51.519%|
+| Boosted .9 |0|0.00|Unavailable|
+
+These maxima may refer to different windows; they are not a combined favorable
+state or independent samples. Logistic .65 has20 positive-net windows but
+none reaches its65% lower-bound requirement. Logistic .9 reuses the same two
+sparse control wins, never meets20-day minimum support. Lowering the criteria
+to obtain activity was not done. Screened abstention does not solve the profit
+objective. No production strategy/stop/budget/leverage/cost change follows.
+
+Private study SHA256:
+`b57289d9830d70a815115e1da73dc875718d83148bb19aa1a37fb99df60c1801`.
+Calendar audit SHA256:
+`c436c61bceb76a6052cfe51e75456c30bbddb5bf307576493b2792de0d43fed5`.
+587 tests passed/six Torch skipped/four existing sklearn warnings. Five new
+tests cover current/future-outcome isolation, minimum warmup, no-trade treatment,
+full chronological control/permission spans, original probability preservation,
+and all possible20..60 active-day count/gate combinations: the existing rounded
+Wilson helper changes no decisions for this fixed protocol. Frozen prospective
+model and source hashes still match. Goal remains active and unachieved.
