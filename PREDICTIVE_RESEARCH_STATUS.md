@@ -1779,3 +1779,24 @@ and model still match. Original FinBERT inference process remains running;
 at the actual observation35,232 of56,284 distinct headlines had completed.
 No full inference/economic result is claimed yet. No orders, deployment,
 promotion, risk increase or real money. Objective remains unachieved.
+
+## 2026-10-10 — Prepared matched economic reconciliation before inference ends
+
+Added `finbert_comparison_audit.py`: requires all four predeclared cases and
+nine timing/cost/gate variants each (18 matched pairs), rejecting duplicates
+or missing variants. Reconciles actual trade P&L into daily P&L and cumulative
+equity, active-day win rate and target screen. Missing selected outcomes cannot
+create full-period profit or a passing screen; no-trade days are not wins.
+Checks retained exchange calendar coverage and records input/receipt/source
+digests. Historical paired net differences remain exploratory, not evidence
+of independent prediction or permission to trade. Reported risk flags are
+checked, but this is not independent reproduction of prices or risk sizing.
+
+Actually ran ledger checks over all36 completed headline-study outcomes:
+all reconciled, all reported risk checks true. This is existing headline
+evidence, NOT the still-pending FinBERT comparison. Nine new tests cover
+case/variant completeness, false favorable flags, trade/day and win-rate
+disagreement, partial outcomes and no-trade interpretation. Full suite:
+497 passed, four existing sklearn warnings. Original FinBERT process still
+live at43,232/56,284 headlines. Economic sentiment effect remains unknown;
+no deployment, orders, promotion, risk changes or real money.
