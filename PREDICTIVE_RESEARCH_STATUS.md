@@ -2913,3 +2913,68 @@ exact input/inference reproduction, all scheduled/missed/failed session discover
 and separate continuous budgeted outcome ledgers. Scheduled collection can miss
 deadlines; those are missing evidence, not wins or backfilled observations.
 Genuine forward observations remain ZERO. Full objective remains unachieved.
+
+### Paired shadow provenance/outcome audit cloud-verified — 2026-10-10
+
+`causal_shadow_replay.py` verifies the paired packet/parent/collector hashes,
+GitHub run identity/branch/attempt, receipt chronology and successful upload
+completion plus one-second upper margin BEFORE entry. Artifact creation alone,
+missing upload completion, alternate attempts/ownership or local flags cannot
+establish a timely anchor. Dedicated encrypted snapshots are recovered safely;
+every retained CSV/metadata/current opening/calendar/split/inference hash is
+checked, history rebuilt, and actual frozen heads recomputed against published
+probabilities (fixed1e-8 absolute tolerance) and retained decision prices.
+
+`causal_shadow_audit.py` discovers ALL terminal/pending producer runs, including
+failed ones, with strict duplicate/total-count pagination checks. Current input
+opening must exactly match subsequently fetched outcome opening; revisions do
+not silently change decision information. Outcome data is limited to the first
+108 minutes and may have missing future bars: no full390-minute completeness
+filter. A selected missing path stops that head's whole cumulative ledger.
+
+Each head is an ALTERNATIVE virtual sleeve, not simultaneous real account
+allocations. One100k initial virtual capital per comparison, no daily resets,
+same fixed .65 gate, costs10/20bps/delay16/17, budgets/stops/guards. First missing
+or duplicate forecast stops continuous replay; later verified observations are
+listed as unreplayed rather than skipped to improve equity. Full interval net
+and win rate remain UNKNOWN for incomplete/pending/error evidence. Valid empty
+eligible sets get explicitly marked computational calendar rows with zero
+selection, never invented forecasts or wins. Stress-only success cannot qualify
+the primary10bps/delay16 policy. Technical/simulated screens never promote models.
+
+Current provenance counts distinguish verified forecasts from outcome-ready
+forecasts; individual model ledgers also distinguish input coverage from missing
+selected price paths. Reports record audit-source hashes and parent manifest.
+Broker execution, actual stop protection, original historical delivery and
+independence of correlated financial days are not certified by this OHLC replay.
+
+New `.github/workflows/causal-shadow-outcome-audit.yml` is active, weekdays21:30
+UTC (after close/delayed-SIP buffer in both DST seasons). Manual default is
+validate-only. Actual non-validation GET audit run38082023382 completed SUCCESS:
+https://github.com/dsarsham-cmyk/autotrader/actions/runs/38082023382
+Actual downloaded report artifact11681220385 has verified ZIP SHA256:
+`2bff512ca49100a829e69c854b3bc1f65e4f168f976477d59a6b4698a736e835`.
+It contains ONLY `results.json`: zero completed/verified/outcome-ready sessions,
+no retrieval failures or pending producer runs, performance/independent screens
+false and ordersfalse. Before first declared forward date2026-10-12, this is
+expected empty evidence, not a trading result or validation success for90%.
+
+614 tests passed/six Torch skipped/four existing sklearn warnings. Eight new
+tests cover strict external timing/ownership/attempts, prediction integrity,
+retained opening revisions, sparse future prices, continuous capital/missing
+dates, empty vs valid abstention/duplicates/pending/unknown outcomes, complete
+discovery pagination, stress-only success exclusion, and a dedicated-key
+encrypted SYNTHETIC canary reproducing both actual frozen heads. Fixture packet
+is explicitly `fixture_not_prospective`, never published as genuine evidence.
+Both old control and new shadow protocol/source/artifact checks still pass.
+
+Durability remains open: public GitHub Actions artifacts have maximum90-day
+retention. Source: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-github-actions-settings-for-a-repository
+100 active-day qualification exceeds that time span. Local immutable backups
+exist, but automatic long-term cloud encrypted backup is NOT implemented or
+authorized yet; approval requested separately for an unpublished draft-release
+backup, or local-only preservation. No draft/release was created. Expired or
+unavailable evidence fails closed; it must not be silently dropped or counted
+as no-trade days. Existing collector/workflows/bot unchanged; no live trading,
+new orders, budget/leverage/loss relaxation or production deployment. Goal active
+and unachieved: scheduled plumbing is not the requested profitable formula.
