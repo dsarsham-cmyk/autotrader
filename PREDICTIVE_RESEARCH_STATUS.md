@@ -460,5 +460,9 @@ DPAPI copy requires the same Windows profile; recovery arrangements remain to
 be established. Broker credentials have NOT been rotated; explicit approval
 was requested separately. Public credential exposure remains unresolved.
 
-282 local tests passed. New encryption workflow cloud validation is pending.
+282 local tests passed. Cloud validation run 38060365417 completed successfully:
+https://github.com/dsarsham-cmyk/autotrader/actions/runs/38060365417
+Dedicated-key validation and frozen-model environment validation passed on
+Linux. Forecast collection and private archive sealing were skipped in this
+validation-only run; it does not verify a real cloud encryption/collection run.
 No new genuine forecast, profitable day or independent validation was obtained.
