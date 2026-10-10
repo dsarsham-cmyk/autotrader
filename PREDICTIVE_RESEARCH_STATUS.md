@@ -1604,3 +1604,62 @@ no-news stock retention tests; four existing sklearn deprecation warnings.
 The comparison runner compiles but its economic results are NOT yet executed.
 Frozen prospective model/source hashes still match. No deployment, strategy
 promotion, real money or risk-limit changes. Objective remains unachieved.
+
+## 2026-10-10 — Headline-event archive and matched comparison COMPLETED
+
+The preceding in-progress entry is a historical progress snapshot, superseded
+by actual terminal execution here. Download finished normally, all34 fixed
+intervals complete:1,280 pages /63,205 article rows /63,205 unique IDs. All page
+byte hashes matched the completed private archive manifest; article indexing
+passed creation/revision timestamp and symbol validation. No contradictory
+duplicate revision was selected. Manifest SHA256:
+`8392dfe49a09572132b0ca88cf63d454be63e70fc283add37fba04740e7d0d34`.
+Raw texts/pages/receipts remain private in ignored `cache/news_context`.
+
+Executed `news_predictive_research.py`, not just compilation. Same13,355 causal
+opening stock/day rows;11,685 have at least one retained version in the past
+24-hour feature window. No-news rows retain their original candidate membership
+and receive zeros, not exclusion. Two matched feature sets:16 causal price
+inputs versus the same16 plus11 fixed headline-event proxies. Two classifiers,
+22 outer folds /429 observed test sessions each, same costs/budgets/exits.
+All eighteen price-only outcomes reproduce the preceding exact daily ledgers,
+trades, net results and missing-selection lists.
+
+Primary cost10bps each side / entry delay16minutes:
+
+| Features | Model | Gate | Active days | Winning active days | Net USD |
+|---|---|---:|---:|---:|---:|
+| Price | Logistic | 0.50 | 319 | 55.49% | -1,129.16 |
+| Price + headline events | Logistic | 0.50 | 324 | 56.17% | -1,058.49 |
+| Price | Logistic | 0.65 | 223 | 61.88% | -668.34 |
+| Price + headline events | Logistic | 0.65 | 219 | 60.73% | -647.47 |
+| Price | Boosted | 0.50 | 321 | 52.02% | -1,157.31 |
+| Price + headline events | Boosted | 0.50 | 331 | 51.06% | -1,271.54 |
+| Price | Boosted | 0.65 | 180 | 57.78% | -557.38 |
+| Price + headline events | Boosted | 0.65 | 179 | 55.31% | -697.09 |
+
+At0.90 news/logistic had two active days,50% wins/-9.42USD; news/boosted
+abstained. Four cases x3gates x3cost/latency variants =36 outcomes, zero target
+screen passes. Selected outcomes were recoverable in all observed-span runs;
+no unknown selected date. All simulated stock/category/position/planned-risk
+checks passed. This observed coverage is not complete independent calendar or
+execution evidence. At0.50 fixed-trade zero-cost accounting gives news/logistic
+gross+45.09USD/61.73% wins, news/boosted gross-181.24USD/57.10%. At0.65 both
+are gross-negative (-4.00/-167.87USD). Those are frozen-fill accounting
+diagnostics, not zero-cost deployable replay or a90% profitable-day result.
+
+465 tests passed again; four existing sklearn deprecation warnings. Frozen
+prospective source/model still match. Full ignored economic report
+`research_runs/news_ablation/results.json` SHA256:
+`12dc00a039e011c9cff52de6347c1cfffbb0af0f969de78fb5b5ce9c1f4a67a5`.
+Evaluated source/input hashes matched; complete archive provenance is retained.
+No orders, deployment, new subscription, model promotion or increased limits.
+
+Conclusion: these crude event/token inputs do not supply a sufficient economic
+advantage. Slight point improvements in one arm are not evidence of statistical
+significance; lower dollar loss is not profitability or guaranteed better
+expectancy. This does NOT prove all news NLP is useless. It also does not recover
+original text versions or authenticate historical delivery: omission/revision
+bias remains, as do exposed outcomes, current-universe, corporate-action and
+OHLC assumptions. New historical inputs do not turn exposed outcome dates into
+independent validation. Objective remains unachieved; no variant is promoted.
