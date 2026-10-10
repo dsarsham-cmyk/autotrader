@@ -15,6 +15,11 @@ from news_event_features import index_news,add_news
 from finbert_news_features import load_scores,index_scores,add_sentiment,FEATURES
 
 
+def prefix_accounting(result,forecasts):
+    """Account only observed prefix; never replace unknown full-period net."""
+    return accounting_metrics(dict(result,profit_usd=result['known_prefix_profit_usd']),forecasts)
+
+
 def run(data,news,sentiment,reference,output):
     original=json.loads(reference.read_bytes())
     if original['status']!='completed_exposed_historical_news_ablation': raise ValueError('Completed headline reference required')
@@ -52,7 +57,7 @@ def run(data,news,sentiment,reference,output):
                 for threshold in [.5,.65,.9]:
                     for cost,delay in [(10,16),(20,16),(10,17)]:
                         result=portfolio(forecasts,market,threshold,cost,delay)
-                        result['known_prefix_metrics']=accounting_metrics(result,forecasts)
+                        result['known_prefix_metrics']=prefix_accounting(result,forecasts)
                         result['known_prefix_cost_diagnostic']=diagnostic(dict(result,profit_usd=result['known_prefix_profit_usd']))
                         if name=='headline_events':
                             old=next(c for c in original['cases'] if c['feature_set']=='causal_price_plus_headline_events' and c['model']==kind)

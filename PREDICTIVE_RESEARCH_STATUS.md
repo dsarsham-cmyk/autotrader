@@ -1823,3 +1823,54 @@ Same costs/budgets/limits and historical reference reproduction remain
 required. News sentiment remains different from profit probability, and the
 historical study is not independent forward evidence. No deployment, orders,
 promotion, increased risk or real money. Objective remains unachieved.
+
+## 2026-10-10 — Completed matched FinBERT economic comparison: no target pass
+
+The actual first economic run terminated exit1 on an unknown selected NFLX
+outcome: the accounting helper received full-period net=None. Corrected the
+FinBERT runner only to reconcile a COPY using known-prefix net, while keeping
+the original full-period net and win rate unknown. Frozen helpers/sources
+were not edited. Two actual tests cover an unknown first/later selection and
+prove prefix accounting does not overwrite the unknown full result. After
+the confirmed terminal failure, reran the study; terminal exit0.
+
+All18 headline reference outcomes reproduced exactly. Four cases36 outcomes
+completed;33 have complete429-session ledgers. Three enriched boosted .5
+variants encounter selected NFLX data absence on2025-08-13 and stop the
+cumulative ledger. Their full-period net/win rate remain None; they are not
+reported as complete profits or compared against a full-period reference.
+Known prefixes have101 active days and net -416.43/-623.72/-434.09 USD for
+(10bps,16min)/(20bps,16min)/(10bps,17min), respectively, NOT full-period net.
+
+Primary10bps/16min results, 100k initial virtual sleeve (not deployed account):
+
+| Model/gate | Headline baseline netUSD | +FinBERT netUSD | +FinBERT active days | +FinBERT win% |
+| --- | ---: | ---: | ---: | ---: |
+| Logistic .5 | -1058.49 | -1088.86 |323|55.42|
+| Logistic .65 | -647.47 | -651.08 |213|61.50|
+| Logistic .9 | -9.42 | -9.42 |2|50.00|
+| Boosted .5 | -1271.54 | UNKNOWN full period |101 known prefix|UNKNOWN full period|
+| Boosted .65 | -697.09 | -698.90 |194|55.15|
+| Boosted .9 | 0.00 | 0.00 |0|not applicable|
+
+No complete variant has positive net; no variant passes the target screen.
+One delayed boosted .65 matched pair improves net by43.73USD but still loses
+713.00USD, with53.19% winning active days; this is not a profitable discovery.
+The other complete nontrivial primary comparisons worsen net, despite the
+small logistic .65 increase in winning-day percentage. Raising the probability
+gate to .9 does not yield90% wins: it yields two losing-net active days or none.
+
+Executed the matched audit, exit0:18 pairs, zero passing screens, all reported
+prefix risk checks true. Calendar coverage explicitly incomplete for the
+three stopped ledgers; all other33 cover429 sessions. Complete/input/runtime
+provenance and trade/day/equity reconciliation remain required. Historical
+news versions, original delivery, fixed universe and modeled fills still
+prevent independent validation. No model promotion.
+Study SHA256:
+`105e4f15b5d349e9b549abaada9401116f9e6acdb71aec507ee53d48a860d726`.
+Matched audit SHA256:
+`6db52711593409fef7109294301ecef4ede56c770901e5844f45fe254f503d3c`.
+
+499 tests passed, four existing sklearn warnings. Frozen prospective model
+and sources still match. No deployment, orders, increased risk or real money.
+The requested90% winning days with net profit remains unachieved.
