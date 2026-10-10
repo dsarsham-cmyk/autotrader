@@ -1380,3 +1380,59 @@ forward session remains2026-10-12. Actual future forecast anchoring, encrypted
 input reproduction, completed-market-data retrieval and cumulative profitability
 on real forward sessions remain unverified. This workflow automates those
 checks; it does not establish90% winning active days or approve real money.
+
+## 2026-10-10 — More selective opening-VWAP entry
+
+Added `entry_anchor_research.py` to distinguish entry policy from model choice.
+The original close anchor is compared with min(opening close, first30-minute
+HLC3-volume VWAP). Both use the same +0.1% limit multiplier; the VWAP policy
+never raises the limit. Only the modeled10:16NY opening can fill; later dips
+are NOT retrospectively counted as fills. This is a selective pullback entry,
+not a continuous limit-order execution engine or a proven mean-reversion edge.
+All21 features are unchanged and known at the delayed opening-context cutoff.
+
+Logistic and boosted models are separately refitted/calibrated on each policy's
+OWN past filled candidate pool, then forecast every unknown test candidate
+before selection/fills. Same427 exposed test sessions, stop1%, target0.4%,
+60-minute cap, costs10bps per side, stock/category1%/5%, at most3positions and
+planned trade risk0.05%. No increase of limits or permission for broker orders.
+Original reward-study inputs/source hashes checked; all eighteen close-policy
+outcomes reproduced their original exact trades, daily ledger and net profit.
+
+Primary cost10bps / entry delay16minutes:
+
+| Policy | Model | Gate | Active days | Winning active days | Net USD |
+|---|---|---:|---:|---:|---:|
+| Close | Logistic | 0.50 | 314 | 55.73% | -1,044.38 |
+| VWAP pullback | Logistic | 0.50 | 269 | 58.74% | -801.86 |
+| Close | Logistic | 0.65 | 216 | 60.65% | -729.87 |
+| VWAP pullback | Logistic | 0.65 | 181 | 62.43% | -506.61 |
+| Close | Boosted | 0.50 | 305 | 55.41% | -1,045.08 |
+| VWAP pullback | Boosted | 0.50 | 275 | 57.82% | -790.45 |
+| Close | Boosted | 0.65 | 149 | 60.40% | -453.25 |
+| VWAP pullback | Boosted | 0.65 | 114 | 57.02% | -405.89 |
+
+At0.90 VWAP/logistic three active days were ALL losing, net-31.99USD;
+VWAP/boosted abstained. Close/logistic's two previously exposed wins/+3.59USD
+remain too few, not independent evidence. Four cases x3gates x3cost/latency
+variants =36outcomes, zero target-screen passes. All simulated risk checks pass.
+
+Fewer trades and changed fill distribution explain some reduced dollar losses;
+the comparison does not establish improved expectancy. Fixed-trade zero-cost
+accounting at0.50 gives VWAP/logistic gross-9.24USD,62.45% winning active days;
+VWAP/boosted gross+36.02USD,64.00%. At0.65 both remain gross-negative
+(-27.55/-88.90USD). These are accounting diagnostics with fills/quantity held
+fixed, NOT zero-cost deployable strategies or evidence that cheaper fees solve
+the accuracy requirement. Cost assumptions are not verified broker commissions.
+
+Seven new tests cover post-cutoff isolation, limit conservatism, absence of
+future-dip fills, budget caps, invalid-policy rejection and separate past fill
+pool refitting through both model routes while retaining unfilled test forecasts.
+Full ignored report `research_runs/entry_anchor/results.json` SHA256:
+`1f5a98b263872e65ae711f8003b4413607b1edc764246122dd3cd54c42bfa581`.
+Evaluated dependency hashes match. No promotion, deployment or production
+settings change; frozen prospective source/model unchanged. Exposed data,
+fixed current universe, corporate actions/raw revisions, full-SIP-session
+exclusions and OHLC/guard assumptions remain limitations. The stricter entry
+is rejected as a sufficient solution: adequately active outcomes still lose
+after costs and do not approach90% winning days. Objective remains unachieved.
