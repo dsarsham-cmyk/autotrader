@@ -870,3 +870,63 @@ Objective remains unmet: conditional payoff decomposition did not create enough
 accurate, profitable signals. Further research must establish new usable signal
 information or a different validated payoff policy, not count rare wins as 90%
 evidence or treat software test counts as financial readiness.
+
+## Ordered opening-path AI representation — October 10, 2026
+
+Added `opening_path_research.py`: matched logistic and dense neural-network
+classifiers on either the existing 21 summary features or those summaries plus
+120 ordered opening-path features (30 minutes x four channels). Channels are
+close-to-prior-close log return, log high/low range, log close/open body and
+log1p minute volume relative to the SAME minute of 20 PRIOR opening sessions.
+No post-10:00 NY price or volume enters today's features. Scalers fit on past
+training rows only; probability calibration uses separate later-but-still-past
+rows. All future candidates are forecast before filtering actual fills.
+
+The neural model is a conventional dense MLP with learned weights, layers
+64/32, alpha10, Adam .001, batch256, seed19, fixed 100-epoch budget, no random
+holdout, no validation-based early stopping and no epoch selection from test
+profits. It is NOT a transformer, RNN, LLM or quantum computer. The ordered
+representation does not itself establish that temporal patterns predict profit.
+All 22 neural folds reached the epoch cap with ConvergenceWarning (captured in
+the report); thus the evidence tests this bounded configuration, NOT every
+neural architecture or a verified converged optimum. Logistic folds had no
+warnings. A future training-budget audit should use training-only convergence
+criteria rather than selecting epochs by favorable historical trading results.
+
+Same extended historical dataset, 22 folds, 427 test sessions and 4,079 filled
+evaluation candidates. The summary/logistic reference reproduces every trade
+and account outcome of the corresponding previous reference, including stress
+cases. Exit, delay, costs, eligibility and budgets remain matched. Primary:
+
+| Features | Model | Gate | Active days | Winning active days | Net USD |
+|---|---|---:|---:|---:|---:|
+| Summary | Logistic | .50 | 314 | 55.73% | -1,044.38 |
+| Summary | Logistic | .65 | 216 | 60.65% | -729.87 |
+| Summary | MLP | .50 | 310 | 54.19% | -1,103.87 |
+| Summary | MLP | .65 | 167 | 61.68% | -522.26 |
+| Summary + ordered path | Logistic | .50 | 319 | 56.74% | -995.13 |
+| Summary + ordered path | Logistic | .65 | 147 | 61.22% | -438.96 |
+| Summary + ordered path | MLP | .50 | 319 | 56.43% | -1,051.19 |
+| Summary + ordered path | MLP | .65 | 247 | 57.89% | -800.80 |
+
+At .90 both neural arms abstained, summary/logistic retained the known two-day
++3.59 USD/100% result, and path/logistic had ONE active winning day/+1.77 USD.
+None demonstrates the target. Four feature/model cases x three gates x three
+cost/timing variants = 36 outcomes, all failing. Filled-candidate weighted
+Brier scores were .243880 (summary/logistic), .244695 (summary/MLP), .246075
+(path/logistic), .242229 (path/MLP). The small probability-score improvement
+for path/MLP is not an economic advantage: all adequately active primary
+variants remain negative after costs.
+
+All simulated budget/position/planned-risk checks passed. 362 tests passed
+(four existing sklearn deprecation warnings), including ten new opening
+cutoff, same-minute past-volume, ordered-channel, invalid-input, scaler/model/
+calibrator future isolation, chronological split and unknown-fill tests.
+Frozen prospective source and model hashes still match. Complete ignored local
+result `research_runs/opening_path/results.json` SHA256:
+`5a45aa35e41337c94f3d7041aaf87c345d91227133f40ace81ed50ed00c60911`.
+All dependency hashes match the evaluated code. Historical exposure,
+present-day universe/full-session exclusions, raw splits, assumed SIP receipt,
+OHLC fills and approximate account guards remain limitations. No orders,
+deployment, live money, increased risk or model promotion. Objective unmet;
+new neural terminology cannot substitute for accurate profitable predictions.
