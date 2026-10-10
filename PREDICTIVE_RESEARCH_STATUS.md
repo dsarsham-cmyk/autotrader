@@ -277,3 +277,51 @@ fit and identify explicit research control artifacts; integrate a read-only
 collector with real receipt times and an external anchor; record genuinely
 future predictions and outcomes. Failed models stay research controls, not
 automatically promoted trading candidates. Objective remains active/unmet.
+
+## Fitted prospective control and local collector integration
+
+Refactored regime fitting into `fit_forecasters` / `predict_forecasters` without
+changing the existing forecasts wrapper. Added `prospective_model_collector.py`
+with explicit `freeze`, `collect`, and `inspect` modes. All HTTP calls are GET:
+SIP opening bars and paper-account exchange calendar only, never orders.
+
+Actually fitted one EXTENDED/target-60 delayed-SIP control, not selected as a
+profitable trading candidate. Artifact is explicitly marked prior-exploration-
+failed-target and research-control-only. All labels use entry delay 16 minutes;
+training ends July 8, calibration July 9–October 1, final training/calibration
+rows 3,361 / 598. Forward start October 12. Artifact size 440,970 bytes.
+Local ignored directory: `research_runs/prospective_control_v1`.
+Manifest SHA256:
+`52ec2c2ae32d0cda998f0046a1a4ee3b09e7b614cf6b4f3f66103f3b57439cf3`.
+Artifact SHA256:
+`b6a15150f4a87407d2709503e1eebe057a2f51b62fbfc9de7c6216ed742318e1`.
+Checked current artifact and all frozen source hashes match.
+
+Collector verifies model hash before joblib loading, scikit-learn version and
+feature schema, complete 20-stock current opening context, strictly prior
+history, raw packet chronology, data receipt and capture deadline. Final
+packet includes probability/mean/Q10 forecasts, not buy/sell commands. Every
+forecast is still explicitly unapproved for production. Any missed deadline
+fails instead of backdating. No actual future session recorded today:
+`inspect` reports 0 sessions, 0 verified external anchors, validation=false.
+An actual Saturday collection invocation correctly refused BEFORE API requests
+or deserializing the artifact. That is a negative-boundary check, not collection.
+
+Downloaded a SEPARATE history cache `cache/prospective_history_v1` for June 1–
+October 9, with SIP/raw metadata and hashes. All 20 symbols have last complete
+session October 9; complete-session counts range 86–92. Original training
+cache/model was not updated. A schema smoke test using HISTORICAL opening bars
+only produced 20 rows x 21 features; it was not recorded as October 12 evidence.
+
+Example manual collection, only in the allowed 10:15–10:16 NY window:
+`.venv/Scripts/python.exe prospective_model_collector.py collect --data cache/prospective_history_v1`.
+History must be refreshed before subsequent sessions, not silently reused.
+
+254 local tests pass, including live-prefix/offline feature equivalence,
+strict prior-history/universe/OHLC validation, no API/deserialization outside
+the collection window, and absence of order clients/HTTP write methods.
+Remaining gaps: collector is not scheduled or hosted, source manifest uses
+local absolute paths/byte hashes, raw historical context provenance is not yet
+bound into captured receipts, and externally authenticated timestamps plus
+outcome/execution reconciliation are still absent. Do not claim cloud readiness,
+running forward collection, profitability, independent validation or 90% wins.

@@ -66,10 +66,9 @@ def extended_rows(by_date,minute=30):
     return rows
 
 
-def forecasts(train,calibration,test,outcomes):
+def fit_forecasters(train,calibration,outcomes):
     x=np.array([r['features'] for r in train])
     cx=np.array([r['features'] for r in calibration])
-    tx=np.array([r['features'] for r in test])
     def returns(rows):
         return np.array([outcomes[(r['date'],r['symbol'])]['exit']/
             outcomes[(r['date'],r['symbol'])]['entry']-1 for r in rows])
@@ -85,9 +84,19 @@ def forecasts(train,calibration,test,outcomes):
     # Fixed past calibration corrections; never fit on the next test block.
     mean_offset=float(np.mean(cy-mean.predict(cx)))
     downside_offset=float(np.quantile(cy-downside.predict(cx),.1))
-    return dict(probability=calibrator.predict_proba(raw_score(classifier,tx))[:,1],
-        mean_return=mean.predict(tx)+mean_offset,
-        q10_return=downside.predict(tx)+downside_offset)
+    return dict(classifier=classifier,calibrator=calibrator,mean=mean,downside=downside,
+        mean_offset=mean_offset,downside_offset=downside_offset)
+
+
+def predict_forecasters(fitted,test):
+    tx=np.array([r['features'] for r in test])
+    return dict(probability=fitted['calibrator'].predict_proba(raw_score(fitted['classifier'],tx))[:,1],
+        mean_return=fitted['mean'].predict(tx)+fitted['mean_offset'],
+        q10_return=fitted['downside'].predict(tx)+fitted['downside_offset'])
+
+
+def forecasts(train,calibration,test,outcomes):
+    return predict_forecasters(fit_forecasters(train,calibration,outcomes),test)
 
 
 def timing(information_delay):
