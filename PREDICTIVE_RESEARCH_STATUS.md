@@ -395,3 +395,45 @@ null (CLI-upload). No trading engine deployment or restart occurred.
 First eligible scheduled collection attempt is Monday October 12; exact timing
 is not guaranteed by GitHub. Future forecast collection, timely external anchor,
 profitability, risk behavior and 90% wins remain unverified. Goal not complete.
+
+## Outcome/anchor auditor and retained artifact backup
+
+Added `prospective_outcome_audit.py`, separate from pinned forecast sources, so
+v2's predictive protocol/model is not mutated. The CLI reads GitHub API only,
+checks run identity and terminal state, paginates artifacts/jobs, verifies ZIP
+SHA256 against GitHub's artifact digest, and saves unchanged local backups.
+An existing different archive is never overwritten. This allows retention
+beyond the 90-day GitHub artifact window, but requires running backup retrieval
+before remote expiration; it is not yet an automatic archival service.
+
+Anchor checks do NOT equate artifact creation time with completed upload.
+They require the successful upload step's server-reported completed_at from
+the run's jobs API. Conservative timestamp upper bound is completed_at + one
+second, and it must precede the exact frozen hypothetical entry. Late or
+missing completion confirmation is not timely forward evidence. Date, feed,
+feature cutoff, receipt/capture and frozen-entry chronology are also checked.
+
+Pure single-session simulated evaluator checks original 30-minute opening
+input against complete outcome arrays, rejects changed/invalid OHLCV, and
+replays the fixed .65 threshold, target-60 timing and 10/20-bps/extra-latency
+cases. It reports gross/net decomposition, no-trade days and category/stock/
+position-cap checks. It does NOT yet decrypt raw cloud archives, derive/recheck
+model features against retained history, retrieve validated future outcome
+timestamps automatically, or cumulatively replay capital across sessions.
+It does not claim broker execution or whole-account risk validation. All
+validation/production-approval flags remain false.
+
+Real verification on run 38058605995: downloaded artifact 11671084251; both
+GitHub and actual ZIP digest equal
+`sha256:2d9b5e646575b72a17bd2ca7712ca5b3fc93b20d872a325f661f0136e62ccd14`.
+Upload job 114232076911 completed timestamp step at 2026-10-10T14:11:39Z.
+Saved ZIP, server metadata and inspection in ignored
+`research_runs/prospective_backups/38058605995/`. Its forecast count and timely
+forecast-anchor count are BOTH ZERO: it is still only an environment check.
+
+271 local tests passed. Nine new tests cover synthetic target/no-trade
+accounting, rejecting late upload despite early artifact creation, fixed entry
+chronology, original-input prefix changes, nonprospective dates, ZIP digest
+tampering and write-once backup behavior. Synthetic 100% on one fixture is
+explicitly not independent validation. No new actual forecast, winning day,
+profit or paper order was produced. Objective remains unmet.
