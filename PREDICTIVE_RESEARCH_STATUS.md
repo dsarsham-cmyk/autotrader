@@ -2499,3 +2499,61 @@ Seven new tests now include rejection of real/nonconstant/nonfinite variance
 errors and accepting only proven exact-constant tiny rounding without mutation.
 No orders, deployment, increased budgets/leverage, cost reduction, automatic
 promotion or real money. Full objective remains unachieved.
+
+## 2026-10-10 — Fixed stock-identity/interactions comparison completed
+
+Added pure `stock_identity_features.py` and isolated `stock_identity_research.py`.
+Three predeclared arms: corrected price16 only, plus20 fixed stock indicators
+(36 inputs), plus each stock's16 price-feature interactions (356 inputs).
+Fixed vocabulary from existing20 stocks, not fitted from future membership.
+Original input rows/prices unmodified. Same past-only logistic/boosted models,
+calibration chronology, costs/delays, stop/target and risk constraints.
+This tests stock heterogeneity, not a claim of sector causality or a new
+point-in-time universe. Statistical overfitting risk increases with parameters.
+
+Actual run exited0; all18 price-only controls exactly reproduce daily/trades/
+net reference.88 new fold fits with no recorded fitting warnings; any unresolved
+warning fails the runner rather than claiming a successfully trained model.
+54 outcomes,52 complete429-session ledgers, two full results unknown, zero
+target-screen passes, all reported prefix risk checks pass. No positive-net
+complete NEW identity variant. Positive sparse price-only controls remain
+retained as previously disclosed, not attributed to identity features.
+
+Primary10bps per side, delay16, gate.65:
+
+| Model/input | Active days | Winning percent | Net USD |
+|---|---:|---:|---:|
+| Logistic price-only |220|60.00|-777.31|
+| Logistic stock indicators |208|56.73|-762.23|
+| Logistic stock interactions |105|56.19|-364.86|
+| Boosted price-only |173|57.80|-627.81|
+| Boosted stock indicators |170|59.41|-597.89|
+| Boosted stock interactions |175|59.43|-637.68|
+
+Interaction logistic loses less while trading much less, not achieving higher
+win accuracy. All new .9 primary identity gates abstain except interaction
+logistic: one active losing day/-1.23USD. No-trade is not a win.
+
+Descriptive Brier uses the SAME4161 known-filled primary test candidates;
+future outcome membership is used ONLY to score, never to select forecasts.
+Logistic price-only.242525, indicators.243735, interactions.248294;
+boosted price-only.243595, indicators.243967, interactions.243764.
+All identity arms have worse Brier than their matched original classifier.
+This does not establish significance or independent forecast performance,
+but rejects a claim that these identity variants improved measured accuracy.
+
+Interaction logistic .5/10bps delay16/17 stops at selected missing NFLX
+2025-06-26. Whole-period net/win remains unknown, not prefix-as-full result.
+Actual broker GET calendar audit expects429 sessions;52 spans interpretable,
+two incomplete, overall full coverageFALSE. No favorable substitution/reset.
+Study SHA256:
+`95be17817162365ac7364a047cdc7a60fb340a0c433cff1738114c3a1b4b66d2`.
+Calendar audit SHA256:
+`bd5a8329c2bd437f1e56cc5aafc52f62f8207e8d02cfd387978dd47db7bc20ad`.
+570 tests passed/six Torch skipped/four existing sklearn warnings; seven new
+tests cover dimensions/schema, unchanged raw units, nonmutation, fixed symbol
+slot and isolated interactions, future-candidate independence and invalid inputs.
+Frozen prospective model/sources still match. All historical outcomes already
+exposed; survival/revision/original delivery/fill assumptions remain. No orders,
+deployment, automatic promotion, increased leverage/budgets, reduced costs or
+real money. Requested90% profitable winning days remain unachieved.
