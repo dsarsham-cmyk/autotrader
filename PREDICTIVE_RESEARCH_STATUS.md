@@ -805,3 +805,68 @@ No orders, deployment, real money or model promotion. Objective remains unmet.
 This rejects tighter fixed stops as a sufficient repair of these predictors;
 next work must address signal/conditional net-outcome quality rather than
 selecting rare historical winning days or relaxing loss limits.
+
+## Conditional gain/loss prediction and net-expectancy ranking — October 10
+
+Added isolated `conditional_payoff_research.py`. Unlike the earlier single
+mean-return regressor, it learns separate conditional net gain and conditional
+net loss magnitudes, then combines them with a past-calibrated classifier:
+`expected net = p * E(net | win) - (1-p) * E(loss | non-win)`.
+Linear logistic/Ridge and boosted classifier/regressor pairs use basis-point
+regression targets and separate past calibration offsets. Conditional heads
+require minimum past samples and reject unfilled fitting outcomes. Negative
+predicted magnitudes are clipped to zero, not interpreted as favorable losses.
+This is an estimate, not a guarantee or a newly measured probability of profit.
+
+Matched selectors: probability-only reference, positive-expectancy filtering
+with probability ranking, and positive-expectancy filtering with net-return
+ranking. Selection precedes knowledge of fills; an unfilled chosen candidate
+is NOT replaced by a retrospectively known fill. All sessions remain visible.
+Simulator ranking scores are explicitly ordinal, NOT calibrated probabilities;
+original classifier probabilities are retained separately. The probability-only
+reference reproduces every corresponding 1%-stop prior study trade and account
+result exactly, including cost/latency stress cases. Thus comparisons within
+this study do not silently change exits or allocation.
+
+Same delayed SIP timing, fixed 1% stop, 0.4% target, 60-minute holding horizon,
+10 bps per side, stock/category budgets and loss guards as the preceding study.
+22 folds / 427 historical test sessions / 4,079 filled evaluation candidates.
+Two models, three selectors, three probability gates and three cost/timing
+variants produced 54 outcomes; ALL failed the target screen. Primary outcomes:
+
+| Model | Selector | Probability gate | Active days | Winning active days | Net USD |
+|---|---|---:|---:|---:|---:|
+| Logistic/Ridge | Probability reference | .50 | 314 | 55.73% | -1,044.38 |
+| Logistic/Ridge | Probability reference | .65 | 216 | 60.65% | -729.87 |
+| Logistic/Ridge | Positive expectancy, either ranking | .50 / .65 / .90 | 2 | 100% | +3.59 |
+| Boosted | Probability reference | .50 | 305 | 55.41% | -1,045.08 |
+| Boosted | Probability reference | .65 | 149 | 60.40% | -453.25 |
+| Boosted | Positive expectancy, either ranking | .50 | 6 | 33.33% | -16.27 |
+| Boosted | Positive expectancy, either ranking | .65 | 2 | 50% | -4.34 |
+| Boosted | Positive expectancy, either ranking | .90 | 0 | undefined | 0 |
+
+The logistic reference at .90 already selects the same two winning days.
+Their Wilson interval is 34.237%-100%, NOT proof of 90% winning days. Inactive
+days are not wins. Both positive-expectancy rankings happened to select the
+same actual fills; no ranking improvement was observed. Across all filled test
+candidates, expected-return MAE was 45.99 bps for linear and 46.40 bps for boosted,
+versus roughly 19.94 bps net return at the exact target without gaps. This
+comparison does not prove that no individual signal can work, but shows why
+positive model output alone is weak evidence of an exploitable edge here.
+Weighted mean prediction bias was -1.33 / -2.24 bps respectively; small overall
+bias does NOT validate conditional calibration of the selected tail.
+
+All simulated budget/position/planned-risk checks passed across 54 outcomes.
+352 tests passed (four existing sklearn deprecation warnings), including nine
+new conditional payoff, chronology, future-outcome isolation, ordinal-score,
+no-fill replacement and invalid-input tests. Frozen prospective model and
+source hashes still match. Complete ignored local result
+`research_runs/conditional_payoff/results.json` SHA256:
+`7d3e4888b8685b44a3d6df734f40aceb489ce564d1cc782e2d6f88c67c865b5c`.
+All dependency hashes matched after completion. No deployment, orders, real
+money, risk increase or model promotion. Existing historical exposure, universe,
+full-session selection, raw split and assumed OHLC execution limitations remain.
+Objective remains unmet: conditional payoff decomposition did not create enough
+accurate, profitable signals. Further research must establish new usable signal
+information or a different validated payoff policy, not count rare wins as 90%
+evidence or treat software test counts as financial readiness.
