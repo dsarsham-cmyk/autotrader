@@ -2978,3 +2978,64 @@ unavailable evidence fails closed; it must not be silently dropped or counted
 as no-trade days. Existing collector/workflows/bot unchanged; no live trading,
 new orders, budget/leverage/loss relaxation or production deployment. Goal active
 and unachieved: scheduled plumbing is not the requested profitable formula.
+
+### Official-close context correction and re-fit — 2026-10-11
+
+Found a real historical INPUT classification defect, not proof of a production
+loss cause: the static09:30..16:00 context builders include after-hours bars on
+early-close sessions as regular-session history. Official GET-only Alpaca
+calendar receipt2024-01-01..2026-10-01 contains six13:00 closes. AAPL on
+2025-11-28 has210 actual regular minute bars plus100 after-close bars in the
+old window; old terminal close278.45 vs actual regular terminal278.86.
+These later prices are not inherently invalid; their session classification is.
+
+New isolated `calendar_regular_context.py` clips each session at official close,
+retains prior last-five-minute closes relative to that actual close, and measures
+terminal age relative to it. Today's future close never filters today's opening
+eligibility. Date-effective split normalization remains causal and unchanged.
+16:00 calendar control reproduces original split builder EXACTLY.
+
+Actual full input audit:13,355 candidates before/after, no additions/removals,
+120 affected symbol-sessions,10,148 excluded after-close bars;2,377 changed
+feature rows across119 dates. Common raw opening signal prices unchanged.
+Half days2024-07-03/11-29/12-24 and2025-07-03/11-28/12-24. Input audit SHA256:
+`8b2f50d0356238f53485061416accd80bc66694d73524dfb7e735779292f5fd9`.
+Receipt and raw market data stay private under ignored research_runs/cache.
+
+`calendar_predictive_research.py` freshly trains BOTH logistic and boosted
+models on own past labels for BOTH .4%/1% targets; no reuse of probabilities
+from incorrect inputs. Same warmup240/cal60/test20, gates.5/.65/.9,
+10bps-delay16/20bps-delay16/10bps-delay17,1% stop,1% stock/5% category,
+three positions and planned-risk guard. Labels are known past filled paths;
+missing future selections stop the entire cumulative ledger.
+
+All36 outcomes completed429 exchange sessions with exact reference fold dates,
+calendar coverage and reconciled reported budget/risk checks. Zero positive-net
+variants and zero target screens. Primary10bps/delay16 at gate.65:
+
+| Model / target | Active days | Winning active days | Net USD |
+| --- | ---: | ---: | ---: |
+| Logistic / .4% |227|60.79%|-740.73|
+| Boosted / .4% |167|55.09%|-600.95|
+| Logistic /1% |6|50.00%|-16.70|
+| Boosted /1% |3|0.00%|-41.54|
+
+The earlier1%-target/logistic.65 two-win/+14.01USD observation does not survive
+this corrected-input re-fit: six active days, three wins, negative net. The
+earlier.4%-target/logistic.9 two-win/+3.54USD observation becomes four active
+days,50% wins,-30.36USD. Sparse historical wins are NOT robust validation.
+Corrected study SHA256:
+`e3e17be4a99ea5015b99522f194047e3fc302f7baac861ed5bb3e617e44938b9`.
+
+621 tests passed/six Torch skipped/four existing SVC deprecation warnings.
+Seven new tests cover exact normal-session/split control, half-day after-hours
+invariance, retained legitimate early close, current future-close independence,
+no input mutation, future-split independence, missing/duplicate/unsupported
+calendar rejection and no-profit audit flags. Actual frozen paired bundle and
+collector verification still passes: they were NOT retroactively edited.
+Their known calendar-context limitation remains documented; prospective output
+is an unapproved comparator, not proof that corrected inputs are deployed.
+
+No production orders/deployment/live money or relaxed limits. This is exposed
+historical exploratory evidence, NOT independent forward validation. Target
+minimum90% active winning days with positive net remains unachieved and active.
