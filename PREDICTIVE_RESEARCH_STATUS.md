@@ -3136,3 +3136,52 @@ exact original control reproduction with future-candidate perturbation.
 No orders/live trading/deployment or risk relaxation. Historical exposure and
 correlation remain; no new independent forward observation. Goal still active
 and unachieved, not redefined as improved calibration or reduced activity.
+
+### Hindsight net-opportunity inventory — 2026-10-11
+
+`net_opportunity_inventory.py` diagnoses the unchanged mechanics on the exact
+corrected-calendar causal candidate universe. It deliberately uses FUTURE net
+standalone outcomes. Every artifact has `uses_future_outcomes=true`,
+`tradable=false`, orders/production/performance/independent/target flagsfalse.
+It is NOT a predictive strategy, an executable oracle, a monetary upper bound,
+a90% validation result or proof of prospective attainability. No dollar oracle
+profit/cumulative equity/winning portfolio-day metric is computed.
+
+Six inventories,8,562 causal candidates/429 sessions each:
+
+| Target | Cost bps/side | Delay min | Days with known positive path | Complete days without positive | Uncertain no-positive days | Unknown paths |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+|.4%|10|16|405|23|1|11|
+|.4%|20|16|0|421|8|8|
+|.4%|10|17|409|19|1|11|
+|1%|10|16|379|48|2|14|
+|1%|20|16|321|107|1|10|
+|1%|10|17|375|51|3|16|
+
+Positive paths are profitable only under declared assumed OHLC fill/cost/exit
+rules; known unfilled paths are separate, and missing paths cannot be labeled
+impossible/no-trade/loss/win.20bps is an all-in stress ASSUMPTION, not a verified
+Alpaca commission. The .4% stress result reinforces the already demonstrated
+payoff/cost issue; it is not evidence that every possible exit strategy fails.
+
+At primary10bps/delay16, .4% has2,238 known profitable paths spread over405 days.
+Existing model gate.65/top3 ranking selects298 of them on184 days (logistic),
+186 on123 days (boosted).1% has1,601 on379 days; logistic ranks three on three
+days, boosted zero. Selection occurs before fill/sizing/portfolio guards and is
+NOT executed capture or a winning-day count. Total-path recall is not a fair
+standalone performance score for a policy limited to three positions; do not
+conflate all available hindsight paths with affordable simultaneous trades.
+
+Evidence changes the next research question: nominal opportunities exist in
+the assumed mechanics at baseline costs, but current scores fail to identify
+sufficiently valuable predecision trades; recalibration alone cannot fix that.
+This says nothing about whether those future outcomes are forecastable. Missing
+original delivery/real fills/universe bias/dependence limits still apply.
+
+Inventory SHA256:
+`6c9192f94ad4bfd79ba77221396b95561dc1c3f98ee3d81bd1225457c10c53a4`.
+631 tests passed/six Torch skipped/four existing SVC warnings. Three new tests
+cover future-information/never-approval flags, complete/unknown/unfilled outcome
+segregation, duplicate candidates, and gate/top3 ranking rather than selection
+of all hindsight winners. No production mutations, relaxed limits or orders;
+independent forward evidence unchanged. Goal remains active and unachieved.
