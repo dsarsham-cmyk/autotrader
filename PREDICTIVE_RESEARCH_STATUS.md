@@ -3185,3 +3185,57 @@ cover future-information/never-approval flags, complete/unknown/unfilled outcome
 segregation, duplicate candidates, and gate/top3 ranking rather than selection
 of all hindsight winners. No production mutations, relaxed limits or orders;
 independent forward evidence unchanged. Goal remains active and unachieved.
+
+### Portfolio-day predictive filter — 2026-10-11
+
+`portfolio_day_research.py` implements a distinct prediction target: profitable
+UNFILTERED reference portfolio day conditional on activity, rather than one
+profitable standalone trade. This reference is a counterfactual control, not
+the filtered trader's realized history. Current/future equity, realized P&L,
+fills and outcomes never enter day features. Original causal stock probabilities
+and37 predecision summary features are used: universe mean16, eligible top3
+mean16, selected score max/mean/std and normalized universe/selection counts.
+
+Day model: standardized logistic C.1, past-only sigmoid calibration C1, seed19,
+90-date warmup,20-date refit blocks, last30 dates reserved for calibration;
+minimum30 active training/10 active calibration days and two classes in BOTH.
+Missing support/one class causes explicit abstention. Future activity does not
+filter candidate predictions. Labels come only from completed reference dates
+before the fold. Shared primary10bps/delay16 day schedule is reused for stress,
+not retrained on stress outcomes. Original stock gate.65/top3, all stops/caps/
+budget/cost/latency and continuous capital remain unchanged. Permission-denied
+simulator zero scores are NOT predicted probabilities; originals are retained.
+
+24 variants, each complete429 exchange dates with reconciled reported budgets/
+risk and calendar coverage. Zero qualifying target screens. Primary10bps/delay16:
+
+| Base head / target | Day gate | Active days | Winning active days | Net USD |
+| --- | ---: | ---: | ---: | ---: |
+|Logistic / .4%|.65|42|69.05%|-50.92|
+|Logistic / .4%|.9|1|100%|+1.84|
+|Boosted / .4%|.65|25|48%|-146.15|
+|Boosted / .4%|.9|0|UNKNOWN|0|
+|Both1% heads|.65/.9|0|UNKNOWN|0|
+
+Only two positive variants, BOTH reuse a single2026-06-08 day:
+10bps/delay16+1.84119USD and delay17+1.84082USD. This is NOT two independent
+observations, robust profitability, sufficient coverage or target achievement.
+Full-calendar accounting includes warmup as nonactive days, never wins. Full
+old-reference results have different opportunity/warmup spans, so these numbers
+do NOT demonstrate a fair matched-span win-rate improvement or risk reduction.
+Selected paths and filtered cumulative capital are actually replayed, not
+assigned the reference daily P&L label as their own outcome.
+
+Of17 possible day-model folds: logistic.4% fits13/scored259 days; boosted.4%
+fits9/scored179 days. Both1% heads fitNONE:339 postwarmup days lack active support.
+This explicitly diagnoses inadequate day-label data, not successful abstention.
+
+Study SHA256:
+`b90dc03a12bcffeac393d982f05011fd153a3d57d7228f7b4111f8cfb0702043`.
+635 tests passed/six Torch skipped/four pre-existing SVC warnings. Four new tests
+cover current/future outcome perturbation with unchanged current fit, strict
+chronological splits, actual classifier future-batch independence without any
+future labels, insufficient support/warmup, per-day feature isolation and
+permission-score preservation/no mutation. No model promotion, production
+mutation, orders/live money or risk relaxation. Exposed historical analysis,
+NOT independent forward validation; goal remains active and unachieved.
