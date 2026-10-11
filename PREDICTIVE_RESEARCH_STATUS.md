@@ -3089,3 +3089,50 @@ No new independent observations, trades, production changes or relaxed limits.
 Next modeling work must evaluate tail reliability AND net payoff on unchanged
 budgets, not just raise the score cutoff or call it quantum. Goal remains active
 and unachieved; this audit diagnoses why existing forecasts cannot qualify.
+
+### Past-supported smoothed calibration experiment — 2026-10-11
+
+`supported_calibration_research.py` implements a fixed alternative calibrator:
+five quantile groups of PAST calibration raw scores, beta(1,1) smoothing per
+nonempty group, weighted increasing isotonic fit at group mean scores; future
+scores interpolate and clip at past endpoints. Quantiles never use future
+candidates. This is an estimated probability, NOT an independent confidence
+bound; smoothing does not certify90% win probability. Ties retain every count.
+API reference: https://scikit-learn.org/stable/modules/generated/sklearn.isotonic.IsotonicRegression.html
+
+Protocol written before historical loading/evaluation, no after-result tuning.
+Same corrected calendar/split inputs, own .4%/1% net labels, expanding past
+train/cal60/test20, logistic/boosted base classifiers. Recomputed original
+sigmoid probabilities match stored reference within1e-12 for ALL candidates,
+with exact raw opening prices/features and candidate spans. No reuse of future
+labels in model fitting; entire future candidate set stays in forecasts.
+Original models/collectors/production remain unchanged.
+
+All36 recalibrated variants complete429 exchange sessions; reported sizing/
+budgets/positions/planned risk and calendar reconciliation pass. Zero positive
+net variants; zero target screens. Primary10bps/delay16, gate.65:
+logistic.4%218 active days/58.72% winning/-776.06USD;
+boosted.4%109/53.21%/-353.08USD;
+both1% heads abstain throughout (zero active, zero net, UNKNOWN win rate).
+No head reaches.9: maximum forecast .7563/logistic.4%,.7479/boosted.4%,
+.5378/logistic1%,.5462/boosted1%. No-trade days are NOT wins.
+
+Matched known-fill Brier (lower better), old -> recalibrated:
+logistic.4% .242790 -> .242397;
+boosted.4% .243863 -> .243469;
+logistic1% .238066 -> .237197;
+boosted1% .238560 -> .238800 (worse).
+Global ECE improves in the first three but worsens in boosted1%; coarse bins
+can conceal local errors. These tiny descriptive improvements do NOT establish
+significance or independence and do not translate into positive net returns.
+Calibration-only correction therefore does not supply the missing trade edge.
+
+Study SHA256:
+`c5b39f3bee7e056c84c7c0e05e3a9d03e7c3a6660746b05be4f351c40e64cd08`.
+628 tests passed/six Torch skipped/four pre-existing SVC warnings. Four new tests
+cover past-bin count/tie/smoothing/monotonicity, endpoint clipping and future
+batch independence, invalid/empty calibration, temporal split rejection, and
+exact original control reproduction with future-candidate perturbation.
+No orders/live trading/deployment or risk relaxation. Historical exposure and
+correlation remain; no new independent forward observation. Goal still active
+and unachieved, not redefined as improved calibration or reduced activity.
