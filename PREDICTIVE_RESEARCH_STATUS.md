@@ -3039,3 +3039,53 @@ is an unapproved comparator, not proof that corrected inputs are deployed.
 No production orders/deployment/live money or relaxed limits. This is exposed
 historical exploratory evidence, NOT independent forward validation. Target
 minimum90% active winning days with positive net remains unachieved and active.
+
+### Forecast reliability diagnostic — 2026-10-11
+
+`forecast_reliability_audit.py` independently recomputes standalone net-path
+labels for all8,562 forecast candidates per corrected-calendar head. No fitting,
+recalibration, threshold changes or production promotion. Fixed bins0/.5/.65/
+.8/.9/1; explicit final-bin inclusion of1. Outcomes conditional on actual modeled
+fill are separate from unfilled and missing paths; standalone profitable trades
+are NOT winning portfolio days. Executed gate.65 subset is reported separately
+because selection and portfolio guards change the population.
+
+Each .4% head has4,161 known filled,4,390 known unfilled and11 unknown paths;
+each1% head has4,158 known filled,4,390 unfilled and14 unknown. Unknowns remain
+listed, never imputed as no-trade/loss/win. These are all-candidate diagnostics,
+not contradictions of prior COMPLETE selected portfolio ledgers: those paths
+were not selected by the fixed policies. Stocks/dates correlated; descriptive
+Wilson intervals do not certify independent statistical confidence.
+
+Corrected .4%-target/logistic known-fill bins:
+
+| Declared probability | Trades / distinct days | Mean prediction | Profitable trades |
+| --- | ---: | ---: | ---: |
+|65–80%|480 /229|70.66%|66.25%|
+|80–90%|58 /50|83.60%|75.86%|
+|90–100%|5 /4|92.39%|40.00% (2 of5)|
+
+The last bin is much too small for a general reliability claim, but does not
+support treating a90% model output as90% demonstrated win probability.
+Global calibration error only1.35 percentage points hides this rare-tail
+weakness. Boosted .4% has6 known-fill80–90% forecasts, average81.22% predicted,
+50% observed; no90% forecasts. Neither1% head has any known-fill80%+ forecasts.
+
+Actually executed primary gate.65 subset:
+logistic.4%419 trades,73.23% mean prediction/69.93% profitable trades;
+boosted.4%284 trades,69.54% predicted/64.79% profitable;
+logistic1%7 trades,72.20% predicted/42.86% profitable;
+boosted1%4 trades,68.54% predicted/zero profitable. All primary ledgers still
+have negative net. A high trade win fraction alone does not resolve payoff
+asymmetry or portfolio-day correlation. These tiny1% samples are exploratory,
+not stable estimated probabilities and not evidence for real-money readiness.
+
+Audit SHA256:
+`c5ab134c1d88f1487077a5aa52e14840bb545973afb377201bf88424dc60c8a7`.
+624 tests passed/six Torch skipped/four pre-existing SVC warnings. Three new
+tests cover exact bin boundaries/empty uncertainty, overconfidence/invalid and
+duplicate probabilities, unknown-vs-unfilled segregation and unknown full net.
+No new independent observations, trades, production changes or relaxed limits.
+Next modeling work must evaluate tail reliability AND net payoff on unchanged
+budgets, not just raise the score cutoff or call it quantum. Goal remains active
+and unachieved; this audit diagnoses why existing forecasts cannot qualify.
