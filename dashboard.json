@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-10-12T08:58:11.716889+00:00",
-  "market_open": false,
+  "last_updated": "2026-10-12T18:55:00.597798+00:00",
+  "market_open": true,
   "account": {
-    "equity": 107148.62,
-    "cash": 107148.62,
-    "buying_power": 428594.48,
+    "equity": 107123.07,
+    "cash": 107123.07,
+    "buying_power": 428492.28,
     "last_equity": 107148.62,
-    "day_pnl": 0.0,
-    "day_pnl_pct": 0.0,
+    "day_pnl": -25.55,
+    "day_pnl_pct": -0.024,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -28,11 +28,36 @@
       "positions": {},
       "market_value": 0,
       "unrealized_pnl": 0,
-      "day_pnl": 0.0,
+      "day_pnl": -24.25,
       "market_date": "2026-10-12",
-      "daily_buy_executions": 0,
-      "daily_sell_executions": 0,
-      "daily_symbols": []
+      "daily_buy_executions": 3,
+      "daily_sell_executions": 5,
+      "daily_symbols": [
+        {
+          "symbol": "TQQQ",
+          "day_pnl": -17.28,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 81.28,
+          "execution_count": 3
+        },
+        {
+          "symbol": "SPXL",
+          "day_pnl": -3.52,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 297.97,
+          "execution_count": 2
+        },
+        {
+          "symbol": "SOXL",
+          "day_pnl": -3.45,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 139.76,
+          "execution_count": 3
+        }
+      ]
     },
     "low": {
       "name": "LOW RISK",
@@ -56,11 +81,52 @@
       "positions": {},
       "market_value": 0,
       "unrealized_pnl": 0,
-      "day_pnl": 0.0,
+      "day_pnl": -1.46,
       "market_date": "2026-10-12",
-      "daily_buy_executions": 0,
-      "daily_sell_executions": 0,
-      "daily_symbols": []
+      "daily_buy_executions": 8,
+      "daily_sell_executions": 12,
+      "daily_symbols": [
+        {
+          "symbol": "QQQ",
+          "day_pnl": 0.73,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 751.27,
+          "execution_count": 4
+        },
+        {
+          "symbol": "SPY",
+          "day_pnl": -1.38,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 778.57,
+          "execution_count": 4
+        },
+        {
+          "symbol": "DIA",
+          "day_pnl": -1.88,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 516.11,
+          "execution_count": 5
+        },
+        {
+          "symbol": "IWM",
+          "day_pnl": 4.19,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 278.94,
+          "execution_count": 5
+        },
+        {
+          "symbol": "EWJ",
+          "day_pnl": -3.12,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 97.86,
+          "execution_count": 2
+        }
+      ]
     },
     "experiment": {
       "name": "ACTIVE STOCK EXPERIMENT",
@@ -96,18 +162,23 @@
       "positions": {},
       "market_value": 0,
       "unrealized_pnl": 0,
-      "day_pnl": 0.0,
+      "day_pnl": 0.16,
       "market_date": "2026-10-12",
-      "daily_buy_executions": 0,
-      "daily_sell_executions": 0,
-      "daily_symbols": []
+      "daily_buy_executions": 1,
+      "daily_sell_executions": 2,
+      "daily_symbols": [
+        {
+          "symbol": "CVX",
+          "day_pnl": 0.16,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 211.98,
+          "execution_count": 3
+        }
+      ]
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-24T10:16:33.869084+00:00",
-      "equity": 107223.16
-    },
     {
       "ts": "2026-09-24T10:43:54.772719+00:00",
       "equity": 107237.86
@@ -2103,9 +2174,292 @@
     {
       "ts": "2026-10-12T08:58:11.716889+00:00",
       "equity": 107148.62
+    },
+    {
+      "ts": "2026-10-12T18:55:00.597798+00:00",
+      "equity": 107123.07
     }
   ],
   "recent_trades": [
+    {
+      "execution_id": "20261012094350364::cc362b1d-b9ae-412d-bc24-9afe149fc554",
+      "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+      "time": "2026-10-12T13:43:50.364742Z",
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 7.0,
+      "price": 279.01
+    },
+    {
+      "execution_id": "20261012094349269::92dcd4b3-a8d0-4168-bfa2-c7f412f8499c",
+      "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+      "time": "2026-10-12T13:43:49.269143Z",
+      "symbol": "DIA",
+      "side": "sell",
+      "qty": 2.0,
+      "price": 517.58
+    },
+    {
+      "execution_id": "20261012094349200::6156753e-621d-47cb-9bcf-a18101dbe5a9",
+      "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+      "time": "2026-10-12T13:43:49.200801Z",
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 1.0,
+      "price": 279.03
+    },
+    {
+      "execution_id": "20261012094348994::2fb58842-f650-4d39-9a8c-af2314189d67",
+      "order_id": "517e7e92-0fe8-4dc3-96f9-83ee5c477680",
+      "time": "2026-10-12T13:43:48.994474Z",
+      "symbol": "QQQ",
+      "side": "sell",
+      "qty": 1.0,
+      "price": 747.59
+    },
+    {
+      "execution_id": "20261012094348832::d43788d2-9bed-4730-96ea-01ec9a34650d",
+      "order_id": "ca3f7cc7-481e-4f17-aa85-ea5a5a5b56fb",
+      "time": "2026-10-12T13:43:48.832109Z",
+      "symbol": "TQQQ",
+      "side": "sell",
+      "qty": 8.0,
+      "price": 80.12
+    },
+    {
+      "execution_id": "20261012094348756::7f5c7ac1-e2d8-4fbb-8b19-08c58f268354",
+      "order_id": "c4dbf2c1-89db-4291-badc-9b2ee5f3589e",
+      "time": "2026-10-12T13:43:48.756416Z",
+      "symbol": "SOXL",
+      "side": "sell",
+      "qty": 4.0,
+      "price": 129.53
+    },
+    {
+      "execution_id": "20261012094348549::0454737a-c640-47e3-9a18-78b834f06b7f",
+      "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+      "time": "2026-10-12T13:43:48.549546Z",
+      "symbol": "DIA",
+      "side": "sell",
+      "qty": 2.0,
+      "price": 517.56
+    },
+    {
+      "execution_id": "20261012094348505::04d32796-0876-497a-84e6-1ec5533e2bc3",
+      "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+      "time": "2026-10-12T13:43:48.505743Z",
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 4.0,
+      "price": 279.02
+    },
+    {
+      "execution_id": "20261012094348127::2e1b444d-10e8-4f2e-a768-e5557d82c81b",
+      "order_id": "ca3f7cc7-481e-4f17-aa85-ea5a5a5b56fb",
+      "time": "2026-10-12T13:43:48.127597Z",
+      "symbol": "TQQQ",
+      "side": "sell",
+      "qty": 54.0,
+      "price": 80.11
+    },
+    {
+      "execution_id": "20261012094348037::5609e7df-2920-4005-b2c7-9739daadd64d",
+      "order_id": "c4dbf2c1-89db-4291-badc-9b2ee5f3589e",
+      "time": "2026-10-12T13:43:48.037534Z",
+      "symbol": "SOXL",
+      "side": "sell",
+      "qty": 1.0,
+      "price": 129.53
+    },
+    {
+      "execution_id": "20261012094347926::a1f659f2-c520-4536-a476-a45b0c44d2ec",
+      "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+      "time": "2026-10-12T13:43:47.926541Z",
+      "symbol": "DIA",
+      "side": "sell",
+      "qty": 1.0,
+      "price": 517.56
+    },
+    {
+      "execution_id": "20261012094347913::ad409d52-0527-4e96-b510-a8f814d9729d",
+      "order_id": "a22bae43-c62e-406c-882a-cb924bcb61e2",
+      "time": "2026-10-12T13:43:47.913234Z",
+      "symbol": "SPY",
+      "side": "sell",
+      "qty": 8.0,
+      "price": 778.92
+    },
+    {
+      "execution_id": "20261012094347880::3f1180d5-6eda-41a0-afdc-519257af5f56",
+      "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+      "time": "2026-10-12T13:43:47.880183Z",
+      "symbol": "IWM",
+      "side": "sell",
+      "qty": 7.0,
+      "price": 279.03
+    },
+    {
+      "execution_id": "20261012094347841::05f29e36-1e62-45e7-86d2-160ca2d411f2",
+      "order_id": "b78a2ce0-8fef-4e5e-a0c5-580e24e7695c",
+      "time": "2026-10-12T13:43:47.84105Z",
+      "symbol": "SPXL",
+      "side": "sell",
+      "qty": 22.0,
+      "price": 298.43
+    },
+    {
+      "execution_id": "20261012094347495::c89213a7-98c4-4d93-97e3-2037769a4855",
+      "order_id": "517e7e92-0fe8-4dc3-96f9-83ee5c477680",
+      "time": "2026-10-12T13:43:47.495387Z",
+      "symbol": "QQQ",
+      "side": "sell",
+      "qty": 6.0,
+      "price": 747.63
+    },
+    {
+      "execution_id": "20261012094346516::42cd17d7-943a-4e43-970e-d1cd864e7be6",
+      "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+      "time": "2026-10-12T13:43:46.516268Z",
+      "symbol": "DIA",
+      "side": "sell",
+      "qty": 7.0,
+      "price": 517.56
+    },
+    {
+      "execution_id": "20261012094346457::56a47b52-332a-42fa-b3f9-66b3f39702a8",
+      "order_id": "79348db2-0084-496a-a48a-c5129d6b7ccb",
+      "time": "2026-10-12T13:43:46.457208Z",
+      "symbol": "EWJ",
+      "side": "sell",
+      "qty": 52.0,
+      "price": 97.65
+    },
+    {
+      "execution_id": "20261012094329360::59779c2d-d841-4bd9-a4ce-77d4651770f4",
+      "order_id": "647d6881-edc6-4a7a-afe9-47ce2923484b",
+      "time": "2026-10-12T13:43:29.360735Z",
+      "symbol": "CVX",
+      "side": "sell",
+      "qty": 1.0,
+      "price": 215.9
+    },
+    {
+      "execution_id": "20261012094327298::d906408d-8faa-4b1a-a91f-8ff3dff1c38d",
+      "order_id": "647d6881-edc6-4a7a-afe9-47ce2923484b",
+      "time": "2026-10-12T13:43:27.298463Z",
+      "symbol": "CVX",
+      "side": "sell",
+      "qty": 3.0,
+      "price": 215.82
+    },
+    {
+      "execution_id": "20261012094307630::f38bcf2e-1fc8-47db-b177-fb7173a86ec3",
+      "order_id": "637f81c4-5550-458b-8d9b-6541270a83a5",
+      "time": "2026-10-12T13:43:07.630145Z",
+      "symbol": "CVX",
+      "side": "buy",
+      "qty": 4.0,
+      "price": 215.8
+    },
+    {
+      "execution_id": "20261012093657761::9b284e5a-6a55-4174-a566-d2c7da6de4ff",
+      "order_id": "6f01da83-a49c-4534-a9df-8d491124b486",
+      "time": "2026-10-12T13:36:57.761021Z",
+      "symbol": "EWJ",
+      "side": "buy",
+      "qty": 52.0,
+      "price": 97.71
+    },
+    {
+      "execution_id": "20261012093627785::130f3032-e1a7-46b9-88f3-e415292ed1f3",
+      "order_id": "dc1399cd-ab92-4013-8ed9-fe8aeaac86d3",
+      "time": "2026-10-12T13:36:27.785488Z",
+      "symbol": "IWM",
+      "side": "buy",
+      "qty": 19.0,
+      "price": 278.8
+    },
+    {
+      "execution_id": "20261012093558791::7f3ef4ec-ccd3-4287-a405-c5f17ea50ff7",
+      "order_id": "d4e33043-7be8-4f08-a901-6b1430dcadc8",
+      "time": "2026-10-12T13:35:58.791202Z",
+      "symbol": "DIA",
+      "side": "buy",
+      "qty": 12.0,
+      "price": 517.72
+    },
+    {
+      "execution_id": "20261012093540360::035e290f-0137-4865-b5c5-e081ac6d180a",
+      "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+      "time": "2026-10-12T13:35:40.360163Z",
+      "symbol": "SPY",
+      "side": "buy",
+      "qty": 1.0,
+      "price": 779.08
+    },
+    {
+      "execution_id": "20261012093539188::be696f9a-a458-4342-9af8-91b20595dd74",
+      "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+      "time": "2026-10-12T13:35:39.188173Z",
+      "symbol": "SPY",
+      "side": "buy",
+      "qty": 6.0,
+      "price": 779.09
+    },
+    {
+      "execution_id": "20261012093536192::aaa7dc9d-3570-4d2b-b06c-131d8caec4c7",
+      "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+      "time": "2026-10-12T13:35:36.192511Z",
+      "symbol": "SPY",
+      "side": "buy",
+      "qty": 1.0,
+      "price": 779.12
+    },
+    {
+      "execution_id": "20261012093505438::84b82f43-9b6b-4daa-8a8d-1c7fe8fd3b52",
+      "order_id": "965088b5-1a56-45e9-b34e-62495cc9674e",
+      "time": "2026-10-12T13:35:05.438417Z",
+      "symbol": "QQQ",
+      "side": "buy",
+      "qty": 5.0,
+      "price": 747.54
+    },
+    {
+      "execution_id": "20261012093459879::aeac80da-e976-4dcf-9f30-6356a77b88aa",
+      "order_id": "965088b5-1a56-45e9-b34e-62495cc9674e",
+      "time": "2026-10-12T13:34:59.879902Z",
+      "symbol": "QQQ",
+      "side": "buy",
+      "qty": 2.0,
+      "price": 747.47
+    },
+    {
+      "execution_id": "20261012093423077::cb1a7a8d-52b8-4738-849c-d9c67a5a8a3c",
+      "order_id": "5e042d8f-d451-44ca-9a06-0d97ccdfb23d",
+      "time": "2026-10-12T13:34:23.077909Z",
+      "symbol": "SOXL",
+      "side": "buy",
+      "qty": 5.0,
+      "price": 130.22
+    },
+    {
+      "execution_id": "20261012093333340::2e109117-8cb8-4ae1-b867-522d1ea494fc",
+      "order_id": "78736fef-e59c-4342-95e9-acc68cb5897c",
+      "time": "2026-10-12T13:33:33.3409Z",
+      "symbol": "SPXL",
+      "side": "buy",
+      "qty": 22.0,
+      "price": 298.59
+    },
+    {
+      "execution_id": "20261012093133737::fd0f7687-dfc9-45b6-884e-a07184de9ca2",
+      "order_id": "87e303d5-bd9f-4e31-9778-364bcb4150cb",
+      "time": "2026-10-12T13:31:33.737645Z",
+      "symbol": "TQQQ",
+      "side": "buy",
+      "qty": 62.0,
+      "price": 80.39
+    },
     {
       "execution_id": "20261009155531356::8832d74d-1418-4103-b038-3b1592ba6101",
       "order_id": "16c1fcf0-4877-4f4e-8fb5-47a8a49e0d35",
@@ -7347,17 +7701,17 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-12T08:58:17.676825+00:00",
+    "generated_at": "2026-10-12T18:55:10.859196+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
     "cadence": {
       "uses_daily_bars": true,
       "guaranteed_daily_trade": false,
-      "fills_today": 0,
-      "active_days": 16,
+      "fills_today": 31,
+      "active_days": 17,
       "observed_weekdays": 22,
-      "active_day_pct": 72.7,
+      "active_day_pct": 77.3,
       "calendar": [
         {
           "date": "2026-09-29",
@@ -7397,14 +7751,14 @@
         },
         {
           "date": "2026-10-12",
-          "fills": 0
+          "fills": 31
         }
       ],
       "explanation": "The engine checks daily momentum. It may hold or make no trade; daily profit and daily fills are not guaranteed."
     },
     "execution": {
-      "recent_fill_count": 575,
-      "sell_fill_count": 293,
+      "recent_fill_count": 606,
+      "sell_fill_count": 312,
       "churn_count": 29,
       "churn_events": [
         {
@@ -7461,20 +7815,20 @@
       "open_positions": 0,
       "protected_positions": 0,
       "simple_buy_orders": 0,
-      "bracket_buy_orders": 16
+      "bracket_buy_orders": 15
     },
     "checks": [
       {
         "key": "live_evidence",
         "label": "Enough live evidence",
         "status": "warn",
-        "detail": "22 observed trading days and 293 sell fills. Too early to judge live profitability reliably."
+        "detail": "22 observed trading days and 312 sell fills. Too early to judge live profitability reliably."
       },
       {
         "key": "risk_protection",
         "label": "Broker-side protection",
         "status": "good",
-        "detail": "0 of 0 open positions have an active broker-side stop order. Recent filled buys: 16 bracket/OTO, 0 simple."
+        "detail": "0 of 0 open positions have an active broker-side stop order. Recent filled buys: 15 bracket/OTO, 0 simple."
       },
       {
         "key": "execution_churn",
@@ -7498,7 +7852,7 @@
         "key": "account_controller",
         "label": "Account-wide loss control",
         "status": "good",
-        "detail": "Paper controller checking risk"
+        "detail": "liquidation confirmed; no re-entry today"
       }
     ]
   },
@@ -7506,55 +7860,690 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-10-12",
-    "generated_at": "2026-10-12T08:58:14.013606+00:00",
+    "generated_at": "2026-10-12T18:55:03.001799+00:00",
     "portfolios": {
       "high": {
-        "day_pnl": 0.0,
+        "day_pnl": -24.25,
         "market_date": "2026-10-12",
-        "daily_buy_executions": 0,
-        "daily_sell_executions": 0,
-        "daily_symbols": []
+        "daily_buy_executions": 3,
+        "daily_sell_executions": 5,
+        "daily_symbols": [
+          {
+            "symbol": "TQQQ",
+            "day_pnl": -17.28,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 81.28,
+            "execution_count": 3
+          },
+          {
+            "symbol": "SPXL",
+            "day_pnl": -3.52,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 297.97,
+            "execution_count": 2
+          },
+          {
+            "symbol": "SOXL",
+            "day_pnl": -3.45,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 139.76,
+            "execution_count": 3
+          }
+        ]
       },
       "low": {
-        "day_pnl": 0.0,
+        "day_pnl": -1.46,
         "market_date": "2026-10-12",
-        "daily_buy_executions": 0,
-        "daily_sell_executions": 0,
-        "daily_symbols": []
+        "daily_buy_executions": 8,
+        "daily_sell_executions": 12,
+        "daily_symbols": [
+          {
+            "symbol": "QQQ",
+            "day_pnl": 0.73,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 751.27,
+            "execution_count": 4
+          },
+          {
+            "symbol": "SPY",
+            "day_pnl": -1.38,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 778.57,
+            "execution_count": 4
+          },
+          {
+            "symbol": "DIA",
+            "day_pnl": -1.88,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 516.11,
+            "execution_count": 5
+          },
+          {
+            "symbol": "IWM",
+            "day_pnl": 4.19,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 278.94,
+            "execution_count": 5
+          },
+          {
+            "symbol": "EWJ",
+            "day_pnl": -3.12,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 97.86,
+            "execution_count": 2
+          }
+        ]
       },
       "experiment": {
-        "day_pnl": 0.0,
+        "day_pnl": 0.16,
         "market_date": "2026-10-12",
-        "daily_buy_executions": 0,
-        "daily_sell_executions": 0,
-        "daily_symbols": []
+        "daily_buy_executions": 1,
+        "daily_sell_executions": 2,
+        "daily_symbols": [
+          {
+            "symbol": "CVX",
+            "day_pnl": 0.16,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 211.98,
+            "execution_count": 3
+          }
+        ]
       }
     },
-    "portfolio_day_pnl": 0.0,
+    "portfolio_day_pnl": -25.55,
     "unallocated_day_pnl": 0.0,
-    "buy_executions": 0,
-    "sell_executions": 0,
-    "executions": [],
+    "buy_executions": 12,
+    "sell_executions": 19,
+    "executions": [
+      {
+        "execution_id": "20261012094350364::cc362b1d-b9ae-412d-bc24-9afe149fc554",
+        "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+        "time": "2026-10-12T13:43:50.364742Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 7.0,
+        "price": 279.01
+      },
+      {
+        "execution_id": "20261012094349269::92dcd4b3-a8d0-4168-bfa2-c7f412f8499c",
+        "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+        "time": "2026-10-12T13:43:49.269143Z",
+        "symbol": "DIA",
+        "side": "sell",
+        "qty": 2.0,
+        "price": 517.58
+      },
+      {
+        "execution_id": "20261012094349200::6156753e-621d-47cb-9bcf-a18101dbe5a9",
+        "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+        "time": "2026-10-12T13:43:49.200801Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 279.03
+      },
+      {
+        "execution_id": "20261012094348994::2fb58842-f650-4d39-9a8c-af2314189d67",
+        "order_id": "517e7e92-0fe8-4dc3-96f9-83ee5c477680",
+        "time": "2026-10-12T13:43:48.994474Z",
+        "symbol": "QQQ",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 747.59
+      },
+      {
+        "execution_id": "20261012094348832::d43788d2-9bed-4730-96ea-01ec9a34650d",
+        "order_id": "ca3f7cc7-481e-4f17-aa85-ea5a5a5b56fb",
+        "time": "2026-10-12T13:43:48.832109Z",
+        "symbol": "TQQQ",
+        "side": "sell",
+        "qty": 8.0,
+        "price": 80.12
+      },
+      {
+        "execution_id": "20261012094348756::7f5c7ac1-e2d8-4fbb-8b19-08c58f268354",
+        "order_id": "c4dbf2c1-89db-4291-badc-9b2ee5f3589e",
+        "time": "2026-10-12T13:43:48.756416Z",
+        "symbol": "SOXL",
+        "side": "sell",
+        "qty": 4.0,
+        "price": 129.53
+      },
+      {
+        "execution_id": "20261012094348549::0454737a-c640-47e3-9a18-78b834f06b7f",
+        "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+        "time": "2026-10-12T13:43:48.549546Z",
+        "symbol": "DIA",
+        "side": "sell",
+        "qty": 2.0,
+        "price": 517.56
+      },
+      {
+        "execution_id": "20261012094348505::04d32796-0876-497a-84e6-1ec5533e2bc3",
+        "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+        "time": "2026-10-12T13:43:48.505743Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 4.0,
+        "price": 279.02
+      },
+      {
+        "execution_id": "20261012094348127::2e1b444d-10e8-4f2e-a768-e5557d82c81b",
+        "order_id": "ca3f7cc7-481e-4f17-aa85-ea5a5a5b56fb",
+        "time": "2026-10-12T13:43:48.127597Z",
+        "symbol": "TQQQ",
+        "side": "sell",
+        "qty": 54.0,
+        "price": 80.11
+      },
+      {
+        "execution_id": "20261012094348037::5609e7df-2920-4005-b2c7-9739daadd64d",
+        "order_id": "c4dbf2c1-89db-4291-badc-9b2ee5f3589e",
+        "time": "2026-10-12T13:43:48.037534Z",
+        "symbol": "SOXL",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 129.53
+      },
+      {
+        "execution_id": "20261012094347926::a1f659f2-c520-4536-a476-a45b0c44d2ec",
+        "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+        "time": "2026-10-12T13:43:47.926541Z",
+        "symbol": "DIA",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 517.56
+      },
+      {
+        "execution_id": "20261012094347913::ad409d52-0527-4e96-b510-a8f814d9729d",
+        "order_id": "a22bae43-c62e-406c-882a-cb924bcb61e2",
+        "time": "2026-10-12T13:43:47.913234Z",
+        "symbol": "SPY",
+        "side": "sell",
+        "qty": 8.0,
+        "price": 778.92
+      },
+      {
+        "execution_id": "20261012094347880::3f1180d5-6eda-41a0-afdc-519257af5f56",
+        "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+        "time": "2026-10-12T13:43:47.880183Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 7.0,
+        "price": 279.03
+      },
+      {
+        "execution_id": "20261012094347841::05f29e36-1e62-45e7-86d2-160ca2d411f2",
+        "order_id": "b78a2ce0-8fef-4e5e-a0c5-580e24e7695c",
+        "time": "2026-10-12T13:43:47.84105Z",
+        "symbol": "SPXL",
+        "side": "sell",
+        "qty": 22.0,
+        "price": 298.43
+      },
+      {
+        "execution_id": "20261012094347495::c89213a7-98c4-4d93-97e3-2037769a4855",
+        "order_id": "517e7e92-0fe8-4dc3-96f9-83ee5c477680",
+        "time": "2026-10-12T13:43:47.495387Z",
+        "symbol": "QQQ",
+        "side": "sell",
+        "qty": 6.0,
+        "price": 747.63
+      },
+      {
+        "execution_id": "20261012094346516::42cd17d7-943a-4e43-970e-d1cd864e7be6",
+        "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+        "time": "2026-10-12T13:43:46.516268Z",
+        "symbol": "DIA",
+        "side": "sell",
+        "qty": 7.0,
+        "price": 517.56
+      },
+      {
+        "execution_id": "20261012094346457::56a47b52-332a-42fa-b3f9-66b3f39702a8",
+        "order_id": "79348db2-0084-496a-a48a-c5129d6b7ccb",
+        "time": "2026-10-12T13:43:46.457208Z",
+        "symbol": "EWJ",
+        "side": "sell",
+        "qty": 52.0,
+        "price": 97.65
+      },
+      {
+        "execution_id": "20261012094329360::59779c2d-d841-4bd9-a4ce-77d4651770f4",
+        "order_id": "647d6881-edc6-4a7a-afe9-47ce2923484b",
+        "time": "2026-10-12T13:43:29.360735Z",
+        "symbol": "CVX",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 215.9
+      },
+      {
+        "execution_id": "20261012094327298::d906408d-8faa-4b1a-a91f-8ff3dff1c38d",
+        "order_id": "647d6881-edc6-4a7a-afe9-47ce2923484b",
+        "time": "2026-10-12T13:43:27.298463Z",
+        "symbol": "CVX",
+        "side": "sell",
+        "qty": 3.0,
+        "price": 215.82
+      },
+      {
+        "execution_id": "20261012094307630::f38bcf2e-1fc8-47db-b177-fb7173a86ec3",
+        "order_id": "637f81c4-5550-458b-8d9b-6541270a83a5",
+        "time": "2026-10-12T13:43:07.630145Z",
+        "symbol": "CVX",
+        "side": "buy",
+        "qty": 4.0,
+        "price": 215.8
+      },
+      {
+        "execution_id": "20261012093657761::9b284e5a-6a55-4174-a566-d2c7da6de4ff",
+        "order_id": "6f01da83-a49c-4534-a9df-8d491124b486",
+        "time": "2026-10-12T13:36:57.761021Z",
+        "symbol": "EWJ",
+        "side": "buy",
+        "qty": 52.0,
+        "price": 97.71
+      },
+      {
+        "execution_id": "20261012093627785::130f3032-e1a7-46b9-88f3-e415292ed1f3",
+        "order_id": "dc1399cd-ab92-4013-8ed9-fe8aeaac86d3",
+        "time": "2026-10-12T13:36:27.785488Z",
+        "symbol": "IWM",
+        "side": "buy",
+        "qty": 19.0,
+        "price": 278.8
+      },
+      {
+        "execution_id": "20261012093558791::7f3ef4ec-ccd3-4287-a405-c5f17ea50ff7",
+        "order_id": "d4e33043-7be8-4f08-a901-6b1430dcadc8",
+        "time": "2026-10-12T13:35:58.791202Z",
+        "symbol": "DIA",
+        "side": "buy",
+        "qty": 12.0,
+        "price": 517.72
+      },
+      {
+        "execution_id": "20261012093540360::035e290f-0137-4865-b5c5-e081ac6d180a",
+        "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+        "time": "2026-10-12T13:35:40.360163Z",
+        "symbol": "SPY",
+        "side": "buy",
+        "qty": 1.0,
+        "price": 779.08
+      },
+      {
+        "execution_id": "20261012093539188::be696f9a-a458-4342-9af8-91b20595dd74",
+        "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+        "time": "2026-10-12T13:35:39.188173Z",
+        "symbol": "SPY",
+        "side": "buy",
+        "qty": 6.0,
+        "price": 779.09
+      },
+      {
+        "execution_id": "20261012093536192::aaa7dc9d-3570-4d2b-b06c-131d8caec4c7",
+        "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+        "time": "2026-10-12T13:35:36.192511Z",
+        "symbol": "SPY",
+        "side": "buy",
+        "qty": 1.0,
+        "price": 779.12
+      },
+      {
+        "execution_id": "20261012093505438::84b82f43-9b6b-4daa-8a8d-1c7fe8fd3b52",
+        "order_id": "965088b5-1a56-45e9-b34e-62495cc9674e",
+        "time": "2026-10-12T13:35:05.438417Z",
+        "symbol": "QQQ",
+        "side": "buy",
+        "qty": 5.0,
+        "price": 747.54
+      },
+      {
+        "execution_id": "20261012093459879::aeac80da-e976-4dcf-9f30-6356a77b88aa",
+        "order_id": "965088b5-1a56-45e9-b34e-62495cc9674e",
+        "time": "2026-10-12T13:34:59.879902Z",
+        "symbol": "QQQ",
+        "side": "buy",
+        "qty": 2.0,
+        "price": 747.47
+      },
+      {
+        "execution_id": "20261012093423077::cb1a7a8d-52b8-4738-849c-d9c67a5a8a3c",
+        "order_id": "5e042d8f-d451-44ca-9a06-0d97ccdfb23d",
+        "time": "2026-10-12T13:34:23.077909Z",
+        "symbol": "SOXL",
+        "side": "buy",
+        "qty": 5.0,
+        "price": 130.22
+      },
+      {
+        "execution_id": "20261012093333340::2e109117-8cb8-4ae1-b867-522d1ea494fc",
+        "order_id": "78736fef-e59c-4342-95e9-acc68cb5897c",
+        "time": "2026-10-12T13:33:33.3409Z",
+        "symbol": "SPXL",
+        "side": "buy",
+        "qty": 22.0,
+        "price": 298.59
+      },
+      {
+        "execution_id": "20261012093133737::fd0f7687-dfc9-45b6-884e-a07184de9ca2",
+        "order_id": "87e303d5-bd9f-4e31-9778-364bcb4150cb",
+        "time": "2026-10-12T13:31:33.737645Z",
+        "symbol": "TQQQ",
+        "side": "buy",
+        "qty": 62.0,
+        "price": 80.39
+      }
+    ],
     "note": "Daily marked trading P&L, including today's closed trades. Fees, dividends, transfers, unassigned assets and sampling differences remain in the unallocated account change; not guaranteed net profit."
   },
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-12T08:58:14.206022+00:00",
+    "past_days_updated_at": "2026-10-12T18:55:06.360910+00:00",
     "coverage_start": "2026-09-10",
     "days": [
       {
         "date": "2026-10-12",
-        "equity": 107148.62,
-        "day_change": 0.0,
-        "day_change_pct": 0.0,
-        "status": "latest",
+        "equity": 107123.07,
+        "day_change": -25.55,
+        "day_change_pct": -0.024,
+        "status": "intraday",
         "executions_complete": true,
-        "buys": 0,
-        "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
+        "buys": 12,
+        "sells": 19,
+        "execution_count": 31,
+        "order_count": 18,
+        "executions": [
+          {
+            "execution_id": "20261012094350364::cc362b1d-b9ae-412d-bc24-9afe149fc554",
+            "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+            "time": "2026-10-12T13:43:50.364742Z",
+            "symbol": "IWM",
+            "side": "sell",
+            "qty": 7.0,
+            "price": 279.01
+          },
+          {
+            "execution_id": "20261012094349269::92dcd4b3-a8d0-4168-bfa2-c7f412f8499c",
+            "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+            "time": "2026-10-12T13:43:49.269143Z",
+            "symbol": "DIA",
+            "side": "sell",
+            "qty": 2.0,
+            "price": 517.58
+          },
+          {
+            "execution_id": "20261012094349200::6156753e-621d-47cb-9bcf-a18101dbe5a9",
+            "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+            "time": "2026-10-12T13:43:49.200801Z",
+            "symbol": "IWM",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 279.03
+          },
+          {
+            "execution_id": "20261012094348994::2fb58842-f650-4d39-9a8c-af2314189d67",
+            "order_id": "517e7e92-0fe8-4dc3-96f9-83ee5c477680",
+            "time": "2026-10-12T13:43:48.994474Z",
+            "symbol": "QQQ",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 747.59
+          },
+          {
+            "execution_id": "20261012094348832::d43788d2-9bed-4730-96ea-01ec9a34650d",
+            "order_id": "ca3f7cc7-481e-4f17-aa85-ea5a5a5b56fb",
+            "time": "2026-10-12T13:43:48.832109Z",
+            "symbol": "TQQQ",
+            "side": "sell",
+            "qty": 8.0,
+            "price": 80.12
+          },
+          {
+            "execution_id": "20261012094348756::7f5c7ac1-e2d8-4fbb-8b19-08c58f268354",
+            "order_id": "c4dbf2c1-89db-4291-badc-9b2ee5f3589e",
+            "time": "2026-10-12T13:43:48.756416Z",
+            "symbol": "SOXL",
+            "side": "sell",
+            "qty": 4.0,
+            "price": 129.53
+          },
+          {
+            "execution_id": "20261012094348549::0454737a-c640-47e3-9a18-78b834f06b7f",
+            "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+            "time": "2026-10-12T13:43:48.549546Z",
+            "symbol": "DIA",
+            "side": "sell",
+            "qty": 2.0,
+            "price": 517.56
+          },
+          {
+            "execution_id": "20261012094348505::04d32796-0876-497a-84e6-1ec5533e2bc3",
+            "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+            "time": "2026-10-12T13:43:48.505743Z",
+            "symbol": "IWM",
+            "side": "sell",
+            "qty": 4.0,
+            "price": 279.02
+          },
+          {
+            "execution_id": "20261012094348127::2e1b444d-10e8-4f2e-a768-e5557d82c81b",
+            "order_id": "ca3f7cc7-481e-4f17-aa85-ea5a5a5b56fb",
+            "time": "2026-10-12T13:43:48.127597Z",
+            "symbol": "TQQQ",
+            "side": "sell",
+            "qty": 54.0,
+            "price": 80.11
+          },
+          {
+            "execution_id": "20261012094348037::5609e7df-2920-4005-b2c7-9739daadd64d",
+            "order_id": "c4dbf2c1-89db-4291-badc-9b2ee5f3589e",
+            "time": "2026-10-12T13:43:48.037534Z",
+            "symbol": "SOXL",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 129.53
+          },
+          {
+            "execution_id": "20261012094347926::a1f659f2-c520-4536-a476-a45b0c44d2ec",
+            "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+            "time": "2026-10-12T13:43:47.926541Z",
+            "symbol": "DIA",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 517.56
+          },
+          {
+            "execution_id": "20261012094347913::ad409d52-0527-4e96-b510-a8f814d9729d",
+            "order_id": "a22bae43-c62e-406c-882a-cb924bcb61e2",
+            "time": "2026-10-12T13:43:47.913234Z",
+            "symbol": "SPY",
+            "side": "sell",
+            "qty": 8.0,
+            "price": 778.92
+          },
+          {
+            "execution_id": "20261012094347880::3f1180d5-6eda-41a0-afdc-519257af5f56",
+            "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+            "time": "2026-10-12T13:43:47.880183Z",
+            "symbol": "IWM",
+            "side": "sell",
+            "qty": 7.0,
+            "price": 279.03
+          },
+          {
+            "execution_id": "20261012094347841::05f29e36-1e62-45e7-86d2-160ca2d411f2",
+            "order_id": "b78a2ce0-8fef-4e5e-a0c5-580e24e7695c",
+            "time": "2026-10-12T13:43:47.84105Z",
+            "symbol": "SPXL",
+            "side": "sell",
+            "qty": 22.0,
+            "price": 298.43
+          },
+          {
+            "execution_id": "20261012094347495::c89213a7-98c4-4d93-97e3-2037769a4855",
+            "order_id": "517e7e92-0fe8-4dc3-96f9-83ee5c477680",
+            "time": "2026-10-12T13:43:47.495387Z",
+            "symbol": "QQQ",
+            "side": "sell",
+            "qty": 6.0,
+            "price": 747.63
+          },
+          {
+            "execution_id": "20261012094346516::42cd17d7-943a-4e43-970e-d1cd864e7be6",
+            "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+            "time": "2026-10-12T13:43:46.516268Z",
+            "symbol": "DIA",
+            "side": "sell",
+            "qty": 7.0,
+            "price": 517.56
+          },
+          {
+            "execution_id": "20261012094346457::56a47b52-332a-42fa-b3f9-66b3f39702a8",
+            "order_id": "79348db2-0084-496a-a48a-c5129d6b7ccb",
+            "time": "2026-10-12T13:43:46.457208Z",
+            "symbol": "EWJ",
+            "side": "sell",
+            "qty": 52.0,
+            "price": 97.65
+          },
+          {
+            "execution_id": "20261012094329360::59779c2d-d841-4bd9-a4ce-77d4651770f4",
+            "order_id": "647d6881-edc6-4a7a-afe9-47ce2923484b",
+            "time": "2026-10-12T13:43:29.360735Z",
+            "symbol": "CVX",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 215.9
+          },
+          {
+            "execution_id": "20261012094327298::d906408d-8faa-4b1a-a91f-8ff3dff1c38d",
+            "order_id": "647d6881-edc6-4a7a-afe9-47ce2923484b",
+            "time": "2026-10-12T13:43:27.298463Z",
+            "symbol": "CVX",
+            "side": "sell",
+            "qty": 3.0,
+            "price": 215.82
+          },
+          {
+            "execution_id": "20261012094307630::f38bcf2e-1fc8-47db-b177-fb7173a86ec3",
+            "order_id": "637f81c4-5550-458b-8d9b-6541270a83a5",
+            "time": "2026-10-12T13:43:07.630145Z",
+            "symbol": "CVX",
+            "side": "buy",
+            "qty": 4.0,
+            "price": 215.8
+          },
+          {
+            "execution_id": "20261012093657761::9b284e5a-6a55-4174-a566-d2c7da6de4ff",
+            "order_id": "6f01da83-a49c-4534-a9df-8d491124b486",
+            "time": "2026-10-12T13:36:57.761021Z",
+            "symbol": "EWJ",
+            "side": "buy",
+            "qty": 52.0,
+            "price": 97.71
+          },
+          {
+            "execution_id": "20261012093627785::130f3032-e1a7-46b9-88f3-e415292ed1f3",
+            "order_id": "dc1399cd-ab92-4013-8ed9-fe8aeaac86d3",
+            "time": "2026-10-12T13:36:27.785488Z",
+            "symbol": "IWM",
+            "side": "buy",
+            "qty": 19.0,
+            "price": 278.8
+          },
+          {
+            "execution_id": "20261012093558791::7f3ef4ec-ccd3-4287-a405-c5f17ea50ff7",
+            "order_id": "d4e33043-7be8-4f08-a901-6b1430dcadc8",
+            "time": "2026-10-12T13:35:58.791202Z",
+            "symbol": "DIA",
+            "side": "buy",
+            "qty": 12.0,
+            "price": 517.72
+          },
+          {
+            "execution_id": "20261012093540360::035e290f-0137-4865-b5c5-e081ac6d180a",
+            "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+            "time": "2026-10-12T13:35:40.360163Z",
+            "symbol": "SPY",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 779.08
+          },
+          {
+            "execution_id": "20261012093539188::be696f9a-a458-4342-9af8-91b20595dd74",
+            "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+            "time": "2026-10-12T13:35:39.188173Z",
+            "symbol": "SPY",
+            "side": "buy",
+            "qty": 6.0,
+            "price": 779.09
+          },
+          {
+            "execution_id": "20261012093536192::aaa7dc9d-3570-4d2b-b06c-131d8caec4c7",
+            "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+            "time": "2026-10-12T13:35:36.192511Z",
+            "symbol": "SPY",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 779.12
+          },
+          {
+            "execution_id": "20261012093505438::84b82f43-9b6b-4daa-8a8d-1c7fe8fd3b52",
+            "order_id": "965088b5-1a56-45e9-b34e-62495cc9674e",
+            "time": "2026-10-12T13:35:05.438417Z",
+            "symbol": "QQQ",
+            "side": "buy",
+            "qty": 5.0,
+            "price": 747.54
+          },
+          {
+            "execution_id": "20261012093459879::aeac80da-e976-4dcf-9f30-6356a77b88aa",
+            "order_id": "965088b5-1a56-45e9-b34e-62495cc9674e",
+            "time": "2026-10-12T13:34:59.879902Z",
+            "symbol": "QQQ",
+            "side": "buy",
+            "qty": 2.0,
+            "price": 747.47
+          },
+          {
+            "execution_id": "20261012093423077::cb1a7a8d-52b8-4738-849c-d9c67a5a8a3c",
+            "order_id": "5e042d8f-d451-44ca-9a06-0d97ccdfb23d",
+            "time": "2026-10-12T13:34:23.077909Z",
+            "symbol": "SOXL",
+            "side": "buy",
+            "qty": 5.0,
+            "price": 130.22
+          },
+          {
+            "execution_id": "20261012093333340::2e109117-8cb8-4ae1-b867-522d1ea494fc",
+            "order_id": "78736fef-e59c-4342-95e9-acc68cb5897c",
+            "time": "2026-10-12T13:33:33.3409Z",
+            "symbol": "SPXL",
+            "side": "buy",
+            "qty": 22.0,
+            "price": 298.59
+          },
+          {
+            "execution_id": "20261012093133737::fd0f7687-dfc9-45b6-884e-a07184de9ca2",
+            "order_id": "87e303d5-bd9f-4e31-9778-364bcb4150cb",
+            "time": "2026-10-12T13:31:33.737645Z",
+            "symbol": "TQQQ",
+            "side": "buy",
+            "qty": 62.0,
+            "price": 80.39
+          }
+        ]
       },
       {
         "date": "2026-10-09",
@@ -11978,9 +12967,9 @@
       {
         "date": "2026-09-14",
         "equity": 97977.8,
-        "day_change": -947.84,
-        "day_change_pct": -0.958,
-        "status": "closed",
+        "day_change": null,
+        "day_change_pct": null,
+        "status": "baseline",
         "executions_complete": true,
         "buys": 49,
         "sells": 30,
@@ -12702,10 +13691,10 @@
       },
       {
         "date": "2026-09-11",
-        "equity": 98925.64,
-        "day_change": -1074.36,
-        "day_change_pct": -1.074,
-        "status": "closed",
+        "equity": null,
+        "day_change": null,
+        "day_change_pct": null,
+        "status": "missing_equity",
         "executions_complete": true,
         "buys": 17,
         "sells": 17,
@@ -13019,35 +14008,288 @@
             "price": 98.43
           }
         ]
-      },
-      {
-        "date": "2026-09-10",
-        "equity": 100000.0,
-        "day_change": 0.0,
-        "day_change_pct": 0.0,
-        "status": "closed",
-        "executions_complete": true,
-        "buys": 0,
-        "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
-      },
-      {
-        "date": "2026-09-09",
-        "equity": 100000.0,
-        "day_change": null,
-        "day_change_pct": null,
-        "status": "baseline",
-        "executions_complete": true,
-        "buys": 0,
-        "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
       }
     ],
     "executions": [
+      {
+        "execution_id": "20261012094350364::cc362b1d-b9ae-412d-bc24-9afe149fc554",
+        "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+        "time": "2026-10-12T13:43:50.364742Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 7.0,
+        "price": 279.01
+      },
+      {
+        "execution_id": "20261012094349269::92dcd4b3-a8d0-4168-bfa2-c7f412f8499c",
+        "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+        "time": "2026-10-12T13:43:49.269143Z",
+        "symbol": "DIA",
+        "side": "sell",
+        "qty": 2.0,
+        "price": 517.58
+      },
+      {
+        "execution_id": "20261012094349200::6156753e-621d-47cb-9bcf-a18101dbe5a9",
+        "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+        "time": "2026-10-12T13:43:49.200801Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 279.03
+      },
+      {
+        "execution_id": "20261012094348994::2fb58842-f650-4d39-9a8c-af2314189d67",
+        "order_id": "517e7e92-0fe8-4dc3-96f9-83ee5c477680",
+        "time": "2026-10-12T13:43:48.994474Z",
+        "symbol": "QQQ",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 747.59
+      },
+      {
+        "execution_id": "20261012094348832::d43788d2-9bed-4730-96ea-01ec9a34650d",
+        "order_id": "ca3f7cc7-481e-4f17-aa85-ea5a5a5b56fb",
+        "time": "2026-10-12T13:43:48.832109Z",
+        "symbol": "TQQQ",
+        "side": "sell",
+        "qty": 8.0,
+        "price": 80.12
+      },
+      {
+        "execution_id": "20261012094348756::7f5c7ac1-e2d8-4fbb-8b19-08c58f268354",
+        "order_id": "c4dbf2c1-89db-4291-badc-9b2ee5f3589e",
+        "time": "2026-10-12T13:43:48.756416Z",
+        "symbol": "SOXL",
+        "side": "sell",
+        "qty": 4.0,
+        "price": 129.53
+      },
+      {
+        "execution_id": "20261012094348549::0454737a-c640-47e3-9a18-78b834f06b7f",
+        "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+        "time": "2026-10-12T13:43:48.549546Z",
+        "symbol": "DIA",
+        "side": "sell",
+        "qty": 2.0,
+        "price": 517.56
+      },
+      {
+        "execution_id": "20261012094348505::04d32796-0876-497a-84e6-1ec5533e2bc3",
+        "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+        "time": "2026-10-12T13:43:48.505743Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 4.0,
+        "price": 279.02
+      },
+      {
+        "execution_id": "20261012094348127::2e1b444d-10e8-4f2e-a768-e5557d82c81b",
+        "order_id": "ca3f7cc7-481e-4f17-aa85-ea5a5a5b56fb",
+        "time": "2026-10-12T13:43:48.127597Z",
+        "symbol": "TQQQ",
+        "side": "sell",
+        "qty": 54.0,
+        "price": 80.11
+      },
+      {
+        "execution_id": "20261012094348037::5609e7df-2920-4005-b2c7-9739daadd64d",
+        "order_id": "c4dbf2c1-89db-4291-badc-9b2ee5f3589e",
+        "time": "2026-10-12T13:43:48.037534Z",
+        "symbol": "SOXL",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 129.53
+      },
+      {
+        "execution_id": "20261012094347926::a1f659f2-c520-4536-a476-a45b0c44d2ec",
+        "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+        "time": "2026-10-12T13:43:47.926541Z",
+        "symbol": "DIA",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 517.56
+      },
+      {
+        "execution_id": "20261012094347913::ad409d52-0527-4e96-b510-a8f814d9729d",
+        "order_id": "a22bae43-c62e-406c-882a-cb924bcb61e2",
+        "time": "2026-10-12T13:43:47.913234Z",
+        "symbol": "SPY",
+        "side": "sell",
+        "qty": 8.0,
+        "price": 778.92
+      },
+      {
+        "execution_id": "20261012094347880::3f1180d5-6eda-41a0-afdc-519257af5f56",
+        "order_id": "90442659-a360-4091-ba41-af888cc70fb0",
+        "time": "2026-10-12T13:43:47.880183Z",
+        "symbol": "IWM",
+        "side": "sell",
+        "qty": 7.0,
+        "price": 279.03
+      },
+      {
+        "execution_id": "20261012094347841::05f29e36-1e62-45e7-86d2-160ca2d411f2",
+        "order_id": "b78a2ce0-8fef-4e5e-a0c5-580e24e7695c",
+        "time": "2026-10-12T13:43:47.84105Z",
+        "symbol": "SPXL",
+        "side": "sell",
+        "qty": 22.0,
+        "price": 298.43
+      },
+      {
+        "execution_id": "20261012094347495::c89213a7-98c4-4d93-97e3-2037769a4855",
+        "order_id": "517e7e92-0fe8-4dc3-96f9-83ee5c477680",
+        "time": "2026-10-12T13:43:47.495387Z",
+        "symbol": "QQQ",
+        "side": "sell",
+        "qty": 6.0,
+        "price": 747.63
+      },
+      {
+        "execution_id": "20261012094346516::42cd17d7-943a-4e43-970e-d1cd864e7be6",
+        "order_id": "55d4a043-43a3-403b-93f2-df6c6def1c48",
+        "time": "2026-10-12T13:43:46.516268Z",
+        "symbol": "DIA",
+        "side": "sell",
+        "qty": 7.0,
+        "price": 517.56
+      },
+      {
+        "execution_id": "20261012094346457::56a47b52-332a-42fa-b3f9-66b3f39702a8",
+        "order_id": "79348db2-0084-496a-a48a-c5129d6b7ccb",
+        "time": "2026-10-12T13:43:46.457208Z",
+        "symbol": "EWJ",
+        "side": "sell",
+        "qty": 52.0,
+        "price": 97.65
+      },
+      {
+        "execution_id": "20261012094329360::59779c2d-d841-4bd9-a4ce-77d4651770f4",
+        "order_id": "647d6881-edc6-4a7a-afe9-47ce2923484b",
+        "time": "2026-10-12T13:43:29.360735Z",
+        "symbol": "CVX",
+        "side": "sell",
+        "qty": 1.0,
+        "price": 215.9
+      },
+      {
+        "execution_id": "20261012094327298::d906408d-8faa-4b1a-a91f-8ff3dff1c38d",
+        "order_id": "647d6881-edc6-4a7a-afe9-47ce2923484b",
+        "time": "2026-10-12T13:43:27.298463Z",
+        "symbol": "CVX",
+        "side": "sell",
+        "qty": 3.0,
+        "price": 215.82
+      },
+      {
+        "execution_id": "20261012094307630::f38bcf2e-1fc8-47db-b177-fb7173a86ec3",
+        "order_id": "637f81c4-5550-458b-8d9b-6541270a83a5",
+        "time": "2026-10-12T13:43:07.630145Z",
+        "symbol": "CVX",
+        "side": "buy",
+        "qty": 4.0,
+        "price": 215.8
+      },
+      {
+        "execution_id": "20261012093657761::9b284e5a-6a55-4174-a566-d2c7da6de4ff",
+        "order_id": "6f01da83-a49c-4534-a9df-8d491124b486",
+        "time": "2026-10-12T13:36:57.761021Z",
+        "symbol": "EWJ",
+        "side": "buy",
+        "qty": 52.0,
+        "price": 97.71
+      },
+      {
+        "execution_id": "20261012093627785::130f3032-e1a7-46b9-88f3-e415292ed1f3",
+        "order_id": "dc1399cd-ab92-4013-8ed9-fe8aeaac86d3",
+        "time": "2026-10-12T13:36:27.785488Z",
+        "symbol": "IWM",
+        "side": "buy",
+        "qty": 19.0,
+        "price": 278.8
+      },
+      {
+        "execution_id": "20261012093558791::7f3ef4ec-ccd3-4287-a405-c5f17ea50ff7",
+        "order_id": "d4e33043-7be8-4f08-a901-6b1430dcadc8",
+        "time": "2026-10-12T13:35:58.791202Z",
+        "symbol": "DIA",
+        "side": "buy",
+        "qty": 12.0,
+        "price": 517.72
+      },
+      {
+        "execution_id": "20261012093540360::035e290f-0137-4865-b5c5-e081ac6d180a",
+        "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+        "time": "2026-10-12T13:35:40.360163Z",
+        "symbol": "SPY",
+        "side": "buy",
+        "qty": 1.0,
+        "price": 779.08
+      },
+      {
+        "execution_id": "20261012093539188::be696f9a-a458-4342-9af8-91b20595dd74",
+        "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+        "time": "2026-10-12T13:35:39.188173Z",
+        "symbol": "SPY",
+        "side": "buy",
+        "qty": 6.0,
+        "price": 779.09
+      },
+      {
+        "execution_id": "20261012093536192::aaa7dc9d-3570-4d2b-b06c-131d8caec4c7",
+        "order_id": "7ad1bb33-2d8b-45b5-b267-f5a478aef167",
+        "time": "2026-10-12T13:35:36.192511Z",
+        "symbol": "SPY",
+        "side": "buy",
+        "qty": 1.0,
+        "price": 779.12
+      },
+      {
+        "execution_id": "20261012093505438::84b82f43-9b6b-4daa-8a8d-1c7fe8fd3b52",
+        "order_id": "965088b5-1a56-45e9-b34e-62495cc9674e",
+        "time": "2026-10-12T13:35:05.438417Z",
+        "symbol": "QQQ",
+        "side": "buy",
+        "qty": 5.0,
+        "price": 747.54
+      },
+      {
+        "execution_id": "20261012093459879::aeac80da-e976-4dcf-9f30-6356a77b88aa",
+        "order_id": "965088b5-1a56-45e9-b34e-62495cc9674e",
+        "time": "2026-10-12T13:34:59.879902Z",
+        "symbol": "QQQ",
+        "side": "buy",
+        "qty": 2.0,
+        "price": 747.47
+      },
+      {
+        "execution_id": "20261012093423077::cb1a7a8d-52b8-4738-849c-d9c67a5a8a3c",
+        "order_id": "5e042d8f-d451-44ca-9a06-0d97ccdfb23d",
+        "time": "2026-10-12T13:34:23.077909Z",
+        "symbol": "SOXL",
+        "side": "buy",
+        "qty": 5.0,
+        "price": 130.22
+      },
+      {
+        "execution_id": "20261012093333340::2e109117-8cb8-4ae1-b867-522d1ea494fc",
+        "order_id": "78736fef-e59c-4342-95e9-acc68cb5897c",
+        "time": "2026-10-12T13:33:33.3409Z",
+        "symbol": "SPXL",
+        "side": "buy",
+        "qty": 22.0,
+        "price": 298.59
+      },
+      {
+        "execution_id": "20261012093133737::fd0f7687-dfc9-45b6-884e-a07184de9ca2",
+        "order_id": "87e303d5-bd9f-4e31-9778-364bcb4150cb",
+        "time": "2026-10-12T13:31:33.737645Z",
+        "symbol": "TQQQ",
+        "side": "buy",
+        "qty": 62.0,
+        "price": 80.39
+      },
       {
         "execution_id": "20261009155531356::8832d74d-1418-4103-b038-3b1592ba6101",
         "order_id": "16c1fcf0-4877-4f4e-8fb5-47a8a49e0d35",
@@ -18227,7 +19469,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-10-12T08:58:05.709229+00:00",
+    "updated_at": "2026-10-12T18:55:06.207666+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -18237,11 +19479,11 @@
       "max_account_loss_pct": 0.1,
       "max_drawdown_pct": 0.1
     },
-    "entry_blocked": false,
-    "reason": "",
+    "entry_blocked": true,
+    "reason": "liquidation confirmed; no re-entry today",
     "liquidating": null,
-    "daily_pnl_pct": 0.0,
-    "market_open": false,
+    "daily_pnl_pct": -0.024,
+    "market_open": true,
     "open_positions": 0,
     "actions": {},
     "errors": [],
@@ -18256,47 +19498,47 @@
     "signals": {
       "TQQQ": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 16
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 16
       },
       "SOXL": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 16
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 16
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 15
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 21
+        "age_seconds": 15
       },
       "IWM": {
         "signal": "buy",
-        "age_seconds": 21
+        "age_seconds": 15
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 21
+        "age_seconds": 15
       },
       "EZU": {
         "signal": "sell",
-        "age_seconds": 21
+        "age_seconds": 15
       },
       "EWU": {
         "signal": "sell",
-        "age_seconds": 21
+        "age_seconds": 15
       },
       "EWG": {
         "signal": "sell",
-        "age_seconds": 21
+        "age_seconds": 15
       }
     },
     "state_persistent": true,
@@ -18304,23 +19546,23 @@
     "category_budgets": {
       "HIGH RISK": {
         "fraction": 0.25,
-        "daily_cap": 26787.15,
-        "committed": 0.0,
-        "remaining": 26787.15,
+        "daily_cap": 26780.76,
+        "committed": 14008.28,
+        "remaining": 12772.48,
         "exposure": 0
       },
       "LOW RISK": {
         "fraction": 0.5,
-        "daily_cap": 53574.31,
-        "committed": 0.0,
-        "remaining": 53574.31,
+        "daily_cap": 53561.53,
+        "committed": 28081.28,
+        "remaining": 25480.25,
         "exposure": 0
       },
       "ACTIVE STOCK EXPERIMENT": {
         "fraction": 0.05,
-        "daily_cap": 5357.43,
-        "committed": 0.0,
-        "remaining": 5357.43,
+        "daily_cap": 5356.15,
+        "committed": 864.44,
+        "remaining": 4491.71,
         "exposure": 0
       }
     },
@@ -18329,13 +19571,10 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-10-12T08:57:53.099538+00:00",
+      "updated_at": "2026-10-12T18:54:41.399647+00:00",
       "history_symbols": 20,
       "errors": [],
-      "eligible_signals": [
-        "DIS",
-        "AAPL"
-      ]
+      "eligible_signals": []
     },
     "connection_paused": false,
     "protection_repairing": false,
