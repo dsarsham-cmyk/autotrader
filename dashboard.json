@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-13T21:29:01.726087+00:00",
+  "last_updated": "2026-10-14T00:34:13.210766+00:00",
   "market_open": false,
   "account": {
     "equity": 107262.75,
@@ -179,10 +179,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-24T12:49:01.848299+00:00",
-      "equity": 107258.92
-    },
     {
       "ts": "2026-09-24T13:17:52.223653+00:00",
       "equity": 107274.92
@@ -2177,6 +2173,10 @@
     },
     {
       "ts": "2026-10-13T21:29:01.726087+00:00",
+      "equity": 107262.75
+    },
+    {
+      "ts": "2026-10-14T00:34:13.210766+00:00",
       "equity": 107262.75
     }
   ],
@@ -7971,7 +7971,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-13T21:29:08.503499+00:00",
+    "generated_at": "2026-10-14T00:34:21.773261+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -8121,8 +8121,8 @@
       {
         "key": "account_controller",
         "label": "Account-wide loss control",
-        "status": "good",
-        "detail": "liquidation confirmed; no re-entry today"
+        "status": "bad",
+        "detail": "Safety state is missing or stale; process uptime is not risk verification."
       }
     ]
   },
@@ -8130,7 +8130,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-10-13",
-    "generated_at": "2026-10-13T21:29:03.650667+00:00",
+    "generated_at": "2026-10-14T00:34:15.281357+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 208.74,
@@ -8510,7 +8510,7 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-13T21:29:04.286760+00:00",
+    "past_days_updated_at": "2026-10-14T00:34:16.946742+00:00",
     "coverage_start": "2026-09-11",
     "days": [
       {
@@ -20284,115 +20284,9 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-10-13T21:28:57.809529+00:00",
-    "mode": "paper",
-    "policy": {
-      "entry_loss_limit_pct": 0.005,
-      "daily_loss_limit_pct": 0.01,
-      "close_buffer_seconds": 300,
-      "starting_equity": 100000,
-      "max_account_loss_pct": 0.1,
-      "max_drawdown_pct": 0.1
-    },
-    "entry_blocked": true,
-    "reason": "liquidation confirmed; no re-entry today",
-    "liquidating": null,
-    "daily_pnl_pct": 0.131,
-    "market_open": false,
-    "open_positions": 0,
-    "actions": {},
-    "errors": [],
-    "verified_stops": 0,
-    "baseline_equity": 107122.21,
-    "peak_equity": 110658.87,
-    "allocations": {
-      "HIGH RISK": 0.25,
-      "LOW RISK": 0.5,
-      "ACTIVE STOCK EXPERIMENT": 0.05
-    },
-    "signals": {
-      "TQQQ": {
-        "signal": "buy",
-        "age_seconds": 37
-      },
-      "SPXL": {
-        "signal": "buy",
-        "age_seconds": 37
-      },
-      "SOXL": {
-        "signal": "buy",
-        "age_seconds": 37
-      },
-      "QQQ": {
-        "signal": "buy",
-        "age_seconds": 37
-      },
-      "SPY": {
-        "signal": "buy",
-        "age_seconds": 37
-      },
-      "DIA": {
-        "signal": "buy",
-        "age_seconds": 37
-      },
-      "IWM": {
-        "signal": "buy",
-        "age_seconds": 37
-      },
-      "EWJ": {
-        "signal": "buy",
-        "age_seconds": 37
-      },
-      "EZU": {
-        "signal": "sell",
-        "age_seconds": 37
-      },
-      "EWU": {
-        "signal": "sell",
-        "age_seconds": 37
-      },
-      "EWG": {
-        "signal": "sell",
-        "age_seconds": 36
-      }
-    },
-    "state_persistent": true,
-    "controller_version": "2026-10-07-full-fill-protection-recovery",
-    "category_budgets": {
-      "HIGH RISK": {
-        "fraction": 0.25,
-        "daily_cap": 26787.15,
-        "committed": 13958.27,
-        "remaining": 12828.88,
-        "exposure": 0
-      },
-      "LOW RISK": {
-        "fraction": 0.5,
-        "daily_cap": 53574.31,
-        "committed": 28607.4,
-        "remaining": 24966.91,
-        "exposure": 0
-      },
-      "ACTIVE STOCK EXPERIMENT": {
-        "fraction": 0.05,
-        "daily_cap": 5357.43,
-        "committed": 951.74,
-        "remaining": 4405.69,
-        "exposure": 0
-      }
-    },
-    "reserve_fraction": 0.2,
-    "budget_migration_unknown": false,
-    "experiment": {
-      "status": "waiting for next eligible market opening",
-      "feed": "iex",
-      "updated_at": "2026-10-13T21:28:39.504093+00:00",
-      "history_symbols": 20,
-      "errors": [],
-      "eligible_signals": []
-    },
-    "connection_paused": false,
-    "protection_repairing": false,
-    "fresh": true
+    "fresh": false,
+    "errors": [
+      "Safety controller status unavailable"
+    ]
   }
 }
