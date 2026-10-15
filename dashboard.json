@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-14T23:49:07.229085+00:00",
+  "last_updated": "2026-10-15T04:11:45.246053+00:00",
   "market_open": false,
   "account": {
     "equity": 107276.02,
@@ -29,7 +29,7 @@
       "market_value": 0,
       "unrealized_pnl": 0,
       "day_pnl": 0.0,
-      "market_date": "2026-10-14",
+      "market_date": "2026-10-15",
       "daily_buy_executions": 0,
       "daily_sell_executions": 0,
       "daily_symbols": []
@@ -57,7 +57,7 @@
       "market_value": 0,
       "unrealized_pnl": 0,
       "day_pnl": 0.0,
-      "market_date": "2026-10-14",
+      "market_date": "2026-10-15",
       "daily_buy_executions": 0,
       "daily_sell_executions": 0,
       "daily_symbols": []
@@ -97,17 +97,13 @@
       "market_value": 0,
       "unrealized_pnl": 0,
       "day_pnl": 0.0,
-      "market_date": "2026-10-14",
+      "market_date": "2026-10-15",
       "daily_buy_executions": 0,
       "daily_sell_executions": 0,
       "daily_symbols": []
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-24T15:44:29.257926+00:00",
-      "equity": 107188.75
-    },
     {
       "ts": "2026-09-24T16:17:52.977581+00:00",
       "equity": 107293.27
@@ -2102,6 +2098,10 @@
     },
     {
       "ts": "2026-10-14T23:49:07.229085+00:00",
+      "equity": 107276.02
+    },
+    {
+      "ts": "2026-10-15T04:11:45.246053+00:00",
       "equity": 107276.02
     }
   ],
@@ -7590,7 +7590,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-14T23:49:15.213381+00:00",
+    "generated_at": "2026-10-15T04:11:53.681224+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -7599,13 +7599,9 @@
       "guaranteed_daily_trade": false,
       "fills_today": 0,
       "active_days": 17,
-      "observed_weekdays": 23,
-      "active_day_pct": 73.9,
+      "observed_weekdays": 24,
+      "active_day_pct": 70.8,
       "calendar": [
-        {
-          "date": "2026-10-01",
-          "fills": 5
-        },
         {
           "date": "2026-10-02",
           "fills": 14
@@ -7640,6 +7636,10 @@
         },
         {
           "date": "2026-10-14",
+          "fills": 0
+        },
+        {
+          "date": "2026-10-15",
           "fills": 0
         }
       ],
@@ -7711,7 +7711,7 @@
         "key": "live_evidence",
         "label": "Enough live evidence",
         "status": "warn",
-        "detail": "23 observed trading days and 307 sell fills. Too early to judge live profitability reliably."
+        "detail": "24 observed trading days and 307 sell fills. Too early to judge live profitability reliably."
       },
       {
         "key": "risk_protection",
@@ -7748,26 +7748,26 @@
   "positions_status": "available",
   "daily_accounting": {
     "status": "calculated",
-    "market_date": "2026-10-14",
-    "generated_at": "2026-10-14T23:49:09.676613+00:00",
+    "market_date": "2026-10-15",
+    "generated_at": "2026-10-15T04:11:48.108477+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
-        "market_date": "2026-10-14",
+        "market_date": "2026-10-15",
         "daily_buy_executions": 0,
         "daily_sell_executions": 0,
         "daily_symbols": []
       },
       "low": {
         "day_pnl": 0.0,
-        "market_date": "2026-10-14",
+        "market_date": "2026-10-15",
         "daily_buy_executions": 0,
         "daily_sell_executions": 0,
         "daily_symbols": []
       },
       "experiment": {
         "day_pnl": 0.0,
-        "market_date": "2026-10-14",
+        "market_date": "2026-10-15",
         "daily_buy_executions": 0,
         "daily_sell_executions": 0,
         "daily_symbols": []
@@ -7783,11 +7783,11 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-14T23:49:09.871547+00:00",
-    "coverage_start": "2026-09-12",
+    "past_days_updated_at": "2026-10-15T04:11:48.291349+00:00",
+    "coverage_start": "2026-09-13",
     "days": [
       {
-        "date": "2026-10-14",
+        "date": "2026-10-15",
         "equity": 107276.02,
         "day_change": 0.0,
         "day_change_pct": 0.0,
