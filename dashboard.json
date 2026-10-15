@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-10-15T09:19:46.082117+00:00",
-  "market_open": false,
+  "last_updated": "2026-10-15T14:21:22.418528+00:00",
+  "market_open": true,
   "account": {
     "equity": 107276.02,
     "cash": 107276.02,
@@ -104,10 +104,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-24T16:44:24.121486+00:00",
-      "equity": 107297.39
-    },
     {
       "ts": "2026-09-24T17:15:22.419472+00:00",
       "equity": 107290.28
@@ -2102,6 +2098,10 @@
     },
     {
       "ts": "2026-10-15T09:19:46.082117+00:00",
+      "equity": 107276.02
+    },
+    {
+      "ts": "2026-10-15T14:21:22.418528+00:00",
       "equity": 107276.02
     }
   ],
@@ -7590,7 +7590,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-15T09:19:56.007939+00:00",
+    "generated_at": "2026-10-15T14:21:36.275572+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -7749,7 +7749,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-10-15",
-    "generated_at": "2026-10-15T09:19:48.489904+00:00",
+    "generated_at": "2026-10-15T14:21:24.761870+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -7783,7 +7783,7 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-15T09:19:48.674225+00:00",
+    "past_days_updated_at": "2026-10-15T14:21:24.868266+00:00",
     "coverage_start": "2026-09-13",
     "days": [
       {
@@ -7791,7 +7791,7 @@
         "equity": 107276.02,
         "day_change": 0.0,
         "day_change_pct": 0.0,
-        "status": "latest",
+        "status": "intraday",
         "executions_complete": true,
         "buys": 0,
         "sells": 0,
@@ -11303,9 +11303,9 @@
       {
         "date": "2026-09-15",
         "equity": 97597.96,
-        "day_change": -379.84,
-        "day_change_pct": -0.388,
-        "status": "closed",
+        "day_change": null,
+        "day_change_pct": null,
+        "status": "baseline",
         "executions_complete": true,
         "buys": 96,
         "sells": 70,
@@ -12810,10 +12810,10 @@
       },
       {
         "date": "2026-09-14",
-        "equity": 97977.8,
+        "equity": null,
         "day_change": null,
         "day_change_pct": null,
-        "status": "baseline",
+        "status": "missing_equity",
         "executions_complete": true,
         "buys": 49,
         "sells": 30,
