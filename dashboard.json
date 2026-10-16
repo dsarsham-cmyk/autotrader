@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-16T05:41:47.872045+00:00",
+  "last_updated": "2026-10-16T11:08:34.570021+00:00",
   "market_open": false,
   "account": {
     "equity": 107276.02,
@@ -104,10 +104,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-24T19:14:56.771855+00:00",
-      "equity": 107258.97
-    },
     {
       "ts": "2026-09-24T19:42:29.146117+00:00",
       "equity": 107272.59
@@ -2102,6 +2098,10 @@
     },
     {
       "ts": "2026-10-16T05:41:47.872045+00:00",
+      "equity": 107276.02
+    },
+    {
+      "ts": "2026-10-16T11:08:34.570021+00:00",
       "equity": 107276.02
     }
   ],
@@ -7590,7 +7590,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-16T05:41:59.036640+00:00",
+    "generated_at": "2026-10-16T11:08:46.107627+00:00",
     "verdict": "needs_attention",
     "good_enough": false,
     "summary": "Not ready to trust unattended: execution safeguards need attention.",
@@ -7749,7 +7749,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-10-16",
-    "generated_at": "2026-10-16T05:41:50.676585+00:00",
+    "generated_at": "2026-10-16T11:08:35.841984+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -7783,7 +7783,7 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-16T05:41:50.898697+00:00",
+    "past_days_updated_at": "2026-10-16T11:08:35.866603+00:00",
     "coverage_start": "2026-09-14",
     "days": [
       {
@@ -7792,6 +7792,19 @@
         "day_change": 0.0,
         "day_change_pct": 0.0,
         "status": "latest",
+        "executions_complete": true,
+        "buys": 0,
+        "sells": 0,
+        "execution_count": 0,
+        "order_count": 0,
+        "executions": []
+      },
+      {
+        "date": "2026-10-15",
+        "equity": 107276.02,
+        "day_change": 0.0,
+        "day_change_pct": 0.0,
+        "status": "closed",
         "executions_complete": true,
         "buys": 0,
         "sells": 0,
@@ -18957,7 +18970,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-10-16T05:41:47.384890+00:00",
+    "updated_at": "2026-10-16T11:08:37.620603+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -18986,47 +18999,47 @@
     "signals": {
       "TQQQ": {
         "signal": "buy",
-        "age_seconds": 33
+        "age_seconds": 21
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 33
+        "age_seconds": 21
       },
       "SOXL": {
         "signal": "buy",
-        "age_seconds": 33
+        "age_seconds": 21
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 32
+        "age_seconds": 21
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 32
+        "age_seconds": 21
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 32
+        "age_seconds": 21
       },
       "IWM": {
         "signal": "sell",
-        "age_seconds": 32
+        "age_seconds": 21
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 32
+        "age_seconds": 20
       },
       "EZU": {
         "signal": "sell",
-        "age_seconds": 32
+        "age_seconds": 20
       },
       "EWU": {
         "signal": "sell",
-        "age_seconds": 32
+        "age_seconds": 20
       },
       "EWG": {
         "signal": "sell",
-        "age_seconds": 32
+        "age_seconds": 20
       }
     },
     "state_persistent": true,
@@ -19059,7 +19072,7 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-10-16T05:41:45.231479+00:00",
+      "updated_at": "2026-10-16T11:08:28.808759+00:00",
       "history_symbols": 20,
       "errors": []
     },
