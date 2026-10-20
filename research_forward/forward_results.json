@@ -49,13 +49,13 @@
     "broker_orders_enabled": false,
     "mode": "After-close replay of future completed sessions; not a live tick execution test"
   },
-  "sessions": 10,
+  "sessions": 11,
   "metrics": {
-    "sessions": 10,
+    "sessions": 11,
     "total_return_pct": -0.09463520000000392,
     "max_close_drawdown_pct": 0.09463520000000392,
     "worst_day_pct": -0.09463520000000392,
-    "mean_daily_pct": -0.009463520000000392,
+    "mean_daily_pct": -0.008603200000000356,
     "profitable_days": 0,
     "days_at_least_1pct": 0
   },
@@ -169,6 +169,17 @@
       "entry_halted": true,
       "permanent_halt": false,
       "guard_events": 0
+    },
+    {
+      "date": "2026-10-19",
+      "equity": 99905.3648,
+      "pnl": 0.0,
+      "return_pct": 0.0,
+      "worst_intraday_pct": 0.0,
+      "selected": "",
+      "entry_halted": true,
+      "permanent_halt": false,
+      "guard_events": 0
     }
   ],
   "trades": [
@@ -245,27 +256,27 @@
     }
   ],
   "status": "simulated_forward_observations",
-  "updated_utc": "2026-10-16T23:40:05.000159+00:00",
+  "updated_utc": "2026-10-20T00:25:09.920854+00:00",
   "input_hashes": {
-    "AAPL": "07a9145aa330475f228cb7a41f997f63bff7532572d553d760893cb9f3cd4f76",
-    "MSFT": "f0a60af7dc79d8365385aff9734ace5307901c4aea753dd8ed8c8d2d54988175",
-    "NVDA": "a8c29a2d950748fe2d759e4b7b2a2693e456dfa5362b31aea686ac908c344968",
-    "AMZN": "f0dfa9712801906d89bdafdf556f7d5d447e3437d4e65508f458dfd9aae8dc01",
-    "META": "dea549caef09b66f1fecd2390ed85df5d0362d09c48e11d8449b68ca54889be0",
-    "GOOG": "b6a7948c549b05a33a814495b707f4de35b540ee8ff60ec47c362caf81aeec5d",
-    "TSLA": "a2f95b62b6ef4a14c4a24481662042e1e01a8e6e9cef5b1ce20beb88aa6025d9",
-    "AMD": "ec65364c764600911dadd1a0866563cc19b102523c18e557b473af7181c3224d",
-    "JPM": "879c0b761f6f37bd3702e51f86108a67d832048181712d6380f3f118bbcdb421",
-    "BAC": "a23244c12d3a4e44a044acfc5fcbaebc3067924f40247debb0b5f6de99ca0042",
-    "XOM": "dd3dbffaf621ab0a3c98ab3ea48077c446be542526519a62d3dfbf14bf774521",
-    "CVX": "a6f256eb457851c0ea549ee5982ffa8f560dd5510c5069eb8592d13bf5dc8324",
-    "WMT": "91f8d9e80c716c978f4f9129c6965f63d2fe22ca6a144610d3c4e9f2a33a29b9",
-    "DIS": "fe9f40797057fbe155233d05885ee653a40465d1450b61271065c92f0431d8e0",
-    "NFLX": "12a0c8744b2f23018fdc39eaff7c215e92072b1a534334fafea735d339670742",
-    "INTC": "bfcc0126629a7d7dc9a745ed1b41235cb2112d3713926a875d5253aa15bc2105",
-    "UBER": "33748570c35b599abff5cbc603263e96dac373e4b4e7f5286f92eef23906d52c",
-    "PLTR": "0ee16451fb5a66af258a2365bdf8c01b4e2423966430055d200f7889a1068cc4",
-    "AVGO": "d4fbf633a76c074ee600a11dd414f62374ed50944a7a90901b34339183dca1d1",
-    "MU": "f8ff52e13247c89a90ac15bc9f1b1831565e21c8990299fd7ee584c97f0c7cc0"
+    "AAPL": "dca5a0220dae5b2d12c1ce6ffacac63c4573385bb7d538dff851d97cadea4df8",
+    "MSFT": "51e4bb6bdd92c8004732519e0a166f90924d83e57d4257ab5236e7b32f83cd0e",
+    "NVDA": "074c6dbd9b7a36b632a51cedba694818195180ccfe53a2f36cdfa6399076755e",
+    "AMZN": "ed93610fd2f8ac91d773897d3d8b2ef01064280a40168dd2f4f60ad26e1e50e4",
+    "META": "6c789d3caa43d48aa1eca38cd59766ff06dde63debd3ea79296a1f70fc0a0025",
+    "GOOG": "0796c62353a623b417bac4abbf3dd35eb572be946ff5dff73dc2211fb196a689",
+    "TSLA": "d9feef72803289e95ceed7f97b5a43b44cef6808542040798cccb372ec0e3f53",
+    "AMD": "1925e25c5ae4ae8298436a41860de7b2d8fca44eb8cb73a67fc0d15ca5ccbe03",
+    "JPM": "9b2ee8b15ac284876c028e0fdae531b892fdc29fe706dc7015896eb1057c5993",
+    "BAC": "2337966c8f9da4d69d1d80c34f64241f47dc68f43f5e0bda5978dedf2ef64fcc",
+    "XOM": "4e9c1736f8f29ccc2481563211e9533b288a561921cfb2fd7cd20f4944849057",
+    "CVX": "f935b91fcf5b27346cc9005af036ff5c3bcb2d2a526bdcf191ab2199dd7ea596",
+    "WMT": "da73167b8ecf1da9b2e403a75ff22761fe0b2833fb3df1e37c3fff3b109150ba",
+    "DIS": "f96fb54e48d3a48ce09c354df9489915856bc0e11a0b60db87f5b2a13539cf2b",
+    "NFLX": "647f7b86d63337a1c1aafcfc8b2eaba957f6591e8dfeda34a604e02d7c3696a7",
+    "INTC": "9ed0175b0166236d6a5fd20b1573377c960af4d6f168233fb51f6b77757f5ee9",
+    "UBER": "52344a57e66f0d2b50c1d05f345ef97a72c8b4b7534d367f627502be41974f68",
+    "PLTR": "578ab0c26e7400d1324196abdbbf131edaf0f0e94a09ac6fc0746d29d9ec27d8",
+    "AVGO": "d38593394025b1a2fa05e301b6dcd054f438362fbadd777b8662959d27792dd5",
+    "MU": "698ea32f7ba267eb98b404061ba0b5a9b48d230243a5873f259d20cb86c4ea00"
   }
 }
