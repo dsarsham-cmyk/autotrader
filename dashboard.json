@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-10-20T20:48:48.537013+00:00",
+  "last_updated": "2026-10-20T23:44:09.278867+00:00",
   "market_open": false,
   "account": {
     "equity": 106699.56,
@@ -179,10 +179,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-25T09:16:58.931164+00:00",
-      "equity": 107309.59
-    },
     {
       "ts": "2026-09-25T09:44:11.665960+00:00",
       "equity": 107306.23
@@ -2177,6 +2173,10 @@
     },
     {
       "ts": "2026-10-20T20:48:48.537013+00:00",
+      "equity": 106699.56
+    },
+    {
+      "ts": "2026-10-20T23:44:09.278867+00:00",
       "equity": 106699.56
     }
   ],
@@ -5343,7 +5343,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-20T20:48:50.742421+00:00",
+    "generated_at": "2026-10-20T23:44:15.863262+00:00",
     "verdict": "promising",
     "good_enough": false,
     "summary": "Safeguards look healthy, but more live history is needed.",
@@ -5451,7 +5451,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-10-20",
-    "generated_at": "2026-10-20T20:48:49.875953+00:00",
+    "generated_at": "2026-10-20T23:44:11.237635+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 124.0,
@@ -5867,7 +5867,7 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-20T20:48:50.580837+00:00",
+    "past_days_updated_at": "2026-10-20T23:44:14.462345+00:00",
     "coverage_start": "2026-09-18",
     "days": [
       {
@@ -12370,7 +12370,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-10-20T20:48:43.552145+00:00",
+    "updated_at": "2026-10-20T23:44:03.712533+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -12399,47 +12399,47 @@
     "signals": {
       "TQQQ": {
         "signal": "buy",
-        "age_seconds": 29
+        "age_seconds": 59
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 29
+        "age_seconds": 59
       },
       "SOXL": {
         "signal": "sell",
-        "age_seconds": 29
+        "age_seconds": 59
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 29
+        "age_seconds": 59
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 29
+        "age_seconds": 59
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 29
+        "age_seconds": 59
       },
       "IWM": {
         "signal": "sell",
-        "age_seconds": 29
+        "age_seconds": 59
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 28
+        "age_seconds": 59
       },
       "EZU": {
         "signal": "sell",
-        "age_seconds": 28
+        "age_seconds": 59
       },
       "EWU": {
         "signal": "buy",
-        "age_seconds": 28
+        "age_seconds": 58
       },
       "EWG": {
         "signal": "sell",
-        "age_seconds": 28
+        "age_seconds": 58
       }
     },
     "state_persistent": true,
@@ -12472,7 +12472,7 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-10-20T20:48:27.812764+00:00",
+      "updated_at": "2026-10-20T23:43:54.563194+00:00",
       "history_symbols": 20,
       "errors": [],
       "eligible_signals": [
