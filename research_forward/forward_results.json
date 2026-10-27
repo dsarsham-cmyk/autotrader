@@ -49,13 +49,13 @@
     "broker_orders_enabled": false,
     "mode": "After-close replay of future completed sessions; not a live tick execution test"
   },
-  "sessions": 15,
+  "sessions": 16,
   "metrics": {
-    "sessions": 15,
+    "sessions": 16,
     "total_return_pct": -0.14590199999999776,
     "max_close_drawdown_pct": 0.14590199999999776,
     "worst_day_pct": -0.09463520000000392,
-    "mean_daily_pct": -0.009730037493055713,
+    "mean_daily_pct": -0.009121910149739731,
     "profitable_days": 0,
     "days_at_least_1pct": 0
   },
@@ -224,6 +224,17 @@
       "entry_halted": true,
       "permanent_halt": false,
       "guard_events": 0
+    },
+    {
+      "date": "2026-10-26",
+      "equity": 99854.098,
+      "pnl": 0.0,
+      "return_pct": 0.0,
+      "worst_intraday_pct": 0.0,
+      "selected": "TSLA",
+      "entry_halted": true,
+      "permanent_halt": false,
+      "guard_events": 0
     }
   ],
   "trades": [
@@ -318,30 +329,46 @@
       "quantity": 40,
       "limit": 66.48642,
       "stop": 64.1
+    },
+    {
+      "date": "2026-10-26",
+      "symbol": "TSLA",
+      "minute": 9,
+      "event": "signal",
+      "relative_volume": 2.044553720361568,
+      "quantity": 11,
+      "limit": 391.78889749999996,
+      "stop": 383.73
+    },
+    {
+      "date": "2026-10-26",
+      "symbol": "TSLA",
+      "minute": 10,
+      "event": "fill_rejected"
     }
   ],
   "status": "simulated_forward_observations",
-  "updated_utc": "2026-10-23T23:53:37.438434+00:00",
+  "updated_utc": "2026-10-27T00:31:49.620505+00:00",
   "input_hashes": {
-    "AAPL": "d678eb7bb6c06cfc51cfd8fa5f72c39004efcc7a95636787ad86f56ca23fb692",
-    "MSFT": "6cfdd58c7b27f989f16abeae1e0b56f196193e072eebb21635aef1612d786dda",
-    "NVDA": "8fc6d9e078047527144754e9be61b89f1ddd5b29f706b4b47a0dbdc977ebe5ca",
-    "AMZN": "db7cf0552723962278633fc467621176f5e67e7ec3e2e17872d488222acb75e0",
-    "META": "a19023323bb4f7d918715fffa04ec86ccd55053c1653424809b7fe82ae9d16b7",
-    "GOOG": "dc528a8e188da4ca8e17734f86ae10075d4baf0af45412dc51de7eafb2a7520b",
-    "TSLA": "584a47780e9332565a0de4b1563bf2f6d5e8f5e1583958893a2fe7ae1ec5bf00",
-    "AMD": "87dd6f651df45436a07fbd95569085784b02eca706439723b8c34f9e06372bed",
-    "JPM": "8579eed76903142b4893c70fe85a16ca8e8a4d22feee7ca694301ad6bfa4d14b",
-    "BAC": "f29f1e4a66abcdc230be7bc37b3b9e45424c2e66af0b036f71554d87712f641a",
-    "XOM": "028a35927e81a4150bc0f0bf3f5c6d2174b811f7508abe059099644cb882e4be",
-    "CVX": "47f99bd9afa0a86875ec00dba2e6eb0041bdee2067f6d63db7e9117fe0c8ba34",
-    "WMT": "189f149aa909016b767e8de2e9a94609180723257a732b3ed2ce9559f8330aff",
-    "DIS": "9aeb761363a72b588ce75f7d3dc2fbc24191db96a897687390480f045112f2d9",
-    "NFLX": "544f6131da6c9104be7c708dcd6852424159e7704ae7ee4c07430b76a939eabd",
-    "INTC": "1a4ac0a3a1bc394a8aa8c96aab0dfc79692134cc85a294d7e232e721515cc034",
-    "UBER": "3a36b323a5b8d03e92eaff2a5623668d38bab3b7f1c84d1e6876d85d34138799",
-    "PLTR": "d56184b3bd341dbfbc0ac2554ebfcac67d0e246e28b4bb37f9de30b7db876316",
-    "AVGO": "5866511774c9c5ebc0a455475af488d2254302992b3011091613ee5efdc0746a",
-    "MU": "d03bc65f2fbaa0b77e0e78976031479cd8ccddae37a86c8f3ebb761ed4b55c32"
+    "AAPL": "1bcd0b0a7a5d1c55886d2dcbbe4f26733216b7a4b0289a47c3e1d05ebe0c696e",
+    "MSFT": "dd5779dd61c7cf9ed9cb089c9b8bfddb43122080f8ae670ea8a5d8addfedc21d",
+    "NVDA": "3468db3d43efa45147f0adb3306e46b904a8a670dba3df5dc921eddb207399e7",
+    "AMZN": "d671dc3ffc8dcc6ff4b13d151b6268144f043cb252b1be659b74f95712e9d8fb",
+    "META": "a7fc672180616d91261cdea38155f379c00d5e0738277de1257efb40dbe5dfeb",
+    "GOOG": "ded8f80d4df102162833e217e77c9183892287ddba4bc94981a25fa6406299e8",
+    "TSLA": "4cc487a70ac84ee86064263c2cef002f2cff44868f7291399a90bc3b1188cb41",
+    "AMD": "5a227531192ec00005bdc3355e0f64e012751ab5b1bd2eb601fe64615e623636",
+    "JPM": "612863618d2a3d6b867904c3db70236ffa86cd0a81f4d87b8b2d1d58ef4f3aff",
+    "BAC": "4837ffc79218036f3cd7e7ca062cd17b0e095fc9d8606d4035e9d239cd638e6a",
+    "XOM": "4edc9fffc9560f115b7e807a4485ca86f29e875189dffc913dc6a523695c48ea",
+    "CVX": "c9a579319817cce46be959ddcfdb7369c615313f3c44bb66ff51a4150e2829c9",
+    "WMT": "ea5be9b8db4c377267f4eebffdfef6d9fda8b31af4b394d1635584a171e86e96",
+    "DIS": "6e94a542072dbc7b9ce12d5b3ef61fd8e8640d7dafb11c77c9ae7e8628cd3951",
+    "NFLX": "aee1fa0e47ee14bc36900cce70c57a5e7bf92ba927f57676c99eda330e661549",
+    "INTC": "7d229de77d8c10fc18728a54185b3fa13f2e98537f014d550b6650b0b6b1bb0f",
+    "UBER": "797f275a1c4d9b31248a03b61f0071c73cd987958bf910283a8ba5654b82e04b",
+    "PLTR": "4938992ba199292ef248053c151987d7979ad375afdcad7252372dfd853d31ab",
+    "AVGO": "24fe7dfdbf516c1ad7afa323c8eb370e1fc38b230542308b9f5f2c88f4e2ce89",
+    "MU": "90c4ad31511b79e2c43960bb1a7ed73c0c9dda6987835b1a74d8fc9d4c667143"
   }
 }
