@@ -49,13 +49,13 @@
     "broker_orders_enabled": false,
     "mode": "After-close replay of future completed sessions; not a live tick execution test"
   },
-  "sessions": 16,
+  "sessions": 17,
   "metrics": {
-    "sessions": 16,
+    "sessions": 17,
     "total_return_pct": -0.14590199999999776,
     "max_close_drawdown_pct": 0.14590199999999776,
     "worst_day_pct": -0.09463520000000392,
-    "mean_daily_pct": -0.009121910149739731,
+    "mean_daily_pct": -0.008585327199755041,
     "profitable_days": 0,
     "days_at_least_1pct": 0
   },
@@ -235,6 +235,17 @@
       "entry_halted": true,
       "permanent_halt": false,
       "guard_events": 0
+    },
+    {
+      "date": "2026-10-27",
+      "equity": 99854.098,
+      "pnl": 0.0,
+      "return_pct": 0.0,
+      "worst_intraday_pct": 0.0,
+      "selected": "META",
+      "entry_halted": true,
+      "permanent_halt": false,
+      "guard_events": 0
     }
   ],
   "trades": [
@@ -335,7 +346,7 @@
       "symbol": "TSLA",
       "minute": 9,
       "event": "signal",
-      "relative_volume": 2.044553720361568,
+      "relative_volume": 2.0445374834054926,
       "quantity": 11,
       "limit": 391.78889749999996,
       "stop": 383.73
@@ -348,27 +359,27 @@
     }
   ],
   "status": "simulated_forward_observations",
-  "updated_utc": "2026-10-27T00:31:49.620505+00:00",
+  "updated_utc": "2026-10-28T00:33:59.523717+00:00",
   "input_hashes": {
-    "AAPL": "1bcd0b0a7a5d1c55886d2dcbbe4f26733216b7a4b0289a47c3e1d05ebe0c696e",
-    "MSFT": "dd5779dd61c7cf9ed9cb089c9b8bfddb43122080f8ae670ea8a5d8addfedc21d",
-    "NVDA": "3468db3d43efa45147f0adb3306e46b904a8a670dba3df5dc921eddb207399e7",
-    "AMZN": "d671dc3ffc8dcc6ff4b13d151b6268144f043cb252b1be659b74f95712e9d8fb",
-    "META": "a7fc672180616d91261cdea38155f379c00d5e0738277de1257efb40dbe5dfeb",
-    "GOOG": "ded8f80d4df102162833e217e77c9183892287ddba4bc94981a25fa6406299e8",
-    "TSLA": "4cc487a70ac84ee86064263c2cef002f2cff44868f7291399a90bc3b1188cb41",
-    "AMD": "5a227531192ec00005bdc3355e0f64e012751ab5b1bd2eb601fe64615e623636",
-    "JPM": "612863618d2a3d6b867904c3db70236ffa86cd0a81f4d87b8b2d1d58ef4f3aff",
-    "BAC": "4837ffc79218036f3cd7e7ca062cd17b0e095fc9d8606d4035e9d239cd638e6a",
-    "XOM": "4edc9fffc9560f115b7e807a4485ca86f29e875189dffc913dc6a523695c48ea",
-    "CVX": "c9a579319817cce46be959ddcfdb7369c615313f3c44bb66ff51a4150e2829c9",
-    "WMT": "ea5be9b8db4c377267f4eebffdfef6d9fda8b31af4b394d1635584a171e86e96",
-    "DIS": "6e94a542072dbc7b9ce12d5b3ef61fd8e8640d7dafb11c77c9ae7e8628cd3951",
-    "NFLX": "aee1fa0e47ee14bc36900cce70c57a5e7bf92ba927f57676c99eda330e661549",
-    "INTC": "7d229de77d8c10fc18728a54185b3fa13f2e98537f014d550b6650b0b6b1bb0f",
-    "UBER": "797f275a1c4d9b31248a03b61f0071c73cd987958bf910283a8ba5654b82e04b",
-    "PLTR": "4938992ba199292ef248053c151987d7979ad375afdcad7252372dfd853d31ab",
-    "AVGO": "24fe7dfdbf516c1ad7afa323c8eb370e1fc38b230542308b9f5f2c88f4e2ce89",
-    "MU": "90c4ad31511b79e2c43960bb1a7ed73c0c9dda6987835b1a74d8fc9d4c667143"
+    "AAPL": "541099ff9b4b7bcf59a717c2f956b999a8a8dde5d0c13681a5e5ea5e46782c09",
+    "MSFT": "0f832bbe50bb9c682bd3a7070aa171a55a390a625a9858bcee1a20838ed7778d",
+    "NVDA": "f24fe540fe73526789b0b7dfff9fc2c835c30c9df4ade83604c5a1072f0215b5",
+    "AMZN": "a4c98356a14adce408d2d37bcd042632ef012e2d56e8473f313501a14ceb1ca2",
+    "META": "583b2891a5b67f15bd646a94615b6bc29b9528f15e464ae0f1377706817fcc58",
+    "GOOG": "d5a258eae0f44c5a71ff058c70a4e70ecb9d3073b20435a3858d8119125b9422",
+    "TSLA": "1abc95f48d45c8b72d765b552b9b5a20ee70d2a40418c7e2217e1751e2756909",
+    "AMD": "defac1a0dc5c4d261b8c851abe23b34e9ae8b80d805b3880fcd43a756775c9bc",
+    "JPM": "3cf028a28ac503ca50708267da318abc635614ef1913f445c503bc2daf83f4d3",
+    "BAC": "b36137d39567c6d50c8505f6082de08ad2ffba34e1c6d235773c8f6ae62dcaf9",
+    "XOM": "fc5a0b8e8c77ab0d3e55cffde700aee4280c8b038d6d585c396068f5e0dafd76",
+    "CVX": "aa4e6b0a75da1eb80ed51a72adca04604889fc60aab0648ca18782138e918709",
+    "WMT": "edda23057addf6c7103bbc81d8e7dbb0452d54758da5e305d9685c84b58b2b2c",
+    "DIS": "a9b51972ae2eea46f1b1bd6a1d6ca3c9fa7ddb11a97896aa8abdc849dd56d2cd",
+    "NFLX": "f220fe2feab002d61d2abea69ee94ded85d5defec7a4a458c6ded4ffb9c71245",
+    "INTC": "57a51dd03c8060ead6909f431ce0e54987d9e75a6e2a8773784fd28ac5337aaf",
+    "UBER": "5e8e632d03462252aa484e1628a0d48c06420c2fcd80ad66f698c3f50dcb826a",
+    "PLTR": "69d57977799bbf26efaefcb8434785ac2ae421d9e7786a7e95bac2fa42959328",
+    "AVGO": "2d176efcbb71df43bb8e2fb026edd718b90a2168f1f491073acc692c2297c725",
+    "MU": "b078e2ea0eb454b902d29f6ff260b43e6fc87c53ec0327ca6b48d724bfa9b043"
   }
 }
