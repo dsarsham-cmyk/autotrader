@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-10-30T01:47:47.176284+00:00",
+  "last_updated": "2026-10-30T08:25:37.629541+00:00",
   "market_open": false,
   "account": {
-    "equity": 106964.15,
-    "cash": 106964.15,
-    "buying_power": 427856.6,
-    "last_equity": 106979.39,
-    "day_pnl": -15.24,
-    "day_pnl_pct": -0.014,
+    "equity": 106963.66,
+    "cash": 106963.66,
+    "buying_power": 427854.64,
+    "last_equity": 106963.66,
+    "day_pnl": 0.0,
+    "day_pnl_pct": 0.0,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -28,28 +28,11 @@
       "positions": {},
       "market_value": 0,
       "unrealized_pnl": 0,
-      "day_pnl": -18.21,
-      "market_date": "2026-10-29",
-      "daily_buy_executions": 2,
-      "daily_sell_executions": 5,
-      "daily_symbols": [
-        {
-          "symbol": "TQQQ",
-          "day_pnl": -15.38,
-          "start_qty": 0.0,
-          "current_qty": 0.0,
-          "previous_close": 72.36,
-          "execution_count": 3
-        },
-        {
-          "symbol": "SPXL",
-          "day_pnl": -2.83,
-          "start_qty": 0.0,
-          "current_qty": 0.0,
-          "previous_close": 288.95,
-          "execution_count": 4
-        }
-      ]
+      "day_pnl": 0.0,
+      "market_date": "2026-10-30",
+      "daily_buy_executions": 0,
+      "daily_sell_executions": 0,
+      "daily_symbols": []
     },
     "low": {
       "name": "LOW RISK",
@@ -73,36 +56,11 @@
       "positions": {},
       "market_value": 0,
       "unrealized_pnl": 0,
-      "day_pnl": 2.97,
-      "market_date": "2026-10-29",
-      "daily_buy_executions": 8,
-      "daily_sell_executions": 8,
-      "daily_symbols": [
-        {
-          "symbol": "QQQ",
-          "day_pnl": -0.83,
-          "start_qty": 0.0,
-          "current_qty": 0.0,
-          "previous_close": 725.61,
-          "execution_count": 4
-        },
-        {
-          "symbol": "SPY",
-          "day_pnl": 2.29,
-          "start_qty": 0.0,
-          "current_qty": 0.0,
-          "previous_close": 772.31,
-          "execution_count": 7
-        },
-        {
-          "symbol": "DIA",
-          "day_pnl": 1.51,
-          "start_qty": 0.0,
-          "current_qty": 0.0,
-          "previous_close": 524.68,
-          "execution_count": 5
-        }
-      ]
+      "day_pnl": 0.0,
+      "market_date": "2026-10-30",
+      "daily_buy_executions": 0,
+      "daily_sell_executions": 0,
+      "daily_symbols": []
     },
     "experiment": {
       "name": "ACTIVE STOCK EXPERIMENT",
@@ -139,17 +97,13 @@
       "market_value": 0,
       "unrealized_pnl": 0,
       "day_pnl": 0.0,
-      "market_date": "2026-10-29",
+      "market_date": "2026-10-30",
       "daily_buy_executions": 0,
       "daily_sell_executions": 0,
       "daily_symbols": []
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-26T09:42:01.608918+00:00",
-      "equity": 107399.05
-    },
     {
       "ts": "2026-09-26T10:15:33.639535+00:00",
       "equity": 107399.05
@@ -2145,6 +2099,10 @@
     {
       "ts": "2026-10-30T01:47:47.176284+00:00",
       "equity": 106964.15
+    },
+    {
+      "ts": "2026-10-30T08:25:37.629541+00:00",
+      "equity": 106963.66
     }
   ],
   "recent_trades": [
@@ -6516,22 +6474,18 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-30T01:47:54.946682+00:00",
+    "generated_at": "2026-10-30T08:25:42.572433+00:00",
     "verdict": "promising",
     "good_enough": false,
     "summary": "Safeguards look healthy, but more live history is needed.",
     "cadence": {
       "uses_daily_bars": true,
       "guaranteed_daily_trade": false,
-      "fills_today": 23,
+      "fills_today": 0,
       "active_days": 20,
-      "observed_weekdays": 24,
-      "active_day_pct": 83.3,
+      "observed_weekdays": 25,
+      "active_day_pct": 80.0,
       "calendar": [
-        {
-          "date": "2026-10-16",
-          "fills": 43
-        },
         {
           "date": "2026-10-19",
           "fills": 31
@@ -6567,6 +6521,10 @@
         {
           "date": "2026-10-29",
           "fills": 23
+        },
+        {
+          "date": "2026-10-30",
+          "fills": 0
         }
       ],
       "explanation": "The engine checks daily momentum. It may hold or make no trade; daily profit and daily fills are not guaranteed."
@@ -6586,7 +6544,7 @@
         "key": "live_evidence",
         "label": "Enough live evidence",
         "status": "warn",
-        "detail": "24 observed trading days and 279 sell fills. Too early to judge live profitability reliably."
+        "detail": "25 observed trading days and 279 sell fills. Too early to judge live profitability reliably."
       },
       {
         "key": "risk_protection",
@@ -6616,307 +6574,70 @@
         "key": "account_controller",
         "label": "Account-wide loss control",
         "status": "good",
-        "detail": "liquidation confirmed; no re-entry today"
+        "detail": "Paper controller checking risk"
       }
     ]
   },
   "positions_status": "available",
   "daily_accounting": {
     "status": "calculated",
-    "market_date": "2026-10-29",
-    "generated_at": "2026-10-30T01:47:50.111177+00:00",
+    "market_date": "2026-10-30",
+    "generated_at": "2026-10-30T08:25:40.267331+00:00",
     "portfolios": {
       "high": {
-        "day_pnl": -18.21,
-        "market_date": "2026-10-29",
-        "daily_buy_executions": 2,
-        "daily_sell_executions": 5,
-        "daily_symbols": [
-          {
-            "symbol": "TQQQ",
-            "day_pnl": -15.38,
-            "start_qty": 0.0,
-            "current_qty": 0.0,
-            "previous_close": 72.36,
-            "execution_count": 3
-          },
-          {
-            "symbol": "SPXL",
-            "day_pnl": -2.83,
-            "start_qty": 0.0,
-            "current_qty": 0.0,
-            "previous_close": 288.95,
-            "execution_count": 4
-          }
-        ]
+        "day_pnl": 0.0,
+        "market_date": "2026-10-30",
+        "daily_buy_executions": 0,
+        "daily_sell_executions": 0,
+        "daily_symbols": []
       },
       "low": {
-        "day_pnl": 2.97,
-        "market_date": "2026-10-29",
-        "daily_buy_executions": 8,
-        "daily_sell_executions": 8,
-        "daily_symbols": [
-          {
-            "symbol": "QQQ",
-            "day_pnl": -0.83,
-            "start_qty": 0.0,
-            "current_qty": 0.0,
-            "previous_close": 725.61,
-            "execution_count": 4
-          },
-          {
-            "symbol": "SPY",
-            "day_pnl": 2.29,
-            "start_qty": 0.0,
-            "current_qty": 0.0,
-            "previous_close": 772.31,
-            "execution_count": 7
-          },
-          {
-            "symbol": "DIA",
-            "day_pnl": 1.51,
-            "start_qty": 0.0,
-            "current_qty": 0.0,
-            "previous_close": 524.68,
-            "execution_count": 5
-          }
-        ]
+        "day_pnl": 0.0,
+        "market_date": "2026-10-30",
+        "daily_buy_executions": 0,
+        "daily_sell_executions": 0,
+        "daily_symbols": []
       },
       "experiment": {
         "day_pnl": 0.0,
-        "market_date": "2026-10-29",
+        "market_date": "2026-10-30",
         "daily_buy_executions": 0,
         "daily_sell_executions": 0,
         "daily_symbols": []
       }
     },
-    "portfolio_day_pnl": -15.24,
+    "portfolio_day_pnl": 0.0,
     "unallocated_day_pnl": 0.0,
-    "buy_executions": 10,
-    "sell_executions": 13,
-    "executions": [
-      {
-        "execution_id": "20261029093645244::cd48b7fd-f209-4ec5-b822-f516bf04940d",
-        "order_id": "7ab9a1f4-075f-4120-b82f-37d2711022e6",
-        "time": "2026-10-29T13:36:45.244629Z",
-        "symbol": "SPY",
-        "side": "sell",
-        "qty": 1.0,
-        "price": 768.03
-      },
-      {
-        "execution_id": "20261029093644172::60dd9e29-ee12-4177-8e9f-c4b5ef1c6d55",
-        "order_id": "7ab9a1f4-075f-4120-b82f-37d2711022e6",
-        "time": "2026-10-29T13:36:44.17241Z",
-        "symbol": "SPY",
-        "side": "sell",
-        "qty": 1.0,
-        "price": 768.07
-      },
-      {
-        "execution_id": "20261029093643865::188ba20e-64a4-44bc-bd5d-005591306394",
-        "order_id": "dc2fbfe8-5be1-46e1-9a79-6f607d0e5c87",
-        "time": "2026-10-29T13:36:43.865754Z",
-        "symbol": "TQQQ",
-        "side": "sell",
-        "qty": 32.0,
-        "price": 68.54
-      },
-      {
-        "execution_id": "20261029093643630::d3c9bc16-6355-4f19-8b44-95b68ce7ee47",
-        "order_id": "7ab9a1f4-075f-4120-b82f-37d2711022e6",
-        "time": "2026-10-29T13:36:43.630278Z",
-        "symbol": "SPY",
-        "side": "sell",
-        "qty": 5.0,
-        "price": 768.09
-      },
-      {
-        "execution_id": "20261029093643455::864e2616-8006-48f9-9fba-d2f882becf62",
-        "order_id": "e28a4baf-883b-4a1d-8969-b9eaa359de5b",
-        "time": "2026-10-29T13:36:43.455833Z",
-        "symbol": "SPXL",
-        "side": "sell",
-        "qty": 1.0,
-        "price": 284.27
-      },
-      {
-        "execution_id": "20261029093642968::e1d033ca-c970-496c-9e9d-700159049e58",
-        "order_id": "7ab9a1f4-075f-4120-b82f-37d2711022e6",
-        "time": "2026-10-29T13:36:42.968846Z",
-        "symbol": "SPY",
-        "side": "sell",
-        "qty": 1.0,
-        "price": 768.1
-      },
-      {
-        "execution_id": "20261029093642802::c862101d-80a4-4868-834a-d8c85777eb3a",
-        "order_id": "e28a4baf-883b-4a1d-8969-b9eaa359de5b",
-        "time": "2026-10-29T13:36:42.802728Z",
-        "symbol": "SPXL",
-        "side": "sell",
-        "qty": 5.0,
-        "price": 284.28
-      },
-      {
-        "execution_id": "20261029093642382::0a864d6e-b261-4473-a2c2-aa7342ead677",
-        "order_id": "dc2fbfe8-5be1-46e1-9a79-6f607d0e5c87",
-        "time": "2026-10-29T13:36:42.382941Z",
-        "symbol": "TQQQ",
-        "side": "sell",
-        "qty": 11.0,
-        "price": 68.51
-      },
-      {
-        "execution_id": "20261029093642180::843deb02-aa84-465b-8cf6-ee38d1ba10b2",
-        "order_id": "283692f2-8974-4a0d-b48c-80bec8e09dc1",
-        "time": "2026-10-29T13:36:42.180689Z",
-        "symbol": "QQQ",
-        "side": "sell",
-        "qty": 3.0,
-        "price": 712.94
-      },
-      {
-        "execution_id": "20261029093641907::021acc3e-2c9b-4e69-92d4-b1eb933e46be",
-        "order_id": "283692f2-8974-4a0d-b48c-80bec8e09dc1",
-        "time": "2026-10-29T13:36:41.907781Z",
-        "symbol": "QQQ",
-        "side": "sell",
-        "qty": 2.0,
-        "price": 712.89
-      },
-      {
-        "execution_id": "20261029093641658::a7bfbe24-2603-46b1-83e5-faca8aa2d3ab",
-        "order_id": "e28a4baf-883b-4a1d-8969-b9eaa359de5b",
-        "time": "2026-10-29T13:36:41.658622Z",
-        "symbol": "SPXL",
-        "side": "sell",
-        "qty": 9.0,
-        "price": 284.2
-      },
-      {
-        "execution_id": "20261029093636026::c7dd3530-0635-4ed8-8325-0e9b6aa67152",
-        "order_id": "bea986e2-10bc-4a51-97f6-1b8bce9d313f",
-        "time": "2026-10-29T13:36:36.026701Z",
-        "symbol": "DIA",
-        "side": "sell",
-        "qty": 7.0,
-        "price": 522.26
-      },
-      {
-        "execution_id": "20261029093634808::8ef81ecc-33b5-4239-b272-380aeb539609",
-        "order_id": "bea986e2-10bc-4a51-97f6-1b8bce9d313f",
-        "time": "2026-10-29T13:36:34.808777Z",
-        "symbol": "DIA",
-        "side": "sell",
-        "qty": 5.0,
-        "price": 522.19
-      },
-      {
-        "execution_id": "20261029093548281::775b9334-9a9c-4c6e-a6e4-746010dfe142",
-        "order_id": "21579bc2-4451-4b12-bc43-536a4b798c28",
-        "time": "2026-10-29T13:35:48.281117Z",
-        "symbol": "DIA",
-        "side": "buy",
-        "qty": 5.0,
-        "price": 522.12
-      },
-      {
-        "execution_id": "20261029093547871::7fe18c05-abe3-459e-a98b-b48749f221fa",
-        "order_id": "21579bc2-4451-4b12-bc43-536a4b798c28",
-        "time": "2026-10-29T13:35:47.871159Z",
-        "symbol": "DIA",
-        "side": "buy",
-        "qty": 6.0,
-        "price": 522.11
-      },
-      {
-        "execution_id": "20261029093546348::58b8ae6d-800f-4d13-bd81-686d36f94f10",
-        "order_id": "21579bc2-4451-4b12-bc43-536a4b798c28",
-        "time": "2026-10-29T13:35:46.348237Z",
-        "symbol": "DIA",
-        "side": "buy",
-        "qty": 1.0,
-        "price": 522.0
-      },
-      {
-        "execution_id": "20261029093451778::95e9bc0f-5b7f-4af0-a58a-76054ac6143b",
-        "order_id": "11f59bc9-a5ee-4631-8475-b1f56c8bcbde",
-        "time": "2026-10-29T13:34:51.778402Z",
-        "symbol": "SPY",
-        "side": "buy",
-        "qty": 3.0,
-        "price": 767.75
-      },
-      {
-        "execution_id": "20261029093450653::661a70eb-f3f6-4cee-8837-ff82559e48ff",
-        "order_id": "11f59bc9-a5ee-4631-8475-b1f56c8bcbde",
-        "time": "2026-10-29T13:34:50.653098Z",
-        "symbol": "SPY",
-        "side": "buy",
-        "qty": 4.0,
-        "price": 767.82
-      },
-      {
-        "execution_id": "20261029093450277::0136082a-c29b-41e2-ae4b-4ab2209e24ac",
-        "order_id": "11f59bc9-a5ee-4631-8475-b1f56c8bcbde",
-        "time": "2026-10-29T13:34:50.277782Z",
-        "symbol": "SPY",
-        "side": "buy",
-        "qty": 1.0,
-        "price": 767.83
-      },
-      {
-        "execution_id": "20261029093426808::6017a1f4-03e0-4c47-9ab8-7c8f7b203df8",
-        "order_id": "3aaccf8f-f13a-41b3-935c-663985a85ced",
-        "time": "2026-10-29T13:34:26.808152Z",
-        "symbol": "QQQ",
-        "side": "buy",
-        "qty": 4.0,
-        "price": 713.15
-      },
-      {
-        "execution_id": "20261029093421152::a6fbba5f-ebc9-4b93-83bf-64cc02dfd66c",
-        "order_id": "3aaccf8f-f13a-41b3-935c-663985a85ced",
-        "time": "2026-10-29T13:34:21.152852Z",
-        "symbol": "QQQ",
-        "side": "buy",
-        "qty": 1.0,
-        "price": 712.83
-      },
-      {
-        "execution_id": "20261029093342755::5b17c406-68b7-4469-9568-0527e37b7f71",
-        "order_id": "7b5e115f-3f44-4112-a467-914640025a3a",
-        "time": "2026-10-29T13:33:42.755452Z",
-        "symbol": "SPXL",
-        "side": "buy",
-        "qty": 15.0,
-        "price": 284.42
-      },
-      {
-        "execution_id": "20261029093252623::63317b60-de8e-409b-b865-a7b0dcef7664",
-        "order_id": "c55df13d-615e-407b-8db7-2ed74eafd488",
-        "time": "2026-10-29T13:32:52.623485Z",
-        "symbol": "TQQQ",
-        "side": "buy",
-        "qty": 43.0,
-        "price": 68.89
-      }
-    ],
+    "buy_executions": 0,
+    "sell_executions": 0,
+    "executions": [],
     "note": "Daily marked trading P&L, including today's closed trades. Fees, dividends, transfers, unassigned assets and sampling differences remain in the unallocated account change; not guaranteed net profit."
   },
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-30T01:47:52.662601+00:00",
-    "coverage_start": "2026-09-27",
+    "past_days_updated_at": "2026-10-30T08:25:40.657786+00:00",
+    "coverage_start": "2026-09-28",
     "days": [
       {
-        "date": "2026-10-29",
-        "equity": 106964.15,
-        "day_change": -15.24,
-        "day_change_pct": -0.014,
+        "date": "2026-10-30",
+        "equity": 106963.66,
+        "day_change": 0.0,
+        "day_change_pct": 0.0,
         "status": "latest",
+        "executions_complete": true,
+        "buys": 0,
+        "sells": 0,
+        "execution_count": 0,
+        "order_count": 0,
+        "executions": []
+      },
+      {
+        "date": "2026-10-29",
+        "equity": 106963.66,
+        "day_change": -15.73,
+        "day_change_pct": -0.015,
+        "status": "closed",
         "executions_complete": true,
         "buys": 10,
         "sells": 13,
@@ -15853,7 +15574,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-10-30T01:47:49.420283+00:00",
+    "updated_at": "2026-10-30T08:25:29.972734+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -15863,16 +15584,16 @@
       "max_account_loss_pct": 0.1,
       "max_drawdown_pct": 0.1
     },
-    "entry_blocked": true,
-    "reason": "liquidation confirmed; no re-entry today",
+    "entry_blocked": false,
+    "reason": "",
     "liquidating": null,
-    "daily_pnl_pct": -0.014,
+    "daily_pnl_pct": 0.0,
     "market_open": false,
     "open_positions": 0,
     "actions": {},
     "errors": [],
     "verified_stops": 0,
-    "baseline_equity": 106979.39,
+    "baseline_equity": 106963.66,
     "peak_equity": 110658.87,
     "allocations": {
       "HIGH RISK": 0.25,
@@ -15882,47 +15603,47 @@
     "signals": {
       "TQQQ": {
         "signal": "buy",
-        "age_seconds": 14
+        "age_seconds": 18
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 14
+        "age_seconds": 18
       },
       "SOXL": {
         "signal": "sell",
-        "age_seconds": 14
+        "age_seconds": 18
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 14
+        "age_seconds": 17
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 17
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 17
       },
       "IWM": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 17
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 17
       },
       "EZU": {
         "signal": "sell",
-        "age_seconds": 13
+        "age_seconds": 17
       },
       "EWU": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 17
       },
       "EWG": {
         "signal": "buy",
-        "age_seconds": 13
+        "age_seconds": 17
       }
     },
     "state_persistent": true,
@@ -15930,23 +15651,23 @@
     "category_budgets": {
       "HIGH RISK": {
         "fraction": 0.25,
-        "daily_cap": 26735.03,
-        "committed": 10237.43,
-        "remaining": 16497.6,
+        "daily_cap": 26740.91,
+        "committed": 0.0,
+        "remaining": 26740.91,
         "exposure": 0
       },
       "LOW RISK": {
         "fraction": 0.5,
-        "daily_cap": 53470.07,
-        "committed": 15993.6,
-        "remaining": 37476.47,
+        "daily_cap": 53481.83,
+        "committed": 0.0,
+        "remaining": 53481.83,
         "exposure": 0
       },
       "ACTIVE STOCK EXPERIMENT": {
         "fraction": 0.05,
-        "daily_cap": 5347.0,
+        "daily_cap": 5348.18,
         "committed": 0.0,
-        "remaining": 5347.0,
+        "remaining": 5348.18,
         "exposure": 0
       }
     },
@@ -15955,7 +15676,7 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-10-30T01:47:37.791557+00:00",
+      "updated_at": "2026-10-30T08:25:21.415603+00:00",
       "history_symbols": 20,
       "errors": [],
       "eligible_signals": []
