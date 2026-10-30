@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-10-30T08:25:37.629541+00:00",
-  "market_open": false,
+  "last_updated": "2026-10-30T15:14:56.818639+00:00",
+  "market_open": true,
   "account": {
-    "equity": 106963.66,
-    "cash": 106963.66,
-    "buying_power": 427854.64,
+    "equity": 106952.81,
+    "cash": 106952.81,
+    "buying_power": 427811.24,
     "last_equity": 106963.66,
-    "day_pnl": 0.0,
-    "day_pnl_pct": 0.0,
+    "day_pnl": -10.85,
+    "day_pnl_pct": -0.01,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -28,11 +28,20 @@
       "positions": {},
       "market_value": 0,
       "unrealized_pnl": 0,
-      "day_pnl": 0.0,
+      "day_pnl": -10.85,
       "market_date": "2026-10-30",
-      "daily_buy_executions": 0,
-      "daily_sell_executions": 0,
-      "daily_symbols": []
+      "daily_buy_executions": 1,
+      "daily_sell_executions": 1,
+      "daily_symbols": [
+        {
+          "symbol": "TQQQ",
+          "day_pnl": -10.85,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 69.26,
+          "execution_count": 2
+        }
+      ]
     },
     "low": {
       "name": "LOW RISK",
@@ -104,10 +113,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-26T10:15:33.639535+00:00",
-      "equity": 107399.05
-    },
     {
       "ts": "2026-09-26T10:42:19.464018+00:00",
       "equity": 107399.05
@@ -2103,9 +2108,31 @@
     {
       "ts": "2026-10-30T08:25:37.629541+00:00",
       "equity": 106963.66
+    },
+    {
+      "ts": "2026-10-30T15:14:56.818639+00:00",
+      "equity": 106952.81
     }
   ],
   "recent_trades": [
+    {
+      "execution_id": "20261030093337145::a7638478-6b79-4574-872d-08ef1883bbdc",
+      "order_id": "6a413074-9183-48c7-b80e-7bd2c314056e",
+      "time": "2026-10-30T13:33:37.145968Z",
+      "symbol": "TQQQ",
+      "side": "sell",
+      "qty": 31.0,
+      "price": 63.38
+    },
+    {
+      "execution_id": "20261030093102070::05bd9d0c-b9cd-4288-9787-128687efaf0f",
+      "order_id": "4d6134c4-38b3-476a-9cdd-87236a3bc4be",
+      "time": "2026-10-30T13:31:02.070372Z",
+      "symbol": "TQQQ",
+      "side": "buy",
+      "qty": 31.0,
+      "price": 63.73
+    },
     {
       "execution_id": "20261029093645244::cd48b7fd-f209-4ec5-b822-f516bf04940d",
       "order_id": "7ab9a1f4-075f-4120-b82f-37d2711022e6",
@@ -6474,17 +6501,17 @@
     }
   },
   "audit": {
-    "generated_at": "2026-10-30T08:25:42.572433+00:00",
+    "generated_at": "2026-10-30T15:15:00.752479+00:00",
     "verdict": "promising",
     "good_enough": false,
     "summary": "Safeguards look healthy, but more live history is needed.",
     "cadence": {
       "uses_daily_bars": true,
       "guaranteed_daily_trade": false,
-      "fills_today": 0,
-      "active_days": 20,
+      "fills_today": 2,
+      "active_days": 21,
       "observed_weekdays": 25,
-      "active_day_pct": 80.0,
+      "active_day_pct": 84.0,
       "calendar": [
         {
           "date": "2026-10-19",
@@ -6524,33 +6551,33 @@
         },
         {
           "date": "2026-10-30",
-          "fills": 0
+          "fills": 2
         }
       ],
       "explanation": "The engine checks daily momentum. It may hold or make no trade; daily profit and daily fills are not guaranteed."
     },
     "execution": {
-      "recent_fill_count": 478,
-      "sell_fill_count": 279,
+      "recent_fill_count": 480,
+      "sell_fill_count": 280,
       "churn_count": 0,
       "churn_events": [],
       "open_positions": 0,
       "protected_positions": 0,
       "simple_buy_orders": 0,
-      "bracket_buy_orders": 16
+      "bracket_buy_orders": 15
     },
     "checks": [
       {
         "key": "live_evidence",
         "label": "Enough live evidence",
         "status": "warn",
-        "detail": "25 observed trading days and 279 sell fills. Too early to judge live profitability reliably."
+        "detail": "25 observed trading days and 280 sell fills. Too early to judge live profitability reliably."
       },
       {
         "key": "risk_protection",
         "label": "Broker-side protection",
         "status": "good",
-        "detail": "0 of 0 open positions have an active broker-side stop order. Recent filled buys: 16 bracket/OTO, 0 simple."
+        "detail": "0 of 0 open positions have an active broker-side stop order. Recent filled buys: 15 bracket/OTO, 0 simple."
       },
       {
         "key": "execution_churn",
@@ -6574,7 +6601,7 @@
         "key": "account_controller",
         "label": "Account-wide loss control",
         "status": "good",
-        "detail": "Paper controller checking risk"
+        "detail": "liquidation confirmed; no re-entry today"
       }
     ]
   },
@@ -6582,14 +6609,23 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-10-30",
-    "generated_at": "2026-10-30T08:25:40.267331+00:00",
+    "generated_at": "2026-10-30T15:14:58.704305+00:00",
     "portfolios": {
       "high": {
-        "day_pnl": 0.0,
+        "day_pnl": -10.85,
         "market_date": "2026-10-30",
-        "daily_buy_executions": 0,
-        "daily_sell_executions": 0,
-        "daily_symbols": []
+        "daily_buy_executions": 1,
+        "daily_sell_executions": 1,
+        "daily_symbols": [
+          {
+            "symbol": "TQQQ",
+            "day_pnl": -10.85,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 69.26,
+            "execution_count": 2
+          }
+        ]
       },
       "low": {
         "day_pnl": 0.0,
@@ -6606,31 +6642,69 @@
         "daily_symbols": []
       }
     },
-    "portfolio_day_pnl": 0.0,
+    "portfolio_day_pnl": -10.85,
     "unallocated_day_pnl": 0.0,
-    "buy_executions": 0,
-    "sell_executions": 0,
-    "executions": [],
+    "buy_executions": 1,
+    "sell_executions": 1,
+    "executions": [
+      {
+        "execution_id": "20261030093337145::a7638478-6b79-4574-872d-08ef1883bbdc",
+        "order_id": "6a413074-9183-48c7-b80e-7bd2c314056e",
+        "time": "2026-10-30T13:33:37.145968Z",
+        "symbol": "TQQQ",
+        "side": "sell",
+        "qty": 31.0,
+        "price": 63.38
+      },
+      {
+        "execution_id": "20261030093102070::05bd9d0c-b9cd-4288-9787-128687efaf0f",
+        "order_id": "4d6134c4-38b3-476a-9cdd-87236a3bc4be",
+        "time": "2026-10-30T13:31:02.070372Z",
+        "symbol": "TQQQ",
+        "side": "buy",
+        "qty": 31.0,
+        "price": 63.73
+      }
+    ],
     "note": "Daily marked trading P&L, including today's closed trades. Fees, dividends, transfers, unassigned assets and sampling differences remain in the unallocated account change; not guaranteed net profit."
   },
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-10-30T08:25:40.657786+00:00",
+    "past_days_updated_at": "2026-10-30T15:14:59.275145+00:00",
     "coverage_start": "2026-09-28",
     "days": [
       {
         "date": "2026-10-30",
-        "equity": 106963.66,
-        "day_change": 0.0,
-        "day_change_pct": 0.0,
-        "status": "latest",
+        "equity": 106952.81,
+        "day_change": -10.85,
+        "day_change_pct": -0.01,
+        "status": "intraday",
         "executions_complete": true,
-        "buys": 0,
-        "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
+        "buys": 1,
+        "sells": 1,
+        "execution_count": 2,
+        "order_count": 2,
+        "executions": [
+          {
+            "execution_id": "20261030093337145::a7638478-6b79-4574-872d-08ef1883bbdc",
+            "order_id": "6a413074-9183-48c7-b80e-7bd2c314056e",
+            "time": "2026-10-30T13:33:37.145968Z",
+            "symbol": "TQQQ",
+            "side": "sell",
+            "qty": 31.0,
+            "price": 63.38
+          },
+          {
+            "execution_id": "20261030093102070::05bd9d0c-b9cd-4288-9787-128687efaf0f",
+            "order_id": "4d6134c4-38b3-476a-9cdd-87236a3bc4be",
+            "time": "2026-10-30T13:31:02.070372Z",
+            "symbol": "TQQQ",
+            "side": "buy",
+            "qty": 31.0,
+            "price": 63.73
+          }
+        ]
       },
       {
         "date": "2026-10-29",
@@ -11121,19 +11195,6 @@
       {
         "date": "2026-09-30",
         "equity": 107290.64,
-        "day_change": 0.0,
-        "day_change_pct": 0.0,
-        "status": "closed",
-        "executions_complete": true,
-        "buys": 0,
-        "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
-      },
-      {
-        "date": "2026-09-29",
-        "equity": 107290.64,
         "day_change": null,
         "day_change_pct": null,
         "status": "baseline",
@@ -11268,6 +11329,24 @@
       }
     ],
     "executions": [
+      {
+        "execution_id": "20261030093337145::a7638478-6b79-4574-872d-08ef1883bbdc",
+        "order_id": "6a413074-9183-48c7-b80e-7bd2c314056e",
+        "time": "2026-10-30T13:33:37.145968Z",
+        "symbol": "TQQQ",
+        "side": "sell",
+        "qty": 31.0,
+        "price": 63.38
+      },
+      {
+        "execution_id": "20261030093102070::05bd9d0c-b9cd-4288-9787-128687efaf0f",
+        "order_id": "4d6134c4-38b3-476a-9cdd-87236a3bc4be",
+        "time": "2026-10-30T13:31:02.070372Z",
+        "symbol": "TQQQ",
+        "side": "buy",
+        "qty": 31.0,
+        "price": 63.73
+      },
       {
         "execution_id": "20261029093645244::cd48b7fd-f209-4ec5-b822-f516bf04940d",
         "order_id": "7ab9a1f4-075f-4120-b82f-37d2711022e6",
@@ -15574,7 +15653,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-10-30T08:25:29.972734+00:00",
+    "updated_at": "2026-10-30T15:14:50.534437+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -15584,11 +15663,11 @@
       "max_account_loss_pct": 0.1,
       "max_drawdown_pct": 0.1
     },
-    "entry_blocked": false,
-    "reason": "",
+    "entry_blocked": true,
+    "reason": "liquidation confirmed; no re-entry today",
     "liquidating": null,
-    "daily_pnl_pct": 0.0,
-    "market_open": false,
+    "daily_pnl_pct": -0.01,
+    "market_open": true,
     "open_positions": 0,
     "actions": {},
     "errors": [],
@@ -15602,48 +15681,48 @@
     },
     "signals": {
       "TQQQ": {
-        "signal": "buy",
-        "age_seconds": 18
+        "signal": "sell",
+        "age_seconds": 25
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 18
+        "age_seconds": 25
       },
       "SOXL": {
         "signal": "sell",
-        "age_seconds": 18
+        "age_seconds": 25
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 17
+        "age_seconds": 24
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 17
+        "age_seconds": 24
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 17
+        "age_seconds": 24
       },
       "IWM": {
         "signal": "buy",
-        "age_seconds": 17
+        "age_seconds": 24
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 17
+        "age_seconds": 24
       },
       "EZU": {
-        "signal": "sell",
-        "age_seconds": 17
+        "signal": "buy",
+        "age_seconds": 24
       },
       "EWU": {
         "signal": "buy",
-        "age_seconds": 17
+        "age_seconds": 24
       },
       "EWG": {
         "signal": "buy",
-        "age_seconds": 17
+        "age_seconds": 23
       }
     },
     "state_persistent": true,
@@ -15651,23 +15730,23 @@
     "category_budgets": {
       "HIGH RISK": {
         "fraction": 0.25,
-        "daily_cap": 26740.91,
-        "committed": 0.0,
-        "remaining": 26740.91,
+        "daily_cap": 26738.2,
+        "committed": 3330.6,
+        "remaining": 23407.6,
         "exposure": 0
       },
       "LOW RISK": {
         "fraction": 0.5,
-        "daily_cap": 53481.83,
+        "daily_cap": 53476.4,
         "committed": 0.0,
-        "remaining": 53481.83,
+        "remaining": 53476.4,
         "exposure": 0
       },
       "ACTIVE STOCK EXPERIMENT": {
         "fraction": 0.05,
-        "daily_cap": 5348.18,
+        "daily_cap": 5347.64,
         "committed": 0.0,
-        "remaining": 5348.18,
+        "remaining": 5347.64,
         "exposure": 0
       }
     },
@@ -15676,10 +15755,12 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-10-30T08:25:21.415603+00:00",
+      "updated_at": "2026-10-30T15:14:31.929965+00:00",
       "history_symbols": 20,
       "errors": [],
-      "eligible_signals": []
+      "eligible_signals": [
+        "AMZN"
+      ]
     },
     "connection_paused": false,
     "protection_repairing": false,
