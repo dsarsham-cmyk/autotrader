@@ -1,0 +1,35 @@
+name: Experimental public commitment - NO ORDERS
+run-name: 'AT-anchor-v1:${{ inputs.commitment }}'
+on:
+  workflow_dispatch:
+    inputs:
+      packet_b64:
+        description: Canonical public research envelope, Base64 only - no raw inputs or secrets
+        required: true
+        type: string
+      commitment:
+        description: Lowercase SHA256 of decoded canonical public envelope
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      # Audit registration binds this WHOLE workflow and script to head_sha.
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Copy validated public event without interpolating inputs into shell
+        run: python3 research_commitment.py
+      - name: Retain experimental public commitment only
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: research-commitment-${{ github.run_id }}
+          path: research_runs/commitment/*.json
+          if-no-files-found: error
+          overwrite: false
+          retention-days: 90
