@@ -109,3 +109,41 @@ The goal remains unachieved. The first future authenticated forecast is still
 an operational acceptance requirement; retaining a missing-status artifact
 does not satisfy it. Continue with a registered reliable collection runtime
 and independent observations, not with retrospectively manufactured forecasts.
+
+### Published verification (31 October)
+
+Fixes were committed, rebased over the two remote-generated state files without
+overwriting them, and pushed as `16ef221c973de80ea15afaa857db9a2b82618197`.
+The public GitHub Pages response now includes the liquidation-cause renderer.
+Production Railway still reports the old October 7 controller: publishing
+source/HTML does not establish deployment of the server-side diagnostics.
+
+Four manually dispatched no-order QA workflows completed successfully:
+
+| Run | Check | Verified artifact |
+| --- | --- | --- |
+| 41217709059 | Frozen control environment validation only | 13048688770 |
+| 41217710993 | Frozen shadow environment validation only | 13048539197 |
+| 41217713074 | Actual control evidence audit | 13048263071 |
+| 41217715111 | Actual shadow evidence audit | 13047773718 |
+
+Both actual audits now retain explicit missing-evidence inspections instead of
+crashing. All 15 expected October 12–30 sessions remain missing; no prediction
+was manufactured or recovered as a forward observation. Environment validation
+has `recorded_sessions=0` and is not a forecast. The control audit captured the
+environment run while it was pending; it has since finished, also without any
+forward observation. Its empty observed-subset profit of zero is **not** the
+whole-period result: the latter remains unknown because coverage is incomplete.
+
+Verified ZIP SHA256 (matched GitHub artifact digest):
+
+- Control audit: `23c93608db8e1d155cf8ea65f5b1be98679135ce19bf336725f8edef0e0ae104`
+- Shadow audit: `669fcc3bdc2e291237f845af2958b5fba630d9d40ee751fa2edf81259e2a10a3`
+
+Next acceptance steps remain: authenticated Railway access and deployment/log
+verification; a punctual independently timestamped collection protocol; actual
+future observations. The old cohort's missing dates remain permanently missing.
+A replacement experiment must have a new predeclared future start and preserve
+the old failure record, not reset/relabel it as a successful test. Do not rerun
+the same failed historical candidate or declare more green CI runs to be
+progress on predictive performance.
