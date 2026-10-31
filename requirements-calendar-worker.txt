@@ -1,0 +1,33 @@
+# Separate research-only environment; does not alter production requirements.
+# Python 3.12.10, with the Linux transitive closure of the recorded model runtime.
+PyYAML==6.0.3
+alpaca-py==0.44.0
+annotated-types==0.8.0
+certifi==2026.6.17
+cffi==2.0.0
+charset-normalizer==3.4.7
+cloudpickle==3.1.2
+cryptography==50.0.1
+idna==3.18
+joblib==1.6.0
+msgpack==1.2.2
+narwhals==2.27.1
+numpy==2.5.3
+pandas==3.0.5
+pycparser==3.0
+pydantic==2.13.5
+pydantic_core==2.46.5
+python-dateutil==2.9.0.post0
+python-dotenv==1.2.3
+pytz==2026.3.post1
+requests==2.34.2
+scikit-learn==1.9.1
+scipy==1.18.1
+six==1.17.0
+sseclient-py==1.9.0
+threadpoolctl==3.7.0
+typing-inspection==0.4.4
+typing_extensions==4.16.0
+tzdata==2026.3
+urllib3==2.7.0
+websockets==17.1

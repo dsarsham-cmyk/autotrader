@@ -1,0 +1,52 @@
+name: Calendar research worker environment - NO ORDERS
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12.10'
+      - name: Install separate exact research runtime
+        run: pip install -r requirements-calendar-worker.txt
+      - name: Verify frozen source, model, runtime and clock - no market requests
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+          result = dict(status='failed_no_forecast', recorded_sessions=0,
+              orders=False, production_approved=False, independent_validation_pass=False,
+              deployed=False, private_volume_verified=False)
+          path = Path('research_runs/calendar_worker_validation.json')
+          path.parent.mkdir(parents=True, exist_ok=True)
+          try:
+              from prospective_worker import load_protocol, checked_clock, worker_source_closure
+              protocol = load_protocol(Path('research_prospective/calendar_shadow_v1/worker_protocol.json'),
+                                       Path('research_prospective/calendar_shadow_v1'))
+              result.update(clock=checked_clock(), source_files=len(worker_source_closure()),
+                  protocol_sha256=protocol['protocol_sha256'],
+                  status='technical_environment_validated_no_forecast')
+          except Exception as error:
+              result['error_type'] = type(error).__name__
+              raise
+          finally:
+              result['checked_utc'] = datetime.now(timezone.utc).isoformat()
+              path.write_text(json.dumps(result, indent=2, allow_nan=False))
+          PY
+      - name: Retain technical validation only
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: calendar-worker-validation-${{ github.run_id }}
+          path: research_runs/calendar_worker_validation.json
+          if-no-files-found: error
+          retention-days: 90
