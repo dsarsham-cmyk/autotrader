@@ -82,3 +82,31 @@ paper order, production approval or independent validation is inferred.
 
 Registering an immutable future protocol and passing technical tests do not
 complete these acceptance steps or the profitability objective.
+
+## Final technical verification for this implementation
+
+- Published implementation: `7f14e7efebf28f6983e1c06a2a6e79ccce78210d`.
+- Registered worker protocol:
+  `695142f715db843b5fd3d6991c21b8baab730b34efc128ff2ca31aa185f969e1`.
+- Local tests: **812 passed, 6 optional skipped**, four existing sklearn
+  deprecation warnings. Focused new-component tests: **132 passed**.
+- Initial Linux QA [41220751037](https://github.com/dsarsham-cmyk/autotrader/actions/runs/41220751037)
+  failed before installing dependencies: `ubuntu-latest` had moved to Ubuntu
+  26.04, without the registered Python build. This failure is retained.
+- Runner was explicitly pinned to Ubuntu 24.04 in commit
+  `4566b68ea182cd244c444571c906921c9adb333f`, without changing Python or the
+  frozen model/runtime. New QA
+  [41220879542](https://github.com/dsarsham-cmyk/autotrader/actions/runs/41220879542)
+  completed successfully on CPython **3.12.10**. All **34** worker/audit source
+  files, model contracts, exact package versions and the clock guard passed.
+- Artifact **13049314893**, ZIP digest verified against GitHub:
+  `8952f87705da9ac51ba8a4ab3093a31ed3793bb57e3888113965d388f20151e1`.
+- Linux clock sample: local `16:41:56.800584 UTC`, remote Date `16:41:56 UTC`,
+  RTT `0.07938 s`; no timestamp adjustment. This does not establish the Railway
+  deployment's clock or repair the inconsistent local Windows clock.
+
+The cloud validation result is explicitly `technical_environment_validated_no_forecast`:
+zero sessions, no broker requests/orders, no deployment, no verified private
+volume and no independent validation. GitHub CI success does not start a
+persistent collector. The startup date is a predeclared experimental boundary,
+not a promise that deployment or data collection will have happened by then.
