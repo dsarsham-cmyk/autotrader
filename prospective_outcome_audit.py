@@ -158,6 +158,9 @@ def inspect_run(run_id,backup,envelope):
         if len(items)<100: break
     else: raise ValueError('Incomplete artifact pagination')
     root=backup/str(run_id);anchors=[];statuses=[];retained=[]
+    # A skipped/late producer may legitimately upload nothing. Retain its
+    # inspection too, without manufacturing a forecast or a no-trade session.
+    root.mkdir(parents=True,exist_ok=True)
     upload_steps=[]
     for page in range(1,101):
         result=get(f'/actions/runs/{run_id}/jobs',auth,{'filter':'all','per_page':100,'page':page}).json()
@@ -189,8 +192,14 @@ def inspect_run(run_id,backup,envelope):
                         statuses.append(json.loads(archive.read(name)))
                     elif '/predictions/' in name and name.endswith('.json'):
                         anchors.append(anchor_check(json.loads(archive.read(name)),metadata,envelope))
+    validation_only=bool(statuses) and all(
+        s.get('status')=='cloud_environment_validated_only' for s in statuses)
+    evidence_status=('forecast_packets_inspected' if anchors else
+        'environment_validation_only_not_a_forward_observation' if validation_only else
+        'evidence_unavailable_not_a_no_trade_day')
     report=dict(run_id=run_id,run_url=run['html_url'],conclusion=run['conclusion'],
-        authenticated_archive_digests=True,retained_artifacts=retained,statuses=statuses,
+        status=evidence_status,absence_is_no_trade=False,
+        authenticated_archive_digests=bool(retained),retained_artifacts=retained,statuses=statuses,
         forecast_packets=len(anchors),timely_anchored_packets=sum(a['timely_external_anchor'] for a in anchors),
         anchors=anchors,independent_validation_pass=False,orders=False,
         note='Retained local backup; retrieval not itself a win, forecast or broker execution')

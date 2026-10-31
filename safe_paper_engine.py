@@ -134,6 +134,38 @@ class Engine:
     def persist(self):
         save(STATE, self.state)
 
+    def record_liquidation(self, reason, positions, orders, clock, account,
+                           fatal_symbols=None):
+        """Observe the first trigger without changing any trading decision.
+
+        Completed records survive the generic completion message and restarts.
+        Existing legacy liquidations are explicitly marked as reconstructed:
+        the original trigger time cannot be recovered from a current snapshot.
+        """
+        previous = self.state.get("liquidation_cause")
+        if previous and (not previous.get("completed_at")
+                         or previous.get("day") == self.state["day"]):
+            return
+        repairs = self.state.get("protection_repairs", {})
+        observed = datetime.now(timezone.utc).isoformat()
+        record = {
+            "reason": reason, "day": self.state["day"], "observed_at": observed,
+            "broker_timestamp": clock["timestamp"], "completed_at": None,
+            "origin": "observed_trigger" if fatal_symbols is not None else "policy_or_restored_state",
+            "equity": float(account["equity"]),
+            "baseline_equity": float(account["last_equity"]),
+            "position_symbols": sorted(p["symbol"] for p in positions),
+            "verified_stop_symbols": sorted(p["symbol"] for p in positions if stop_coverage(p, orders)),
+            "fatal_protection_symbols": sorted(fatal_symbols or []),
+            "protection_repairs": {symbol: {
+                "started_at": repair.get("started_at"),
+                "age_seconds": round(time.time()-repair["started_at"], 3),
+                "phase": repair.get("phase", "unknown_legacy_phase"),
+            } for symbol, repair in repairs.items()},
+        }
+        self.state["liquidation_cause"] = record
+        self.state.setdefault("liquidation_history", []).append(dict(record))
+
     def cancel(self, order):
         self.operation_stage = "write"
         self.api.call("DELETE", f"/v2/orders/{order['id']}")
@@ -204,7 +236,8 @@ class Engine:
             if not 0 < stop_price < take_price or float(position["qty"]) <= 0:
                 return False
             repair = {"started_at": time.time(), "stop_price": stop_price,
-                      "take_price": take_price, "entry_id": expected}
+                      "take_price": take_price, "entry_id": expected,
+                      "phase": "reconciling_entry"}
             repairs[symbol] = repair
             self.persist()
         if time.time()-repair["started_at"] >= PROTECTION_RECOVERY_SECONDS:
@@ -213,9 +246,11 @@ class Engine:
         pending = active_orders(orders, symbol)
         own_stop = next((o for o in pending if o.get("client_order_id", "").startswith("safe-protect-")), None)
         if own_stop:
+            repair["phase"] = "awaiting_stop_verification"
             self.status["actions"][symbol] = "filled shares awaiting broker stop verification"
             return True
         if pending:
+            repair["phase"] = "canceling_conflicting_orders"
             # Cancel roots once. Canceling a bracket root also cancels its legs.
             for root in orders:
                 if root.get("symbol") == symbol:
@@ -247,6 +282,7 @@ class Engine:
                    "client_order_id": identity("protect", self.state["day"], symbol,
                                               repair["entry_id"]+"|"+quantity(actual["qty"]))}
         placed = self.submit(payload)
+        repair["phase"] = "protective_stop_submitted"
         if placed.get("status") in TERMINAL:
             return False
         self.state.setdefault("partial_take_prices", {})[symbol] = repair["take_price"]
@@ -315,6 +351,8 @@ class Engine:
         positions = self.api.call("GET", "/v2/positions")
         orders = self.api.orders()
         daily = apply_policy(self.state, account, clock, positions, self.policy)
+        if self.state.get("liquidating"):
+            self.record_liquidation(self.state["liquidating"], positions, orders, clock, account)
         budgets=self.category_budgets(account,positions)
         if self.state.get("connection_pause"):
             self.state["recovery_checks"] = self.state.get("recovery_checks", 0)+1
@@ -359,7 +397,7 @@ class Engine:
                         for s, v in list(self.signals.items())},
             "state_persistent": bool(os.getenv("RAILWAY_VOLUME_MOUNT_PATH") or
                                      os.getenv("AUTOTRADER_STATE_DIR")),
-            "controller_version": "2026-10-07-full-fill-protection-recovery",
+            "controller_version": "2026-10-31-liquidation-observability",
             "category_budgets": budgets,
             "reserve_fraction": round(1-sum(c["risk"]["capital_fraction"] for c in self.configs),4),
             "budget_migration_unknown": bool(self.state["daily_purchase_budget"].get("legacy_allowance_held")),
@@ -380,6 +418,12 @@ class Engine:
                 except Exception as exc:
                     self.status["errors"].append(str(exc))
             if not positions and not active_orders(orders):
+                cause = self.state.get("liquidation_cause")
+                if cause and not cause.get("completed_at"):
+                    cause["completed_at"] = datetime.now(timezone.utc).isoformat()
+                    history = self.state.get("liquidation_history", [])
+                    if history:
+                        history[-1]["completed_at"] = cause["completed_at"]
                 self.state.pop("liquidating", None)
                 self.state["entry_blocked"] = True
                 self.state["entry_reason"] = "liquidation confirmed; no re-entry today"
@@ -408,6 +452,8 @@ class Engine:
             self.state["entry_blocked"] = True
             self.state["entry_reason"] = "broker protection missing or unverified"
             self.state["liquidating"] = self.state["entry_reason"]
+            self.record_liquidation(self.state["liquidating"], positions, orders, clock, account,
+                                    fatal_symbols=[p["symbol"] for p in fatal])
             self.persist()
             for order in active_orders(orders):
                 if order.get("side") == "buy" and not order.get("client_order_id", "").startswith("safe-exit-"):
@@ -562,9 +608,11 @@ class Engine:
             "connection recovery: waiting for two complete broker checks" if paused else
             "bracket recovery: protecting actual filled shares" if repairing else "")
         self.status["liquidating"] = self.state.get("liquidating")
+        # A JSON copy keeps published snapshots independent of later state edits.
+        self.status["liquidation_cause"] = json.loads(json.dumps(self.state.get("liquidation_cause")))
         save(STATUS, self.status)
         event = json.dumps({k: self.status.get(k) for k in
-                            ("entry_blocked", "reason", "liquidating", "open_positions", "errors", "actions")}, sort_keys=True)
+                            ("entry_blocked", "reason", "liquidating", "liquidation_cause", "open_positions", "errors", "actions")}, sort_keys=True)
         if event != self.previous_event:
             print("[paper-safety] " + event, flush=True)
             try:

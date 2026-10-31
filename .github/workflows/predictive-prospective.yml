@@ -58,6 +58,31 @@ jobs:
           ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
           ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
         run: python prospective_cloud_runner.py collect
+      - name: Record unavailable evidence explicitly
+        if: always()
+        env:
+          PLAN_RUN: ${{ steps.plan.outputs.run }}
+          VALIDATE_ONLY: ${{ inputs.validate_only }}
+        run: |
+          python - <<'PY'
+          from datetime import datetime, timezone
+          import json, os
+          from pathlib import Path
+          path = Path('research_runs/cloud_status.json')
+          if not path.exists():
+              path.parent.mkdir(parents=True, exist_ok=True)
+              packet = dict(status='evidence_unavailable_not_a_no_trade_day',
+                  recorded_sessions=0, absence_is_no_trade=False,
+                  preparation_eligible=os.environ.get('PLAN_RUN') == 'true',
+                  validation_requested=os.environ.get('VALIDATE_ONLY') == 'true',
+                  updated_utc=datetime.now(timezone.utc).isoformat(),
+                  workflow_run_id=os.environ.get('GITHUB_RUN_ID'),
+                  orders=False, production_approved=False)
+              path.write_text(json.dumps(packet, indent=2, allow_nan=False))
+              print('No forward observation: see retained status, not workflow colour.')
+              if packet['preparation_eligible'] or packet['validation_requested']:
+                  raise SystemExit('Expected collector/validator did not produce status')
+          PY
       - name: Timestamp forecast and status externally
         if: always()
         uses: actions/upload-artifact@v4
@@ -66,7 +91,7 @@ jobs:
           path: |
             research_prospective/control_v2/predictions/*.json
             research_runs/cloud_status.json
-          if-no-files-found: warn
+          if-no-files-found: error
           retention-days: 90
       - name: Encrypt private data after forecast timestamping
         if: always() && steps.plan.outputs.run == 'true' && inputs.validate_only != true

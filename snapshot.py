@@ -35,6 +35,40 @@ SCENARIOS = [
 ]
 
 
+def controller_audit_check(safety: dict, now: datetime) -> dict:
+    """Pure status assessment: successful flattening is not proof of no fault."""
+    check = {"key": "account_controller", "label": "Account-wide loss control"}
+    if not safety.get("fresh"):
+        return dict(check, status="bad", detail="Safety state is missing or stale; process uptime is not risk verification.")
+    cause = safety.get("liquidation_cause")
+    cause = cause if isinstance(cause, dict) else {}
+    current_day = now.astimezone(ZoneInfo("America/New_York")).date().isoformat()
+    cause_day = cause.get("day")
+    protection_fault = (cause.get("reason") == "broker protection missing or unverified"
+                        or bool(cause.get("fatal_protection_symbols")))
+    if protection_fault and cause_day == current_day:
+        symbols = ", ".join(str(s) for s in cause.get("fatal_protection_symbols", [])) or "symbol not recorded"
+        return dict(check, status="bad", detail="Protection failure today: " + str(cause.get("reason", "unverified protection"))
+                    + "; affected: " + symbols + ". Flattening completed does not clear the incident.")
+    if safety.get("errors"):
+        return dict(check, status="bad", detail="Controller reports errors; inspect current safety details.")
+    reason = safety.get("reason") or "Paper controller checking risk"
+    if safety.get("liquidating"):
+        normal_close = safety.get("liquidating") == "end of session"
+        return dict(check, status="warn" if normal_close else "bad", detail=str(reason))
+    try:
+        valid_past_day = (isinstance(cause_day, str)
+                          and datetime.strptime(cause_day, "%Y-%m-%d").date().isoformat() == cause_day
+                          and cause_day <= current_day)
+    except ValueError:
+        valid_past_day = False
+    if protection_fault and not valid_past_day:
+        return dict(check, status="warn", detail="Protection incident date is unverified; inspect the retained cause.")
+    if reason == "liquidation confirmed; no re-entry today" and cause_day != current_day:
+        return dict(check, status="warn", detail="Liquidation completed, but today's original trigger is unverified.")
+    return dict(check, status="good", detail=str(reason))
+
+
 def _recent_fills(api_key: str, api_secret: str, limit: int = 100) -> list[dict]:
     """Return the most recent completed order fills from Alpaca.
 
@@ -438,16 +472,12 @@ def main() -> None:
         except Exception:
             pass
     safety = state["safety"]
-    safety_ok = safety.get("fresh") and not safety.get("errors") and not safety.get("liquidating")
-    state["audit"]["checks"].append({
-        "key": "account_controller", "label": "Account-wide loss control",
-        "status": "good" if safety_ok else "bad",
-        "detail": (safety.get("reason") or "Paper controller checking risk") if safety.get("fresh")
-                  else "Safety state is missing or stale; process uptime is not risk verification.",
-    })
-    if not safety_ok:
+    controller_check = controller_audit_check(safety, datetime.now(timezone.utc))
+    state["audit"]["checks"].append(controller_check)
+    if controller_check["status"] != "good":
         state["audit"]["good_enough"] = False
         state["audit"]["verdict"] = "needs_attention"
+        state["audit"]["summary"] = controller_check["detail"]
 
     # Persist rolling equity history across snapshot runs.
     hist = []

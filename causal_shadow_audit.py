@@ -64,6 +64,9 @@ def inspect_run(run_id,directory,backup,auth,request=get):
     jobs=pages(f'/actions/runs/{run_id}/jobs','jobs',auth,request,{'filter':'all'})
     steps=[s for j in jobs for s in j.get('steps',[]) if s['name']==UPLOAD_STEP and s.get('conclusion')=='success' and s.get('completed_at')]
     root=backup/str(run_id);packets=[];encrypted=[];statuses=[];retained=[]
+    # A terminal producer can be skipped outside its time window and upload
+    # no evidence. Persist that gap instead of crashing or inventing inactivity.
+    root.mkdir(parents=True,exist_ok=True)
     for meta in artifacts:
         prefix='causal-shadow-forecast-' if meta['name'].startswith('causal-shadow-forecast-') else 'causal-shadow-private-encrypted-'
         if meta['name']!=prefix+str(run_id): raise ValueError('Unexpected shadow artifact')
@@ -104,7 +107,13 @@ def inspect_run(run_id,directory,backup,auth,request=get):
         for packet,anchor in timely:
             verified=reproduce(packet,files,directory,root)
             verified.update(anchor=anchor,run_id=run_id);accepted.append(verified)
+    validation_only=bool(statuses) and all(
+        s.get('status')=='shadow_environment_validated_only' for s in statuses)
     inspection=dict(run_id=run_id,run_conclusion=run['conclusion'],statuses=statuses,retained_artifacts=retained,
+        status=('forecast_packets_inspected' if packets else
+            'environment_validation_only_not_a_forward_observation' if validation_only else
+            'evidence_unavailable_not_a_no_trade_day'),
+        absence_is_no_trade=False,
         forecast_packets=len(packets),timely_anchor_packets=len(timely),reproduced_packets=len(accepted),excluded=excluded,
         orders=False,independent_validation_pass=False)
     (root/'inspection.json').write_text(json.dumps(inspection,indent=2,allow_nan=False))
