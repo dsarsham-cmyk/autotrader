@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-11-02T01:44:13.914212+00:00",
+  "last_updated": "2026-11-02T09:13:03.473322+00:00",
   "market_open": false,
   "account": {
     "equity": 106952.75,
@@ -29,7 +29,7 @@
       "market_value": 0,
       "unrealized_pnl": 0,
       "day_pnl": 0.0,
-      "market_date": "2026-11-01",
+      "market_date": "2026-11-02",
       "daily_buy_executions": 0,
       "daily_sell_executions": 0,
       "daily_symbols": []
@@ -57,7 +57,7 @@
       "market_value": 0,
       "unrealized_pnl": 0,
       "day_pnl": 0.0,
-      "market_date": "2026-11-01",
+      "market_date": "2026-11-02",
       "daily_buy_executions": 0,
       "daily_sell_executions": 0,
       "daily_symbols": []
@@ -97,17 +97,13 @@
       "market_value": 0,
       "unrealized_pnl": 0,
       "day_pnl": 0.0,
-      "market_date": "2026-11-01",
+      "market_date": "2026-11-02",
       "daily_buy_executions": 0,
       "daily_sell_executions": 0,
       "daily_symbols": []
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-26T16:43:03.395143+00:00",
-      "equity": 107399.05
-    },
     {
       "ts": "2026-09-26T17:14:18.541215+00:00",
       "equity": 107399.05
@@ -2102,6 +2098,10 @@
     },
     {
       "ts": "2026-11-02T01:44:13.914212+00:00",
+      "equity": 106952.75
+    },
+    {
+      "ts": "2026-11-02T09:13:03.473322+00:00",
       "equity": 106952.75
     }
   ],
@@ -6384,7 +6384,7 @@
     }
   },
   "audit": {
-    "generated_at": "2026-11-02T01:44:16.111132+00:00",
+    "generated_at": "2026-11-02T09:13:07.083840+00:00",
     "verdict": "promising",
     "good_enough": false,
     "summary": "Safeguards look healthy, but more live history is needed.",
@@ -6393,13 +6393,9 @@
       "guaranteed_daily_trade": false,
       "fills_today": 0,
       "active_days": 20,
-      "observed_weekdays": 22,
-      "active_day_pct": 90.9,
+      "observed_weekdays": 23,
+      "active_day_pct": 87.0,
       "calendar": [
-        {
-          "date": "2026-10-19",
-          "fills": 31
-        },
         {
           "date": "2026-10-20",
           "fills": 34
@@ -6435,6 +6431,10 @@
         {
           "date": "2026-10-30",
           "fills": 2
+        },
+        {
+          "date": "2026-11-02",
+          "fills": 0
         }
       ],
       "explanation": "The engine checks daily momentum. It may hold or make no trade; daily profit and daily fills are not guaranteed."
@@ -6454,7 +6454,7 @@
         "key": "live_evidence",
         "label": "Enough live evidence",
         "status": "warn",
-        "detail": "22 observed trading days and 268 sell fills. Too early to judge live profitability reliably."
+        "detail": "23 observed trading days and 268 sell fills. Too early to judge live profitability reliably."
       },
       {
         "key": "risk_protection",
@@ -6491,26 +6491,26 @@
   "positions_status": "available",
   "daily_accounting": {
     "status": "calculated",
-    "market_date": "2026-11-01",
-    "generated_at": "2026-11-02T01:44:15.740612+00:00",
+    "market_date": "2026-11-02",
+    "generated_at": "2026-11-02T09:13:05.410893+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
-        "market_date": "2026-11-01",
+        "market_date": "2026-11-02",
         "daily_buy_executions": 0,
         "daily_sell_executions": 0,
         "daily_symbols": []
       },
       "low": {
         "day_pnl": 0.0,
-        "market_date": "2026-11-01",
+        "market_date": "2026-11-02",
         "daily_buy_executions": 0,
         "daily_sell_executions": 0,
         "daily_symbols": []
       },
       "experiment": {
         "day_pnl": 0.0,
-        "market_date": "2026-11-01",
+        "market_date": "2026-11-02",
         "daily_buy_executions": 0,
         "daily_sell_executions": 0,
         "daily_symbols": []
@@ -6526,11 +6526,11 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-11-02T01:44:15.776734+00:00",
-    "coverage_start": "2026-09-30",
+    "past_days_updated_at": "2026-11-02T09:13:05.582607+00:00",
+    "coverage_start": "2026-10-01",
     "days": [
       {
-        "date": "2026-11-01",
+        "date": "2026-11-02",
         "equity": 106952.75,
         "day_change": 0.0,
         "day_change_pct": 0.0,
@@ -15291,7 +15291,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-11-02T01:44:04.166504+00:00",
+    "updated_at": "2026-11-02T09:13:04.694807+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -15320,47 +15320,47 @@
     "signals": {
       "TQQQ": {
         "signal": "sell",
-        "age_seconds": 23
+        "age_seconds": 0
       },
       "SPXL": {
         "signal": "buy",
-        "age_seconds": 23
+        "age_seconds": 61
       },
       "SOXL": {
         "signal": "sell",
-        "age_seconds": 23
+        "age_seconds": 61
       },
       "QQQ": {
         "signal": "buy",
-        "age_seconds": 23
+        "age_seconds": 61
       },
       "SPY": {
         "signal": "buy",
-        "age_seconds": 23
+        "age_seconds": 61
       },
       "DIA": {
         "signal": "buy",
-        "age_seconds": 23
+        "age_seconds": 61
       },
       "IWM": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 61
       },
       "EWJ": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 61
       },
       "EZU": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 60
       },
       "EWU": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 60
       },
       "EWG": {
         "signal": "buy",
-        "age_seconds": 22
+        "age_seconds": 60
       }
     },
     "state_persistent": true,
@@ -15393,7 +15393,7 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-11-02T01:43:49.486460+00:00",
+      "updated_at": "2026-11-02T09:12:50.732329+00:00",
       "history_symbols": 20,
       "errors": [],
       "eligible_signals": [
