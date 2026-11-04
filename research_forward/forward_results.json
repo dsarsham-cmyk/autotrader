@@ -49,14 +49,14 @@
     "broker_orders_enabled": false,
     "mode": "After-close replay of future completed sessions; not a live tick execution test"
   },
-  "sessions": 21,
+  "sessions": 22,
   "metrics": {
-    "sessions": 21,
-    "total_return_pct": -0.17419649500000078,
+    "sessions": 22,
+    "total_return_pct": -0.12668396500000734,
     "max_close_drawdown_pct": 0.17419649500000078,
     "worst_day_pct": -0.09463520000000392,
-    "mean_daily_pct": -0.008299352378549592,
-    "profitable_days": 0,
+    "mean_daily_pct": -0.005758680016454409,
+    "profitable_days": 1,
     "days_at_least_1pct": 0
   },
   "daily": [
@@ -290,6 +290,17 @@
       "entry_halted": true,
       "permanent_halt": false,
       "guard_events": 0
+    },
+    {
+      "date": "2026-11-03",
+      "equity": 99873.316035,
+      "pnl": 47.512529999992694,
+      "return_pct": 0.04759543958754442,
+      "worst_intraday_pct": -0.09191817824477644,
+      "selected": "PLTR,AAPL",
+      "entry_halted": true,
+      "permanent_halt": false,
+      "guard_events": 0
     }
   ],
   "trades": [
@@ -335,6 +346,28 @@
       "entry": 235.68544999999997,
       "exit_net": 240.294465,
       "pnl": 69.13522500000042,
+      "reason": "end_of_day"
+    },
+    {
+      "date": "2026-11-03",
+      "symbol": "PLTR",
+      "entry_minute": 8,
+      "exit_minute": 385,
+      "quantity": 15,
+      "entry": 171.50133,
+      "exit_net": 175.66416,
+      "pnl": 62.44245000000021,
+      "reason": "end_of_day"
+    },
+    {
+      "date": "2026-11-03",
+      "symbol": "AAPL",
+      "entry_minute": 15,
+      "exit_minute": 385,
+      "quantity": 12,
+      "entry": 332.70237,
+      "exit_net": 331.45821,
+      "pnl": -14.929919999999584,
       "reason": "end_of_day"
     }
   ],
@@ -442,30 +475,50 @@
       "quantity": 38,
       "limit": 188.2881,
       "stop": 185.875
+    },
+    {
+      "date": "2026-11-03",
+      "symbol": "PLTR",
+      "minute": 7,
+      "event": "signal",
+      "relative_volume": 3.512595543563983,
+      "quantity": 15,
+      "limit": 171.51134,
+      "stop": 165.25
+    },
+    {
+      "date": "2026-11-03",
+      "symbol": "AAPL",
+      "minute": 14,
+      "event": "signal",
+      "relative_volume": 2.106858512857488,
+      "quantity": 12,
+      "limit": 332.747415,
+      "stop": 325.33
     }
   ],
   "status": "simulated_forward_observations",
-  "updated_utc": "2026-11-03T02:57:10.563933+00:00",
+  "updated_utc": "2026-11-04T01:27:32.917356+00:00",
   "input_hashes": {
-    "AAPL": "d3a52c88661aba5cac6b9342581c6a6b9d16a40464eade00944a0c81a927502c",
-    "MSFT": "04614782c42366057e71e39db85d1f519ae89245cd23bc59b1e2754aedb76caf",
-    "NVDA": "42661c308a37c23a4f1b858b2bbc62bd5d98d9257da950816f71300627c1c8e3",
-    "AMZN": "d81b04219866d6048aac2574a84083fb7b00f8bc1548ee40ae3baa231b6b9148",
-    "META": "fa3d9fc7c9348de9c99dfcc5a81b08a2f6f95e050bf687f640776573939dccf9",
-    "GOOG": "c7682256876315b41ca799723bd1cbd3ffc8d9a757a7bc1b3d83d8bcd5b632a0",
-    "TSLA": "fbcbec0d68a64b1bfedb5d26afacb874ea25a90d4b7f89d6713e0fbb739e9320",
-    "AMD": "023fa544fdf64b5685d17b1af0036fefc8e759811d65005adeff9b1658b621fb",
-    "JPM": "f8450ea34f6164fb95762186b00dc8494cb78d792856302cf4826b087ac89fa6",
-    "BAC": "c2a36c647e53531d452c3d1e0fc7709f14cb0059d31567765999975477f58730",
-    "XOM": "22d8b148bb3e93314de489ffb3d33b0f6fca7514448d060e40ddfacc358b6253",
-    "CVX": "ad39c8754888d09fbcd336b10e03adcd014373e8cffbdc22f52e29d3732faee8",
-    "WMT": "f1229c417d45b19d6f29b913f1cc1582293ec49849cb13d2e04980464b72465c",
-    "DIS": "01138776758b789315d8977f70fa4c94db0493c1693151029e3a69523a5c7db3",
-    "NFLX": "a35337a956302fa8e574b293711f3db3cc61852008edd1209dc85a64713d8484",
-    "INTC": "7d9ec1f57eeed67d993f402ac3d20063b04f349f83a380a20d2faecb4660d703",
-    "UBER": "7723d9d5687d3dc93da6d2ef5f7ce00fcf1a97f05bfbed297e474ba7164c210e",
-    "PLTR": "1b00685dedb8b86fc247513f2c4da98f101ff820198bd04585a47a4b3746d1f6",
-    "AVGO": "c1e15d87a1980ad411d9a9b38cdb8d2cad78151521b4c5b3b4d4ac6a2ca42bd9",
-    "MU": "9d1d7466ec7c4a253c08695fcac795fef6c4ac251e678d9b03e094539503b0d4"
+    "AAPL": "cc100bb9ba748ab46d9d56d0537532d7b117c29a976dfb68249662492cfce714",
+    "MSFT": "48d9f78e0ef2adae142d753730d5b74020fffa229fbfdb53e31f7d0ec7461698",
+    "NVDA": "da452ec1a1233f1cb4420013efff2d0e54f399b3045c7e1995261afcc11a20b5",
+    "AMZN": "6036c344e412fe7432930321091eb00096bbf6be1fdbb0b38b3fa4e97a5763a4",
+    "META": "4b4d3a95ba93a2334408b3577956a99cd9addd3a4239544483e85368a498c243",
+    "GOOG": "83be86b0d86625ad040e5a09fe9fd431bc863ec7a6501c193c9c28b9ae8527ef",
+    "TSLA": "789b5c8239935731b4402f2e5e6af96fd1df6eba779dce3d25a64c965e687488",
+    "AMD": "c52f8fa1e04fcc12333539ea553a776710eb6336ebf5fd1870a03f9ae037701d",
+    "JPM": "a421e45bd442856b904f178269ade8c223a4434aeb452363b1e8c4dd0e400e36",
+    "BAC": "f998b6d6ad21794061dcb7de19e3f723c063aa715fe3d699ac3d2c80abf4f46f",
+    "XOM": "4410ea4cc87edbe751667bd0e7951d1db5b96bdd91b09a68051c43e3fd3a8c26",
+    "CVX": "d45a74999cc9ace0e73d2754ca893f8118646b2c48e15286cd18c2cd4af6414e",
+    "WMT": "28b7193c52c0b3c99c80adbaf00958f5772a529849e996f5a433908c7641cd01",
+    "DIS": "f895bf62ff1afc3331c4dacb9e66e03d07a0a254e4a2ce011c3087a3e1b40e4c",
+    "NFLX": "e5a57156508ce726a4d541cba525d344feec4327e9d95a0de68fbaf728a168de",
+    "INTC": "fb5b64d5924856b00394c44809ccc944ab3a20ab4901fcc98130c0bf2d01cfe8",
+    "UBER": "9d045ec9f6041eaa2d6e8fdd52fa3dfdb6eadc3466879f99c136894489b8759f",
+    "PLTR": "983710fcdfa72dcf50a37bab30e0519faa2e8b1acd6ed251d43778cfee309b82",
+    "AVGO": "b566ad0cb1dcad63018c21021f808e6808ed420d06cc4102016530b3ee2d7632",
+    "MU": "458c9a5dbeca93ab45dafe2101055a2ae02972d0c81181d3edb052faaea50608"
   }
 }
