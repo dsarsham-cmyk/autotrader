@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-11-09T09:32:36.487555+00:00",
-  "market_open": false,
+  "last_updated": "2026-11-09T20:35:48.700073+00:00",
+  "market_open": true,
   "account": {
-    "equity": 106820.78,
-    "cash": 106820.78,
-    "buying_power": 427283.12,
+    "equity": 106858.4,
+    "cash": 103712.48,
+    "buying_power": 419202.65,
     "last_equity": 106820.78,
-    "day_pnl": 0.0,
-    "day_pnl_pct": 0.0,
+    "day_pnl": 37.62,
+    "day_pnl_pct": 0.035,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -53,14 +53,33 @@
       "max_drawdown_pct": 0.1,
       "starting_equity": 100000,
       "max_account_loss_pct": 0.1,
-      "positions": {},
-      "market_value": 0,
-      "unrealized_pnl": 0,
-      "day_pnl": 0.0,
+      "positions": {
+        "DIA": {
+          "qty": 6.0,
+          "entry_price": 518.05,
+          "market_value": 3145.92,
+          "unrealized_pnl": 37.62,
+          "unrealized_pnl_pct": 1.21,
+          "current_price": 524.32,
+          "previous_close": 512.22
+        }
+      },
+      "market_value": 3145.92,
+      "unrealized_pnl": 37.62,
+      "day_pnl": 37.62,
       "market_date": "2026-11-09",
-      "daily_buy_executions": 0,
+      "daily_buy_executions": 1,
       "daily_sell_executions": 0,
-      "daily_symbols": []
+      "daily_symbols": [
+        {
+          "symbol": "DIA",
+          "day_pnl": 37.62,
+          "start_qty": 0.0,
+          "current_qty": 6.0,
+          "previous_close": 512.22,
+          "execution_count": 1
+        }
+      ]
     },
     "experiment": {
       "name": "ACTIVE STOCK EXPERIMENT",
@@ -104,10 +123,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-27T06:48:07.444229+00:00",
-      "equity": 107399.05
-    },
     {
       "ts": "2026-09-27T07:15:58.658734+00:00",
       "equity": 107399.05
@@ -2103,9 +2118,22 @@
     {
       "ts": "2026-11-09T09:32:36.487555+00:00",
       "equity": 106820.78
+    },
+    {
+      "ts": "2026-11-09T20:35:48.700073+00:00",
+      "equity": 106858.4
     }
   ],
   "recent_trades": [
+    {
+      "execution_id": "20261109093138415::49b349c2-0681-426e-a4fb-6ff2e28c994c",
+      "order_id": "36dacf84-eefe-401b-b2a1-1968aef94ed7",
+      "time": "2026-11-09T14:31:38.415221Z",
+      "symbol": "DIA",
+      "side": "buy",
+      "qty": 6.0,
+      "price": 518.05
+    },
     {
       "execution_id": "20261106155541518::e20d1c6e-f88e-43db-b42a-09a6fac87539",
       "order_id": "a1743966-9e1c-4f7c-982c-7a3e2a42912c",
@@ -6690,17 +6718,17 @@
     }
   },
   "audit": {
-    "generated_at": "2026-11-09T09:32:39.286693+00:00",
+    "generated_at": "2026-11-09T20:35:52.074987+00:00",
     "verdict": "promising",
     "good_enough": false,
     "summary": "Safeguards look healthy, but more live history is needed.",
     "cadence": {
       "uses_daily_bars": true,
       "guaranteed_daily_trade": false,
-      "fills_today": 0,
-      "active_days": 19,
+      "fills_today": 1,
+      "active_days": 20,
       "observed_weekdays": 23,
-      "active_day_pct": 82.6,
+      "active_day_pct": 87.0,
       "calendar": [
         {
           "date": "2026-10-27",
@@ -6740,20 +6768,20 @@
         },
         {
           "date": "2026-11-09",
-          "fills": 0
+          "fills": 1
         }
       ],
       "explanation": "The engine checks daily momentum. It may hold or make no trade; daily profit and daily fills are not guaranteed."
     },
     "execution": {
-      "recent_fill_count": 502,
+      "recent_fill_count": 503,
       "sell_fill_count": 285,
       "churn_count": 0,
       "churn_events": [],
-      "open_positions": 0,
-      "protected_positions": 0,
+      "open_positions": 1,
+      "protected_positions": 1,
       "simple_buy_orders": 0,
-      "bracket_buy_orders": 16
+      "bracket_buy_orders": 14
     },
     "checks": [
       {
@@ -6766,7 +6794,7 @@
         "key": "risk_protection",
         "label": "Broker-side protection",
         "status": "good",
-        "detail": "0 of 0 open positions have an active broker-side stop order. Recent filled buys: 16 bracket/OTO, 0 simple."
+        "detail": "1 of 1 open positions have an active broker-side stop order. Recent filled buys: 14 bracket/OTO, 0 simple."
       },
       {
         "key": "execution_churn",
@@ -6798,7 +6826,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-11-09",
-    "generated_at": "2026-11-09T09:32:38.504496+00:00",
+    "generated_at": "2026-11-09T20:35:50.209380+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -6808,11 +6836,20 @@
         "daily_symbols": []
       },
       "low": {
-        "day_pnl": 0.0,
+        "day_pnl": 37.62,
         "market_date": "2026-11-09",
-        "daily_buy_executions": 0,
+        "daily_buy_executions": 1,
         "daily_sell_executions": 0,
-        "daily_symbols": []
+        "daily_symbols": [
+          {
+            "symbol": "DIA",
+            "day_pnl": 37.62,
+            "start_qty": 0.0,
+            "current_qty": 6.0,
+            "previous_close": 512.22,
+            "execution_count": 1
+          }
+        ]
       },
       "experiment": {
         "day_pnl": 0.0,
@@ -6822,31 +6859,51 @@
         "daily_symbols": []
       }
     },
-    "portfolio_day_pnl": 0.0,
+    "portfolio_day_pnl": 37.62,
     "unallocated_day_pnl": 0.0,
-    "buy_executions": 0,
+    "buy_executions": 1,
     "sell_executions": 0,
-    "executions": [],
+    "executions": [
+      {
+        "execution_id": "20261109093138415::49b349c2-0681-426e-a4fb-6ff2e28c994c",
+        "order_id": "36dacf84-eefe-401b-b2a1-1968aef94ed7",
+        "time": "2026-11-09T14:31:38.415221Z",
+        "symbol": "DIA",
+        "side": "buy",
+        "qty": 6.0,
+        "price": 518.05
+      }
+    ],
     "note": "Daily marked trading P&L, including today's closed trades. Fees, dividends, transfers, unassigned assets and sampling differences remain in the unallocated account change; not guaranteed net profit."
   },
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-11-09T09:32:38.554195+00:00",
+    "past_days_updated_at": "2026-11-09T20:35:50.444454+00:00",
     "coverage_start": "2026-10-08",
     "days": [
       {
         "date": "2026-11-09",
-        "equity": 106820.78,
-        "day_change": 0.0,
-        "day_change_pct": 0.0,
-        "status": "latest",
+        "equity": 106858.4,
+        "day_change": 37.62,
+        "day_change_pct": 0.035,
+        "status": "intraday",
         "executions_complete": true,
-        "buys": 0,
+        "buys": 1,
         "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
+        "execution_count": 1,
+        "order_count": 1,
+        "executions": [
+          {
+            "execution_id": "20261109093138415::49b349c2-0681-426e-a4fb-6ff2e28c994c",
+            "order_id": "36dacf84-eefe-401b-b2a1-1968aef94ed7",
+            "time": "2026-11-09T14:31:38.415221Z",
+            "symbol": "DIA",
+            "side": "buy",
+            "qty": 6.0,
+            "price": 518.05
+          }
+        ]
       },
       {
         "date": "2026-11-06",
@@ -10908,9 +10965,9 @@
       {
         "date": "2026-10-09",
         "equity": 107148.62,
-        "day_change": -17.1,
-        "day_change_pct": -0.016,
-        "status": "closed",
+        "day_change": null,
+        "day_change_pct": null,
+        "status": "baseline",
         "executions_complete": true,
         "buys": 21,
         "sells": 24,
@@ -11326,10 +11383,10 @@
       },
       {
         "date": "2026-10-08",
-        "equity": 107165.72,
-        "day_change": -346.12,
-        "day_change_pct": -0.322,
-        "status": "closed",
+        "equity": null,
+        "day_change": null,
+        "day_change_pct": null,
+        "status": "missing_equity",
         "executions_complete": true,
         "buys": 18,
         "sells": 19,
@@ -11670,35 +11727,18 @@
             "price": 82.25
           }
         ]
-      },
-      {
-        "date": "2026-10-07",
-        "equity": 107511.84,
-        "day_change": 166.0,
-        "day_change_pct": 0.155,
-        "status": "closed",
-        "executions_complete": true,
-        "buys": 0,
-        "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
-      },
-      {
-        "date": "2026-10-06",
-        "equity": 107345.84,
-        "day_change": null,
-        "day_change_pct": null,
-        "status": "baseline",
-        "executions_complete": true,
-        "buys": 0,
-        "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
       }
     ],
     "executions": [
+      {
+        "execution_id": "20261109093138415::49b349c2-0681-426e-a4fb-6ff2e28c994c",
+        "order_id": "36dacf84-eefe-401b-b2a1-1968aef94ed7",
+        "time": "2026-11-09T14:31:38.415221Z",
+        "symbol": "DIA",
+        "side": "buy",
+        "qty": 6.0,
+        "price": 518.05
+      },
       {
         "execution_id": "20261106155541518::e20d1c6e-f88e-43db-b42a-09a6fac87539",
         "order_id": "a1743966-9e1c-4f7c-982c-7a3e2a42912c",
@@ -16221,7 +16261,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-11-09T09:32:28.286024+00:00",
+    "updated_at": "2026-11-09T20:35:48.812925+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -16234,12 +16274,12 @@
     "entry_blocked": false,
     "reason": "",
     "liquidating": null,
-    "daily_pnl_pct": 0.0,
-    "market_open": false,
-    "open_positions": 0,
+    "daily_pnl_pct": 0.035,
+    "market_open": true,
+    "open_positions": 1,
     "actions": {},
     "errors": [],
-    "verified_stops": 0,
+    "verified_stops": 1,
     "baseline_equity": 106820.78,
     "peak_equity": 110658.87,
     "allocations": {
@@ -16250,47 +16290,47 @@
     "signals": {
       "TQQQ": {
         "signal": "sell",
-        "age_seconds": 28
+        "age_seconds": 18
       },
       "SPXL": {
         "signal": "sell",
-        "age_seconds": 28
+        "age_seconds": 17
       },
       "SOXL": {
         "signal": "sell",
-        "age_seconds": 28
+        "age_seconds": 17
       },
       "QQQ": {
         "signal": "sell",
-        "age_seconds": 28
+        "age_seconds": 17
       },
       "SPY": {
-        "signal": "sell",
-        "age_seconds": 28
+        "signal": "hold",
+        "age_seconds": 17
       },
       "DIA": {
-        "signal": "buy",
-        "age_seconds": 27
+        "signal": "hold",
+        "age_seconds": 16
       },
       "IWM": {
-        "signal": "sell",
-        "age_seconds": 27
+        "signal": "buy",
+        "age_seconds": 16
       },
       "EWJ": {
         "signal": "sell",
-        "age_seconds": 27
+        "age_seconds": 16
       },
       "EZU": {
-        "signal": "sell",
-        "age_seconds": 27
+        "signal": "buy",
+        "age_seconds": 15
       },
       "EWU": {
         "signal": "buy",
-        "age_seconds": 27
+        "age_seconds": 15
       },
       "EWG": {
-        "signal": "sell",
-        "age_seconds": 27
+        "signal": "buy",
+        "age_seconds": 15
       }
     },
     "state_persistent": true,
@@ -16306,9 +16346,9 @@
       "LOW RISK": {
         "fraction": 0.5,
         "daily_cap": 53410.39,
-        "committed": 0.0,
-        "remaining": 53410.39,
-        "exposure": 0
+        "committed": 9127.83,
+        "remaining": 44282.56,
+        "exposure": 3145.92
       },
       "ACTIVE STOCK EXPERIMENT": {
         "fraction": 0.05,
@@ -16323,11 +16363,13 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-11-09T09:32:10.335981+00:00",
+      "updated_at": "2026-11-09T20:35:23.645111+00:00",
       "history_symbols": 20,
       "errors": [],
       "eligible_signals": [
-        "WMT"
+        "NVDA",
+        "AMD",
+        "AVGO"
       ]
     },
     "connection_paused": false,
