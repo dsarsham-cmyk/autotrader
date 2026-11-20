@@ -1,6 +1,6 @@
 {
-  "last_updated": "2026-11-20T17:57:28.743998+00:00",
-  "market_open": true,
+  "last_updated": "2026-11-20T23:55:56.922375+00:00",
+  "market_open": false,
   "account": {
     "equity": 106600.11,
     "cash": 106600.11,
@@ -121,10 +121,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-28T01:43:41.344680+00:00",
-      "equity": 107368.61
-    },
     {
       "ts": "2026-09-28T02:16:45.589963+00:00",
       "equity": 107355.8
@@ -2119,6 +2115,10 @@
     },
     {
       "ts": "2026-11-20T17:57:28.743998+00:00",
+      "equity": 106600.11
+    },
+    {
+      "ts": "2026-11-20T23:55:56.922375+00:00",
       "equity": 106600.11
     }
   ],
@@ -6041,10 +6041,10 @@
     }
   },
   "audit": {
-    "generated_at": "2026-11-20T17:57:33.633715+00:00",
-    "verdict": "promising",
+    "generated_at": "2026-11-20T23:56:00.028178+00:00",
+    "verdict": "needs_attention",
     "good_enough": false,
-    "summary": "Safeguards look healthy, but more live history is needed.",
+    "summary": "Liquidation completed, but today's original trigger is unverified.",
     "cadence": {
       "uses_daily_bars": true,
       "guaranteed_daily_trade": false,
@@ -6140,8 +6140,8 @@
       {
         "key": "account_controller",
         "label": "Account-wide loss control",
-        "status": "good",
-        "detail": "Paper controller checking risk"
+        "status": "warn",
+        "detail": "Liquidation completed, but today's original trigger is unverified."
       }
     ]
   },
@@ -6149,7 +6149,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-11-20",
-    "generated_at": "2026-11-20T17:57:31.170692+00:00",
+    "generated_at": "2026-11-20T23:55:58.499407+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -6264,7 +6264,7 @@
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-11-20T17:57:31.806114+00:00",
+    "past_days_updated_at": "2026-11-20T23:55:58.820682+00:00",
     "coverage_start": "2026-10-19",
     "days": [
       {
@@ -6272,7 +6272,7 @@
         "equity": 106600.11,
         "day_change": -20.65,
         "day_change_pct": -0.019,
-        "status": "intraday",
+        "status": "latest",
         "executions_complete": true,
         "buys": 4,
         "sells": 3,
@@ -14326,7 +14326,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-11-20T17:57:27.560866+00:00",
+    "updated_at": "2026-11-20T23:55:57.941787+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -14336,11 +14336,11 @@
       "max_account_loss_pct": 0.1,
       "max_drawdown_pct": 0.1
     },
-    "entry_blocked": false,
-    "reason": "",
+    "entry_blocked": true,
+    "reason": "liquidation confirmed; no re-entry today",
     "liquidating": null,
     "daily_pnl_pct": -0.019,
-    "market_open": true,
+    "market_open": false,
     "open_positions": 0,
     "actions": {},
     "errors": [],
@@ -14355,47 +14355,47 @@
     "signals": {
       "TQQQ": {
         "signal": "sell",
-        "age_seconds": 61
+        "age_seconds": 23
       },
       "SPXL": {
         "signal": "sell",
-        "age_seconds": 61
+        "age_seconds": 23
       },
       "SOXL": {
         "signal": "sell",
-        "age_seconds": 61
+        "age_seconds": 23
       },
       "QQQ": {
         "signal": "sell",
-        "age_seconds": 60
+        "age_seconds": 23
       },
       "SPY": {
         "signal": "sell",
-        "age_seconds": 60
+        "age_seconds": 23
       },
       "DIA": {
         "signal": "sell",
-        "age_seconds": 60
+        "age_seconds": 22
       },
       "IWM": {
         "signal": "sell",
-        "age_seconds": 60
+        "age_seconds": 22
       },
       "EWJ": {
         "signal": "sell",
-        "age_seconds": 60
+        "age_seconds": 22
       },
       "EZU": {
         "signal": "sell",
-        "age_seconds": 60
+        "age_seconds": 22
       },
       "EWU": {
         "signal": "sell",
-        "age_seconds": 60
+        "age_seconds": 22
       },
       "EWG": {
         "signal": "sell",
-        "age_seconds": 60
+        "age_seconds": 22
       }
     },
     "state_persistent": true,
@@ -14428,7 +14428,7 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-11-20T17:57:18.514274+00:00",
+      "updated_at": "2026-11-20T23:55:38.979784+00:00",
       "history_symbols": 20,
       "errors": [],
       "eligible_signals": []
