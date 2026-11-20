@@ -49,14 +49,14 @@
     "broker_orders_enabled": false,
     "mode": "After-close replay of future completed sessions; not a live tick execution test"
   },
-  "sessions": 33,
+  "sessions": 34,
   "metrics": {
-    "sessions": 33,
-    "total_return_pct": -0.14458382180000395,
+    "sessions": 34,
+    "total_return_pct": -0.12492220580000435,
     "max_close_drawdown_pct": 0.27326858000000787,
     "worst_day_pct": -0.09832099949835804,
-    "mean_daily_pct": -0.004378138306571751,
-    "profitable_days": 3,
+    "mean_daily_pct": -0.003670249395291735,
+    "profitable_days": 4,
     "days_at_least_1pct": 0
   },
   "daily": [
@@ -422,6 +422,17 @@
       "entry_halted": true,
       "permanent_halt": false,
       "guard_events": 0
+    },
+    {
+      "date": "2026-11-19",
+      "equity": 99875.0777942,
+      "pnl": 19.661615999997593,
+      "return_pct": 0.01969008467694877,
+      "worst_intraday_pct": -0.06013954204829863,
+      "selected": "DIS,WMT",
+      "entry_halted": true,
+      "permanent_halt": false,
+      "guard_events": 0
     }
   ],
   "trades": [
@@ -577,6 +588,17 @@
       "entry": 362.58222,
       "exit_net": 363.03659999999996,
       "pnl": 5.452559999999494,
+      "reason": "end_of_day"
+    },
+    {
+      "date": "2026-11-19",
+      "symbol": "WMT",
+      "entry_minute": 30,
+      "exit_minute": 385,
+      "quantity": 39,
+      "entry": 125.67554999999999,
+      "exit_net": 126.179694,
+      "pnl": 19.66161600000042,
       "reason": "end_of_day"
     }
   ],
@@ -848,30 +870,40 @@
       "symbol": "DIS",
       "minute": 22,
       "event": "fill_rejected"
+    },
+    {
+      "date": "2026-11-19",
+      "symbol": "WMT",
+      "minute": 29,
+      "event": "signal",
+      "relative_volume": 2.478749617922167,
+      "quantity": 39,
+      "limit": 125.67554999999999,
+      "stop": 123.27
     }
   ],
   "status": "simulated_forward_observations",
-  "updated_utc": "2026-11-19T02:38:16.290089+00:00",
+  "updated_utc": "2026-11-20T02:23:09.614412+00:00",
   "input_hashes": {
-    "AAPL": "0c7b2ef8fa742b63ab536cbbc358a9e7d15f8381033f101101a4b05010096a9a",
-    "MSFT": "c02902291feaab7f3baf4ecdbe09b6acfda0ff40537e8554a41cb0a6ecda0b23",
-    "NVDA": "45c923841f33f5f125d302080f27620607894c4abd2e3c44c37ba26e1cb5751e",
-    "AMZN": "86946662205592c7b204b97ba5a50f7e0e860afd2fc0a444c39c5ee0d534307b",
-    "META": "3db1d0afeac6f93946c702b4011cbd527b4ac99fdbe78791661f5d44aca6fb06",
-    "GOOG": "709bf6a4ab5781d1763a90b2d05d2a0dce433830b24ce5cc344e30ec31c251eb",
-    "TSLA": "f1822479337e88802f2481c528cbe9eae5388ff7c12c5b043b0de3701436fc38",
-    "AMD": "27a971c688346db6e6ab9c6041b3db281dfcbeef5102978163f59b1580104293",
-    "JPM": "5f810b2a0327eb08bd3e2c1b8c1a23ee23e9998d2c50a710beab91a62e18db95",
-    "BAC": "e3448a3e923296d3a2cd93cebdbacc0f2d79a336cb3310606bb544e173c3b048",
-    "XOM": "86b9d42fd0d3c3ddb5d18fd8555019664b9551bdafc3feb869e2bc59a311a512",
-    "CVX": "834d5f8c2992639c6b63c4b688d1865234f222fd04dd57dac5b7524373fc4d94",
-    "WMT": "2566293c8acae108a67cce29dd50f85ce81805134bcca3c73e522b037eb5d66c",
-    "DIS": "069bec8e7750ee9a1f5d113f0b9179ec82b7a44e0cefa5ca8312276b85868a90",
-    "NFLX": "30350f7f21c922fbdf5d0429c2a87117f14c50749ce2546eccf3a1ab8aa8f69b",
-    "INTC": "3da455ba094787ba9aec283e51990884a35db8c2ceba2389f8f9706577b6daed",
-    "UBER": "0339c13e12818168e4868db188944772cd0078c2ad769530500c0fb074416fdf",
-    "PLTR": "58ff66522824fc070700ab80a275ebfe4b2300095d9d7b3d112a127eb9da4c06",
-    "AVGO": "fa443b1bf40974557f95b600e8984b277aa0e2fc3883ddbc438965d6e53d0f1a",
-    "MU": "8c38582110a97df4ed897d2e046c48f6b3a9ff7b899ac73195495261c3048a94"
+    "AAPL": "979d3b74f71b57a46ffeac9d939ec8d5cae6590818217f3ac6f8ce869c57ea5d",
+    "MSFT": "75d45f8a200f8b1d92bc4a57b608f48fe9c412fbedb0be493fb67321dd2a6c0c",
+    "NVDA": "9d750069ba32502c1cb22bac06bc92e42954d8256924e613fcef0d271803e047",
+    "AMZN": "b7a4897a4b511a450356ca333ae1204f16536d6d90bf1b5f5a7a4f992f77e444",
+    "META": "1b412d74eb814af1ed62a59a75e2388a9a8387680f96c399fcf7ea257a576e9d",
+    "GOOG": "2eaf3213e49c9a4369e00088834a38986ac519c71817afadc46d3904bac79358",
+    "TSLA": "31e1d89a902d759ced587fc65279cece6d8238f93f2c1d9ff8f61ba1b0b0a50c",
+    "AMD": "0709338c018434c9639aca4d1458b3d6db251f69f503f30507bc0a63aeda91aa",
+    "JPM": "f79e936daf92d1b108bfaa2f99f6017569fc257c0e4be233f0fd8de1f20a4715",
+    "BAC": "3752366fdbbee28097253bcb71b7c061ef58b2aa7f11b7cc958661cd2a915bea",
+    "XOM": "0a4fb8d34197a1532d1f8462349672b7ac0d6fee54fe8819d97bfdcb764647f1",
+    "CVX": "e71fa92fcd486d74889328ca4fe8666cd76c661db9824b2d8110f3d82aef7fc3",
+    "WMT": "6eea180590d2eba6a71a4ad96b8324edbac80afc08df52f598cf21874e198bb8",
+    "DIS": "70af01e36fb92e0c11ed5e8790a3519a49762fadc0f00929b596a07fc53f76ec",
+    "NFLX": "9f0a7290173c30816ddc53078d8c31b02605d1722f8c703b4cd2fb7c1e99b468",
+    "INTC": "73e3c97d9ad4c13c513e5dc85d89bfdd4a6a4310f1d48ab5c51c8cc5389acdf6",
+    "UBER": "a6e676362a2282cef593580c636797b17eced14379064c17bddd131ffea5a425",
+    "PLTR": "e273e3dc085b2c630f3d42b065ab6e73c82866e763620a0ded7f40ab4f4eb2b0",
+    "AVGO": "fa35e67c2e79885f6e7d0180f4a61c7a2e1198bb38492469d84036e65cfff7ec",
+    "MU": "ecf665f0bfb1f2049b69bdce9358b1e15bb09752fb274d33f14c634851ed5e44"
   }
 }
