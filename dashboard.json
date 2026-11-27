@@ -1,13 +1,13 @@
 {
-  "last_updated": "2026-11-27T11:17:31.168626+00:00",
+  "last_updated": "2026-11-27T20:12:15.473684+00:00",
   "market_open": false,
   "account": {
-    "equity": 106612.56,
-    "cash": 106612.56,
-    "buying_power": 426450.24,
+    "equity": 106605.5,
+    "cash": 106605.5,
+    "buying_power": 426422.0,
     "last_equity": 106612.56,
-    "day_pnl": 0.0,
-    "day_pnl_pct": 0.0,
+    "day_pnl": -7.06,
+    "day_pnl_pct": -0.007,
     "starting_balance": 100000.0
   },
   "scenarios": {
@@ -56,11 +56,20 @@
       "positions": {},
       "market_value": 0,
       "unrealized_pnl": 0,
-      "day_pnl": 0.0,
+      "day_pnl": -7.06,
       "market_date": "2026-11-27",
-      "daily_buy_executions": 0,
-      "daily_sell_executions": 0,
-      "daily_symbols": []
+      "daily_buy_executions": 1,
+      "daily_sell_executions": 4,
+      "daily_symbols": [
+        {
+          "symbol": "EWU",
+          "day_pnl": -7.06,
+          "start_qty": 0.0,
+          "current_qty": 0.0,
+          "previous_close": 46.12,
+          "execution_count": 5
+        }
+      ]
     },
     "experiment": {
       "name": "ACTIVE STOCK EXPERIMENT",
@@ -104,10 +113,6 @@
     }
   },
   "equity_history": [
-    {
-      "ts": "2026-09-28T12:22:23.776458+00:00",
-      "equity": 107349.73
-    },
     {
       "ts": "2026-09-28T12:51:12.801998+00:00",
       "equity": 107350.72
@@ -2103,9 +2108,58 @@
     {
       "ts": "2026-11-27T11:17:31.168626+00:00",
       "equity": 106612.56
+    },
+    {
+      "ts": "2026-11-27T20:12:15.473684+00:00",
+      "equity": 106605.5
     }
   ],
   "recent_trades": [
+    {
+      "execution_id": "20261127094002076::cf2882d4-a4fd-48bd-be60-9711df948ba8",
+      "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+      "time": "2026-11-27T14:40:02.076787Z",
+      "symbol": "EWU",
+      "side": "sell",
+      "qty": 26.0,
+      "price": 46.66
+    },
+    {
+      "execution_id": "20261127094000998::e5b0de2d-fa50-40a7-ae2e-94ad29de8a28",
+      "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+      "time": "2026-11-27T14:40:00.99818Z",
+      "symbol": "EWU",
+      "side": "sell",
+      "qty": 4.0,
+      "price": 46.66
+    },
+    {
+      "execution_id": "20261127094000485::a111ec7c-e3af-46eb-b04f-05301492636d",
+      "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+      "time": "2026-11-27T14:40:00.485853Z",
+      "symbol": "EWU",
+      "side": "sell",
+      "qty": 14.0,
+      "price": 46.66
+    },
+    {
+      "execution_id": "20261127093959149::7100a8fd-8f5f-45dc-a58e-9274d501de34",
+      "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+      "time": "2026-11-27T14:39:59.149985Z",
+      "symbol": "EWU",
+      "side": "sell",
+      "qty": 31.0,
+      "price": 46.65
+    },
+    {
+      "execution_id": "20261127093428332::5268e96d-2587-4306-8df9-362f4f5cb508",
+      "order_id": "85065a26-6817-419c-88c0-18f955be6e4f",
+      "time": "2026-11-27T14:34:28.332555Z",
+      "symbol": "EWU",
+      "side": "buy",
+      "qty": 75.0,
+      "price": 46.75
+    },
     {
       "execution_id": "20261125155550436::68345343-1d54-4abd-a466-5ece76b34592",
       "order_id": "9397192a-11a6-41c9-a9b8-3478c2774457",
@@ -5331,17 +5385,17 @@
     }
   },
   "audit": {
-    "generated_at": "2026-11-27T11:17:33.389036+00:00",
-    "verdict": "promising",
+    "generated_at": "2026-11-27T20:12:17.796478+00:00",
+    "verdict": "needs_attention",
     "good_enough": false,
-    "summary": "Safeguards look healthy, but more live history is needed.",
+    "summary": "Liquidation completed, but today's original trigger is unverified.",
     "cadence": {
       "uses_daily_bars": true,
       "guaranteed_daily_trade": false,
-      "fills_today": 0,
-      "active_days": 21,
+      "fills_today": 5,
+      "active_days": 22,
       "observed_weekdays": 25,
-      "active_day_pct": 84.0,
+      "active_day_pct": 88.0,
       "calendar": [
         {
           "date": "2026-11-16",
@@ -5381,14 +5435,14 @@
         },
         {
           "date": "2026-11-27",
-          "fills": 0
+          "fills": 5
         }
       ],
       "explanation": "The engine checks daily momentum. It may hold or make no trade; daily profit and daily fills are not guaranteed."
     },
     "execution": {
-      "recent_fill_count": 351,
-      "sell_fill_count": 199,
+      "recent_fill_count": 356,
+      "sell_fill_count": 203,
       "churn_count": 0,
       "churn_events": [],
       "open_positions": 0,
@@ -5401,7 +5455,7 @@
         "key": "live_evidence",
         "label": "Enough live evidence",
         "status": "warn",
-        "detail": "25 observed trading days and 199 sell fills. Too early to judge live profitability reliably."
+        "detail": "25 observed trading days and 203 sell fills. Too early to judge live profitability reliably."
       },
       {
         "key": "risk_protection",
@@ -5430,8 +5484,8 @@
       {
         "key": "account_controller",
         "label": "Account-wide loss control",
-        "status": "good",
-        "detail": "Paper controller checking risk"
+        "status": "warn",
+        "detail": "Liquidation completed, but today's original trigger is unverified."
       }
     ]
   },
@@ -5439,7 +5493,7 @@
   "daily_accounting": {
     "status": "calculated",
     "market_date": "2026-11-27",
-    "generated_at": "2026-11-27T11:17:32.662919+00:00",
+    "generated_at": "2026-11-27T20:12:17.115263+00:00",
     "portfolios": {
       "high": {
         "day_pnl": 0.0,
@@ -5449,11 +5503,20 @@
         "daily_symbols": []
       },
       "low": {
-        "day_pnl": 0.0,
+        "day_pnl": -7.06,
         "market_date": "2026-11-27",
-        "daily_buy_executions": 0,
-        "daily_sell_executions": 0,
-        "daily_symbols": []
+        "daily_buy_executions": 1,
+        "daily_sell_executions": 4,
+        "daily_symbols": [
+          {
+            "symbol": "EWU",
+            "day_pnl": -7.06,
+            "start_qty": 0.0,
+            "current_qty": 0.0,
+            "previous_close": 46.12,
+            "execution_count": 5
+          }
+        ]
       },
       "experiment": {
         "day_pnl": 0.0,
@@ -5463,31 +5526,123 @@
         "daily_symbols": []
       }
     },
-    "portfolio_day_pnl": 0.0,
+    "portfolio_day_pnl": -7.06,
     "unallocated_day_pnl": 0.0,
-    "buy_executions": 0,
-    "sell_executions": 0,
-    "executions": [],
+    "buy_executions": 1,
+    "sell_executions": 4,
+    "executions": [
+      {
+        "execution_id": "20261127094002076::cf2882d4-a4fd-48bd-be60-9711df948ba8",
+        "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+        "time": "2026-11-27T14:40:02.076787Z",
+        "symbol": "EWU",
+        "side": "sell",
+        "qty": 26.0,
+        "price": 46.66
+      },
+      {
+        "execution_id": "20261127094000998::e5b0de2d-fa50-40a7-ae2e-94ad29de8a28",
+        "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+        "time": "2026-11-27T14:40:00.99818Z",
+        "symbol": "EWU",
+        "side": "sell",
+        "qty": 4.0,
+        "price": 46.66
+      },
+      {
+        "execution_id": "20261127094000485::a111ec7c-e3af-46eb-b04f-05301492636d",
+        "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+        "time": "2026-11-27T14:40:00.485853Z",
+        "symbol": "EWU",
+        "side": "sell",
+        "qty": 14.0,
+        "price": 46.66
+      },
+      {
+        "execution_id": "20261127093959149::7100a8fd-8f5f-45dc-a58e-9274d501de34",
+        "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+        "time": "2026-11-27T14:39:59.149985Z",
+        "symbol": "EWU",
+        "side": "sell",
+        "qty": 31.0,
+        "price": 46.65
+      },
+      {
+        "execution_id": "20261127093428332::5268e96d-2587-4306-8df9-362f4f5cb508",
+        "order_id": "85065a26-6817-419c-88c0-18f955be6e4f",
+        "time": "2026-11-27T14:34:28.332555Z",
+        "symbol": "EWU",
+        "side": "buy",
+        "qty": 75.0,
+        "price": 46.75
+      }
+    ],
     "note": "Daily marked trading P&L, including today's closed trades. Fees, dividends, transfers, unassigned assets and sampling differences remain in the unallocated account change; not guaranteed net profit."
   },
   "account_history": {
     "status": "available",
     "timezone": "America/New_York",
-    "past_days_updated_at": "2026-11-27T11:17:32.708624+00:00",
+    "past_days_updated_at": "2026-11-27T20:12:17.162818+00:00",
     "coverage_start": "2026-10-26",
     "days": [
       {
         "date": "2026-11-27",
-        "equity": 106612.56,
-        "day_change": 0.0,
-        "day_change_pct": 0.0,
+        "equity": 106605.5,
+        "day_change": -7.06,
+        "day_change_pct": -0.007,
         "status": "latest",
         "executions_complete": true,
-        "buys": 0,
-        "sells": 0,
-        "execution_count": 0,
-        "order_count": 0,
-        "executions": []
+        "buys": 1,
+        "sells": 4,
+        "execution_count": 5,
+        "order_count": 2,
+        "executions": [
+          {
+            "execution_id": "20261127094002076::cf2882d4-a4fd-48bd-be60-9711df948ba8",
+            "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+            "time": "2026-11-27T14:40:02.076787Z",
+            "symbol": "EWU",
+            "side": "sell",
+            "qty": 26.0,
+            "price": 46.66
+          },
+          {
+            "execution_id": "20261127094000998::e5b0de2d-fa50-40a7-ae2e-94ad29de8a28",
+            "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+            "time": "2026-11-27T14:40:00.99818Z",
+            "symbol": "EWU",
+            "side": "sell",
+            "qty": 4.0,
+            "price": 46.66
+          },
+          {
+            "execution_id": "20261127094000485::a111ec7c-e3af-46eb-b04f-05301492636d",
+            "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+            "time": "2026-11-27T14:40:00.485853Z",
+            "symbol": "EWU",
+            "side": "sell",
+            "qty": 14.0,
+            "price": 46.66
+          },
+          {
+            "execution_id": "20261127093959149::7100a8fd-8f5f-45dc-a58e-9274d501de34",
+            "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+            "time": "2026-11-27T14:39:59.149985Z",
+            "symbol": "EWU",
+            "side": "sell",
+            "qty": 31.0,
+            "price": 46.65
+          },
+          {
+            "execution_id": "20261127093428332::5268e96d-2587-4306-8df9-362f4f5cb508",
+            "order_id": "85065a26-6817-419c-88c0-18f955be6e4f",
+            "time": "2026-11-27T14:34:28.332555Z",
+            "symbol": "EWU",
+            "side": "buy",
+            "qty": 75.0,
+            "price": 46.75
+          }
+        ]
       },
       {
         "date": "2026-11-25",
@@ -8223,9 +8378,9 @@
       {
         "date": "2026-10-27",
         "equity": 106940.15,
-        "day_change": -19.81,
-        "day_change_pct": -0.019,
-        "status": "closed",
+        "day_change": null,
+        "day_change_pct": null,
+        "status": "baseline",
         "executions_complete": true,
         "buys": 16,
         "sells": 26,
@@ -8614,10 +8769,10 @@
       },
       {
         "date": "2026-10-26",
-        "equity": 106959.96,
+        "equity": null,
         "day_change": null,
         "day_change_pct": null,
-        "status": "baseline",
+        "status": "missing_equity",
         "executions_complete": true,
         "buys": 20,
         "sells": 18,
@@ -8970,6 +9125,51 @@
       }
     ],
     "executions": [
+      {
+        "execution_id": "20261127094002076::cf2882d4-a4fd-48bd-be60-9711df948ba8",
+        "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+        "time": "2026-11-27T14:40:02.076787Z",
+        "symbol": "EWU",
+        "side": "sell",
+        "qty": 26.0,
+        "price": 46.66
+      },
+      {
+        "execution_id": "20261127094000998::e5b0de2d-fa50-40a7-ae2e-94ad29de8a28",
+        "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+        "time": "2026-11-27T14:40:00.99818Z",
+        "symbol": "EWU",
+        "side": "sell",
+        "qty": 4.0,
+        "price": 46.66
+      },
+      {
+        "execution_id": "20261127094000485::a111ec7c-e3af-46eb-b04f-05301492636d",
+        "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+        "time": "2026-11-27T14:40:00.485853Z",
+        "symbol": "EWU",
+        "side": "sell",
+        "qty": 14.0,
+        "price": 46.66
+      },
+      {
+        "execution_id": "20261127093959149::7100a8fd-8f5f-45dc-a58e-9274d501de34",
+        "order_id": "42db1aee-10cc-4017-9fa6-168e88b77404",
+        "time": "2026-11-27T14:39:59.149985Z",
+        "symbol": "EWU",
+        "side": "sell",
+        "qty": 31.0,
+        "price": 46.65
+      },
+      {
+        "execution_id": "20261127093428332::5268e96d-2587-4306-8df9-362f4f5cb508",
+        "order_id": "85065a26-6817-419c-88c0-18f955be6e4f",
+        "time": "2026-11-27T14:34:28.332555Z",
+        "symbol": "EWU",
+        "side": "buy",
+        "qty": 75.0,
+        "price": 46.75
+      },
       {
         "execution_id": "20261125155550436::68345343-1d54-4abd-a466-5ece76b34592",
         "order_id": "9397192a-11a6-41c9-a9b8-3478c2774457",
@@ -12133,7 +12333,7 @@
     "note": "Daily account equity change, not guaranteed realized profit. Includes holdings' price changes and may include transfers or other account adjustments. First funded observation is a baseline. Partial fills count as separate executions. Past portfolio attribution and historical open-position lists are not reconstructed."
   },
   "safety": {
-    "updated_at": "2026-11-27T11:17:28.279777+00:00",
+    "updated_at": "2026-11-27T20:12:08.839631+00:00",
     "mode": "paper",
     "policy": {
       "entry_loss_limit_pct": 0.005,
@@ -12143,10 +12343,10 @@
       "max_account_loss_pct": 0.1,
       "max_drawdown_pct": 0.1
     },
-    "entry_blocked": false,
-    "reason": "",
+    "entry_blocked": true,
+    "reason": "liquidation confirmed; no re-entry today",
     "liquidating": null,
-    "daily_pnl_pct": 0.0,
+    "daily_pnl_pct": -0.007,
     "market_open": false,
     "open_positions": 0,
     "actions": {},
@@ -12162,47 +12362,47 @@
     "signals": {
       "TQQQ": {
         "signal": "sell",
-        "age_seconds": 13
+        "age_seconds": 35
       },
       "SPXL": {
         "signal": "sell",
-        "age_seconds": 13
+        "age_seconds": 35
       },
       "SOXL": {
         "signal": "sell",
-        "age_seconds": 13
+        "age_seconds": 34
       },
       "QQQ": {
         "signal": "sell",
-        "age_seconds": 13
+        "age_seconds": 34
       },
       "SPY": {
         "signal": "sell",
-        "age_seconds": 13
+        "age_seconds": 34
       },
       "DIA": {
         "signal": "sell",
-        "age_seconds": 12
+        "age_seconds": 34
       },
       "IWM": {
         "signal": "sell",
-        "age_seconds": 12
+        "age_seconds": 34
       },
       "EWJ": {
         "signal": "sell",
-        "age_seconds": 12
+        "age_seconds": 34
       },
       "EZU": {
         "signal": "sell",
-        "age_seconds": 12
+        "age_seconds": 34
       },
       "EWU": {
-        "signal": "sell",
-        "age_seconds": 12
+        "signal": "buy",
+        "age_seconds": 34
       },
       "EWG": {
         "signal": "sell",
-        "age_seconds": 12
+        "age_seconds": 34
       }
     },
     "state_persistent": true,
@@ -12210,23 +12410,23 @@
     "category_budgets": {
       "HIGH RISK": {
         "fraction": 0.25,
-        "daily_cap": 26653.14,
+        "daily_cap": 26651.37,
         "committed": 0.0,
-        "remaining": 26653.14,
+        "remaining": 26651.37,
         "exposure": 0
       },
       "LOW RISK": {
         "fraction": 0.5,
-        "daily_cap": 53306.28,
-        "committed": 0.0,
-        "remaining": 53306.28,
+        "daily_cap": 53302.75,
+        "committed": 4542.51,
+        "remaining": 48760.24,
         "exposure": 0
       },
       "ACTIVE STOCK EXPERIMENT": {
         "fraction": 0.05,
-        "daily_cap": 5330.62,
+        "daily_cap": 5330.27,
         "committed": 0.0,
-        "remaining": 5330.62,
+        "remaining": 5330.27,
         "exposure": 0
       }
     },
@@ -12235,13 +12435,10 @@
     "experiment": {
       "status": "waiting for next eligible market opening",
       "feed": "iex",
-      "updated_at": "2026-11-27T11:17:17.561217+00:00",
+      "updated_at": "2026-11-27T20:12:04.210173+00:00",
       "history_symbols": 20,
       "errors": [],
-      "eligible_signals": [
-        "CVX",
-        "BAC"
-      ]
+      "eligible_signals": []
     },
     "connection_paused": false,
     "protection_repairing": false,
